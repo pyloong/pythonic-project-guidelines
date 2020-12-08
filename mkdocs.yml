@@ -22,3 +22,5 @@ plugins:
 
 nav:
 - Python 指南: index.md
+- 入门:
+  - 虚拟环境: introduction/virtualenv.md
