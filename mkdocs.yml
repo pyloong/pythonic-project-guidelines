@@ -24,3 +24,5 @@ nav:
 - Python 指南: index.md
 - 入门:
   - 虚拟环境: introduction/virtualenv.md
+- 项目工程化:
+  - 语言规范: guidelines/language_rules.md
