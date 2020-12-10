@@ -26,3 +26,4 @@ nav:
   - 虚拟环境: introduction/virtualenv.md
 - 项目工程化:
   - 语言规范: guidelines/language_rules.md
+  - 风格规范: guidelines/style_rules.md
