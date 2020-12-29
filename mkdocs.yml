@@ -22,6 +22,7 @@ plugins:
 
 nav:
 - Python 指南: index.md
+- 快速上手: quick_start.md
 - 入门:
   - 虚拟环境: introduction/virtualenv.md
 - 项目工程化:

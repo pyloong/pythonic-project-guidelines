@@ -5,7 +5,7 @@ MD007:
 MD013:
   line_length: 200
   heading_line_length: 80
-  code_block_line_length: 80
+  code_block_line_length: 200
   code_blocks: true
   tables: true
   headings: true
