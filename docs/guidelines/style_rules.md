@@ -9,13 +9,13 @@
 
 ## 3.1 分号
 
-不要用分号结束行，也不要使用分号将两个语句放在同一行上。
+不要在行尾用分号，也不要使用分号将两个语句放在同一行上。
 
 ## 3.2 行长
 
 最大行长为 80 字符。
 
-80 个字符限制的例外：
+特例：
 
 - 长的导入声明
 - 注释中的 URL 、路径名和长标识
@@ -24,16 +24,16 @@
   
 除非语句需要三个或更多的上下文管理器，否则不要使用反斜杠延续。
 
-利用 Python 的特性： [括号、方括号、大括号内的隐式行连接](https://docs.python.org/3/reference/lexical_analysis.html#implicit-line-joining) 。如果有必要，可以在变道时周围加一对括号。
+利用 Python 的特性： [括号、方括号、大括号内的隐式行连接](https://docs.python.org/3/reference/lexical_analysis.html#implicit-line-joining) 。如果有必要，可以在换行时，周围加一对括号。
 
 !!! success "推荐"
 
     ```python
     foo_bar(self, width, height, color='black', design=None, x='foo',
-             emphasis=None, highlight=0)
+            emphasis=None, highlight=0)
 
-     if (width == 0 and height == 0 and
-         color == 'red' and emphasis == 'strong'):
+    if (width == 0 and height == 0 and
+            color == 'red' and emphasis == 'strong'):
     ```
 
 当文本字符串不能放在单行上时，使用括号进行隐式换行。
@@ -43,7 +43,7 @@ x = ('This will build a very long long '
      'long long long long long long string')
 ```
 
-在主时钟，如果需要需要的话，把长的 URL 放在一行。
+在注释中，如果需要长的 URL 放在一行的话：
 
 !!! success "推荐"
     ```python
@@ -58,7 +58,7 @@ x = ('This will build a very long long '
     # v2.0/csv_file_name_extension_full_specification.html
     ```
 
-在定义表达式跨三行或更多航的 `with` 语句是，允许使用反斜杠延续。对于两行表达式，使用嵌套语句：
+在定义表达式跨三行或更多行的 `with` 语句上，允许使用反斜杠延续。对于两行表达式，使用嵌套语句：
 
 !!! success "推荐"
 
@@ -85,13 +85,13 @@ x = ('This will build a very long long '
             place_order(beans, spam)
     ```
 
-在上面的换行示例中，记下元素锁紧。参阅 [缩进](#34) 部分了解更多信息。
+在上面的换行示例中，记下元素缩进。参阅 [缩进](#34) 部分了解更多信息。
 
 ## 3.3 括号
 
 尽量少用括号。
 
-在元组周围使用括号虽然不是必须，但也可以。不要在 return 语句或条件语句中使用，除非在隐式的换行或表示元组时使用括号。
+在元组周围最好少用括号。不要在 return 语句或条件语句中使用，除非在隐式的换行或表示元组时使用括号。
 
 !!! success "推荐"
 
@@ -108,17 +108,20 @@ x = ('This will build a very long long '
     onesie = (foo,)
     return foo
     return spam, beans
-    return (spam, beans)
-    for (x, y) in dict.items(): ...
+    for x, y in dict.items(): ...
     ```
 
 !!! fail "不推荐"
+
     ```python
+
     if (x):
         bar()
     if not(x):
         bar()
     return (foo)
+    return (spam, beans)
+    for (x, y) in dict.items(): ...
     ```
 
 ## 3.4 缩进
@@ -126,15 +129,15 @@ x = ('This will build a very long long '
 使用 4 个空格缩进代码块。
 
 - 不要使用制表符或制表符和空格混用。
-- 在隐式换行时，应该垂直对其包装的元素，如[行长](#32)部分的示例
-- 或者使用四哥空格的悬挂缩进，在这种情况下，第一行的开括号后面应该没有任何内容。
+- 在隐式换行时，应该垂直对齐包装的元素，如[行长](#32)部分的示例
+- 当第一行的开括号后面应该没有任何内容，应使用四个空格的悬挂缩进，。
 
 !!! success "推荐"
 
     ```python
     # Aligned with opening delimiter
     foo = long_function_name(var_one, var_two,
-                            var_three, var_four)
+                             var_three, var_four)
     meal = (spam,
             beans)
 
@@ -172,8 +175,8 @@ x = ('This will build a very long long '
 
     # 2-space hanging indent forbidden
     foo = long_function_name(
-        var_one, var_two, var_three,
-        var_four)
+      var_one, var_two, var_three,
+      var_four)
 
     # No hanging indent in a dictionary
     foo = {
@@ -185,7 +188,7 @@ x = ('This will build a very long long '
 
 ### 3.4.1 在序列的条目最后加逗号？
 
-只有在序列结束符 `]` 、 `)` 或 `}` 和最后一个元素不在同一行时才推荐使用。最后的逗号可以作为 [YAPF](https://pypi.org/project/yapf/) 自动化格式代码的提示，当最后一个元素出现时，会自动将序列容器格式化为没行一个元素。
+只有在序列结束符 `]` 、 `)` 或 `}` 与最后一个元素不在同一行时才推荐使用。尾随逗号的存在还用作对代码自动格式化程序 [YAPF](https://pypi.org/project/yapf/) 的提示，以指示在最后一个元素之后出现时，自动将项目容器的格式设置为每行一个条目。
 
 !!! success "推荐"
 
@@ -195,32 +198,36 @@ x = ('This will build a very long long '
 
     ```python
     golomb4 = [
-           0,
-           1,
-           4,
-           6,
-       ]
+        0,
+        1,
+        4,
+        6,
+    ]
     ```
 
 !!! fail "不推荐"
+
     ```python
     golomb4 = [
-           0,
-           1,
-           4,
-           6
-       ]
+        0,
+        1,
+        4,
+        6
+    ]
     ```
 
 ## 3.5 空白行
 
-顶级定义之间用两个空白行，可以是函数待会故意，可以是类定义。方法定义间隔、 `class` 所在行于第一个方法之间使用一个空白行。在 `def` 行之后没有空行。函数或方法内部，适当使用一个空白行。
+- 顶级定义之间用两个空白行，可以是函数定义，可以是类定义。
+- 方法定义间隔、 `class` 所在行于第一个方法之间使用一个空白行。
+- 在 `def` 行之后没有空行。
+- 函数或方法内部，使用一个空白行。
 
 ## 3.6 空格
 
 遵循标点符号周围空格的排版标准。
 
-圆括号、方括号和大括号内没有空额。
+圆括号、方括号和大括号内没有空格。
 
 !!! success "推荐"
 
@@ -317,7 +324,7 @@ x = ('This will build a very long long '
     def complex(real, imag: float=0.0): return Magic(r = real, i = imag)
     ```
 
-不要使用空格垂直对齐连续行上的标记，因为会为维护造成负担（使用于 `:` 、 `#` 、 `=` 等）：
+请勿使用空格在连续的行上垂直对齐，因为这会增加维护负担（使用于 `:` 、 `#` 、 `=` 等）：
 
 !!! success "推荐"
 
@@ -345,22 +352,22 @@ x = ('This will build a very long long '
 
 ## 3.7 [Shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) 行
 
-大所属 `.py` 文件不需要以 `#!` 。程序主文件的开头是 `#!/usr/bin/python` 和一个可选的单个数字 `2` 或 `3` 结尾的行。参见： [PEP-394](https://www.google.com/url?sa=D&q=http://www.python.org/dev/peps/pep-0394/) 。
+大多数 `.py` 文件不需要以 `#!` 。程序主文件的开头是 `#!/usr/bin/python` 加上一个可选的单个数字 `2` 或 `3` 结尾的行。参见： [PEP-394](https://www.google.com/url?sa=D&q=http://www.python.org/dev/peps/pep-0394/) 。
 
-内核通过这一行来查找 Python 解释权，但是在导入模块时被 Python 忽略。只需要在一个可执行文件上定义。
+内核通过这一行来查找 Python 解释器，但是在导入模块时被 Python 忽略。只需要在一个可执行文件上定义。
 
 ## 3.8 注释和文档字符串
 
 正确使用模块、函数、方法的文档字符串和内联注释。
 
-### 2.8.1 文档字符串
+### 3.8.1 文档字符串
 
-Python 使用文档字符串记录代码。文档字符串是一个字符串，是包、模块、类或函数中的第一个语句。这些字符串通过对象的 `__doc__` 自动提取，并有 `pydoc` （尝试运行 `pydoc` 看一下结果） 使用。
-文档字符串始终使用三个双引号 `"""` 格式（参见： [PEP-257](https://www.google.com/url?sa=D&q=http://www.python.org/dev/peps/pep-0257/) ）。文档字符串会合并成一行（一个物理行不超过 80 字符串），以句号、问好和感叹号结尾。当写入更多（鼓励）内容时，后面必须跟一个空行，然后是文档字符串的其余部分，从与第一行第一个引号相同的光标为止开始。后面会后更详细描述。
+Python 使用文档字符串记录代码。文档字符串是一个字符串，是包、模块、类或函数中的第一个语句。这些字符串通过对象的 `__doc__` 自动提取，并由 `pydoc` （尝试运行 `pydoc` 看一下结果） 使用。
+文档字符串始终使用三个双引号 `"""` （参见： [PEP-257](https://www.google.com/url?sa=D&q=http://www.python.org/dev/peps/pep-0257/) ）。文档字符串会合并成一行（一个物理行不超过 80 字符串），以句号、问好和感叹号结尾。当写入更多（鼓励）内容时，后面必须跟一个空行，然后是文档字符串的其余部分，从与第一行第一个引号相同的光标为止开始。后面会后更详细描述。
 
 ### 3.8.2 模块
 
-每个文件都应该包含许可证文本。文明项目使用的许可证选择适当的样板文件（例如： `Apache 2.0` 、 `BSD` 、 `LGPL` 、 `GPL` ） 。
+每个文件都应该包含许可证文本。为项目选择合适的许可证文本（例如： `Apache 2.0` 、 `BSD` 、 `LGPL` 、 `GPL` ） 。
 
 文件应该以描述模块内容和用法的文档字符串开始。
 
@@ -391,9 +398,9 @@ examples.
 
 文档字符串应该提供足够的信息，以便在不阅读代码的情况下调用函数。文档字符串应该是描述性的（ `"""Fetches rows from a Bigtable."""` ） 而不是命令式的（ `"""Fetch rows from a Bigtable."""` ） ，除了 `@property` 装饰的方法，其余都应该使用相同的风格。文本字符串应该描述函数的调用语法和语义，而不是它的实现。对于复杂代码，应在旁边旁边加上注释。
 
-覆盖来自基类的方法时，用一个简单的字符串引导读者查被覆盖方法的文档字符串，如： `"""See base class."""` 。目的是不要重复记录基本方法的文档字符串。但是如果被重写的方法行为发生了改变或者需要提供更详细信息（例如：记录额外的副作用），那么要在重写方法上记录。
+覆盖来自基类的方法时，用一个简单的字符串引导读者查被覆盖方法的文档字符串，如： `"""See base class."""` 。目的是不要重复记录基本方法的文档字符串。但是如果被重写的方法行为发生了改变或者需要提供更详细信息（例如：产生其他影响），并且要在重写方法上记录。
 
-函数的一些心意应参考下面内容做记录。每个部分以标题开始，好提行以冒号结束。除了标题外的所有部分都应保持两个或四哥空格的垂直悬挂缩进（在文件内保持一致）。如果函数的名称和签名描述很多，可以使用一行文档字符串进行适当描述，也可以省略。
+函数的一些方面应参考下面内容做记录。每个部分以标题开始，并以冒号结束。除了标题外的所有部分都应保持两个或四哥空格的垂直悬挂缩进（在文件内保持一致）。如果函数的名称和签名描述很多，可以使用一行文档字符串进行适当描述，也可以省略。
 
 #### `Args:`
 
