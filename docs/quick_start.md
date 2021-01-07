@@ -1,8 +1,8 @@
 # Quick Start
 
-这是一个快速上手的示例项目，旨在通过一个尽可能包含主要知识点的简单项目，来想使用者展示一个更 Python 化的项目开发流程。
+这是一个快速上手的示例项目，旨在通过一个尽可能包含主要知识点的简单项目，来向使用者展示一个更 Python 化的项目开发流程。
 
-示例项目是一个使用异步微Web 框架 [Fastapi](https://fastapi.tiangolo.com/) 开发的博客系统。项目业务功能比较简单，但完整体现了一个项目从环境搭建，到开发，最后测试发布的完整流程。
+示例项目是一个使用异步微 Web 框架 [Fastapi](https://fastapi.tiangolo.com/) 开发的博客系统。项目业务功能比较简单，但完整体现了一个项目从环境搭建，到开发，最后测试发布的完整流程。
 
 ## 1. 开发环境搭建
 
@@ -17,7 +17,6 @@
 推荐使用 [Pycharm](https://www.jetbrains.com/pycharm/) 作为主要开发工具，可以选择社区版本免费使用。
 
 [Visual Studio Code](https://code.visualstudio.com/) 是微软开发的一款免费轻量文本编辑器，通过安装插件可以自定义成一款功能强大的 IDE 。在对 Python 的支持上，已经有了较为完善的插件体系，此方案也可以作为备用。
-
 
 ### 1.3 虚拟环境工具
 
@@ -49,13 +48,13 @@
     └── __init__.py
 ```
 
-初始化项目虚拟环境和依赖：
+初始化项目虚拟环境：
 
 ```bash
-pipenv install click
+pipenv install
 ```
 
-安装完成后，项目目录会自动常见两个文件。
+安装完成后，项目目录会自动生成 `Pipfile` 和 `Pipfile.lock` 两个文件。
 
 ### 2.2 初始化项目基本信息
 
@@ -68,7 +67,7 @@ setuptools.setup()
 
 ```
 
-编辑 `setup.cfg` 文件：
+编辑 `setup.cfg` 文件，配置项目描述信息：
 
 ```ini
 [metadata]
@@ -91,14 +90,13 @@ packages = find:
 package_dir =
     =src
 install_requires =
-    click
 
 [options.packages.find]
 where = src
 
 ```
 
-编辑 `src/example_blog/__init__.py` ：
+编辑 `src/example_blog/__init__.py` ，创建初始版本号：
 
 ```python
 __version__ = '0.1.0'
@@ -356,15 +354,31 @@ git commit -m "feat: First commit!"
 
 将项目以编辑方式安装到环境中：
 
-```python
+```bash
 pip install -e .
 ```
+
+!!! warning "注意"
+    这里不要使用 `pipenv` 命令，否则会写入 `Pipfile` 。
 
 ## 3. 项目功能开发
 
 ### 3.1 创建命令行入口
 
 命令行入口是启动项目的主入口，常见的做法是使用一个 `__main__` 函数，调用启动代码，然后使用 `python` 命令启动该文件。但对于多级命令参数的情况就比较麻烦，推荐使用 [click](https://click.palletsprojects.com/en/7.x/) 工具编写入口逻辑。
+
+安装依赖：
+
+```bash
+pipenv install click
+```
+
+编辑 `setup.cfg` ，将增加安装依赖：
+
+```ini
+install_requires =
+    click
+```
 
 创建 `src/example_blog/cmdline.py` 文件：
 
@@ -466,14 +480,12 @@ settings = Dynaconf(
 编辑 `src/example_blog/config/settings.yml` ，初始化配置：
 
 ```yaml
-DEBUG: false
 LOG_LEVEL: INFO
 ```
 
 编辑 `src/example_blog/config/settings.local.yml` ，增加本地开发配置：
 
 ```yaml
-DEBUG: true
 LOG_LEVEL: DEBUG
 ```
 
@@ -552,7 +564,7 @@ def init_log():
 
 ```bash
 git add .
-git commit -m "feat: add log"
+git commit -m "feat: Add log"
 ```
 
 ### 3.4 数据访问
@@ -591,9 +603,8 @@ DATABASE:
     charset: utf8mb4
 ```
 
-**注意：**
-
-`settings.yml` 为系统默认配置，会被 git 追踪管理，不要填写真正的数据库连接信息。真实配置信息可以写在 `settings.local.yml` 文件中，会覆盖默认配置。
+!!! danger "警告"
+    `settings.yml` 为系统默认配置，会被 git 追踪管理，不要填写真正的数据库连接信息。真实配置信息可以写在 `settings.local.yml` 文件中，会覆盖默认配置。
 
 新建 `src/example_blog/db.py` ，创建 [sqlalchemy](https://www.sqlalchemy.org/) 访问对象：
 
@@ -667,7 +678,7 @@ class Article(BaseModel):
 
 安装依赖：
 
-```python
+```bash
 pipenv install pydantic
 ```
 
@@ -849,7 +860,7 @@ git commit -m "feat: Add services."
 pipenv install fastapi uvicorn
 ```
 
-编辑 `setup.cfg` ，将增加安装依赖：
+编辑 `setup.cfg` ，增加安装依赖：
 
 ```ini
 install_requires =
@@ -1030,7 +1041,7 @@ PORT: 8000
 
 ```bash
 git add .
-git commit -m "Add api service."
+git commit -m "feat: Add api service."
 ```
 
 ### 3.7 编写启动命令
@@ -1061,7 +1072,7 @@ def server(host, port, level):
 
 ```bash
 git add .
-git commit -m "Add server cmdline."
+git commit -m "feat: Add server cmdline."
 ```
 
 ### 3.8 启动 Server
@@ -1346,9 +1357,23 @@ def chdir(path: Union[str, PathLike]):
 
 ```
 
-**注意：**
+!!! info "提示"
+    由于使用了 click 包装了 alembic 命令，在使用上会有点不同，默认应该使用 `migrate --` 后加 alembic 的其他参数，否则多参数的情况下会无法识别。
 
-由于使用了 click 包装了 alembic 命令，在使用上会有点不同，默认应该使用 `migrate --` 后加 alembic 的其他参数，否则多参数的情况下会无法识别。
+为了将 `src/example_blog/migration` 打包到项目中，需要将其变成 Python 包。
+
+创建 `src/example_blog/migration/__init__.py` 和 `src/example_blog/migration/versions/__init__.py`
+
+编辑 `setup.cfg` ，将迁移脚本配置信息加入打包系统：
+
+```ini
+[options.package_data]
+example_blog.config = settings.yml
+example_blog.migration =
+    alembic.ini
+    README
+    script.py.mako
+```
 
 创建空白数据库迁移版本：
 
@@ -1374,21 +1399,6 @@ example_blog migrate -- revision --autogenerate -m "init_table"
 example_blog migrate -- upgrade head
 ```
 
-为了将 `src/example_blog/migration` 打包到项目中，需要将其变成 Python 包。
-
-创建 `src/example_blog/migration/__init__.py` 和 `src/example_blog/migration/versions/__init__.py`
-
-编辑 `setup.cfg` ，将迁移脚本配置信息加入打包系统：
-
-```ini
-[options.package_data]
-example_blog.config = settings.yml
-example_blog.migration =
-    alembic.ini
-    README
-    script.py.mako
-```
-
 提交代码：
 
 ```bash
@@ -1400,7 +1410,7 @@ git commit -m "Add alembic migrate."
 
 测试是软件开发中重要的一环，能够在发布之前检查出更多可能出现的异常情况。
 
-测试框架选用比较有名的 [pytest](https://docs.pytest.org/en/stable/) ，它具有强大的功能和很好的兼容性。
+测试框架选用比较常用的 [pytest](https://docs.pytest.org/en/stable/) ，它具有强大的功能和很好的兼容性。
 
 安装依赖：
 
@@ -1441,6 +1451,13 @@ settings.load_file(os.path.join(os.path.dirname(__file__), 'settings.local.yml')
 ```
 
 虽然本地开发配置可以临时调整，但对于开发环境和测试环境依然有些不一样。从上面代码中可以看到加载了两个测试配置，和 Dynaconf 规则一样， `settings.local.yml` 配置为本地配置，不会被代码追踪，只不过这里是手动实现的。
+
+提交代码：
+
+```bash
+git add .
+git commit -m "test: Init test."
+```
 
 ### 4.1 测试数据访问层
 
@@ -1572,7 +1589,7 @@ pytest tests/test_dao.py
 
 ```bash
 git add .
-git commit -m "Add dao test"
+git commit -m "test: Add dao test."
 ```
 
 ### 4.2 测试服务层
@@ -1644,7 +1661,7 @@ pytest tests/test_services.py
 
 ```bash
 git add .
-git commit -m "Add service test"
+git commit -m "test: Add service test."
 ```
 
 ### 4.3 测试试图层
@@ -1767,7 +1784,7 @@ pytest tests/test_views.py
 
 ```bash
 git add .
-git commit -m "Add view test"
+git commit -m "test: Add view test."
 ```
 
 ### 4.4 测试命令行
@@ -1836,7 +1853,7 @@ pytest tests/test_views.py
 
 ```bash
 git add .
-git commit -m "Add cmdline test"
+git commit -m "test: Add cmdline test."
 ```
 
 ### 4.5 其他测试
@@ -1894,7 +1911,7 @@ pytest
 
 ```bash
 git add .
-git commit -m "Add other test"
+git commit -m "test: Add other test."
 ```
 
 至此，所有测试运行完毕，除了 `src/example_blog/migration` 之外的包的测试已经可以全部覆盖。
@@ -2019,4 +2036,4 @@ twine upload dist/*
 ```
 
 [^1]: https://www.python.org/doc/sunset-python-2/
-[^2]: 现在 Anaconda / Miniconda 在 Windows 上和虚拟环境 Virtualenv 存在一些兼容问题，请参考 [conda support - Windows 3.7+ #1986](https://github.com/pypa/virtualenv/issues/1986) 和 [virtualenv==20.0.34 not compatible with python on windows #12094](https://github.com/ContinuumIO/anaconda-issues/issues/12094)
+[^2]: 现在 Anaconda / Miniconda 在 Windows 上使用虚拟环境工具 [Virtualenv](https://virtualenv.pypa.io/en/latest/) 存在一些兼容问题，而且 Pipenv 是依赖这个工具的。请参考 [conda support - Windows 3.7+ #1986](https://github.com/pypa/virtualenv/issues/1986) 和 [virtualenv==20.0.34 not compatible with python on windows #12094](https://github.com/ContinuumIO/anaconda-issues/issues/12094)
