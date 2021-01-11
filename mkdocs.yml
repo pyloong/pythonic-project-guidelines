@@ -1,0 +1,30 @@
+site_name: Python 项目工程化指南
+
+theme:
+  name: material
+  langage: zh
+  features:
+    - search.highlight
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - footnotes
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+repo_url: https://github.com/pyloong/pythonic-project-guidelines
+repo_name: pyloong/pythonic-project-guidelines
+
+plugins:
+  - search
+
+nav:
+- Python 指南: index.md
+- 快速上手: quick_start.md
+- 入门:
+  - 虚拟环境: introduction/virtualenv.md
+- 项目工程化:
+  - 语言规范: guidelines/language_rules.md
+  - 风格规范: guidelines/style_rules.md
