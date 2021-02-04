@@ -74,7 +74,8 @@ init_bootstrap [n]:
 
 生成后的项目结构如下：
 
-```plain txt
+```txt
+
 ├── docs
 │   └── development.md
 ├── .gitignore
@@ -460,7 +461,7 @@ pip install -e .
 
 然后就可以正常使用 `word_count` 命令了。
 
-```plain txt
+```txt
 $ word_count -h
 usage: word_count [-h] -s SOURCE -d DEST
 
