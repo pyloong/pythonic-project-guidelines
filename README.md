@@ -25,7 +25,7 @@
     - [ ] Fastapi 实践
     - [ ] Django 实践
 
-> 如果您对文档有任何建议或意见，欢迎提交 ISSUE 。当然我们更期待与您共同协作开发，让文档变得更加完善。
+> 如果您对文档有任何建议或意见，欢迎提交 [issue](https://github.com/pyloong/pythonic-project-guidelines/issues) 。当然我们更期待与您共同协作开发，让文档变得更加完善。
 
 ## 使用方式
 
@@ -37,7 +37,7 @@ git clone xxx
 
 ### 2. 初始化环境
 
-项目预览所启动的 server 是需要安装 Python 依赖的，强烈建议使用 Python 3.6+ 的版本。如果本地没有 Python 环境，也可以在 [Docker 中启动预览服务器](https://squidfunk.github.io/mkdocs-material/creating-your-site/#creating-your-site)。
+项目预览需要安装 Python 环境来启动 server，强烈建议使用 Python 3.6+ 的版本。如果本地没有 Python 环境，也可以使用 [Docker预览服务器](https://squidfunk.github.io/mkdocs-material/creating-your-site/#creating-your-site) 来启动。
 
 #### 2.1 本地初始化
 
@@ -77,7 +77,7 @@ docker run --rm -it -p 8000:8000 -v "%cd%":/docs squidfunk/mkdocs-material
 
 ## 协作规范
 
-文档采用使用 Markdown 编写，使用 [mkdocs](https://www.mkdocs.org/) 配合 [mkdocs-material](https://squidfunk.github.io/mkdocs-material-insiders/) 主题构建。
+文档使用 Markdown 编写，使用 [mkdocs](https://www.mkdocs.org/) 配合 [mkdocs-material](https://squidfunk.github.io/mkdocs-material-insiders/) 主题构建。
 
 - Fork
 - 编码
