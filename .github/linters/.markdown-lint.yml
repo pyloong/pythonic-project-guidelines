@@ -1,9 +1,31 @@
-MD007:
-  indent: 4
-  start_indented: false
+---
+###########################
+###########################
+## Markdown Linter rules ##
+###########################
+###########################
 
+# Linter rules doc:
+# - https://github.com/DavidAnson/markdownlint
+#
+# Note:
+# To comment out a single error:
+#   <!-- markdownlint-disable -->
+#   any violations you want
+#   <!-- markdownlint-restore -->
+#
+
+###############
+# Rules by id #
+###############
+MD004: false                  # Unordered list style
+MD007:
+  indent: 4                   # Unordered list indentation
+  start_indented: false
+MD012:
+  maximum: 20
 MD013:
-  line_length: 200
+  line_length: 808            # Line length
   heading_line_length: 80
   code_block_line_length: 200
   code_blocks: true
@@ -12,6 +34,13 @@ MD013:
   headers: true
   strict: false
   stern: false
+MD026:
+  punctuation: ".,;:!。，；:"  # List of not allowed
+MD029: false                  # Ordered list item prefix
+MD033: false                  # Allow inline HTML
+MD036: false                  # Emphasis used instead of a heading
 
-MD012:
-  maximum: 20
+#################
+# Rules by tags #
+#################
+blank_lines: false  # Error on blank lines
