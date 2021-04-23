@@ -29,4 +29,4 @@ nav:
   - 语言规范: guidelines/language_rules.md
   - 风格规范: guidelines/style_rules.md
 - 项目实践:
-  - Web: pratice/web.md
+  - Web: practices/web.md
