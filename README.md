@@ -25,7 +25,7 @@
     - [ ] Fastapi 实践
     - [ ] Django 实践
 
-> 如果您对文档有任何建议或意见，欢迎提交 [issue](https://github.com/pyloong/pythonic-project-guidelines/issues) 。当然我们更期待与您共同协作开发，让文档变得更加完善。
+> 如果您对文档有任何建议或意见，欢迎提交 [issues](https://github.com/pyloong/pythonic-project-guidelines/issues) 进行讨论。当然我们更期待与您共同协作开发，让文档变得更加完善。
 
 ## 使用方式
 

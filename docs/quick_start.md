@@ -1,6 +1,6 @@
-# 快速开始
+# 快速上手
 
-这是一个快速开始的示例指南，本文通过一个包含主要知识点的简单项目，向开发者展示一个更符合 Python 规范和风格（Pythonic）的项目开发流程。
+这是一个快速上手的开发指南，本文通过一个包含主要知识点的简单项目，向开发者展示一个更符合 Python 规范和风格（Pythonic）的项目开发流程。
 
 示例项目是一个单词统计的演示程序，如果你想查看完整示例，可以浏览 [Word Count](https://github.com/pyloong/pythonic-project-samples/tree/feature/word_count) 项目源码。
 
@@ -14,7 +14,7 @@
 
 推荐使用 [Pycharm](https://www.jetbrains.com/pycharm/) 开发工具，可以选择免费的社区版本。
 
-[Visual Studio Code](https://code.visualstudio.com/) 是微软开发的一款免费轻量级文本编辑器，通过安装插件可以自定义成一款功能强大的 IDE 开发工具。目前支持 Python 的插件体系已经较为完善，此方案可以作为备用。
+[Visual Studio Code](https://code.visualstudio.com/) 是微软开发的一款免费轻量级文本编辑器，通过安装插件可以自定义成一款功能强大的 IDE 开发工具。目前支持 Python 的插件体系已经较为完善，此方案也可以作为备用。
 
 ### 1.3 虚拟环境工具
 
@@ -38,9 +38,9 @@ pip3 install -U pipenv
 
 ### 1.4 初始化项目
 
-cookiecutter 是 Python 一款快速搭建项目的命令行工具。
+[cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/README.html) 是一个通过项目模板创建项目的命令行工具。
 
-安装 [cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/README.html)
+安装 cookiecutter
 
 ```bash
 pip3 install -U cookiecutter
@@ -53,7 +53,7 @@ cd workspace
 cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project
 ```
 
-运行命令后会出现下面的配置过程，如果你不清楚配置的具体用途，可以直接按回车使用默认配置，默认配置使用项目模板初始化。
+运行命令后会出现下面的配置过程，如果你不清楚配置的具体用途，可以直接按回车使用默认配置，默认配置使用项目模板初始值。
 
 ```bash
 ❯ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project
@@ -84,7 +84,7 @@ Choose from 1, 2, 3 [1]:
 init_bootstrap [n]: 
 ```
 
-如果你在使用项目模板过程中有任何问题或疑问，可以通过发起 [issues](https://github.com/pyloong/cookiecutter-pythonic-project/issues) 来反馈。
+如果你在使用项目模板过程中有任何问题或疑问，可以通过发起 [issues](https://github.com/pyloong/cookiecutter-pythonic-project/issues) 进行反馈。
 
 生成的项目结构如下：
 
@@ -109,7 +109,7 @@ init_bootstrap [n]:
 
 ```
 
-在项目 `src` 下，项目模块用来存放模块的源代码， `tests` 用来编写模块的测试代码。
+在目录 `src` 下，项目模块目录用来存放源代码， `tests` 用来存放模块的测试代码。
 
 `Pipfile` 包含项目初始依赖，`setup.cfg` 和 `setup.py` 定义了项目描述信息，`tox.ini` 定义了任务自动化执行逻辑。
 
@@ -161,7 +161,7 @@ pip install -e .
 
 ### 2.1 功能需求
 
-示例项目提供一个从文本文件读取数据，以空格分割单词，统计该文件中的单词数量，并将结果写入到目标文件中。
+示例项目提供一个从文本文件读取数据，以空格分割单词，然后统计文件中的单词数量，并将结果写入到目标文件中。
 
 ### 2.2 编写计数器
 
@@ -439,7 +439,7 @@ git commit -m "feat(cmdline): 增加 cmdline 逻辑，并完成测试。"
 
 ### 2.4 总结
 
-至此，我们的功能已经开发完成。在整个开发过程中，我们遵循了 “开发功能特性” => “代码风格检查” => “单元测试” 的流程。
+至此，我们的功能开发已经完成。在整个开发过程中，我们遵循了 “开发功能特性” => “代码风格检查” => “单元测试” 的流程。
 
 如果感觉每次运行多个命令比较繁琐，可以在项目根目录中运行 `tox` 自动化完成代码测试、导包检查和代码风格检查。
 
