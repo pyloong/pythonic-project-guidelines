@@ -86,7 +86,7 @@ init_bootstrap [n]:
 
 如果你在使用项目模板过程中有任何问题或疑问，可以通过发起 [issues](https://github.com/pyloong/cookiecutter-pythonic-project/issues) 进行反馈。
 
-生成的项目结构如下：
+生成后的项目结构如下：
 
 ```txt
 
@@ -109,7 +109,7 @@ init_bootstrap [n]:
 
 ```
 
-在目录 `src` 下，项目模块目录用来存放源代码， `tests` 用来存放模块的测试代码。
+目录中的 `src` 下有一个项目模块，用来存放项目源代码， `tests` 目录用来编写模块的相关测试代码。
 
 `Pipfile` 包含项目初始依赖，`setup.cfg` 和 `setup.py` 定义了项目描述信息，`tox.ini` 定义了任务自动化执行逻辑。
 
@@ -453,7 +453,7 @@ tox
 python src/word_count/cmdline.py -s foo.txt -d bar.txt
 ```
 
-## 2.5 打包发布
+### 2.5 打包发布
 
 如果希望别人能更方便的使用项目，可以将项目打包发布到 [pypi](https://pypi.org/) 中，然后在需要使用的地方运行 `pip install -U word-count`。
 
@@ -489,7 +489,7 @@ optional arguments:
 
 ```
 
-### 2.5.1 打包
+#### 2.5.1 打包
 
 运行打包命令：
 
@@ -501,7 +501,7 @@ python setup.py sdist bdist_wheel
 
 打包后的文件在 `dist` 目录中。可以直接在其他地方运行 `pip install word_count.wheel` 安装。
 
-### 2.5.2 发布
+#### 2.5.2 发布
 
 将开发好的项目发布到索引仓库，或内网的私有仓库。
 
