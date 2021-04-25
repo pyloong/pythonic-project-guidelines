@@ -1,8 +1,8 @@
-# Python 项目工程化实践指南
+# Python 项目工程化开发指南
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/pyloong/pythonic-project-guidelines/gh-deploy/main?label=gh-page&logo=github&style=flat-square)
 
-指南主要包含以下标题：
+指南主要包含以下主题：
 
 - 项目工程化
     - [x] 快速开始
