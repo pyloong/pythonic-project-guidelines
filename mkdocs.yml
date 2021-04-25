@@ -1,4 +1,4 @@
-site_name: Python 项目工程化指南
+site_name: Python 项目工程化开发指南
 
 theme:
   name: material
@@ -21,7 +21,7 @@ plugins:
   - search
 
 nav:
-- Python 指南: index.md
+- Python 开发指南: index.md
 - 快速上手: quick_start.md
 - 入门:
   - 虚拟环境: introduction/virtualenv.md

@@ -1,6 +1,6 @@
-# Python 项目工程化实践指南
+# Python 项目工程化开发指南
 
-为 Python 项目工程化开发提供实践指南。
+为 Python 项目工程化提供开发指南。
 
 - [快速上手](./quick_start.md)
 - [语言规范](./guidelines/language_rules.md)
