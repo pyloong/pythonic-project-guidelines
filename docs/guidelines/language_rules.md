@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD046 MD038 -->
-
 # Python 语言规范
 
 > 本文档为 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) 第二章 [Python Language Rules](https://google.github.io/styleguide/pyguide.html#2-python-language-rules) 的译文。
@@ -684,7 +682,7 @@ def get_adder(summand1):
 
 通常可以带来更加清晰，优雅的代码。尤其会让有经验的 Lisp 和 Scheme （还有 Haskell， ML 等）程序员感到欣慰。
 
-### 1.16.3 缺点
+### 2.16.3 缺点
 
 可能导致让人迷惑的 bug。例如下面这个依据 [PEP-0227](http://www.google.com/url?sa=D&q=http://www.python.org/dev/peps/pep-0227/) 的例子：
 
@@ -805,7 +803,7 @@ Python 3 是 Python 语言的重大变化。虽然现有的代码通常是考虑
 
 **`from __future__ imports`**
 
-推荐使用 `from __future__ import ` 语句。所有的新代码都应该包含以下内容，现有的代码也应该在有条件的情况下进行兼容更新：
+推荐使用 `from __future__ import` 语句。所有新的代码都应包含如下内容，并尽可能更新现有代码以使其兼容
 
 ```python
 from __future__ import absolute_import
@@ -864,4 +862,3 @@ a = some_func()  # type: SomeType
 
 强烈建议您在更改代码时启用 Python 类型分析。当添加或修改公共 API 时，请包含类型标注，并在构建系统中启用 `pytype` 进行检查。由于静态分析对 Python 来说相对较新，我们承认会有一些副作用（比如错误的类型推断）可能会阻止一些项目采用。因此，我们鼓励作者添加一个带有 `TODO` 的注释，或者在 `BUILD` 文件或代码本身中通过 bug 链接描述当前不采用类型标注的问题。
 
-<!-- markdownlint-restore -->

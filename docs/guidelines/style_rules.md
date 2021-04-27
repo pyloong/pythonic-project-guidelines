@@ -1,4 +1,3 @@
-<!-- markdownlint-disable MD046 MD038 -->
 # Python 风格规范
 
 > 本文档为 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) 中 第二章 [Python Style Rules](https://google.github.io/styleguide/pyguide.html#3-python-style-rules) 的译文。
@@ -1285,5 +1284,3 @@ T = TypeVar('T')
 def get_names(employee_ids: List[T]) -> Dict[T, Text]:
   """Returns a mapping from employee ID to employee name for given IDs."""
 ```
-
-<!-- markdownlint-restore -->
