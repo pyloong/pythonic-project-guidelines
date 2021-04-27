@@ -45,12 +45,14 @@ x = ('This will build a very long long '
 在注释中，如果需要长的 URL 放在一行的话：
 
 !!! success "推荐"
+
     ```python
     # See details at
     # http://www.example.com/us/developer/documentation/api/content/v2.0/csv_file_name_extension_full_specification.html
     ```
 
 !!! fail "不推荐"
+
     ```python
     # See details at
     # http://www.example.com/us/developer/documentation/api/content/\
