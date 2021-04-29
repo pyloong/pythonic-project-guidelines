@@ -1,0 +1,1253 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+    
+    
+      
+        <title>快速上手 - Python 项目工程化开发指南</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python 项目工程化开发指南" class="md-header__button md-logo" aria-label="Python 项目工程化开发指南" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python 项目工程化开发指南
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              快速上手
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/pyloong/pythonic-project-guidelines/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pyloong/pythonic-project-guidelines
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python 项目工程化开发指南" class="md-nav__button md-logo" aria-label="Python 项目工程化开发指南" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Python 项目工程化开发指南
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/pyloong/pythonic-project-guidelines/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pyloong/pythonic-project-guidelines
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Python 开发指南
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          快速上手
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        快速上手
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 开发环境搭建
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 开发环境搭建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-python" class="md-nav__link">
+    1.1 Python 开发环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 开发工具
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 虚拟环境工具
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 初始化项目
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    1.5 初始化项目环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-git" class="md-nav__link">
+    1.6 初始化 Git
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17" class="md-nav__link">
+    1.7 会用到的其他工具
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 功能开发
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 功能开发">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 功能需求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 编写计数器
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 编写计数器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221" class="md-nav__link">
+    2.2.1 导入格式化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222" class="md-nav__link">
+    2.2.2 代码风格检查
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#223" class="md-nav__link">
+    2.2.3 测试
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#224" class="md-nav__link">
+    2.2.4 提交代码
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 编写命令行入口
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 编写命令行入口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    2.3.1 测试
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232" class="md-nav__link">
+    2.3.2 提交代码
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    2.4 总结
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    2.5 打包发布
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 打包发布">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#251" class="md-nav__link">
+    2.5.1 打包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#252" class="md-nav__link">
+    2.5.2 发布
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        入门
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="入门" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          入门
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/virtualenv/" class="md-nav__link">
+        虚拟环境
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        项目工程化
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="项目工程化" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          项目工程化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/language_rules/" class="md-nav__link">
+        语言规范
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/style_rules/" class="md-nav__link">
+        风格规范
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        项目实践
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="项目实践" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          项目实践
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practices/web/" class="md-nav__link">
+        Web
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 开发环境搭建
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 开发环境搭建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-python" class="md-nav__link">
+    1.1 Python 开发环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 开发工具
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 虚拟环境工具
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 初始化项目
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    1.5 初始化项目环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-git" class="md-nav__link">
+    1.6 初始化 Git
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17" class="md-nav__link">
+    1.7 会用到的其他工具
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 功能开发
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 功能开发">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 功能需求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 编写计数器
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 编写计数器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221" class="md-nav__link">
+    2.2.1 导入格式化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222" class="md-nav__link">
+    2.2.2 代码风格检查
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#223" class="md-nav__link">
+    2.2.3 测试
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#224" class="md-nav__link">
+    2.2.4 提交代码
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 编写命令行入口
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 编写命令行入口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    2.3.1 测试
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232" class="md-nav__link">
+    2.3.2 提交代码
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    2.4 总结
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    2.5 打包发布
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 打包发布">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#251" class="md-nav__link">
+    2.5.1 打包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#252" class="md-nav__link">
+    2.5.2 发布
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pyloong/pythonic-project-guidelines/edit/master/docs/quick_start.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="_1">快速上手</h1>
+<p>这是一个快速上手的开发指南，本文通过一个包含主要知识点的简单项目，向开发者展示一个更符合 Python 规范和风格（Pythonic）的项目开发流程。</p>
+<p>示例项目是一个单词统计的演示程序，如果你想查看完整示例，可以浏览 <a href="https://github.com/pyloong/pythonic-project-samples/tree/feature/word_count">Word Count</a> 项目源码。</p>
+<h2 id="1">1. 开发环境搭建</h2>
+<h3 id="11-python">1.1 Python 开发环境</h3>
+<p>推荐使用 Python 3.7+ ，本项目使用 Python 3.7 。具体版本的 Python 环境可以在 <a href="https://www.python.org/downloads/">官网</a> 下载。</p>
+<h3 id="12">1.2 开发工具</h3>
+<p>推荐使用 <a href="https://www.jetbrains.com/pycharm/">Pycharm</a> 开发工具，可以选择免费的社区版本。</p>
+<p><a href="https://code.visualstudio.com/">Visual Studio Code</a> 是微软开发的一款免费轻量级文本编辑器，通过安装插件可以自定义成一款功能强大的 IDE 开发工具。目前支持 Python 的插件体系已经较为完善，此方案也可以作为备用。</p>
+<h3 id="13">1.3 虚拟环境工具</h3>
+<p>推荐使用 <a href="https://pipenv.pypa.io/en/latest/">pipenv</a> 。pipenv 是 <a href="https://packaging.python.org/tutorials/managing-dependencies/#managing-dependencies">Python官方推荐</a> 的包管理工具，它集成了 <code>virtualenv</code>, <code>pip</code> 和 <code>pyenv</code> 三者的功能。
+其目的旨在集合了所有的包管理工具的长处，如: <code>npm</code>, <code>yarn</code>, <code>composer</code> 等的优点。</p>
+<p>它能够自动为项目创建和管理虚拟环境，从 <code>Pipfile</code> 文件添加或删除安装的包，同时生成 <code>Pipfile.lock</code> 来锁定安装包的版本和依赖信息，避免构建错误。</p>
+<p>pipenv 主要解决了如下问题:</p>
+<ul>
+<li>不用再单独使用 <code>pip</code> 和 <code>virtualenv</code>, 现在它们合并在一起了</li>
+<li>不用再维护 <code>requirements.txt</code>, 使用 <code>Pipfile</code> 和 <code>Pipfile.lock</code> 来代替</li>
+<li>可以使用多个 python 版本(python2 和 python3)</li>
+<li>在安装了 pyenv 的条件下，可以自动安装需要的 Python 版本</li>
+</ul>
+<p>在安装好 Python 环境后，应该在全局环境中安装 pipenv 。</p>
+<div class="highlight"><pre><span></span><code>pip3 install -U pipenv
+</code></pre></div>
+<h3 id="14">1.4 初始化项目</h3>
+<p><a href="https://cookiecutter.readthedocs.io/en/1.7.2/README.html">cookiecutter</a> 是一个通过项目模板创建项目的命令行工具。</p>
+<p>安装 cookiecutter</p>
+<div class="highlight"><pre><span></span><code>pip3 install -U cookiecutter
+</code></pre></div>
+<p>初始化项目</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> workspace
+cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project
+</code></pre></div>
+<p>运行命令后会出现下面的配置过程，如果你不清楚配置的具体用途，可以直接按回车使用默认配置，默认配置使用项目模板初始值。</p>
+<div class="highlight"><pre><span></span><code>❯ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project
+project_name <span class="o">[</span>My Project<span class="o">]</span>: Word Count
+project_slug <span class="o">[</span>word_count<span class="o">]</span>: 
+project_description <span class="o">[</span>My Awesome Project!<span class="o">]</span>: Word count project
+author_name <span class="o">[</span>Author<span class="o">]</span>: <span class="nb">test</span>
+author_email <span class="o">[</span>test@example.com<span class="o">]</span>: 
+version <span class="o">[</span><span class="m">0</span>.1.0<span class="o">]</span>: 
+Select python_version:
+<span class="m">1</span> - <span class="m">3</span>.7
+<span class="m">2</span> - <span class="m">3</span>.8
+<span class="m">3</span> - <span class="m">3</span>.9
+Choose from <span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span> <span class="o">[</span><span class="m">1</span><span class="o">]</span>: 
+use_src_layout <span class="o">[</span>y<span class="o">]</span>: 
+use_pipenv <span class="o">[</span>y<span class="o">]</span>: 
+Select index_server:
+<span class="m">1</span> - none
+<span class="m">2</span> - aliyun
+<span class="m">3</span> - tendata
+Choose from <span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span> <span class="o">[</span><span class="m">1</span><span class="o">]</span>: 
+use_docker <span class="o">[</span>n<span class="o">]</span>: 
+Select ci_tools:
+<span class="m">1</span> - none
+<span class="m">2</span> - Gitlab
+<span class="m">3</span> - Github
+Choose from <span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span> <span class="o">[</span><span class="m">1</span><span class="o">]</span>: 
+init_bootstrap <span class="o">[</span>n<span class="o">]</span>: 
+</code></pre></div>
+<p>如果你在使用项目模板过程中有任何问题或疑问，可以通过发起 <a href="https://github.com/pyloong/cookiecutter-pythonic-project/issues">issues</a> 进行反馈。</p>
+<p>生成后的项目结构如下：</p>
+<div class="highlight"><pre><span></span><code>├── docs
+│   └── development.md
+├── .gitignore
+├── LICENSE
+├── Pipfile
+├── README.md
+├── setup.cfg
+├── setup.py
+├── src
+│   └── word_count
+│       └── __init__.py
+├── tests
+│   ├── conftest.py
+│   ├── __init__.py
+│   └── tests.py
+└── tox.ini
+</code></pre></div>
+<p>目录中的 <code>src</code> 下有一个项目模块，用来存放项目源代码， <code>tests</code> 目录用来编写模块的相关测试代码。</p>
+<p><code>Pipfile</code> 包含项目初始依赖，<code>setup.cfg</code> 和 <code>setup.py</code> 定义了项目描述信息，<code>tox.ini</code> 定义了任务自动化执行逻辑。</p>
+<h3 id="15">1.5 初始化项目环境</h3>
+<p>使用 pipenv 初始化一个虚拟环境。</p>
+<div class="highlight"><pre><span></span><code>pipenv install -d
+</code></pre></div>
+<p>初始化完成后，会生成一个 <code>Pipfile.lock</code>，可以用来锁定生产环境安装包的版本和依赖信息。</p>
+<h3 id="16-git">1.6 初始化 Git</h3>
+<p>推荐使用 <a href="https://git-scm.com/">Git</a> 对项目进行版本管理。所以需要提前安装 Git ，并熟悉常用的 Git 概念和 Git 命令。</p>
+<div class="highlight"><pre><span></span><code>git init
+git config user.name <span class="nb">test</span>
+git config user.email test@example.com
+
+<span class="c1"># 初始化项目提交</span>
+git add .
+git commit -m <span class="s2">&quot;feat: 初始化项目提交&quot;</span>
+</code></pre></div>
+<h3 id="17">1.7 会用到的其他工具</h3>
+<p>在生成的 <code>Pipfile</code> 文件中，默认添加了一些开发环境中常用的工具。</p>
+<ul>
+<li><code>isort</code>: <a href="https://pycqa.github.io/isort/">isort</a> 是一个自动格式化导入工具</li>
+<li><code>pylint</code>: <a href="https://www.pylint.org/">pylint</a> 是一个检测代码风格工具</li>
+<li><code>pytest</code>: <a href="https://docs.pytest.org/en/stable/">pytest</a> 是一个更加易用的测试框架，兼容 <code>unittest</code> 测试框架</li>
+<li><code>pytest-cov</code>: <a href="https://github.com/pytest-dev/pytest-cov">pytest-cov</a> 是 <code>pytest</code> 的 <a href="https://coverage.readthedocs.io/en/latest/">Coverage</a> 插件，用来统计测试覆盖率</li>
+<li><code>tox</code>: <a href="https://tox.readthedocs.io/en/latest/">tox</a> 是一个任务自动化工具</li>
+</ul>
+<p>相关功能可以阅读对应的技术说明文档。</p>
+<h2 id="2">2. 功能开发</h2>
+<p>首先将项目以可编辑方式安装到环境中：</p>
+<div class="highlight"><pre><span></span><code>pip install -e .
+</code></pre></div>
+<p>这样做的目的是将 <code>src</code> 下的包安装到 Python 环境中，否则无法正常导入包中的模块。</p>
+<h3 id="21">2.1 功能需求</h3>
+<p>示例项目提供一个从文本文件读取数据，以空格分割单词，然后统计文件中的单词数量，并将结果写入到目标文件中。</p>
+<h3 id="22">2.2 编写计数器</h3>
+<p>在 <code>src/word_count/</code> 下创建 <code>counter.py</code> 文件，同时加入如下内容：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Count a file &quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>  <span class="c1"># Config root logger</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="n">source_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dest_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Count source</span>
+<span class="sd">    :param source_file:</span>
+<span class="sd">    :param dest_file:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">read_from_file</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">source_file</span><span class="p">))</span>
+    <span class="n">write_to_file</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">dest_file</span><span class="p">),</span> <span class="n">total</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">read_from_file</span><span class="p">(</span><span class="n">source_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param source_file:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">total_words</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Read source_file</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Read file: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">source_file</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">source_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">source_obj</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">source_obj</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+            <span class="n">total_words</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">total_words</span>
+
+
+<span class="k">def</span> <span class="nf">write_to_file</span><span class="p">(</span><span class="n">dest_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">total_words</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write result to file</span>
+<span class="sd">    :param dest_file:</span>
+<span class="sd">    :param total_words:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Count </span><span class="si">%s</span><span class="s1"> words, write to </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dest_file</span><span class="p">,</span> <span class="n">total_words</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dest_obj</span><span class="p">:</span>
+        <span class="n">dest_obj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Total count: </span><span class="si">{</span><span class="n">total_words</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="221">2.2.1 导入格式化</h4>
+<p>在项目根目录运行 <a href="https://pycqa.github.io/isort/">isort</a> 对导入进行格式化。</p>
+<div class="highlight"><pre><span></span><code>isort .
+</code></pre></div>
+<p>此操作会自动修改代码，将导入的包格式化。如果想查看区别，可以运行如下命令：</p>
+<div class="highlight"><pre><span></span><code>isort . --check-only --diff
+</code></pre></div>
+<h4 id="222">2.2.2 代码风格检查</h4>
+<p>在项目根目录运行 <a href="https://www.pylint.org/">pylint</a> 检查代码是否规范，是否符合 <a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> 标准。</p>
+<div class="highlight"><pre><span></span><code>pylint tests src
+</code></pre></div>
+<p>此操作会列出代码中不符合规范的部分，并显示对应的规范名称。可以在 <a href="https://pylint.readthedocs.io/en/latest/technical_reference/features.html">这里</a> 找到所有规则。</p>
+<p>在完成修改后再次运行两个命令，直到都没有异常输出为止。</p>
+<h4 id="223">2.2.3 测试</h4>
+<blockquote>
+<p>如果你使用的是 Pycharm 开发，可以通过点击  <code>File</code> --&gt; <code>Settings</code> --&gt; <code>Tools</code> --&gt; <code>Python Integrated Tools</code> --&gt; <code>Testing</code> --&gt; <code>Default runner</code> 选择测试框架，推荐使用 <code>pytest</code>。</p>
+</blockquote>
+<p>为了方便使用 <code>mock</code> 可以安装 <code>pytest-mock</code> 模块，可以在 <code>pytest</code> 的 <code>fixture</code> 特性上使用 <code>mock</code>。</p>
+<div class="highlight"><pre><span></span><code>pipenv install -d pytest-mock
+</code></pre></div>
+<p>添加测试配置，在 <code>tests/conftest.py</code> 中加入：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Test config&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">TemporaryDirectory</span>
+
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">mock_path</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Mock a path, and clean when unit test done.&quot;&quot;&quot;</span>
+    <span class="n">temp_path</span> <span class="o">=</span> <span class="n">TemporaryDirectory</span><span class="p">()</span>
+    <span class="k">yield</span> <span class="n">Path</span><span class="p">(</span><span class="n">temp_path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">temp_path</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+</code></pre></div>
+<p>在 <code>tests/</code> 下添加与 <code>src/word_count</code> 目录中文件名相同的文件，并在文件名前添加 <code>test_</code> 前缀。</p>
+<p>添加文件 <code>tests/test_counter.py</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Test counter&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="kn">from</span> <span class="nn">word_count.counter</span> <span class="kn">import</span> <span class="n">count</span><span class="p">,</span> <span class="n">read_from_file</span><span class="p">,</span> <span class="n">write_to_file</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;mock_source_file&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fixture_mock_source_file</span><span class="p">(</span><span class="n">mock_path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;mock source_file, this file has two words.&quot;&quot;&quot;</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;words&#39;</span><span class="p">]</span>
+    <span class="n">source_file</span> <span class="o">=</span> <span class="n">mock_path</span> <span class="o">/</span> <span class="s1">&#39;source.txt&#39;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">source_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">obj</span><span class="p">:</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
+    <span class="k">yield</span> <span class="n">source_file</span>
+
+
+<span class="k">def</span> <span class="nf">test_read_from_file</span><span class="p">(</span><span class="n">mock_source_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test read_from_file&quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">read_from_file</span><span class="p">(</span><span class="n">mock_source_file</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">2</span>
+
+
+<span class="k">def</span> <span class="nf">test_write_to_file</span><span class="p">(</span><span class="n">mock_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test write_to_file&quot;&quot;&quot;</span>
+    <span class="n">dest_file</span> <span class="o">=</span> <span class="n">mock_path</span> <span class="o">/</span> <span class="s1">&#39;dest.txt&#39;</span>
+    <span class="n">write_to_file</span><span class="p">(</span><span class="n">dest_file</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">obj</span><span class="p">:</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="s1">&#39;Total count: 100&#39;</span> <span class="ow">in</span> <span class="n">txt</span>
+
+
+<span class="k">def</span> <span class="nf">test_count</span><span class="p">(</span><span class="n">mocker</span><span class="p">,</span> <span class="n">mock_path</span><span class="p">,</span> <span class="n">mock_source_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test count&quot;&quot;&quot;</span>
+    <span class="n">mock_read_from_file</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+        <span class="s1">&#39;word_count.counter.read_from_file&#39;</span><span class="p">,</span>
+        <span class="n">return_value</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">)</span>
+    <span class="n">mock_write_to_file</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+        <span class="s1">&#39;word_count.counter.write_to_file&#39;</span>
+    <span class="p">)</span>
+    <span class="n">dest_file</span> <span class="o">=</span> <span class="n">mock_path</span> <span class="o">/</span> <span class="s1">&#39;dest.txt&#39;</span>
+    <span class="n">count</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">mock_source_file</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">dest_file</span><span class="p">))</span>
+    <span class="n">mock_read_from_file</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">mock_source_file</span><span class="p">)</span>
+    <span class="n">mock_write_to_file</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">dest_file</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</code></pre></div>
+<p>运行 <code>pytest</code> ，让测试正确运行。</p>
+<p>运行 <code>isort</code> 和 <code>pylint</code> 格式化代码并检查代码风格。</p>
+<h3 id="224">2.2.4 提交代码</h3>
+<p>一个功能特性开发完成后，需要提交代码来保存记录，避免意外操作。</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;feat(counter): 增加 Counter 逻辑，并完成测试。&quot;</span>
+</code></pre></div>
+<h3 id="23">2.3 编写命令行入口</h3>
+<p>在 <code>src/word_count/</code> 目录下，创建 <code>cmdline.py</code> 文件，加入如下内容：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Cmdline&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;Cmdline&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">word_count.counter</span> <span class="kn">import</span> <span class="n">count</span>
+
+
+<span class="k">def</span> <span class="nf">init_args</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">argparse</span><span class="o">.</span><span class="n">Namespace</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Init argument and parse&quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--source&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Source file used for count.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--dest&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Dest file used for count result&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Execute&quot;&quot;&quot;</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">init_args</span><span class="p">()</span>
+    <span class="n">count</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">dest</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<p>运行 <code>isort</code> 和 <code>pylint</code> 格式化代码并检查代码风格。</p>
+<h4 id="231">2.3.1 测试</h4>
+<p>创建 <code>tests/test_cmdline.py</code> 文件，加入如下内容：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Test cmdline&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="kn">from</span> <span class="nn">word_count.cmdline</span> <span class="kn">import</span> <span class="n">main</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s1">&#39;_help, source, dest, raise_value, count_called&#39;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;-h&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;-h&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;-h&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;-h&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+
+        <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+
+        <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>    <span class="c1"># Normal argument.</span>
+
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_main</span><span class="p">(</span><span class="n">mocker</span><span class="p">,</span> <span class="n">_help</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">raise_value</span><span class="p">,</span> <span class="n">count_called</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test main&quot;&quot;&quot;</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;program&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">_help</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_help</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">source</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="n">source</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">dest</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="p">])</span>
+    <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;argv&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="n">mock_count</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s1">&#39;word_count.cmdline.count&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">raise_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># If use -h, will raise SystemExit(0)</span>
+        <span class="c1"># If some require argument miss, exit code &gt; 0</span>
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">SystemExit</span><span class="p">)</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+            <span class="n">main</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">ex</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="n">raise_value</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Normal exc</span>
+        <span class="n">main</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">mock_count</span><span class="o">.</span><span class="n">called</span> <span class="o">==</span> <span class="n">count_called</span>
+</code></pre></div>
+<p>运行 <code>pytest</code>，让测试正确运行。</p>
+<p>运行 <code>isort</code> 和 <code>pylint</code> 格式化代码并检查代码风格。</p>
+<h4 id="232">2.3.2 提交代码</h4>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;feat(cmdline): 增加 cmdline 逻辑，并完成测试。&quot;</span>
+</code></pre></div>
+<h3 id="24">2.4 总结</h3>
+<p>至此，我们的功能开发已经完成。在整个开发过程中，我们遵循了 “开发功能特性” =&gt; “代码风格检查” =&gt; “单元测试” 的流程。</p>
+<p>如果感觉每次运行多个命令比较繁琐，可以在项目根目录中运行 <code>tox</code> 自动化完成代码测试、导包检查和代码风格检查。</p>
+<div class="highlight"><pre><span></span><code>tox
+</code></pre></div>
+<p>现在可以在终端中运行单词统计：</p>
+<div class="highlight"><pre><span></span><code>python src/word_count/cmdline.py -s foo.txt -d bar.txt
+</code></pre></div>
+<h3 id="25">2.5 打包发布</h3>
+<p>如果希望别人能更方便的使用项目，可以将项目打包发布到 <a href="https://pypi.org/">pypi</a> 中，然后在需要使用的地方运行 <code>pip install -U word-count</code>。</p>
+<p>但是安装到环境后去运行 <code>cmdline.py</code> 会比较困难，所以需要将 <code>cmdline.py</code> 注册成可执行命令。</p>
+<p>修改 <code>setup.cfg</code> 文件，在 <code>[options.entry_points]</code> 下增加如下内容：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[options.entry_points]</span>
+<span class="na">console_scripts</span> <span class="o">=</span>
+    <span class="na">word_count</span> <span class="o">=</span> <span class="s">word_count.cmdline:main</span>
+</code></pre></div>
+<p>当使用 <code>pip</code> 命令将项目包安装到环境后，会自动注册一个 <code>word_count</code> 的可执行命令。</p>
+<p>再次将本地项目以可编辑方式安装到当前 Python 环境：</p>
+<div class="highlight"><pre><span></span><code>pip install -e .
+</code></pre></div>
+<p>然后就可以正常使用 <code>word_count</code> 命令了。</p>
+<div class="highlight"><pre><span></span><code>$ word_count -h
+usage: word_count [-h] -s SOURCE -d DEST
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s SOURCE, --source SOURCE
+                        Source file used for count.
+  -d DEST, --dest DEST  Dest file used for count result
+</code></pre></div>
+<h4 id="251">2.5.1 打包</h4>
+<p>运行打包命令：</p>
+<div class="highlight"><pre><span></span><code>python setup.py sdist bdist_wheel
+</code></pre></div>
+<p><code>sdist</code> 会将项目打包成源码包， <code>bdist_wheel</code> 会将项目打包成编译后的二进制包。</p>
+<p>打包后的文件在 <code>dist</code> 目录中。可以直接在其他地方运行 <code>pip install word_count.wheel</code> 安装。</p>
+<h4 id="252">2.5.2 发布</h4>
+<p>将开发好的项目发布到索引仓库，或内网的私有仓库。</p>
+<p>使用 <a href="https://twine.readthedocs.io/en/latest/">twine</a> 上传：</p>
+<div class="highlight"><pre><span></span><code>twine upload dist/*
+</code></pre></div>
+<p>默认会将项目发布到 <a href="https://pypi.org/">pypi</a> 中，所以你需要有对应的账号。</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href=".." class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Python 开发指南
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../introduction/virtualenv/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              虚拟环境
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>

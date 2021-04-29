@@ -1,0 +1,2690 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+    
+    
+      
+        <title>Web - Python 项目工程化开发指南</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e35208c4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Python 项目工程化开发指南" class="md-header__button md-logo" aria-label="Python 项目工程化开发指南" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python 项目工程化开发指南
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Web
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/pyloong/pythonic-project-guidelines/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pyloong/pythonic-project-guidelines
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Python 项目工程化开发指南" class="md-nav__button md-logo" aria-label="Python 项目工程化开发指南" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Python 项目工程化开发指南
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/pyloong/pythonic-project-guidelines/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pyloong/pythonic-project-guidelines
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Python 开发指南
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick_start/" class="md-nav__link">
+        快速上手
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        入门
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="入门" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          入门
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/virtualenv/" class="md-nav__link">
+        虚拟环境
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        项目工程化
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="项目工程化" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          项目工程化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guidelines/language_rules/" class="md-nav__link">
+        语言规范
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guidelines/style_rules/" class="md-nav__link">
+        风格规范
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      <label class="md-nav__link" for="__nav_5">
+        项目实践
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="项目实践" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          项目实践
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Web
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Web
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 开发环境搭建
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 开发环境搭建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-python" class="md-nav__link">
+    1.1 Python 环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 开发工具
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 虚拟环境工具
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-git" class="md-nav__link">
+    1.4 Git 使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 项目初始化
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 项目初始化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 初始化项目结构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 初始化项目基本信息
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 增加项目自述文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-gitignore" class="md-nav__link">
+    2.4 增加 .gitignore
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-git" class="md-nav__link">
+    2.6 初始 Git 提交
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    2.5 安装开发包
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 项目功能开发
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 项目功能开发">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 创建命令行入口
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 引入项目配置系统
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 引入日志
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    3.4 数据访问
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    3.5 服务层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-fastapi" class="md-nav__link">
+    3.6 引入 Fastapi
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37" class="md-nav__link">
+    3.7 编写启动命令
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-server" class="md-nav__link">
+    3.8 启动 Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39" class="md-nav__link">
+    3.9 引入迁移工具
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 测试和优化代码
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 测试和优化代码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 测试数据访问层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    4.2 测试服务层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    4.3 测试试图层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    4.4 测试命令行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    4.5 其他测试
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46" class="md-nav__link">
+    4.6 优化代码
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6 优化代码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#461" class="md-nav__link">
+    4.6.1 优化导入
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#462" class="md-nav__link">
+    4.6.2 优化代码风格
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 打包发布
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 打包发布">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    5.1 打包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    5.2 发布
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 开发环境搭建
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 开发环境搭建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-python" class="md-nav__link">
+    1.1 Python 环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 开发工具
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 虚拟环境工具
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-git" class="md-nav__link">
+    1.4 Git 使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 项目初始化
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 项目初始化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 初始化项目结构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 初始化项目基本信息
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 增加项目自述文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-gitignore" class="md-nav__link">
+    2.4 增加 .gitignore
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-git" class="md-nav__link">
+    2.6 初始 Git 提交
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    2.5 安装开发包
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 项目功能开发
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 项目功能开发">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 创建命令行入口
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 引入项目配置系统
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 引入日志
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    3.4 数据访问
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    3.5 服务层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-fastapi" class="md-nav__link">
+    3.6 引入 Fastapi
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37" class="md-nav__link">
+    3.7 编写启动命令
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-server" class="md-nav__link">
+    3.8 启动 Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39" class="md-nav__link">
+    3.9 引入迁移工具
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 测试和优化代码
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 测试和优化代码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 测试数据访问层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    4.2 测试服务层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    4.3 测试试图层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    4.4 测试命令行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    4.5 其他测试
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46" class="md-nav__link">
+    4.6 优化代码
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6 优化代码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#461" class="md-nav__link">
+    4.6.1 优化导入
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#462" class="md-nav__link">
+    4.6.2 优化代码风格
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 打包发布
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 打包发布">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    5.1 打包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    5.2 发布
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pyloong/pythonic-project-guidelines/edit/master/docs/practices/web.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="_1">快速上手</h1>
+<p>这是一个快速上手的示例项目，旨在通过一个尽可能包含主要知识点的简单项目，来向使用者展示一个更 Python 化的项目开发流程。</p>
+<p>示例项目是一个使用异步微 Web 框架 <a href="https://fastapi.tiangolo.com/">Fastapi</a> 开发的博客系统。项目业务功能比较简单，但完整体现了一个项目从环境搭建，到开发，最后测试发布的完整流程。</p>
+<h2 id="1">1. 开发环境搭建</h2>
+<h3 id="11-python">1.1 Python 环境</h3>
+<p>鉴于官方已经停止对 Python 2 的支持 <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> ，我们不推荐再使用 Python 2 进行开发。根据当前 Python 版本使用情况，推荐使用 Python 3.7+ 。</p>
+<p>具体的版本的 Python 环境可以在 <a href="https://www.python.org/downloads/">官网</a> 下载。为了使用便利性，可以选择 Anaconda <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> 。</p>
+<h3 id="12">1.2 开发工具</h3>
+<p>推荐使用 <a href="https://www.jetbrains.com/pycharm/">Pycharm</a> 作为主要开发工具，可以选择社区版本免费使用。</p>
+<p><a href="https://code.visualstudio.com/">Visual Studio Code</a> 是微软开发的一款免费轻量文本编辑器，通过安装插件可以自定义成一款功能强大的 IDE 。在对 Python 的支持上，已经有了较为完善的插件体系，此方案也可以作为备用。</p>
+<h3 id="13">1.3 虚拟环境工具</h3>
+<p>推荐使用 <a href="https://pipenv.pypa.io/en/latest/">pipenv</a> 。Pipenv 相比使用 <code>requirements.txt</code> 管理依赖列表，更加强大。它支持同时管理开发生产环境依赖，自动查找虚拟环境，生成依赖锁定文件等其他特性。</p>
+<p>在安装好 Python 环境后，应该在全局环境中安装 pipenv 。</p>
+<h3 id="14-git">1.4 Git 使用</h3>
+<p>推荐使用 <a href="https://git-scm.com/">Git</a> 对项目进行版本管理。所以需要提前安装 Git ，并熟悉常用 Git 的概念和常用 Git 命令。</p>
+<h2 id="2">2. 项目初始化</h2>
+<h3 id="21">2.1 初始化项目结构</h3>
+<p>项目结构采用 <code>src</code> 目录结构，详见 <a href="https://github.com/pypa/sampleproject">pypa/sampleproject</a> 。</p>
+<p>创建项目目录结构：</p>
+<div class="highlight"><pre><span></span><code>.
+├── README.md
+├── setup.cfg
+├── setup.py
+├── src
+│   └── example_blog
+│       └── __init__.py
+└── tests
+    └── __init__.py
+</code></pre></div>
+<p>初始化项目虚拟环境：</p>
+<div class="highlight"><pre><span></span><code>pipenv install
+</code></pre></div>
+<p>安装完成后，项目目录会自动生成 <code>Pipfile</code> 和 <code>Pipfile.lock</code> 两个文件。</p>
+<h3 id="22">2.2 初始化项目基本信息</h3>
+<p>编辑 <code>setup.py</code> 文件：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">setuptools</span>
+
+<span class="n">setuptools</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+</code></pre></div>
+<p>编辑 <code>setup.cfg</code> 文件，配置项目描述信息：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[metadata]</span>
+<span class="na">name</span> <span class="o">=</span> <span class="s">example_blog</span>
+<span class="na">version</span> <span class="o">=</span> <span class="s">attr: example_blog.__version__</span>
+<span class="na">author</span> <span class="o">=</span> <span class="s">huagang</span>
+<span class="na">author_email</span> <span class="o">=</span> <span class="s">huagang517@126.com</span>
+<span class="na">description</span> <span class="o">=</span> <span class="s">This is example blog system.</span>
+<span class="na">keywords</span> <span class="o">=</span> <span class="s">blog example</span>
+<span class="na">long_description</span> <span class="o">=</span> <span class="s">file: README.md</span>
+<span class="na">long_description_content_type</span> <span class="o">=</span> <span class="s">text/markdown</span>
+<span class="na">classifiers</span> <span class="o">=</span>
+    <span class="na">Operating System :: OS Independent</span>
+    <span class="na">Programming Language :: Python :: 3.7</span>
+
+<span class="k">[options]</span>
+<span class="na">python_requires &gt;</span> <span class="o">=</span> <span class="s">3.7</span>
+<span class="na">include_package_data</span> <span class="o">=</span> <span class="s">True</span>
+<span class="na">packages</span> <span class="o">=</span> <span class="s">find:</span>
+<span class="na">package_dir</span> <span class="o">=</span>
+    <span class="o">=</span><span class="s">src</span>
+<span class="na">install_requires</span> <span class="o">=</span>
+
+<span class="k">[options.packages.find]</span>
+<span class="na">where</span> <span class="o">=</span> <span class="s">src</span>
+</code></pre></div>
+<p>编辑 <code>src/example_blog/__init__.py</code> ，创建初始版本号：</p>
+<div class="highlight"><pre><span></span><code><span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;0.1.0&#39;</span>
+</code></pre></div>
+<h3 id="23">2.3 增加项目自述文件</h3>
+<p>编写 <code>README.md</code> 文件</p>
+<div class="highlight"><pre><span></span><code><span class="gh"># 一个简单博客系统示例.</span>
+
+此项目是一个简单的博客系统，提供一些用户管理和博客文章管理。目的是演示如何做一个更加 Pythonic 的项目。
+
+如果您有任何意见和建议，欢迎开启 ISSUE 发起讨论。期待与您打造更加完美的 Python 示例。
+
+<span class="gu">## 协作开发</span>
+
+<span class="k">-</span> Fork 仓库
+<span class="k">-</span> 编写代码，测试，提交
+<span class="k">-</span> 发起 PR
+<span class="k">-</span> 审核通过后合并，协作完成
+</code></pre></div>
+<h3 id="24-gitignore">2.4 增加 <code>.gitignore</code></h3>
+<div class="highlight"><pre><span></span><code># Created by .ignore support plugin (hsz.mobi)
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don&#39;t work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+### Windows template
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+### Linux template
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+### macOS template
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+.vscode
+.idea
+</code></pre></div>
+<h3 id="26-git">2.6 初始 Git 提交</h3>
+<div class="highlight"><pre><span></span><code>git init
+git config user.name example
+git config user.email example@example.com
+git add .
+git commit -m <span class="s2">&quot;feat: First commit!&quot;</span>
+</code></pre></div>
+<h3 id="25">2.5 安装开发包</h3>
+<p>将项目以编辑方式安装到环境中：</p>
+<div class="highlight"><pre><span></span><code>pip install -e .
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>这里不要使用 <code>pipenv</code> 命令，否则会写入 <code>Pipfile</code> 。</p>
+</div>
+<h2 id="3">3. 项目功能开发</h2>
+<h3 id="31">3.1 创建命令行入口</h3>
+<p>命令行入口是启动项目的主入口，常见的做法是使用一个 <code>__main__</code> 函数，调用启动代码，然后使用 <code>python</code> 命令启动该文件。但对于多级命令参数的情况就比较麻烦，推荐使用 <a href="https://click.palletsprojects.com/en/7.x/">click</a> 工具编写入口逻辑。</p>
+<p>安装依赖：</p>
+<div class="highlight"><pre><span></span><code>pipenv install click
+</code></pre></div>
+<p>编辑 <code>setup.cfg</code> ，将增加安装依赖：</p>
+<div class="highlight"><pre><span></span><code><span class="na">install_requires</span> <span class="o">=</span>
+    <span class="na">click</span>
+</code></pre></div>
+<p>创建 <code>src/example_blog/cmdline.py</code> 文件：</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">invoke_without_command</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">pass_context</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-V&#39;</span><span class="p">,</span> <span class="s1">&#39;--version&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Show version and exit.&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">version</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">version</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="n">__version__</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">ctx</span><span class="o">.</span><span class="n">invoked_subcommand</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">get_help</span><span class="p">())</span>
+</code></pre></div>
+<p>编辑 <code>setup.cfg</code> ，将命令行入口注册到项目描述文件中：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[options.entry_points]</span>
+<span class="na">console_scripts</span> <span class="o">=</span>
+    <span class="na">example_blog</span> <span class="o">=</span> <span class="s">example_blog.cmdline:main</span>
+</code></pre></div>
+<p>重新安装项目：</p>
+<div class="highlight"><pre><span></span><code>pip install -e .
+</code></pre></div>
+<p>测试命令是否生效：</p>
+<div class="highlight"><pre><span></span><code>example_blog -V
+</code></pre></div>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;feat: Add commline.&quot;</span>
+</code></pre></div>
+<h3 id="32">3.2 引入项目配置系统</h3>
+<p>项目的配置系统是一个项目的核心驱动，使用配置系统便于管理散落在各处的配置参数，也方便在启动前通过调整配置，改变系统行为。</p>
+<p><a href="https://www.dynaconf.com/">Dynaconf</a> 是一个高度灵活的配置管理工具，支持多环境分层，多种配置导入等有点。在项目开发中，推荐使用如下实践。</p>
+<p>安装依赖：</p>
+<div class="highlight"><pre><span></span><code>pipenv install dynaconf
+</code></pre></div>
+<p>编辑 <code>setup.cfg</code> ，将增加安装依赖：</p>
+<div class="highlight"><pre><span></span><code><span class="na">install_requires</span> <span class="o">=</span>
+    <span class="na">click</span>
+    <span class="na">dynaconf</span>
+</code></pre></div>
+<p>建立配置包，和配置文件：</p>
+<div class="highlight"><pre><span></span><code>mkdir src/example_blog/config
+touch src/example_blog/config/__init__.py
+touch src/example_blog/config/settings.yml
+</code></pre></div>
+<p>编辑 <code>src/example_blog/config/__init__.py</code> ， 初始化全局配置对象：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span> <span class="nn">dynaconf</span> <span class="kn">import</span> <span class="n">Dynaconf</span>
+
+<span class="n">_BASE_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span>
+
+<span class="n">settings_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;settings.yml&#39;</span><span class="p">,</span>
+<span class="p">]</span>  <span class="c1"># 指定绝对路径加载默认配置</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="n">Dynaconf</span><span class="p">(</span>
+    <span class="n">envvar_prefix</span><span class="o">=</span><span class="s2">&quot;EXAMPLE_BLOG&quot;</span><span class="p">,</span>  <span class="c1"># 环境变量前缀。设置`EXAMPLE_BLOG_FOO=&#39;bar&#39;`，使用`settings.FOO`</span>
+    <span class="n">settings_files</span><span class="o">=</span><span class="n">settings_files</span><span class="p">,</span>
+    <span class="n">environments</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># 启用多层次日志，支持 dev, pro</span>
+    <span class="n">load_dotenv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 加载 .env</span>
+    <span class="n">env_switcher</span><span class="o">=</span><span class="s2">&quot;EXAMPLE_BLOG_ENV&quot;</span><span class="p">,</span>  <span class="c1"># 用于切换模式的环境变量名称 EXAMPLE_BLOG_ENV=production</span>
+    <span class="n">lowercase_read</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># 禁用小写访问， settings.name 是不允许的</span>
+    <span class="n">includes</span><span class="o">=</span><span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;etc&#39;</span><span class="p">,</span> <span class="s1">&#39;example_blog&#39;</span><span class="p">,</span> <span class="s1">&#39;settings.yml&#39;</span><span class="p">)],</span>  <span class="c1"># 自定义配置覆盖默认配置</span>
+    <span class="n">base_dir</span><span class="o">=</span><span class="n">_BASE_DIR</span><span class="p">,</span>  <span class="c1"># 编码传入配置</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>编辑 <code>src/example_blog/config/settings.yml</code> ，初始化配置：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">LOG_LEVEL</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INFO</span>
+</code></pre></div>
+<p>编辑 <code>src/example_blog/config/settings.local.yml</code> ，增加本地开发配置：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">LOG_LEVEL</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+</code></pre></div>
+<p>根据 <a href="https://www.dynaconf.com/">Dynaconf</a> 规则， <code>settings.local.yml</code> 的配置为本地配置，且优先级比 <code>settings.yml</code> 低，所以本地配置会在后面加载，覆盖之前的配置。</p>
+<p>编辑 <code>.gitignore</code> ，将所有本地配置排除版本控制之外。</p>
+<div class="highlight"><pre><span></span><code>**/settings.local.yml
+</code></pre></div>
+<p>编辑 <code>setup.cfg</code> ，将默认配置文件包含打包范围之内：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[options.package_data]</span>
+<span class="na">example_blog.config</span> <span class="o">=</span> <span class="s">settings.yml</span>
+</code></pre></div>
+<p>编辑 <code>setup.cfg</code> ，增加外部配置路径：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[options.data_files]</span>
+<span class="na">etc/example_blog</span> <span class="o">=</span> <span class="s">src/example_blog/config/settings.yml</span>
+</code></pre></div>
+<p><strong>注意：</strong></p>
+<p><code>data_files</code> 中的相对路径会写入到 <code>sys.prefix</code> 位置下。当安装后，会在该目录下生成 <code>etc/example_blog/settings.yml</code> 的配置文件。可以通过修改该文件驱动项目配置。此文件属于用户级别配置。会覆盖默认配置。</p>
+<p>提交代码。</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;feat: Add config.&quot;</span>
+</code></pre></div>
+<h3 id="33">3.3 引入日志</h3>
+<p>创建 <code>src/example_blog/log.py</code> ，初始化 log ：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">logging.config</span> <span class="kn">import</span> <span class="n">dictConfig</span>
+
+<span class="kn">from</span> <span class="nn">example_blog.config</span> <span class="kn">import</span> <span class="n">settings</span>
+
+
+<span class="k">def</span> <span class="nf">init_log</span><span class="p">():</span>
+    <span class="n">log_config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;disable_existing_loggers&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;formatters&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;sample&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">},</span>
+            <span class="s1">&#39;verbose&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)s</span><span class="s1"> </span><span class="si">%(name)s</span><span class="s1"> </span><span class="si">%(process)d</span><span class="s1"> </span><span class="si">%(thread)d</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">},</span>
+            <span class="s2">&quot;access&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;()&quot;</span><span class="p">:</span> <span class="s2">&quot;uvicorn.logging.AccessFormatter&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;fmt&quot;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelprefix)s</span><span class="s1"> </span><span class="si">%(client_addr)s</span><span class="s1"> - &quot;</span><span class="si">%(request_line)s</span><span class="s1">&quot; </span><span class="si">%(status_code)s</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;console&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;formatter&quot;</span><span class="p">:</span> <span class="s1">&#39;verbose&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>
+                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;logging.StreamHandler&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;loggers&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">LOG_LEVEL</span><span class="p">,</span> <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;console&#39;</span><span class="p">]},</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="n">dictConfig</span><span class="p">(</span><span class="n">log_config</span><span class="p">)</span>
+</code></pre></div>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;feat: Add log&quot;</span>
+</code></pre></div>
+<h3 id="34">3.4 数据访问</h3>
+<p>数据层是应用的最底层，和数据存储打交道。使用 <a href="https://www.sqlalchemy.org/">sqlalchemy</a> 作底层数据模型建模和数据访问操作。</p>
+<p>安装依赖：</p>
+<div class="highlight"><pre><span></span><code>pipenv install sqlalchemy mysqlclient
+</code></pre></div>
+<p>编辑 <code>setup.cfg</code> ，将增加安装依赖：</p>
+<div class="highlight"><pre><span></span><code><span class="na">install_requires</span> <span class="o">=</span>
+    <span class="na">click</span>
+    <span class="na">dynaconf</span>
+    <span class="na">sqlalchemy</span>
+    <span class="na">mysqlclient</span>
+</code></pre></div>
+<p>编写 <code>src/example_blog/config/settings.yml</code> ，增加数据库配置信息：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ######################################################################################################</span>
+<span class="c1"># # https://docs.sqlalchemy.org/en/13/core/engines.html</span>
+<span class="nt">DATABASE</span><span class="p">:</span>
+  <span class="nt">DRIVER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mysql</span>
+  <span class="nt">NAME</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">example_blog</span>
+  <span class="nt">HOST</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span>
+  <span class="nt">PORT</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3306</span>
+  <span class="nt">USERNAME</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+  <span class="nt">PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+  <span class="nt">QUERY</span><span class="p">:</span>
+    <span class="nt">charset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">utf8mb4</span>
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">警告</p>
+<p><code>settings.yml</code> 为系统默认配置，会被 git 追踪管理，不要填写真正的数据库连接信息。真实配置信息可以写在 <code>settings.local.yml</code> 文件中，会覆盖默认配置。</p>
+</div>
+<p>新建 <code>src/example_blog/db.py</code> ，创建 <a href="https://www.sqlalchemy.org/">sqlalchemy</a> 访问对象：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Database connections&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">sqlalchemy.engine</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.engine.base</span> <span class="kn">import</span> <span class="n">Engine</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.engine.url</span> <span class="kn">import</span> <span class="n">URL</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">scoped_session</span><span class="p">,</span> <span class="n">sessionmaker</span>
+
+<span class="kn">from</span> <span class="nn">example_blog.config</span> <span class="kn">import</span> <span class="n">settings</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">(</span>
+    <span class="n">drivername</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">DATABASE</span><span class="o">.</span><span class="n">DRIVER</span><span class="p">,</span>
+    <span class="n">username</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">DATABASE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USERNAME&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">DATABASE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PASSWORD&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="n">host</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">DATABASE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;HOST&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="n">port</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">DATABASE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PORT&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="n">database</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">DATABASE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NAME&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="n">query</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">DATABASE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;QUERY&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">engine</span><span class="p">:</span> <span class="n">Engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">SessionFactory</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">autocommit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">autoflush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ScopedSession</span> <span class="o">=</span> <span class="n">scoped_session</span><span class="p">(</span><span class="n">SessionFactory</span><span class="p">)</span>
+</code></pre></div>
+<p>创建 <code>src/example_blog/models.py</code> ，创建数据模型：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Models&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Text</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span><span class="p">,</span> <span class="n">declared_attr</span>
+
+
+<span class="k">class</span> <span class="nc">CustomBase</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;https://docs.sqlalchemy.org/en/13/orm/extensions/declarative/mixins.html&quot;&quot;&quot;</span>
+
+    <span class="nd">@declared_attr</span>
+    <span class="k">def</span> <span class="nf">__tablename__</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="n">__table_args__</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;mysql_engine&#39;</span><span class="p">:</span> <span class="s1">&#39;InnoDB&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;mysql_collate&#39;</span><span class="p">:</span> <span class="s1">&#39;utf8mb4_general_ci&#39;</span>
+    <span class="p">}</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">autoincrement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="n">BaseModel</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">(</span><span class="bp">cls</span><span class="o">=</span><span class="n">CustomBase</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Article</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Article table&quot;&quot;&quot;</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">500</span><span class="p">))</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Text</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">create_time</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">update_time</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">,</span> <span class="n">onupdate</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<p>为了在应用中更方便的使用数据模型对象，引入 <a href="https://pydantic-docs.helpmanual.io/">pydantic</a> 来定义一些对象模型的基本信息。</p>
+<p>安装依赖：</p>
+<div class="highlight"><pre><span></span><code>pipenv install pydantic
+</code></pre></div>
+<p>编辑 <code>setup.cfg</code> ，将增加安装依赖：</p>
+<div class="highlight"><pre><span></span><code><span class="na">install_requires</span> <span class="o">=</span>
+    <span class="na">click</span>
+    <span class="na">dynaconf</span>
+    <span class="na">sqlalchemy</span>
+    <span class="na">mysqlclient</span>
+    <span class="na">pydantic</span>
+</code></pre></div>
+<p>创建 <code>src/example_blog/schemas.py</code> ，创建对象模型：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TypeVar</span>
+
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">constr</span>
+
+<span class="kn">from</span> <span class="nn">example_blog.models</span> <span class="kn">import</span> <span class="n">BaseModel</span> <span class="k">as</span> <span class="n">DBModel</span>
+
+<span class="n">ModelType</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;ModelType&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">DBModel</span><span class="p">)</span>
+<span class="n">CreateSchema</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;CreateSchema&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">BaseModel</span><span class="p">)</span>
+<span class="n">UpdateSchema</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;UpdateSchema&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">BaseModel</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">InDBMixin</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+        <span class="n">orm_mode</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+<span class="k">class</span> <span class="nc">BaseArticle</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">title</span><span class="p">:</span> <span class="n">constr</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+    <span class="n">body</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="k">class</span> <span class="nc">ArticleSchema</span><span class="p">(</span><span class="n">BaseArticle</span><span class="p">,</span> <span class="n">InDBMixin</span><span class="p">):</span>
+    <span class="n">create_time</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">update_time</span><span class="p">:</span> <span class="n">datetime</span>
+
+
+<span class="k">class</span> <span class="nc">CreateArticleSchema</span><span class="p">(</span><span class="n">BaseArticle</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">UpdateArticleSchema</span><span class="p">(</span><span class="n">BaseArticle</span><span class="p">):</span>
+    <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">constr</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+<p>创建 <code>src/example_blog/dao.py</code> ，创建数据访问层：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">fastapi.encoders</span> <span class="kn">import</span> <span class="n">jsonable_encoder</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>
+
+<span class="kn">from</span> <span class="nn">example_blog.models</span> <span class="kn">import</span> <span class="n">Article</span>
+<span class="kn">from</span> <span class="nn">example_blog.schemas</span> <span class="kn">import</span> <span class="n">CreateSchema</span><span class="p">,</span> <span class="n">ModelType</span><span class="p">,</span> <span class="n">UpdateSchema</span><span class="p">,</span> <span class="n">CreateArticleSchema</span><span class="p">,</span> <span class="n">UpdateArticleSchema</span>
+
+
+<span class="k">class</span> <span class="nc">BaseDAO</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">ModelType</span><span class="p">,</span> <span class="n">CreateSchema</span><span class="p">,</span> <span class="n">UpdateSchema</span><span class="p">]):</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">ModelType</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ModelType</span><span class="p">]:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">offset</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">get_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">pk</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelType</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">obj_in</span><span class="p">:</span> <span class="n">CreateSchema</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelType</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create&quot;&quot;&quot;</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">jsonable_encoder</span><span class="p">(</span><span class="n">obj_in</span><span class="p">))</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">pk</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">obj_in</span><span class="p">:</span> <span class="n">UpdateSchema</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelType</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Patch&quot;&quot;&quot;</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_by_id</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">pk</span><span class="p">)</span>
+        <span class="n">update_data</span> <span class="o">=</span> <span class="n">obj_in</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">update_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">pk</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Delete&quot;&quot;&quot;</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_by_id</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">pk</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">ArticleDAO</span><span class="p">(</span><span class="n">BaseDAO</span><span class="p">[</span><span class="n">Article</span><span class="p">,</span> <span class="n">CreateArticleSchema</span><span class="p">,</span> <span class="n">UpdateArticleSchema</span><span class="p">]):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
+</code></pre></div>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;feat: Add models and DAO&quot;</span>
+</code></pre></div>
+<h3 id="35">3.5 服务层</h3>
+<p>创建 <code>src/example_blog/services.py</code> ，创建服务：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Service&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>
+
+<span class="kn">from</span> <span class="nn">example_blog.dao</span> <span class="kn">import</span> <span class="n">ArticleDAO</span><span class="p">,</span> <span class="n">BaseDAO</span>
+<span class="kn">from</span> <span class="nn">example_blog.models</span> <span class="kn">import</span> <span class="n">Article</span>
+<span class="kn">from</span> <span class="nn">example_blog.schemas</span> <span class="kn">import</span> <span class="n">CreateSchema</span><span class="p">,</span> <span class="n">ModelType</span><span class="p">,</span> <span class="n">UpdateSchema</span>
+
+
+<span class="k">class</span> <span class="nc">BaseService</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">ModelType</span><span class="p">,</span> <span class="n">CreateSchema</span><span class="p">,</span> <span class="n">UpdateSchema</span><span class="p">]):</span>
+    <span class="n">dao</span><span class="p">:</span> <span class="n">BaseDAO</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ModelType</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dao</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">total</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dao</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">pk</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelType</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get by id&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dao</span><span class="o">.</span><span class="n">get_by_id</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">pk</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">obj_in</span><span class="p">:</span> <span class="n">CreateSchema</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelType</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create a object&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dao</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">obj_in</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">pk</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">obj_in</span><span class="p">:</span> <span class="n">UpdateSchema</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelType</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Update&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dao</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">pk</span><span class="p">,</span> <span class="n">obj_in</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">pk</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Delete a object&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dao</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">pk</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ArticleService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">[</span><span class="n">Article</span><span class="p">,</span> <span class="n">CreateSchema</span><span class="p">,</span> <span class="n">UpdateSchema</span><span class="p">]):</span>
+    <span class="n">dao</span> <span class="o">=</span> <span class="n">ArticleDAO</span><span class="p">()</span>
+</code></pre></div>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;feat: Add services.&quot;</span>
+</code></pre></div>
+<h3 id="36-fastapi">3.6 引入 Fastapi</h3>
+<p><a href="https://fastapi.tiangolo.com/">Fastapi</a> 是一个轻量的 Web 框架，现在引入，使其作为 API 层</p>
+<p>安装依赖：</p>
+<div class="highlight"><pre><span></span><code>pipenv install fastapi uvicorn
+</code></pre></div>
+<p>编辑 <code>setup.cfg</code> ，增加安装依赖：</p>
+<div class="highlight"><pre><span></span><code><span class="na">install_requires</span> <span class="o">=</span>
+    <span class="na">click</span>
+    <span class="na">dynaconf</span>
+    <span class="na">sqlalchemy</span>
+    <span class="na">mysqlclient</span>
+    <span class="na">pydantic</span>
+    <span class="na">fastapi</span>
+    <span class="na">uvicorn</span>
+</code></pre></div>
+<p>创建 <code>src/examp.e_blog/views.py</code> ，创建视图：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">Depends</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>
+
+<span class="kn">from</span> <span class="nn">example_blog.dependencies</span> <span class="kn">import</span> <span class="n">CommonQueryParams</span><span class="p">,</span> <span class="n">get_db</span>
+<span class="kn">from</span> <span class="nn">example_blog.schemas</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ArticleSchema</span><span class="p">,</span> <span class="n">CreateArticleSchema</span><span class="p">,</span>
+                                  <span class="n">UpdateArticleSchema</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">example_blog.services</span> <span class="kn">import</span> <span class="n">ArticleService</span>
+
+<span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+
+<span class="n">_service</span> <span class="o">=</span> <span class="n">ArticleService</span><span class="p">()</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/articles&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
+        <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">),</span>
+        <span class="n">commons</span><span class="p">:</span> <span class="n">CommonQueryParams</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">()</span>
+<span class="p">):</span>
+    <span class="k">return</span> <span class="n">_service</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">commons</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">commons</span><span class="o">.</span><span class="n">limit</span><span class="p">)</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/articles/</span><span class="si">{pk}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_by_id</span><span class="p">(</span>
+        <span class="n">pk</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)</span>
+<span class="p">):</span>
+    <span class="k">return</span> <span class="n">_service</span><span class="o">.</span><span class="n">get_by_id</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">pk</span><span class="p">)</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/articles&#39;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">ArticleSchema</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">create</span><span class="p">(</span>
+        <span class="n">obj_in</span><span class="p">:</span> <span class="n">CreateArticleSchema</span><span class="p">,</span>
+        <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">),</span>
+<span class="p">):</span>
+    <span class="k">return</span> <span class="n">_service</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">obj_in</span><span class="p">)</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s1">&#39;/articles/</span><span class="si">{pk}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">ArticleSchema</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">patch</span><span class="p">(</span>
+        <span class="n">pk</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">obj_in</span><span class="p">:</span> <span class="n">UpdateArticleSchema</span><span class="p">,</span>
+        <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)</span>
+<span class="p">):</span>
+    <span class="k">return</span> <span class="n">_service</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">pk</span><span class="p">,</span> <span class="n">obj_in</span><span class="p">)</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;/articles/</span><span class="si">{pk}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">delete</span><span class="p">(</span>
+        <span class="n">pk</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)</span>
+<span class="p">):</span>
+    <span class="k">return</span> <span class="n">_service</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">pk</span><span class="p">)</span>
+</code></pre></div>
+<p>创建 <code>src/example_blog/middlewares.py</code> ，创建数据库会话中间件：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Request</span><span class="p">,</span> <span class="n">Response</span>
+
+<span class="kn">from</span> <span class="nn">example_blog.db</span> <span class="kn">import</span> <span class="n">SessionFactory</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">db_session_middleware</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">call_next</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">Response</span><span class="p">(</span><span class="s1">&#39;Internal server error&#39;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">SessionFactory</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">call_next</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">response</span>
+
+
+<span class="k">def</span> <span class="nf">init_middleware</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">middleware</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)(</span><span class="n">db_session_middleware</span><span class="p">)</span>
+</code></pre></div>
+<p>创建 <code>src/example_blog/dependencies.py</code> ，创建 Fastapi 的依赖项：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Request</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>
+
+
+<span class="k">def</span> <span class="nf">get_db</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Session</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">db</span>
+
+
+<span class="k">class</span> <span class="nc">CommonQueryParams</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="n">limit</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="mi">10</span>
+</code></pre></div>
+<p>创建 <code>src/example_blog/routes.py</code> ，创建路由：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">FastAPI</span>
+
+<span class="kn">from</span> <span class="nn">example_blog</span> <span class="kn">import</span> <span class="n">views</span>
+
+
+<span class="k">def</span> <span class="nf">router_v1</span><span class="p">():</span>
+    <span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+    <span class="n">router</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">views</span><span class="o">.</span><span class="n">router</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Article&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">router</span>
+
+
+<span class="k">def</span> <span class="nf">init_routers</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">):</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">router_v1</span><span class="p">(),</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;/api/v1&#39;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;v1&#39;</span><span class="p">])</span>
+</code></pre></div>
+<p>创建 <code>src/example_blog/server.py</code> ，创建服务启动逻辑：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;server&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">uvicorn</span>
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+
+<span class="kn">from</span> <span class="nn">example_blog</span> <span class="kn">import</span> <span class="n">middlewares</span><span class="p">,</span> <span class="n">routes</span>
+<span class="kn">from</span> <span class="nn">example_blog.config</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">example_blog.log</span> <span class="kn">import</span> <span class="n">init_log</span>
+
+
+<span class="k">class</span> <span class="nc">Server</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">init_log</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">init_app</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">middlewares</span><span class="o">.</span><span class="n">init_middleware</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">)</span>
+        <span class="n">routes</span><span class="o">.</span><span class="n">init_routers</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_app</span><span class="p">()</span>
+        <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+            <span class="n">app</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span>
+            <span class="n">host</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">HOST</span><span class="p">,</span>
+            <span class="n">port</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">PORT</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div>
+<p>修改 <code>src/example_blog/config/settings.yml</code> ，增加服务配置：</p>
+<div class="highlight"><pre><span></span><code>HOST: 127.0.0.1
+PORT: 8000
+</code></pre></div>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;feat: Add api service.&quot;</span>
+</code></pre></div>
+<h3 id="37">3.7 编写启动命令</h3>
+<p>编辑 <code>src/example_blog/cmdline.py</code> ，增加启动 Server 逻辑：</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-h&#39;</span><span class="p">,</span> <span class="s1">&#39;--host&#39;</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Host IP. Default: </span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">HOST</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="s1">&#39;--port&#39;</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Port. Default: </span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">PORT</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--level&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Log level&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">server</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Start server.&quot;&quot;&quot;</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;LOGLEVEL&#39;</span><span class="p">:</span> <span class="n">level</span><span class="p">,</span>
+        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="n">host</span><span class="p">,</span>
+        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="n">port</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+            <span class="n">settings</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="n">Server</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;feat: Add server cmdline.&quot;</span>
+</code></pre></div>
+<h3 id="38-server">3.8 启动 Server</h3>
+<p>命令行运行：</p>
+<div class="highlight"><pre><span></span><code>example_blog server
+</code></pre></div>
+<p>可以看到如下输出：</p>
+<div class="highlight"><pre><span></span><code>INFO:     Started server process [21687]
+2020-12-28 18:11:56,341 INFO uvicorn.error 21687 139772921304768 Started server process [21687]
+INFO:     Waiting for application startup.
+2020-12-28 18:11:56,341 INFO uvicorn.error 21687 139772921304768 Waiting for application startup.
+INFO:     Application startup complete.
+2020-12-28 18:11:56,341 INFO uvicorn.error 21687 139772921304768 Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2020-12-28 18:11:56,341 INFO uvicorn.error 21687 139772921304768 Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+</code></pre></div>
+<p>浏览器打开 <a href="http://127.0.0.1:8000/docs">http://127.0.0.1:8000/docs</a> 即可查看接口文档。</p>
+<p>提交代码</p>
+<h3 id="39">3.9 引入迁移工具</h3>
+<p>为了便于数据模型变更，引入 <a href="https://alembic.sqlalchemy.org/en/latest/">alembic</a> 做数据库迁移。</p>
+<p>安装依赖：</p>
+<div class="highlight"><pre><span></span><code>pipenv install alembic
+</code></pre></div>
+<p>编辑 <code>setup.cfg</code> ，将增加安装依赖：</p>
+<div class="highlight"><pre><span></span><code><span class="na">install_requires</span> <span class="o">=</span>
+    <span class="na">click</span>
+    <span class="na">dynaconf</span>
+    <span class="na">sqlalchemy</span>
+    <span class="na">mysqlclient</span>
+    <span class="na">pydantic</span>
+    <span class="na">fastapi</span>
+    <span class="na">uvicorn</span>
+    <span class="na">alembic</span>
+</code></pre></div>
+<p>初始化 alembic ：</p>
+<div class="highlight"><pre><span></span><code>alembic init migration
+mv alembic.ini src/example_blog/migration
+</code></pre></div>
+<p>将 alembic 的相关文件全部放到 <code>src/example_blog/migration</code> 目录中</p>
+<p>修改 <code>src/example_blog/migration/alembic.ini</code> ：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># A generic, single database configuration.</span>
+
+<span class="k">[alembic]</span>
+<span class="c1"># path to migration scripts</span>
+<span class="c1">;script_location = src/example_blog/migration</span>
+<span class="na">script_location</span> <span class="o">=</span> <span class="s">.</span>
+
+<span class="c1"># template used to generate migration files</span>
+<span class="c1"># file_template = %%(rev)s_%%(slug)s</span>
+
+<span class="c1"># timezone to use when rendering the date</span>
+<span class="c1"># within the migration file as well as the filename.</span>
+<span class="c1"># string value is passed to dateutil.tz.gettz()</span>
+<span class="c1"># leave blank for localtime</span>
+<span class="c1"># timezone =</span>
+
+<span class="c1"># max length of characters to apply to the</span>
+<span class="c1"># &quot;slug&quot; field</span>
+<span class="c1"># truncate_slug_length = 40</span>
+
+<span class="c1"># set to &#39;true&#39; to run the environment during</span>
+<span class="c1"># the &#39;revision&#39; command, regardless of autogenerate</span>
+<span class="c1"># revision_environment = false</span>
+
+<span class="c1"># set to &#39;true&#39; to allow .pyc and .pyo files without</span>
+<span class="c1"># a source .py file to be detected as revisions in the</span>
+<span class="c1"># versions/ directory</span>
+<span class="c1"># sourceless = false</span>
+
+<span class="c1"># version location specification; this defaults</span>
+<span class="c1"># to src/example_blog/migration/versions.  When using multiple version</span>
+<span class="c1"># directories, initial revisions must be specified with --version-path</span>
+<span class="c1"># version_locations = %(here)s/bar %(here)s/bat src/example_blog/migration/versions</span>
+
+<span class="c1"># the output encoding used when revision files</span>
+<span class="c1"># are written from script.py.mako</span>
+<span class="c1"># output_encoding = utf-8</span>
+
+<span class="c1">;sqlalchemy.url = driver://user:pass@localhost/dbname</span>
+
+
+<span class="k">[post_write_hooks]</span>
+<span class="c1"># post_write_hooks defines scripts or Python functions that are run</span>
+<span class="c1"># on newly generated revision scripts.  See the documentation for further</span>
+<span class="c1"># detail and examples</span>
+
+<span class="c1"># format using &quot;black&quot; - use the console_scripts runner, against the &quot;black&quot; entrypoint</span>
+<span class="c1"># hooks=black</span>
+<span class="c1"># black.type=console_scripts</span>
+<span class="c1"># black.entrypoint=black</span>
+<span class="c1"># black.options=-l 79</span>
+
+<span class="c1"># Logging configuration</span>
+<span class="k">[loggers]</span>
+<span class="na">keys</span> <span class="o">=</span> <span class="s">root,sqlalchemy,alembic</span>
+
+<span class="k">[handlers]</span>
+<span class="na">keys</span> <span class="o">=</span> <span class="s">console</span>
+
+<span class="k">[formatters]</span>
+<span class="na">keys</span> <span class="o">=</span> <span class="s">generic</span>
+
+<span class="k">[logger_root]</span>
+<span class="na">level</span> <span class="o">=</span> <span class="s">WARN</span>
+<span class="na">handlers</span> <span class="o">=</span> <span class="s">console</span>
+<span class="na">qualname</span> <span class="o">=</span>
+
+<span class="k">[logger_sqlalchemy]</span>
+<span class="na">level</span> <span class="o">=</span> <span class="s">WARN</span>
+<span class="na">handlers</span> <span class="o">=</span>
+<span class="na">qualname</span> <span class="o">=</span> <span class="s">sqlalchemy.engine</span>
+
+<span class="k">[logger_alembic]</span>
+<span class="na">level</span> <span class="o">=</span> <span class="s">INFO</span>
+<span class="na">handlers</span> <span class="o">=</span>
+<span class="na">qualname</span> <span class="o">=</span> <span class="s">alembic</span>
+
+<span class="k">[handler_console]</span>
+<span class="na">class</span> <span class="o">=</span> <span class="s">StreamHandler</span>
+<span class="na">args</span> <span class="o">=</span> <span class="s">(sys.stderr,)</span>
+<span class="na">level</span> <span class="o">=</span> <span class="s">NOTSET</span>
+<span class="na">formatter</span> <span class="o">=</span> <span class="s">generic</span>
+
+<span class="k">[formatter_generic]</span>
+<span class="na">format</span> <span class="o">=</span> <span class="s">%(levelname)-5.5s [%(name)s] %(message)s</span>
+<span class="na">datefmt</span> <span class="o">=</span> <span class="s">%H:%M:%S</span>
+</code></pre></div>
+<p>修改 <code>src/example_blog/migration/env.py</code> ：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">logging.config</span> <span class="kn">import</span> <span class="n">fileConfig</span>
+
+<span class="kn">from</span> <span class="nn">alembic</span> <span class="kn">import</span> <span class="n">context</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">engine_from_config</span><span class="p">,</span> <span class="n">pool</span>
+
+<span class="kn">from</span> <span class="nn">example_blog</span> <span class="kn">import</span> <span class="n">db</span>
+<span class="kn">from</span> <span class="nn">example_blog.models</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="c1"># this is the Alembic Config object, which provides</span>
+<span class="c1"># access to the values within the .ini file in use.</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">config</span>
+
+<span class="c1"># Interpret the config file for Python logging.</span>
+<span class="c1"># This line sets up loggers basically.</span>
+<span class="n">fileConfig</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">config_file_name</span><span class="p">)</span>
+
+<span class="c1"># add your model&#39;s MetaData object here</span>
+<span class="c1"># for &#39;autogenerate&#39; support</span>
+<span class="c1"># from myapp import mymodel</span>
+<span class="c1"># target_metadata = mymodel.Base.metadata</span>
+<span class="c1"># target_metadata = None</span>
+
+<span class="n">target_metadata</span> <span class="o">=</span> <span class="n">BaseModel</span><span class="o">.</span><span class="n">metadata</span>
+
+
+<span class="c1"># other values from the config, defined by the needs of env.py,</span>
+<span class="c1"># can be acquired:</span>
+<span class="c1"># my_important_option = config.get_main_option(&quot;my_important_option&quot;)</span>
+<span class="c1"># ... etc.</span>
+
+
+<span class="k">def</span> <span class="nf">run_migrations_offline</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Run migrations in &#39;offline&#39; mode.</span>
+
+<span class="sd">    This configures the context with just a URL</span>
+<span class="sd">    and not an Engine, though an Engine is acceptable</span>
+<span class="sd">    here as well.  By skipping the Engine creation</span>
+<span class="sd">    we don&#39;t even need a DBAPI to be available.</span>
+
+<span class="sd">    Calls to context.execute() here emit the given string to the</span>
+<span class="sd">    script output.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+        <span class="n">url</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+        <span class="n">target_metadata</span><span class="o">=</span><span class="n">target_metadata</span><span class="p">,</span>
+        <span class="n">literal_binds</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">dialect_opts</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;paramstyle&quot;</span><span class="p">:</span> <span class="s2">&quot;named&quot;</span><span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">context</span><span class="o">.</span><span class="n">begin_transaction</span><span class="p">():</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">run_migrations</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">run_migrations_online</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Run migrations in &#39;online&#39; mode.</span>
+
+<span class="sd">    In this scenario we need to create an Engine</span>
+<span class="sd">    and associate a connection with the context.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">configuration</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_section</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">config_ini_section</span><span class="p">)</span>
+    <span class="n">configuration</span><span class="p">[</span><span class="s1">&#39;sqlalchemy.url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">connectable</span> <span class="o">=</span> <span class="n">engine_from_config</span><span class="p">(</span>
+        <span class="n">configuration</span><span class="p">,</span>
+        <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;sqlalchemy.&quot;</span><span class="p">,</span>
+        <span class="n">poolclass</span><span class="o">=</span><span class="n">pool</span><span class="o">.</span><span class="n">NullPool</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">connectable</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+            <span class="n">connection</span><span class="o">=</span><span class="n">connection</span><span class="p">,</span> <span class="n">target_metadata</span><span class="o">=</span><span class="n">target_metadata</span>
+        <span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">context</span><span class="o">.</span><span class="n">begin_transaction</span><span class="p">():</span>
+            <span class="n">context</span><span class="o">.</span><span class="n">run_migrations</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">is_offline_mode</span><span class="p">():</span>
+    <span class="n">run_migrations_offline</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">run_migrations_online</span><span class="p">()</span>
+</code></pre></div>
+<p>编写 <code>src/example_blog/cmdline.py</code> ，创建迁移命令：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span> <span class="nn">alembic</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="kn">from</span> <span class="nn">click</span> <span class="kn">import</span> <span class="n">Context</span>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">pass_context</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-h&#39;</span><span class="p">,</span> <span class="s1">&#39;--help&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;args&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">migrate</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">help</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;usage migrate -- arguments    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">utils</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;migration&#39;</span><span class="p">):</span>
+        <span class="n">argv</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">help</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;--help&#39;</span><span class="p">)</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">prog</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">command_path</span><span class="p">,</span> <span class="n">argv</span><span class="o">=</span><span class="n">argv</span><span class="p">)</span>
+</code></pre></div>
+<p>创建 <code>utils.py</code> ：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Utils&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">contextlib</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">PathLike</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+
+
+<span class="nd">@contextlib</span><span class="o">.</span><span class="n">contextmanager</span>
+<span class="k">def</span> <span class="nf">chdir</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PathLike</span><span class="p">]):</span>
+    <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">yield</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">cwd</span><span class="p">)</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">提示</p>
+<p>由于使用了 click 包装了 alembic 命令，在使用上会有点不同，默认应该使用 <code>migrate --</code> 后加 alembic 的其他参数，否则多参数的情况下会无法识别。</p>
+</div>
+<p>为了将 <code>src/example_blog/migration</code> 打包到项目中，需要将其变成 Python 包。</p>
+<p>创建 <code>src/example_blog/migration/__init__.py</code> 和 <code>src/example_blog/migration/versions/__init__.py</code></p>
+<p>编辑 <code>setup.cfg</code> ，将迁移脚本配置信息加入打包系统：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[options.package_data]</span>
+<span class="na">example_blog.config</span> <span class="o">=</span> <span class="s">settings.yml</span>
+<span class="na">example_blog.migration</span> <span class="o">=</span>
+    <span class="na">alembic.ini</span>
+    <span class="na">README</span>
+    <span class="na">script.py.mako</span>
+</code></pre></div>
+<p>创建空白数据库迁移版本：</p>
+<div class="highlight"><pre><span></span><code>example_blog migrate -- revision -m <span class="s2">&quot;init&quot;</span>
+</code></pre></div>
+<p>执行迁移：</p>
+<div class="highlight"><pre><span></span><code>example_blog migrate -- upgrade head
+</code></pre></div>
+<p>创建第一个数据库迁移版本：</p>
+<div class="highlight"><pre><span></span><code>example_blog migrate -- revision --autogenerate -m <span class="s2">&quot;init_table&quot;</span>
+</code></pre></div>
+<p>执行迁移：</p>
+<div class="highlight"><pre><span></span><code>example_blog migrate -- upgrade head
+</code></pre></div>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;Add alembic migrate.&quot;</span>
+</code></pre></div>
+<h2 id="4">4. 测试和优化代码</h2>
+<p>测试是软件开发中重要的一环，能够在发布之前检查出更多可能出现的异常情况。</p>
+<p>测试框架选用比较常用的 <a href="https://docs.pytest.org/en/stable/">pytest</a> ，它具有强大的功能和很好的兼容性。</p>
+<p>安装依赖：</p>
+<div class="highlight"><pre><span></span><code>pipenv install -d pytest
+</code></pre></div>
+<p>创建 <code>tests/settings.yml</code> ，初始化测试配置：</p>
+<div class="highlight"><pre><span></span><code>DEBUG: false
+LOG_LEVEL: INFO
+
+HOST: 127.0.0.1
+PORT: 8000
+
+DATABASE:
+  DRIVER: mysql
+  NAME: example_blog
+  HOST: 127.0.0.1
+  PORT: 3306
+  USERNAME: root
+  PASSWORD: root
+  QUERY:
+    charset: utf8mb4
+</code></pre></div>
+<p>编辑 <code>tests/__init__.py</code> ，加载测试配置：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">example_blog.config</span> <span class="kn">import</span> <span class="n">settings</span>
+
+<span class="n">settings</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;settings.yml&#39;</span><span class="p">))</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;settings.local.yml&#39;</span><span class="p">))</span>
+</code></pre></div>
+<p>虽然本地开发配置可以临时调整，但对于开发环境和测试环境依然有些不一样。从上面代码中可以看到加载了两个测试配置，和 Dynaconf 规则一样， <code>settings.local.yml</code> 配置为本地配置，不会被代码追踪，只不过这里是手动实现的。</p>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;test: Init test.&quot;</span>
+</code></pre></div>
+<h3 id="41">4.1 测试数据访问层</h3>
+<p>编写测试配置：</p>
+<p>新建 <code>tests/conftest.py</code> ，创建测试配置：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Test config&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">alembic</span> <span class="kn">import</span> <span class="n">command</span><span class="p">,</span> <span class="n">config</span>
+
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>
+
+<span class="kn">from</span> <span class="nn">example_blog</span> <span class="kn">import</span> <span class="n">migration</span>
+<span class="kn">from</span> <span class="nn">example_blog.config</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">example_blog.db</span> <span class="kn">import</span> <span class="n">SessionFactory</span>
+<span class="kn">from</span> <span class="nn">example_blog.models</span> <span class="kn">import</span> <span class="n">Article</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">migrate</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Re-init database when run a test.&quot;&quot;&quot;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">migration</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+    <span class="n">alembic_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">Config</span><span class="p">(</span><span class="s1">&#39;./alembic.ini&#39;</span><span class="p">)</span>
+    <span class="n">alembic_config</span><span class="o">.</span><span class="n">set_main_option</span><span class="p">(</span><span class="s1">&#39;script_location&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">----- RUN ALEMBIC MIGRATION: -----</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">command</span><span class="o">.</span><span class="n">downgrade</span><span class="p">(</span><span class="n">alembic_config</span><span class="p">,</span> <span class="s1">&#39;base&#39;</span><span class="p">)</span>
+    <span class="n">command</span><span class="o">.</span><span class="n">upgrade</span><span class="p">(</span><span class="n">alembic_config</span><span class="p">,</span> <span class="s1">&#39;head&#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">command</span><span class="o">.</span><span class="n">downgrade</span><span class="p">(</span><span class="n">alembic_config</span><span class="p">,</span> <span class="s1">&#39;base&#39;</span><span class="p">)</span>
+        <span class="n">db_name</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">DATABASE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NAME&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">DATABASE</span><span class="o">.</span><span class="n">DRIVER</span> <span class="o">==</span> <span class="s1">&#39;sqlite&#39;</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">db_name</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">session</span><span class="p">(</span><span class="n">migrate</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Session</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;session fixture&quot;&quot;&quot;</span>
+    <span class="n">_s</span> <span class="o">=</span> <span class="n">SessionFactory</span><span class="p">()</span>
+    <span class="k">yield</span> <span class="n">_s</span>
+    <span class="n">_s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">init_article</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Init article&quot;&quot;&quot;</span>
+    <span class="n">a_1</span> <span class="o">=</span> <span class="n">Article</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Hello world&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="s1">&#39;Hello world, can you see me?&#39;</span><span class="p">)</span>
+    <span class="n">a_2</span> <span class="o">=</span> <span class="n">Article</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Love baby&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="s1">&#39;I love you everyday, and i want with you.&#39;</span><span class="p">)</span>
+    <span class="n">a_3</span> <span class="o">=</span> <span class="n">Article</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Tomorrow&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="s1">&#39;When the sun rises, this day is fine day, cheer up.&#39;</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">add_all</span><span class="p">([</span><span class="n">a_1</span><span class="p">,</span> <span class="n">a_2</span><span class="p">,</span> <span class="n">a_3</span><span class="p">])</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div>
+<p>编写数据访问层用例：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="kn">from</span> <span class="nn">example_blog.dao</span> <span class="kn">import</span> <span class="n">ArticleDAO</span>
+<span class="kn">from</span> <span class="nn">example_blog.models</span> <span class="kn">import</span> <span class="n">Article</span>
+<span class="kn">from</span> <span class="nn">example_blog.schemas</span> <span class="kn">import</span> <span class="n">CreateArticleSchema</span><span class="p">,</span> <span class="n">UpdateArticleSchema</span>
+
+
+<span class="k">class</span> <span class="nc">TestArticle</span><span class="p">:</span>
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">dao</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">init_article</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">ArticleDAO</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">test_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dao</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">users</span> <span class="o">=</span> <span class="n">dao</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+        <span class="n">users</span> <span class="o">=</span> <span class="n">dao</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="n">users</span> <span class="o">=</span> <span class="n">dao</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="n">users</span>
+
+    <span class="k">def</span> <span class="nf">test_get_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dao</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">dao</span><span class="o">.</span><span class="n">get_by_id</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">test_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dao</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">origin_count</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">dao</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">obj_in</span> <span class="o">=</span> <span class="n">CreateArticleSchema</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+        <span class="n">dao</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">obj_in</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">dao</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">origin_count</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">count</span>
+
+    <span class="k">def</span> <span class="nf">test_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dao</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">obj</span><span class="p">:</span> <span class="n">Article</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">dao</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">body</span>
+        <span class="n">obj_in</span> <span class="o">=</span> <span class="n">UpdateArticleSchema</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+        <span class="n">updated_obj</span><span class="p">:</span> <span class="n">Article</span> <span class="o">=</span> <span class="n">dao</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">obj_in</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">body</span> <span class="o">!=</span> <span class="n">updated_obj</span><span class="o">.</span><span class="n">body</span>
+
+    <span class="k">def</span> <span class="nf">test_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dao</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">origin_count</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">dao</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">dao</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">dao</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">origin_count</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">count</span>
+
+    <span class="k">def</span> <span class="nf">test_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dao</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">dao</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">3</span>
+</code></pre></div>
+<p>运行测试：</p>
+<div class="highlight"><pre><span></span><code>pytest tests/test_dao.py
+</code></pre></div>
+<p>如果运行成功，则测试正确。</p>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;test: Add dao test.&quot;</span>
+</code></pre></div>
+<h3 id="42">4.2 测试服务层</h3>
+<p>创建 <code>tests/test_services.py</code> ，创建测试用例：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="kn">from</span> <span class="nn">example_blog.schemas</span> <span class="kn">import</span> <span class="n">CreateArticleSchema</span><span class="p">,</span> <span class="n">UpdateArticleSchema</span>
+<span class="kn">from</span> <span class="nn">example_blog.services</span> <span class="kn">import</span> <span class="n">ArticleService</span>
+
+
+<span class="k">class</span> <span class="nc">TestArticleService</span><span class="p">:</span>
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">init_article</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">ArticleService</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">test_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">objs</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">objs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+        <span class="n">objs</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">objs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="n">objs</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="n">objs</span>
+
+    <span class="k">def</span> <span class="nf">test_total</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">total</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">total</span> <span class="o">==</span> <span class="mi">3</span>
+
+    <span class="k">def</span> <span class="nf">test_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">__obj</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">dao</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">get_by_id</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">__obj</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">__obj</span><span class="o">.</span><span class="n">id</span>
+
+    <span class="k">def</span> <span class="nf">test_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">origin_count</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">total</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="n">obj_in</span> <span class="o">=</span> <span class="n">CreateArticleSchema</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+        <span class="n">service</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">obj_in</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">total</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">origin_count</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">count</span>
+
+    <span class="k">def</span> <span class="nf">test_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">origin_obj</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">dao</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">origin_obj</span><span class="o">.</span><span class="n">body</span>
+        <span class="n">obj_in</span> <span class="o">=</span> <span class="n">UpdateArticleSchema</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">origin_obj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">obj_in</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">body</span> <span class="o">!=</span> <span class="n">obj</span><span class="o">.</span><span class="n">body</span>
+
+    <span class="k">def</span> <span class="nf">test_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">origin_count</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">total</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">dao</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="n">service</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">total</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">origin_count</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">count</span>
+</code></pre></div>
+<p>运行测试：</p>
+<div class="highlight"><pre><span></span><code>pytest tests/test_services.py
+</code></pre></div>
+<p>如果运行成功，则测试正确。</p>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;test: Add service test.&quot;</span>
+</code></pre></div>
+<h3 id="43">4.3 测试试图层</h3>
+<p>编辑 <code>tests/conftest.py</code> ，创建测试配置：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi.testclient</span> <span class="kn">import</span> <span class="n">TestClient</span>
+
+<span class="kn">from</span> <span class="nn">example_blog</span> <span class="kn">import</span> <span class="n">migration</span><span class="p">,</span> <span class="n">server</span>
+
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">client</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Fast api test client factory&quot;&quot;&quot;</span>
+    <span class="n">_s</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">Server</span><span class="p">()</span>
+    <span class="n">_s</span><span class="o">.</span><span class="n">init_app</span><span class="p">()</span>
+    <span class="n">_c</span> <span class="o">=</span> <span class="n">TestClient</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">_s</span><span class="o">.</span><span class="n">app</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">_c</span>
+</code></pre></div>
+<p>由于 Fastapi 的 <code>TestClient</code> 依赖 <code>requests</code> ，所以需要先安装：</p>
+<div class="highlight"><pre><span></span><code>pipenv install -d requests
+</code></pre></div>
+<p>创建 <code>tests/test_views.py</code> ，测试试图：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">fastapi.encoders</span> <span class="kn">import</span> <span class="n">jsonable_encoder</span>
+<span class="kn">from</span> <span class="nn">fastapi.responses</span> <span class="kn">import</span> <span class="n">Response</span>
+
+<span class="kn">from</span> <span class="nn">example_blog.models</span> <span class="kn">import</span> <span class="n">Article</span>
+<span class="kn">from</span> <span class="nn">example_blog.schemas</span> <span class="kn">import</span> <span class="n">ModelType</span>
+
+
+<span class="k">def</span> <span class="nf">test_docs</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test view&quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/docs&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+
+
+<span class="k">class</span> <span class="nc">BaseTest</span><span class="p">:</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;v1&#39;</span>
+    <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">ModelType</span>
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">init_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pk</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">url_split</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">pk</span><span class="p">:</span>
+            <span class="n">url_split</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">pk</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">url_split</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">assert_response_ok</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+
+    <span class="k">def</span> <span class="nf">test_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">init_data</span><span class="p">):</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assert_response_ok</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">test_get_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">init_data</span><span class="p">):</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assert_response_ok</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">jsonable_encoder</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">==</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">test_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">init_data</span><span class="p">):</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assert_response_ok</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="n">after_count</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">after_count</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="k">assert</span> <span class="n">count</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">after_count</span>
+
+
+<span class="k">class</span> <span class="nc">TestArticle</span><span class="p">(</span><span class="n">BaseTest</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
+    <span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;articles&#39;</span>
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">init_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">init_article</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">test_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">init_data</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">(),</span>
+            <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;xxx&#39;</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assert_response_ok</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;xxx&#39;</span>
+
+    <span class="k">def</span> <span class="nf">test_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">init_data</span><span class="p">):</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Article</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;body&#39;</span><span class="p">:</span> <span class="s1">&#39;xxx&#39;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assert_response_ok</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">obj</span><span class="o">.</span><span class="n">body</span>
+</code></pre></div>
+<p>运行测试：</p>
+<div class="highlight"><pre><span></span><code>pytest tests/test_views.py
+</code></pre></div>
+<p>如果运行成功，则测试正确。</p>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;test: Add view test.&quot;</span>
+</code></pre></div>
+<h3 id="44">4.4 测试命令行</h3>
+<p>编辑 <code>tests/conftest.py</code> ，创建测试配置：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">click.testing</span> <span class="kn">import</span> <span class="n">CliRunner</span>
+
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">cli</span><span class="p">():</span>
+    <span class="n">runner</span> <span class="o">=</span> <span class="n">CliRunner</span><span class="p">(</span><span class="n">echo_stdin</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mix_stderr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">runner</span>
+</code></pre></div>
+<p>创建 <code>tests/test_cmdline.py</code> ，创建测试用例：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">uvicorn</span>
+<span class="kn">from</span> <span class="nn">alembic</span> <span class="kn">import</span> <span class="n">config</span>
+
+<span class="kn">import</span> <span class="nn">example_blog</span>
+<span class="kn">from</span> <span class="nn">example_blog</span> <span class="kn">import</span> <span class="n">cmdline</span>
+
+
+<span class="k">def</span> <span class="nf">test_main</span><span class="p">(</span><span class="n">cli</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">cmdline</span><span class="o">.</span><span class="n">main</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">result</span><span class="o">.</span><span class="n">exit_code</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">cmdline</span><span class="o">.</span><span class="n">main</span><span class="p">,</span> <span class="s1">&#39;-V&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">result</span><span class="o">.</span><span class="n">exit_code</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="n">example_blog</span><span class="o">.</span><span class="n">__version__</span>
+
+
+<span class="k">def</span> <span class="nf">test_run</span><span class="p">(</span><span class="n">cli</span><span class="p">,</span> <span class="n">mocker</span><span class="p">):</span>
+    <span class="n">mock_run</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">uvicorn</span><span class="p">,</span> <span class="s1">&#39;run&#39;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">cmdline</span><span class="o">.</span><span class="n">main</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;server&#39;</span><span class="p">,</span> <span class="s1">&#39;-h&#39;</span><span class="p">,</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="s1">&#39;8080&#39;</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="n">result</span><span class="o">.</span><span class="n">exit_code</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">mock_run</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">mocker</span><span class="o">.</span><span class="n">ANY</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8080</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_migrate</span><span class="p">(</span><span class="n">cli</span><span class="p">,</span> <span class="n">mocker</span><span class="p">):</span>
+    <span class="n">mock_main</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s1">&#39;main&#39;</span><span class="p">)</span>
+    <span class="n">cli</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">cmdline</span><span class="o">.</span><span class="n">main</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;migrate&#39;</span><span class="p">,</span> <span class="s1">&#39;--help&#39;</span><span class="p">])</span>
+    <span class="n">mock_main</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
+</code></pre></div>
+<p>因为单元测试中使用了 <a href="https://docs.python.org/3/library/unittest.mock.html">mock</a> ，所以安装配合 pytest 使用的 <a href="https://github.com/pytest-dev/pytest-mock/">pytest-mock</a></p>
+<div class="highlight"><pre><span></span><code>pipenv install -d pytest-mock
+</code></pre></div>
+<p>运行测试：</p>
+<div class="highlight"><pre><span></span><code>pytest tests/test_views.py
+</code></pre></div>
+<p>如果运行成功，则测试正确。</p>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;test: Add cmdline test.&quot;</span>
+</code></pre></div>
+<h3 id="45">4.5 其他测试</h3>
+<p>创建 <code>tests/test_dependencies.py</code> ，创建测试用例：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="kn">from</span> <span class="nn">example_blog.dependencies</span> <span class="kn">import</span> <span class="n">CommonQueryParams</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;args&#39;</span><span class="p">,</span> <span class="s1">&#39;expect_value&#39;</span><span class="p">],</span>
+    <span class="p">[</span>
+        <span class="p">((),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span>
+        <span class="p">((</span><span class="mi">0</span><span class="p">,),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span>
+        <span class="p">((</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span>
+        <span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">100</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_common_query_params</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">expect_value</span><span class="p">):</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">CommonQueryParams</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">params</span><span class="o">.</span><span class="n">offset</span> <span class="o">==</span> <span class="n">expect_value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">params</span><span class="o">.</span><span class="n">limit</span> <span class="o">==</span> <span class="n">expect_value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div>
+<p>创建 <code>tests/test_utils.py</code> ，创建测试用例：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">example_blog.utils</span> <span class="kn">import</span> <span class="n">chdir</span>
+
+
+<span class="k">def</span> <span class="nf">test_chdir</span><span class="p">():</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/tmp&#39;</span>
+    <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">chdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">path</span> <span class="o">==</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">cwd</span> <span class="o">==</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</code></pre></div>
+<p>运行测试：</p>
+<div class="highlight"><pre><span></span><code>pytest
+</code></pre></div>
+<p>如果运行成功，则测试正确。</p>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;test: Add other test.&quot;</span>
+</code></pre></div>
+<p>至此，所有测试运行完毕，除了 <code>src/example_blog/migration</code> 之外的包的测试已经可以全部覆盖。</p>
+<h3 id="46">4.6 优化代码</h3>
+<p>代码风格和代码规范是一个开发人员开发修养的体现，好的代码能够让人眼前一亮。为了规范，社区开发许多工具用于检测代码。</p>
+<h4 id="461">4.6.1 优化导入</h4>
+<p><a href="https://pycqa.github.io/isort/">isort</a> 是一个自动格式化导入的工具。</p>
+<p>安装依赖：</p>
+<div class="highlight"><pre><span></span><code>pipenv install -d isort
+</code></pre></div>
+<p>格式化代码：</p>
+<div class="highlight"><pre><span></span><code>isort .
+</code></pre></div>
+<p>此时可以不用先急着提交，在后面对代码风格检测的时候可能还会再次格式化代码。</p>
+<h4 id="462">4.6.2 优化代码风格</h4>
+<p><a href="https://flake8.pycqa.org/en/latest/">flake8</a> 是一个遵循 <a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> 规范检测代码的工具。使用该工具，可以检测出哪些代码不符合 PEP8 规范。</p>
+<p>安装依赖：</p>
+<div class="highlight"><pre><span></span><code>pipenv install -d flake8
+</code></pre></div>
+<p>检测代码：</p>
+<div class="highlight"><pre><span></span><code>flake8
+</code></pre></div>
+<p>根据输出提示，参照 <a href="https://www.flake8rules.com/">flake8 规则</a> 进行调整，直至完全符合为止。</p>
+<p>提交代码：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m <span class="s2">&quot;feat: Lint code&quot;</span>
+</code></pre></div>
+<h2 id="5">5. 打包发布</h2>
+<p>到这一步， <code>setup.cfg</code> 文件应该是这样的：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[metadata]</span>
+<span class="na">name</span> <span class="o">=</span> <span class="s">example_blog</span>
+<span class="na">version</span> <span class="o">=</span> <span class="s">attr: example_blog.__version__</span>
+<span class="na">author</span> <span class="o">=</span> <span class="s">huagang</span>
+<span class="na">author_email</span> <span class="o">=</span> <span class="s">huagang517@126.com</span>
+<span class="na">description</span> <span class="o">=</span> <span class="s">This is example blog system.</span>
+<span class="na">keywords</span> <span class="o">=</span> <span class="s">blog example</span>
+<span class="na">long_description</span> <span class="o">=</span> <span class="s">file: README.md</span>
+<span class="na">long_description_content_type</span> <span class="o">=</span> <span class="s">text/markdown</span>
+<span class="na">classifiers</span> <span class="o">=</span>
+    <span class="na">Operating System :: OS Independent</span>
+    <span class="na">Programming Language :: Python :: 3.7</span>
+
+<span class="k">[options]</span>
+<span class="na">python_requires &gt;</span> <span class="o">=</span> <span class="s">3.7</span>
+<span class="na">include_package_data</span> <span class="o">=</span> <span class="s">True</span>
+<span class="na">packages</span> <span class="o">=</span> <span class="s">find:</span>
+<span class="na">package_dir</span> <span class="o">=</span>
+    <span class="o">=</span><span class="s">src</span>
+<span class="na">install_requires</span> <span class="o">=</span>
+    <span class="na">click</span>
+    <span class="na">dynaconf</span>
+    <span class="na">sqlalchemy</span>
+    <span class="na">mysqlclient</span>
+    <span class="na">pydantic</span>
+    <span class="na">fastapi</span>
+    <span class="na">uvicorn</span>
+    <span class="na">alembic</span>
+
+<span class="k">[options.packages.find]</span>
+<span class="na">where</span> <span class="o">=</span> <span class="s">src</span>
+
+<span class="k">[options.entry_points]</span>
+<span class="na">console_scripts</span> <span class="o">=</span>
+    <span class="na">example_blog</span> <span class="o">=</span> <span class="s">example_blog.cmdline:main</span>
+
+<span class="k">[options.package_data]</span>
+<span class="na">example_blog.config</span> <span class="o">=</span> <span class="s">settings.yml</span>
+<span class="na">example_blog.migration</span> <span class="o">=</span>
+    <span class="na">alembic.ini</span>
+    <span class="na">README</span>
+    <span class="na">script.py.mako</span>
+
+<span class="k">[options.data_files]</span>
+<span class="na">etc/example_blog</span> <span class="o">=</span> <span class="s">src/example_blog/config/settings.yml</span>
+</code></pre></div>
+<p>在整个开发过程中，是逐步丰富此文件的。这是项目的描述文件，描述了打包的配置信息。</p>
+<h3 id="51">5.1 打包</h3>
+<div class="highlight"><pre><span></span><code>python setup.py sdist bdist_wheel
+</code></pre></div>
+<p>在 <code>dist</code> 目录中可以看到两个文件，一个是 <code>.tar.gz</code> 的源码打包文件，一个是 <code>.whl</code> 的二进制文件。</p>
+<h3 id="52">5.2 发布</h3>
+<p>将开发好的项目发布到索引仓库，或内网的私有仓库。</p>
+<p>使用 <a href="https://twine.readthedocs.io/en/latest/">twine</a> 上传：</p>
+<div class="highlight"><pre><span></span><code>twine upload dist/*
+</code></pre></div>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>https://www.python.org/doc/sunset-python-2/&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>现在 Anaconda / Miniconda 在 Windows 上使用虚拟环境工具 <a href="https://virtualenv.pypa.io/en/latest/">Virtualenv</a> 存在一些兼容问题，而且 Pipenv 是依赖这个工具的。请参考 <a href="https://github.com/pypa/virtualenv/issues/1986">conda support - Windows 3.7+ #1986</a> 和 <a href="https://github.com/ContinuumIO/anaconda-issues/issues/12094">virtualenv==20.0.34 not compatible with python on windows #12094</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../../guidelines/style_rules/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              风格规范
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>

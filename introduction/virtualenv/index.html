@@ -1,0 +1,971 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+    
+    
+      
+        <title>虚拟环境 - Python 项目工程化开发指南</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e35208c4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Python 项目工程化开发指南" class="md-header__button md-logo" aria-label="Python 项目工程化开发指南" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python 项目工程化开发指南
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              虚拟环境
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/pyloong/pythonic-project-guidelines/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pyloong/pythonic-project-guidelines
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Python 项目工程化开发指南" class="md-nav__button md-logo" aria-label="Python 项目工程化开发指南" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Python 项目工程化开发指南
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/pyloong/pythonic-project-guidelines/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pyloong/pythonic-project-guidelines
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Python 开发指南
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick_start/" class="md-nav__link">
+        快速上手
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        入门
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="入门" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          入门
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          虚拟环境
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        虚拟环境
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 虚拟环境管理工具
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 虚拟环境管理工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-venv" class="md-nav__link">
+    2.1 venv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-conda" class="md-nav__link">
+    2.2 Conda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-virtualenv" class="md-nav__link">
+    2.3 Virtualenv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-pipenv" class="md-nav__link">
+    2.4 Pipenv (推荐使用)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-poetry" class="md-nav__link">
+    2.5 Poetry
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pipenv" class="md-nav__link">
+    3. 虚拟环境实践(Pipenv)
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 虚拟环境实践(Pipenv)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 初始化项目
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 安装项目依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 清理依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    3.4 部署
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-requirementstxt" class="md-nav__link">
+    3.5 生成 requirements.txt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-lock" class="md-nav__link">
+    3.6 Lock 卡住了
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        项目工程化
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="项目工程化" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          项目工程化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guidelines/language_rules/" class="md-nav__link">
+        语言规范
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guidelines/style_rules/" class="md-nav__link">
+        风格规范
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        项目实践
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="项目实践" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          项目实践
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practices/web/" class="md-nav__link">
+        Web
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 虚拟环境管理工具
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 虚拟环境管理工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-venv" class="md-nav__link">
+    2.1 venv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-conda" class="md-nav__link">
+    2.2 Conda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-virtualenv" class="md-nav__link">
+    2.3 Virtualenv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-pipenv" class="md-nav__link">
+    2.4 Pipenv (推荐使用)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-poetry" class="md-nav__link">
+    2.5 Poetry
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pipenv" class="md-nav__link">
+    3. 虚拟环境实践(Pipenv)
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 虚拟环境实践(Pipenv)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 初始化项目
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 安装项目依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 清理依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    3.4 部署
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-requirementstxt" class="md-nav__link">
+    3.5 生成 requirements.txt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-lock" class="md-nav__link">
+    3.6 Lock 卡住了
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pyloong/pythonic-project-guidelines/edit/master/docs/introduction/virtualenv.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="_1">虚拟环境</h1>
+<p>文章要点：</p>
+<ul>
+<li>介绍 Python 的虚拟环境</li>
+<li>介绍并使用 Python 中常见的虚拟环境</li>
+<li>总结开发中的虚拟环境的使用实践</li>
+</ul>
+<h2 id="1">1. 概述</h2>
+<p>Python 应用程序通常会使用不在标准库内的软件包和模块。应用程序有时需要特定版本的库，因为应用程序可能需要修复特定的错误，或者可以使用库的过时版本的接口编写应用程序。</p>
+<p>这意味着一个 Python 环境可能无法满足每个应用程序的要求。如果应用程序 A 需要特定模块的 1.0 版本，但应用程序 B 需要 2.0 版本，则需求存在冲突，安装版本 1.0 或 2.0 将导致某一个应用程序无法运行。</p>
+<p>这个问题的解决方案是创建一个 <a href="https://docs.python.org/zh-cn/3/glossary.html#term-virtual-environment">virtual environment</a> ，一个目录树，其中安装有特定Python版本，以及许多其他包。</p>
+<p>然后，不同的应用将可以使用不同的虚拟环境。 要解决先前面例子中的冲突，应用程序 A 可以拥有自己的安装了 1.0 版本的虚拟环境，而应用程序 B 则拥有安装了 2.0 版本的另一个虚拟环境。 如果应用程序 B 要求将某个库升级到 3.0 版本，也不会影响应用程序 A 的环境。</p>
+<h2 id="2">2. 虚拟环境管理工具</h2>
+<p>现在 Python 的虚拟环境管理工具越来越强大。常见的虚拟环境管理工具如下：</p>
+<ul>
+<li><a href="https://docs.python.org/zh-cn/3/library/venv.html#module-venv"><code>venv</code></a> ： Python 标准库中的虚拟环境管理工具</li>
+<li><a href="https://docs.conda.io/en/latest/"><code>conda</code></a> ： Anaconda 下的管理工具</li>
+<li><a href="https://virtualenv.pypa.io/en/latest/"><code>Virtualenv</code></a> ： 第三方的虚拟环境管理工具，现在在 Pypa 中维护。</li>
+<li><a href="https://pipenv.pypa.io/en/latest/"><code>Pipenv</code></a> ： 第三方的虚拟环境管理工具，现在在 Pypa 中维护。</li>
+<li><a href="https://python-poetry.org/"><code>poetry</code></a> ： 第三方的虚拟环境管理工具。</li>
+</ul>
+<h3 id="21-venv">2.1 venv</h3>
+<p><a href="https://docs.python.org/zh-cn/3/library/venv.html#module-venv"><code>venv</code></a> 是 Python 标准库中的一个模块。如果系统中有多个版本的 Python 环境，可以创建指定版本的虚拟环境。</p>
+<p><strong>创建虚拟环境：</strong></p>
+<p>在当前目录创建一个名为 <code>demo</code> 的虚拟环境目录：</p>
+<div class="highlight"><pre><span></span><code>python3 -m venv demo
+</code></pre></div>
+<p>如果 <code>demo</code> 不存在，就会创建该目录，同时在里面创建 Python 解释器，标准库和各种支持文件的副本目录。</p>
+<p>通常创建以点开头的 <code>.venv</code> 目录。既可以做到隐藏目录的效果，也可以和常见的 <code>.env</code> 环境变量定义文件区分。</p>
+<p><strong>使用虚拟环境：</strong></p>
+<p>下面激活环境变量</p>
+<p>Windows:</p>
+<div class="highlight"><pre><span></span><code>demo\Scripts\activate.bat
+</code></pre></div>
+<p>Unix 或 MacOs 上：</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span> demo/bin/active
+</code></pre></div>
+<p>激活后就可以在终端中使用创建的虚拟环境了。</p>
+<div class="highlight"><pre><span></span><code>$ source demo/bin/activate
+(demo)  $ python
+Python 3.7.3 (default, Oct 28 2020, 14:33:53)
+[GCC 8.3.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.version
+&#39;3.7.3 (default, Oct 28 2020, 14:33:53) \n[GCC 8.3.0]&#39;
+&gt;&gt;&gt; sys.path
+[&#39;&#39;, &#39;/usr/lib/python37.zip&#39;, &#39;/usr/lib/python3.7&#39;, &#39;/usr/lib/python3.7/lib-dynload&#39;, &#39;/tmp/test/demo/lib/python3.7/site-packages&#39;]
+</code></pre></div>
+<p><strong>退出虚拟环境：</strong></p>
+<div class="highlight"><pre><span></span><code>deactive
+</code></pre></div>
+<h3 id="22-conda">2.2 Conda</h3>
+<p>Conda 是在 Windows， macOS 和 Linux 上运行的开源软件包管理系统和环境管理系统。 Conda 快速安装，运行和更新软件包及其依赖项。Conda 可以轻松地在本地计算机上的环境中创建，保存，加载和切换。它是为 Python 程序创建的，但可以打包和分发适用于任何语言的软件。</p>
+<p>Conda 作为软件包管理器可以帮助您查找和安装软件包。如果您需要一个需要使用其他版本的 Python 的软件包，则无需切换到其他环境管理器，因为 Conda 也是环境管理器。仅需几个命令，您就可以设置一个完全独立的环境来运行该不同版本的Python，同时继续在正常环境中运行您通常的 Python 版本。</p>
+<p>在默认配置下，Conda 可以安装和管理在 <a href="https://repo.anaconda.com/">repo.anaconda.com</a> 上，由 Anaconda® 审查和维护的上千个软件包。</p>
+<p>Conda可以与 Travis CI 和 AppVeyor 等持续集成系统结合使用，以提供频繁，自动的代码测试。</p>
+<p>所有版本的 Anaconda 和 Miniconda 中都包含 conda 软件包和环境管理器。</p>
+<p><strong>操作前提：</strong></p>
+<p>请确保 Python 环境是由 Anaconda 或 Miniconda 提供的。</p>
+<p><strong>创建虚拟环境：</strong></p>
+<p>创建一个名为 <code>demo</code> 目录的虚拟环境</p>
+<div class="highlight"><pre><span></span><code>conda create --name demo
+</code></pre></div>
+<p><strong>使用虚拟环境：</strong></p>
+<div class="highlight"><pre><span></span><code>C:\Users\test&gt;conda activate demo
+
+(demo) C:\Users\test&gt;python
+Python 3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)] :: Anaconda, Inc. on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.path
+[&#39;&#39;, &#39;C:\\ProgramData\\Anaconda3\\python38.zip&#39;, &#39;C:\\ProgramData\\Anaconda3\\DLLs&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib&#39;, &#39;C:\\ProgramData\\Anaconda3&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib\\site-packages&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib\\site-packages\\win32&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib\\site-packages\\win32\\lib&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib\\site-packages\\Pythonwin&#39;]
+&gt;&gt;&gt; sys.version
+&#39;3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)]&#39;
+</code></pre></div>
+<p><strong>退出虚拟环境：</strong></p>
+<div class="highlight"><pre><span></span><code>deactivate
+</code></pre></div>
+<h3 id="23-virtualenv">2.3 Virtualenv</h3>
+<p><a href="https://virtualenv.pypa.io/en/latest/index.html">Virtualenv</a> 是一个第三库，现在由 Pypa 管理。其具有比 <code>venv</code> 更强大的功能，但现在 Virtualenv 的一些功能也在慢慢是配到 <code>venv</code> 上。</p>
+<p><strong>安装：</strong></p>
+<div class="highlight"><pre><span></span><code>pip install -U virtualenv
+</code></pre></div>
+<p>Virtualenv 在 Conda 环境下会有 Bug 。<sup id="fnref:virtualenv-bug"><a class="footnote-ref" href="#fn:virtualenv-bug">1</a></sup></p>
+<p><strong>创建虚拟环境：</strong></p>
+<p>创建一个名为 <code>venv</code> 目录的虚拟环境</p>
+<div class="highlight"><pre><span></span><code>virtualenv venv
+</code></pre></div>
+<p><strong>使用虚拟环境：</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span> venv/bin/activate
+</code></pre></div>
+<p><strong>好用的工具：</strong></p>
+<p>搭配 <a href="https://virtualenvwrapper.readthedocs.io/en/latest/">VirtualenvWrapper</a> 可以更方便的使用和管理虚拟环境。</p>
+<p>Linux 安装：</p>
+<div class="highlight"><pre><span></span><code>pip install virtualenvwrapper
+<span class="c1"># 执行 virtualvnewrapper 初始化脚本。可以讲下面这一行加入到 `~/.bashrc` 中，方便当前用户使用，或者加入到 `/etc/profile` 中方便所有用户使用</span>
+<span class="nb">source</span> /usr/local/bin/virtualenvwrapper.sh
+</code></pre></div>
+<p>创建虚拟环境：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 执行命令，默认会在 `~/.virtualenvs` 下创建对应名称的虚拟环境目录，同时初始化虚拟环境。</span>
+<span class="c1"># 所有虚拟环境都会集中存放在这里。避免了项目根目录下有虚拟环境目录。</span>
+mkvirtualenv venv
+</code></pre></div>
+<p>使用虚拟环境：</p>
+<div class="highlight"><pre><span></span><code>workon venv
+</code></pre></div>
+<p>删除虚拟环境：</p>
+<div class="highlight"><pre><span></span><code>rmvirtualenv venv
+</code></pre></div>
+<p>Windows 安装：</p>
+<div class="highlight"><pre><span></span><code>pip install virtualenvwrapper-win
+</code></pre></div>
+<p>设置环境变量 <code>WORKON_HOME=D:/virtualenvs</code></p>
+<p>使用的方法和上面一致。</p>
+<h3 id="24-pipenv">2.4 Pipenv (推荐使用)</h3>
+<p><a href="https://pipenv.pypa.io/en/latest/">Pipenv</a> 是一个更高级的虚拟环境管理工具，其依赖 <code>Virtualenv</code> ，并在之上做了许多其他功能。正如其官网中所说，它的目的是要把所有最好的包管理（ <code>bundler</code> , <code>composer</code> , <code>npm</code> ， <code>yarn</code> 等）引入到 Python 中。</p>
+<p>Pipenv 具有如下特点</p>
+<ul>
+<li>集中存储虚拟环境，如果不存在则直接创建。可以通过 <code>WORKON_HOME</code> 环境变量配置。</li>
+<li>生成 <code>Pipfile</code> 和 <code>Pipfile.lock</code> 。前者记录依赖项、安装源、要使用的 Python 版本，后者记录所安装的的版本的 Hash 值等信息。</li>
+<li>自动安装卸载依赖，自动清除无用的依赖。</li>
+<li>自动加载 <code>.env</code> 文件。</li>
+<li>能根据依赖树的关系检测依赖冲突。</li>
+</ul>
+<p><strong>安装：</strong></p>
+<div class="highlight"><pre><span></span><code>pip install pipenv
+</code></pre></div>
+<p>请注意 Virtualenv 在 Conda 环境下的 Bug [Virtualenv-bug] 。</p>
+<p><strong>创建虚拟环境：</strong></p>
+<p>在项目根目录执行 <code>pipenv install</code> ：</p>
+<!-- markdownlint-disable MD009 -->
+<div class="highlight"><pre><span></span><code>root@b2e8a92bace7:~/demo# pipenv install
+Creating a virtualenv for this project...
+Pipfile: /root/demo/Pipfile
+Using /usr/local/bin/python3 (3.7.7) to create virtualenv...
+⠸ Creating virtual environment...created virtual environment CPython3.7.7.final.0-64 in 175ms
+  creator CPython3Posix(dest=/root/.virtualenvs/demo-xfYnOzmm, clear=False, no_vcs_ignore=False, global=False)                                                              
+  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/root/.local/share/virtualenv)                                     
+    added seed packages: pip==20.2.4, setuptools==50.3.2, wheel==0.35.1                                                                                                     
+  activators BashActivator,CShellActivator,FishActivator,PowerShellActivator,PythonActivator,XonshActivator                                                                 
+
+✔ Successfully created virtual environment! 
+Virtualenv location: /root/.virtualenvs/demo-xfYnOzmm
+Creating a Pipfile for this project...
+Pipfile.lock not found, creating...
+Locking [dev-packages] dependencies...
+Locking [packages] dependencies...
+Updated Pipfile.lock (a65489)!
+Installing dependencies from Pipfile.lock (a65489)...
+  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 0/0 — 00:00:00
+To activate this project&#39;s virtualenv, run pipenv shell.
+Alternatively, run a command inside the virtualenv with pipenv run.
+</code></pre></div>
+<!-- markdownlint-restore -->
+
+<p><strong>使用虚拟环境：</strong></p>
+<p>单次使用</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看虚拟环境的 Python 版本</span>
+pipenv run python --version
+</code></pre></div>
+<p>进入虚拟环境</p>
+<div class="highlight"><pre><span></span><code>pipenv shell
+</code></pre></div>
+<p><strong>安装依赖：</strong></p>
+<div class="highlight"><pre><span></span><code>pipenv install tox
+</code></pre></div>
+<p>依赖安装完成后，会更新 <code>Pipfile</code> 文件，同时更新 <code>Pipfile.lock</code> 文件，记录安装的版本和对应 HASH 值。</p>
+<h3 id="25-poetry">2.5 Poetry</h3>
+<p><a href="https://python-poetry.org/">Poetry</a> 是后期之秀，它的雄心不仅仅是做 Pipenv 的事，它还想把 Python 的打包管理一并做了，并消除 <code>setup.py</code> 文件。它使用基于 <a href="https://www.python.org/dev/peps/pep-0517/">PEP517</a> 规范的 <code>pyproject.toml</code> 文件记录信息，并打包。具体内容可以参考 <a href="https://www.python.org/dev/peps/pep-0517/">PEP 517 -- A build-system independent format for source trees</a> 。当前基于 PEP517 的构建模式已经完全可用。在 pip 的发行记录中，最早是在 <a href="https://pip.pypa.io/en/stable/news/#id438">18.1 (2018-10-05)</a> 就引入了 PEP517 的 <code>0.2</code> 版本。</p>
+<p>在使用上，Poetry 给人的感觉更现代化。</p>
+<p><strong>安装：</strong></p>
+<div class="highlight"><pre><span></span><code>pip install poetry
+</code></pre></div>
+<p><strong>使用：</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 使用前需要先初始化项目的基本信息，生成 `pyproject.toml` 文件</span>
+poetry init
+
+<span class="c1"># 安装依赖</span>
+poetry add tox
+
+<span class="c1"># 进入虚拟环境</span>
+poetry shell
+
+<span class="c1"># 构建项目</span>
+poetry build
+
+<span class="c1"># 发布项目</span>
+poetry publish
+</code></pre></div>
+<h2 id="3-pipenv">3. 虚拟环境实践(Pipenv)</h2>
+<p>众多的虚拟环境，和对应的工具，在选择时难免有点困惑，要选择一个好用的工具，最佳途径就是自己都尝试一遍。</p>
+<p>上述几个主流虚拟环境工具除了 <code>venv</code> 是内置库，其他几个都是基于 <code>Virtualenv</code> 再次开发，并提供了其他功能。但是 <code>Virtualenv</code> 没有提供依赖检测的功能，而且依赖包的管理还是需要使用 <code>pip</code> 命令，依赖项需要通过 <code>requirements.txt</code> 。</p>
+<p>当你需要管理不同开发环境下的依赖时，就需要两个或更多个 <code>requirements.txt</code> 。例如 <code>requirements-devlopment.txt</code> ， <code>requirements-production.txt</code> 或这 <code>requirements-test.txt</code> 。</p>
+<p><code>Poetry</code> 是看起来更酷的工具，无论是交互的输出，还是它基于 PEP517 的特性。但它毕竟还太过于年轻，存在一些不稳定性，比如有时命令错误，就直接返回错误堆栈信息。另外现在的 PEP517 规范还没在社区大规模使用，甚至有相当于一部分人还没接触到它，大家还是熟悉通过 <code>setup.py</code> 或 <code>setup.cfg</code> 编写项目就配置，然后通过 <code>setup</code> 命令构建打包。</p>
+<p>综合来看 <code>Pipenv</code> 就显得更加合适，支持多种环境管理，提供依赖关系校验，和依赖的 lock 文件，也有自动管理依赖的操作。</p>
+<p>下面以一个项目的生命周期描述如何更好的使用 <code>Pipenv</code> 。</p>
+<h3 id="31">3.1 初始化项目</h3>
+<p>初始化项目后，使用 <code>Pipenv</code> 在项目根目录创建当前项目的虚拟环境。如果是 Pycharm ，可以直接选择使用 <code>Pipenv</code> 创建。</p>
+<div class="highlight"><pre><span></span><code>pipenv install
+</code></pre></div>
+<h3 id="32">3.2 安装项目依赖</h3>
+<p>当需要区分开发环境和普通环境时，就可以通过 <code>install -d</code> 选项安装开发环境依赖</p>
+<div class="highlight"><pre><span></span><code>pipenv install -d pytest tox
+</code></pre></div>
+<p>一般的依赖直接安装即可。</p>
+<div class="highlight"><pre><span></span><code>pipenv install django requests scrapy sqlalchemy
+</code></pre></div>
+<h3 id="33">3.3 清理依赖</h3>
+<p>当需要从环境中清除不在需要的依赖时，可以使用命令卸载</p>
+<div class="highlight"><pre><span></span><code>pipenv uninstall scrapy
+</code></pre></div>
+<p>或者直接修改 <code>Pipfile</code> 文件，删除不再需要的内容，然后通过 <code>pipenv lock</code> 生成 <code>Pipfile.lock</code> 文件。</p>
+<p>如果环境中还存在其他安装过的包，可以通过 <code>pipenv clean</code> 自动清理不在 <code>Pipfile</code> 中的依赖包。</p>
+<h3 id="34">3.4 部署</h3>
+<p>在部署时，强烈推荐使用 <code>pipenv sync</code> 安装在 <code>Pipfile.lock</code> 文件中依赖包。</p>
+<h3 id="35-requirementstxt">3.5 生成 <code>requirements.txt</code></h3>
+<p>使用 <code>pipenv lock -r</code> 可以看到所有依赖列表。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看所有依赖</span>
+pipenv lock -r
+<span class="c1"># 仅所有开发依赖</span>
+pipenv lock -r --dev-only
+</code></pre></div>
+<p>当需要保存成文件直接使用重定向符号即可 <code>&gt;</code></p>
+<div class="highlight"><pre><span></span><code>pipenv lock -r &gt; requirements.txt
+pipenv lock -r --dev-only &gt; requirements.txt
+</code></pre></div>
+<h3 id="36-lock">3.6 Lock 卡住了</h3>
+<p>安装依赖时会生成一个 <code>Pipfile.lock</code> 的文件，用于记录使用的最终版和和该版本的 HASH ，这也是保证安全。</p>
+<p>有时可能因为网络问题，在生成 <code>Pipfile.lock</code> 的速度很慢。可以使用 <code>--skip-lock</code> 命令跳过。</p>
+<div class="highlight"><pre><span></span><code>pipenv install django --skip-lock
+</code></pre></div>
+<p>但在发布前，建议还是要生成 <code>Pipfile.lock</code> 。如果真的不需要，直接将 <code>Pipfile.lock</code> 排除在版本管理之外就行啦。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:virtualenv-bug">
+<p>如果你的是 Conda 环境，请使用 <code>20.0.34</code> 之前的 Virtualenv 。具体请参考 <a href="https://github.com/ContinuumIO/anaconda-issues/issues/12094">virtualenv==20.0.34 not compatible with python on windows #12094</a> 和 <a href="https://github.com/pypa/virtualenv/issues/1986">conda support - Windows 3.7+ #1986</a> 。如果这个问题已经修复，请忽略。&#160;<a class="footnote-backref" href="#fnref:virtualenv-bug" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../../quick_start/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              快速上手
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../../guidelines/language_rules/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              语言规范
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>
