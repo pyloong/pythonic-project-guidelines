@@ -912,8 +912,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1163" class="md-nav__link">
-    1.16.3 缺点
+  <a href="#2163" class="md-nav__link">
+    2.16.3 缺点
   </a>
   
 </li>
@@ -1784,8 +1784,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1163" class="md-nav__link">
-    1.16.3 缺点
+  <a href="#2163" class="md-nav__link">
+    2.16.3 缺点
   </a>
   
 </li>
@@ -1990,9 +1990,7 @@
                   </a>
                 
                 
-                <!-- markdownlint-disable MD046 MD038 -->
-
-<h1 id="python">Python 语言规范</h1>
+                <h1 id="python">Python 语言规范</h1>
 <blockquote>
 <p>本文档为 <a href="https://google.github.io/styleguide/pyguide.html">Google Python Style Guide</a> 第二章 <a href="https://google.github.io/styleguide/pyguide.html#2-python-language-rules">Python Language Rules</a> 的译文。</p>
 <p>最后更新时间： 2021-04-28</p>
@@ -2457,7 +2455,7 @@
 </code></pre></div>
 <h3 id="1162">1.16.2 优点</h3>
 <p>通常可以带来更加清晰，优雅的代码。尤其会让有经验的 Lisp 和 Scheme （还有 Haskell， ML 等）程序员感到欣慰。</p>
-<h3 id="1163">1.16.3 缺点</h3>
+<h3 id="2163">2.16.3 缺点</h3>
 <p>可能导致让人迷惑的 bug。例如下面这个依据 <a href="http://www.google.com/url?sa=D&amp;q=http://www.python.org/dev/peps/pep-0227/">PEP-0227</a> 的例子：</p>
 <div class="highlight"><pre><span></span><code><span class="n">i</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -2531,7 +2529,7 @@
 </ul>
 <h3 id="1204">1.20.4 结论</h3>
 <p><strong><code>from __future__ imports</code></strong></p>
-<p>推荐使用 <code>from __future__ import</code> 语句。所有的新代码都应该包含以下内容，现有的代码也应该在有条件的情况下进行兼容更新：</p>
+<p>推荐使用 <code>from __future__ import</code> 语句。所有新的代码都应包含如下内容，并尽可能更新现有代码以使其兼容</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
@@ -2565,7 +2563,6 @@
 </ul>
 <h3 id="1214">1.21.4 结论</h3>
 <p>强烈建议您在更改代码时启用 Python 类型分析。当添加或修改公共 API 时，请包含类型标注，并在构建系统中启用 <code>pytype</code> 进行检查。由于静态分析对 Python 来说相对较新，我们承认会有一些副作用（比如错误的类型推断）可能会阻止一些项目采用。因此，我们鼓励作者添加一个带有 <code>TODO</code> 的注释，或者在 <code>BUILD</code> 文件或代码本身中通过 bug 链接描述当前不采用类型标注的问题。</p>
-<!-- markdownlint-restore -->
                 
               
               
