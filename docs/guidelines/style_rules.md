@@ -1,4 +1,3 @@
-<!-- markdownlint-disable MD046 MD038 -->
 # Python 风格规范
 
 > 本文档为 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) 中 第二章 [Python Style Rules](https://google.github.io/styleguide/pyguide.html#3-python-style-rules) 的译文。
@@ -46,12 +45,14 @@ x = ('This will build a very long long '
 在注释中，如果需要长的 URL 放在一行的话：
 
 !!! success "推荐"
+
     ```python
     # See details at
     # http://www.example.com/us/developer/documentation/api/content/v2.0/csv_file_name_extension_full_specification.html
     ```
 
 !!! fail "不推荐"
+
     ```python
     # See details at
     # http://www.example.com/us/developer/documentation/api/content/\
@@ -1285,5 +1286,3 @@ T = TypeVar('T')
 def get_names(employee_ids: List[T]) -> Dict[T, Text]:
   """Returns a mapping from employee ID to employee name for given IDs."""
 ```
-
-<!-- markdownlint-restore -->
