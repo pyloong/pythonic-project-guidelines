@@ -13,6 +13,7 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.tabbed
 
 repo_url: https://github.com/pyloong/pythonic-project-guidelines
 repo_name: pyloong/pythonic-project-guidelines
@@ -30,5 +31,6 @@ nav:
   - 风格规范: guidelines/style_rules.md
   - 项目结构: guidelines/project_structure.md
   - 日志: guidelines/logging.md
+  - 构建与发布: guidelines/distribution.md
 - 项目实践:
   - Web: practices/web.md
