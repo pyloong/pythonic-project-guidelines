@@ -29,5 +29,6 @@ nav:
   - 语言规范: guidelines/language_rules.md
   - 风格规范: guidelines/style_rules.md
   - 项目结构: guidelines/project_structure.md
+  - 日志: guidelines/logging.md
 - 项目实践:
   - Web: practices/web.md
