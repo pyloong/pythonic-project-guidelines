@@ -33,5 +33,6 @@ nav:
   - 日志: guidelines/logging.md
   - 构建与发布: guidelines/distribution.md
   - 类型标注: guidelines/type_hint.md
+  - 测试: guidelines/test.md
 - 项目实践:
   - Web: practices/web.md
