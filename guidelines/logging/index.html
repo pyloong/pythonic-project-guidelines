@@ -1,0 +1,882 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>日志 - Python 项目工程化开发指南</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#logging" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Python 项目工程化开发指南" class="md-header__button md-logo" aria-label="Python 项目工程化开发指南" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python 项目工程化开发指南
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              日志
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/pyloong/pythonic-project-guidelines/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pyloong/pythonic-project-guidelines
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Python 项目工程化开发指南" class="md-nav__button md-logo" aria-label="Python 项目工程化开发指南" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Python 项目工程化开发指南
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/pyloong/pythonic-project-guidelines/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pyloong/pythonic-project-guidelines
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Python 开发指南
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick_start/" class="md-nav__link">
+        快速上手
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        入门
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="入门" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          入门
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/virtualenv/" class="md-nav__link">
+        虚拟环境
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        项目工程化
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="项目工程化" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          项目工程化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language_rules/" class="md-nav__link">
+        语言规范
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style_rules/" class="md-nav__link">
+        风格规范
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project_structure/" class="md-nav__link">
+        项目结构
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          日志
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        日志
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 简单使用
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 简单使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 单文件使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 一般项目中使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 通用实践
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 通用实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ini" class="md-nav__link">
+    2.1 使用 ini 格式文件配置日志
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-yaml" class="md-nav__link">
+    2.2 使用 yaml 格式文件配置日志
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 注意事项
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 注意事项">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    2.3.1 优化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        项目实践
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="项目实践" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          项目实践
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practices/web/" class="md-nav__link">
+        Web
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 简单使用
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 简单使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 单文件使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 一般项目中使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 通用实践
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 通用实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ini" class="md-nav__link">
+    2.1 使用 ini 格式文件配置日志
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-yaml" class="md-nav__link">
+    2.2 使用 yaml 格式文件配置日志
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 注意事项
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 注意事项">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    2.3.1 优化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pyloong/pythonic-project-guidelines/edit/master/docs/guidelines/logging.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="logging">Logging</h1>
+<p>在开发中，通常会使用 <code>print</code> 输出一些信息，或者诊断信息。在信息的完整性和信息格式上都不能简便且灵活控制。此时使用 <code>logging</code> 是个更好的选择，
+而且也鼓励开发人员尽可能的优先选用打印日志的方式在控制台输出信息。</p>
+<p>日志是对软件执行时所发生事件的一种追踪方式。软件开发人员对他们的代码添加日志调用，借此来指示某事件的发生。
+一个事件通过一些包含变量数据的描述信息来描述（比如：每个事件发生时的数据都是不同的）。开发者还会区分事件的重要性，
+重要性也被称为 <strong>等级</strong> 或 <strong>严重性</strong>。有一个好的日志实践，能让开发调试流程更顺畅，出现问题能更快速精准定位。</p>
+<p>本文不会以最基础的方式讲述 Python logging 的使用，而是以当前总结的实践方式结合实际操作案例展示 Logging 的使用，所以在阅读文章钱，
+你应该提前了解 <a href="https://docs.python.org/zh-cn/3/howto/logging.html">日志 HOWTO</a> 和
+ <a href="https://docs.python.org/zh-cn/3/library/logging.html">Python 的日志记录工具</a> 两篇文档。</p>
+<h2 id="1">1. 简单使用</h2>
+<p>在一般开发中，对于临时开发的项目，可能为了快速完成任务，项目中大量使用了 <code>print</code> 将调试信息输出到控制台。
+项目后期就会出现调试困难等问题。本节会提供在简单环境下快速使用日志方式。</p>
+<h3 id="11">1.1 单文件使用</h3>
+<p>对于单文件的使用，直接使用根日志对象即可。由于默认的日志级别为 <code>WARNING</code> ，所以需要使用更低级别的日志是无法显示的。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Simple logging&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;I love you ~&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>如果后续开发有要控制日志级别的需求，直接在开始初始化日志配置就可以了；</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Simple logging&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;I love you ~&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;I love you too ~&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>当需要输出更详细的日志信息，如执行时间 、 日志级别 、 线程或进程信息，都可以很方便的控制。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Simple logging&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+    <span class="c1"># format=&#39;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#39;,</span>
+    <span class="c1"># format=&#39;%(asctime)s - %(name)s - %(levelname)s - %(module)s - %(process)d %(thread)d - %(message)s&#39;,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(module)s</span><span class="s1"> - </span><span class="si">%(process)d</span><span class="s1"> </span><span class="si">%(thread)d</span><span class="s1"> - </span><span class="si">%(pathname)s</span><span class="s1">:</span><span class="si">%(lineno)d</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%s</span><span class="s1">+0800&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;I love you ~&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;I love you too ~&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>虽然使用 <code>print</code> 能更快速的在控制太输出想要看到的内容，但从上面的示例来看，直接使用默认的日志输出也是很方便的，唯一的区别可能
+就是需要导入了。而使用日志的话，想要在后续增加输出更精确的信息就显得比较灵活。</p>
+<p>日志格式所支持的字段请参考 <a href="https://docs.python.org/zh-cn/3/library/logging.html#logrecord-attributes">LogRecord 属性</a> 。</p>
+<p>这也是为什么建议优先使用日志的原因。</p>
+<h3 id="12">1.2 一般项目中使用</h3>
+<p>对于一般的项目，可能会有多个模块或者包，在每个模块中都初始化一下日志配置显然违反了 <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a> 原则。
+所以最好是有一个公共的日志模块，在该模块中初始化日志。</p>
+<p><strong>log.py</strong> ：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Log config&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%s</span><span class="s1">+0800&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+</code></pre></div>
+<p>在其他模块中直接导入 <code>from log import logger</code> 即可使用。</p>
+<details class="node" open="open"><summary>提示</summary><p>在 <code>log.py</code> 中初始化日志配置后，虽然可以在其他模块中直接使用 <code>logging</code> 打印日志，但如果启动脚本的时候没有导入该模块，
+该模块中的内容是不会加载的，也就是所日志配置并没有实际执行。</p>
+<p>此时可以重构代码：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Log config&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+
+<span class="k">def</span> <span class="nf">config_logging</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Config logging&quot;&quot;&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+        <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%s</span><span class="s1">+0800&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p>然后在项目实际执行之前调用方法初始化配置就可以了。</p>
+</details>
+<p>对于需要灵活控制日志配置的，可以将日志级别放到配置中，通过工厂方式初始化：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Log config&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+
+<span class="k">def</span> <span class="nf">config_logging</span><span class="p">(</span>
+        <span class="n">level</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+        <span class="n">log_format</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Config logging</span>
+<span class="sd">    :param level:</span>
+<span class="sd">    :param log_format:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+        <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
+        <span class="nb">format</span><span class="o">=</span><span class="n">log_format</span><span class="p">,</span>
+        <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%s</span><span class="s1">+0800&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p>在逻辑执行之前调用方法通过参数工厂化日志配置。</p>
+<h2 id="2">2. 通用实践</h2>
+<p>本节内容是在通用项目中可以使用的一般实践方法。</p>
+<h3 id="21-ini">2.1 使用 <code>ini</code> 格式文件配置日志</h3>
+<p>在项目中新建一个 <code>log.ini</code> 的配置文件：</p>
+<p><strong>log.ini</strong> ：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[loggers]</span>
+<span class="na">keys</span> <span class="o">=</span> <span class="s">root,simpleExample</span>
+
+<span class="k">[handlers]</span>
+<span class="na">keys</span> <span class="o">=</span> <span class="s">consoleHandler</span>
+
+<span class="k">[formatters]</span>
+<span class="na">keys</span> <span class="o">=</span> <span class="s">simpleFormatter</span>
+
+<span class="k">[logger_root]</span>
+<span class="na">level</span> <span class="o">=</span> <span class="s">DEBUG</span>
+<span class="na">handlers</span> <span class="o">=</span> <span class="s">consoleHandler</span>
+
+<span class="k">[logger_simpleExample]</span>
+<span class="na">level</span> <span class="o">=</span> <span class="s">DEBUG</span>
+<span class="na">handlers</span> <span class="o">=</span> <span class="s">consoleHandler</span>
+<span class="na">qualname</span> <span class="o">=</span> <span class="s">simpleExample</span>
+<span class="na">propagate</span> <span class="o">=</span> <span class="s">0</span>
+
+<span class="k">[handler_consoleHandler]</span>
+<span class="na">class</span> <span class="o">=</span> <span class="s">StreamHandler</span>
+<span class="na">level</span> <span class="o">=</span> <span class="s">DEBUG</span>
+<span class="na">formatter</span> <span class="o">=</span> <span class="s">simpleFormatter</span>
+<span class="na">args</span> <span class="o">=</span> <span class="s">(sys.stdout,)</span>
+
+<span class="k">[formatter_simpleFormatter]</span>
+<span class="na">format</span> <span class="o">=</span> <span class="s">%(asctime)s - %(name)s - %(levelname)s - %(message)s</span>
+<span class="na">datefmt</span> <span class="o">=</span>
+</code></pre></div>
+<p>新建一个 <code>log.py</code> 的包：</p>
+<p><strong>log.py</strong> ：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">logging.config</span> <span class="kn">import</span> <span class="n">fileConfig</span>
+
+
+<span class="k">def</span> <span class="nf">init_ini_log</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">fileConfig</span><span class="p">(</span><span class="s1">&#39;log.ini&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>最后在程序执行前，初始化日志配置。</p>
+<p>logging 默认使用 <a href="https://docs.python.org/zh-cn/3/library/configparser.html#module-configparser">configparser</a> 解析 <code>ini</code> 格式文件。
+如果你想使用其他格式，如 <code>toml</code> 或者 <code>yaml</code> ，则需要自己手动读取并解析文件内容为 Dict 即可。</p>
+<h3 id="22-yaml">2.2 使用 <code>yaml</code> 格式文件配置日志</h3>
+<p>新建 <code>log.yml</code> 文件：</p>
+<p><strong>log.yml</strong> ：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">formatters</span><span class="p">:</span>
+  <span class="nt">simple</span><span class="p">:</span>
+    <span class="nt">format</span><span class="p">:</span> <span class="s">&#39;%(asctime)s</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">%(name)s</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">%(levelname)s</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">%(message)s&#39;</span>
+<span class="nt">handlers</span><span class="p">:</span>
+  <span class="nt">console</span><span class="p">:</span>
+    <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">logging.StreamHandler</span>
+    <span class="nt">level</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+    <span class="nt">formatter</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">simple</span>
+    <span class="nt">stream</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ext://sys.stdout</span>
+<span class="nt">loggers</span><span class="p">:</span>
+  <span class="nt">simpleExample</span><span class="p">:</span>
+    <span class="nt">level</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+    <span class="nt">handlers</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">console</span>
+    <span class="nt">propagate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">root</span><span class="p">:</span>
+  <span class="nt">level</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+  <span class="nt">handlers</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">console</span>
+</code></pre></div>
+<p><a href="https://yaml.org/">YAML</a> 格式解析工具有三个，都在文档中有相应地址。在这里选用 <a href="https://pyyaml.org/">PyYAML</a> 。</p>
+<p>安装依赖：</p>
+<div class="highlight"><pre><span></span><code>pip install pyyaml
+</code></pre></div>
+<p>新建 <code>log.py</code> 模块：</p>
+<p><strong>log.py</strong> ：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">logging.config</span> <span class="kn">import</span> <span class="n">dictConfig</span>
+<span class="kn">from</span> <span class="nn">yaml</span> <span class="kn">import</span> <span class="n">load</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">yaml</span> <span class="kn">import</span> <span class="n">CLoader</span> <span class="k">as</span> <span class="n">Loader</span><span class="p">,</span> <span class="n">CDumper</span> <span class="k">as</span> <span class="n">Dumper</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">yaml</span> <span class="kn">import</span> <span class="n">Loader</span><span class="p">,</span> <span class="n">Dumper</span>
+
+
+<span class="k">def</span> <span class="nf">init_yml_log</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;log.yml&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">obj</span><span class="p">:</span>
+        <span class="n">logging_config</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">Loader</span><span class="p">)</span>
+    <span class="n">dictConfig</span><span class="p">(</span><span class="n">logging_config</span><span class="p">)</span>
+</code></pre></div>
+<p>最后在程序执行前，初始化日志配置。</p>
+<h3 id="23">2.3 注意事项</h3>
+<h4 id="231">2.3.1 优化</h4>
+<p>根据文档中 <a href="https://docs.python.org/zh-cn/3/howto/logging.html#optimization">优化</a> 一节内容描述，日志中的参数化消息，
+应该延迟加载。这么做是为了减少在计算日志参数是所消耗的资源，因为如果日志记录非丢弃，则不需要消耗这部分资源。所以在
+日志记录上，应采用 <code>%</code> 的方式，而不是其他字符串格式化。</p>
+<p>关于性能的讨论可以参考 <a href="https://github.com/PyCQA/pylint/issues/2395">W1202 - logging-fstring-interpolation is not useful</a> 。</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../project_structure/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              项目结构
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../../practices/web/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Web
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>
