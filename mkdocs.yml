@@ -32,5 +32,6 @@ nav:
   - 项目结构: guidelines/project_structure.md
   - 日志: guidelines/logging.md
   - 构建与发布: guidelines/distribution.md
+  - 类型标注: guidelines/type_hint.md
 - 项目实践:
   - Web: practices/web.md
