@@ -682,7 +682,7 @@ def get_adder(summand1):
 
 通常可以带来更加清晰，优雅的代码。尤其会让有经验的 Lisp 和 Scheme （还有 Haskell， ML 等）程序员感到欣慰。
 
-### 2.16.3 缺点
+### 1.16.3 缺点
 
 可能导致让人迷惑的 bug。例如下面这个依据 [PEP-0227](http://www.google.com/url?sa=D&q=http://www.python.org/dev/peps/pep-0227/) 的例子：
 
@@ -803,7 +803,7 @@ Python 3 是 Python 语言的重大变化。虽然现有的代码通常是考虑
 
 **`from __future__ imports`**
 
-推荐使用 `from __future__ import` 语句。所有新的代码都应包含如下内容，并尽可能更新现有代码以使其兼容
+推荐使用 `from __future__ import` 语句。所有的新代码都应该包含以下内容，现有的代码也应该在有条件的情况下进行兼容更新：
 
 ```python
 from __future__ import absolute_import
