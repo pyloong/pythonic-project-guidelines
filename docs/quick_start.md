@@ -8,7 +8,7 @@
 
 ### 1.1 Python 开发环境
 
-推荐使用 Python 3.7+ ，本项目使用 Python 3.7 。具体版本的 Python 环境可以在 [官网](https://www.python.org/downloads/) 下载。
+推荐使用 Python 3.7+ ，本项目使用 Python 3.7 。具体版本的 Python 环境可以在[官网](https://www.python.org/downloads/)下载。
 
 ### 1.2 开发工具
 
@@ -18,17 +18,8 @@
 
 ### 1.3 虚拟环境工具
 
-推荐使用 [pipenv](https://pipenv.pypa.io/en/latest/) 。pipenv 是 [Python官方推荐](https://packaging.python.org/tutorials/managing-dependencies/#managing-dependencies) 的包管理工具，它集成了 `virtualenv`, `pip` 和 `pyenv` 三者的功能。
-其目的旨在集合了所有的包管理工具的长处，如: `npm`, `yarn`, `composer` 等的优点。
-
+推荐使用 [pipenv](https://pipenv.pypa.io/en/latest/) 。pipenv 是 [Python官方推荐](https://packaging.python.org/tutorials/managing-dependencies/#managing-dependencies)的包管理工具，集成了 `virtualenv`, `pip` 和 `pyenv` 三者的功能。
 它能够自动为项目创建和管理虚拟环境，从 `Pipfile` 文件添加或删除安装的包，同时生成 `Pipfile.lock` 来锁定安装包的版本和依赖信息，避免构建错误。
-
-pipenv 主要解决了如下问题:
-
-- 不用再单独使用 `pip` 和 `virtualenv`, 现在它们合并在一起了
-- 不用再维护 `requirements.txt`, 使用 `Pipfile` 和 `Pipfile.lock` 来代替
-- 可以使用多个 python 版本(python2 和 python3)
-- 在安装了 pyenv 的条件下，可以自动安装需要的 Python 版本
 
 在安装好 Python 环境后，应该在全局环境中安装 pipenv 。
 
@@ -109,7 +100,7 @@ init_bootstrap [n]:
 
 ```
 
-目录中的 `src` 下有一个项目模块，用来存放项目源代码， `tests` 目录用来编写模块的相关测试代码。
+生成项目的 `src` 目录下有一个项目模块，用来存放项目源代码， `tests` 目录用来编写模块的相关测试代码。
 
 `Pipfile` 包含项目初始依赖，`setup.cfg` 和 `setup.py` 定义了项目描述信息，`tox.ini` 定义了任务自动化执行逻辑。
 
@@ -147,7 +138,7 @@ git commit -m "feat: 初始化项目提交"
 - `pytest-cov`: [pytest-cov](https://github.com/pytest-dev/pytest-cov) 是 `pytest` 的 [Coverage](https://coverage.readthedocs.io/en/latest/) 插件，用来统计测试覆盖率
 - `tox`: [tox](https://tox.readthedocs.io/en/latest/) 是一个任务自动化工具
 
-相关功能可以阅读对应的技术说明文档。
+如果想要了解相关的功能，可以阅读对应的技术说明文档。
 
 ## 2. 功能开发
 
@@ -161,7 +152,7 @@ pip install -e .
 
 ### 2.1 功能需求
 
-示例项目提供一个从文本文件读取数据，以空格分割单词，然后统计文件中的单词数量，并将结果写入到目标文件中。
+提供一个从文本文件读取数据，数据以空格分割单词，然后统计文件中的单词数量，并将结果写入到目标文件中。
 
 ### 2.2 编写计数器
 
@@ -239,7 +230,7 @@ isort . --check-only --diff
 pylint tests src
 ```
 
-此操作会列出代码中不符合规范的部分，并显示对应的规范名称。可以在 [这里](https://pylint.readthedocs.io/en/latest/technical_reference/features.html) 找到所有规则。
+此操作会列出代码中不符合规范的部分，并显示对应的规范名称。可以在[这里](https://pylint.readthedocs.io/en/latest/technical_reference/features.html)找到所有规则。
 
 在完成修改后再次运行两个命令，直到都没有异常输出为止。
 
@@ -330,7 +321,7 @@ def test_count(mocker, mock_path, mock_source_file):
 
 运行 `isort` 和 `pylint` 格式化代码并检查代码风格。
 
-### 2.2.4 提交代码
+#### 2.2.4 提交代码
 
 一个功能特性开发完成后，需要提交代码来保存记录，避免意外操作。
 
@@ -439,7 +430,7 @@ git commit -m "feat(cmdline): 增加 cmdline 逻辑，并完成测试。"
 
 ### 2.4 总结
 
-至此，我们的功能开发已经完成。在整个开发过程中，我们遵循了 “开发功能特性” => “代码风格检查” => “单元测试” 的流程。
+至此，我们的功能已经开发完成。在整个开发过程中，我们遵循了 “添加功能特性” => “代码风格检查” => “单元测试” 的开发流程。
 
 如果感觉每次运行多个命令比较繁琐，可以在项目根目录中运行 `tox` 自动化完成代码测试、导包检查和代码风格检查。
 
@@ -511,4 +502,4 @@ python setup.py sdist bdist_wheel
 twine upload dist/*
 ```
 
-默认会将项目发布到 [pypi](https://pypi.org/) 中，所以你需要有对应的账号。
+默认会将项目发布到 [pypi](https://pypi.org/) 中，所以需要有对应的登录账号。
