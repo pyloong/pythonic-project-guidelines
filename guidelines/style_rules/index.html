@@ -1602,15 +1602,15 @@
 <p>文档字符串应该提供足够的信息，当别人编写代码调用该函数时，他不需要看一行代码，只要看文档字符串就可以了。文档字符串应该是描述性的（ <code>"""Fetches rows from a Bigtable."""</code> ） 而不是命令式的（ <code>"""Fetch rows from a Bigtable."""</code> ） ，除了 <code>@property</code> 数据描述符，它应该使用<a href="#384">与属性相同的样式</a>。文档字符串应该包含函数做什么，以及输入和输出的详细描述。通常，不应该描述“怎么做”，除非是一些复杂的算法。对于复杂的代码，在代码旁边加注释会比使用文档字符串更有意义。</p>
 <p>重写基类中的方法时，用一个简单的文档字符串引导读者查看被覆盖方法的文档字符串，例如： <code>"""See base class."""</code> 。这样做的好处是，无需重复基本方法中的文档字符串信息。但是，如果重写方法的行为发生了改变，或者需要提供详细信息（例如：记录额外副作用），那么重写方法至少需要通过文档字符串来描述这些差异。</p>
 <p>关于函数的几个方面应该在特定的小节中进行描述记录。这几个方面如下文所述，每节应该以一个标题行开始，标题行以冒号结尾。除标题行外，小节的其他内容应被缩进两个或四个空格（在文件内保持一致）。如果函数的名称和签名具有足够的信息，可以使用单行文档字符串进行适当描述，那就可以省略这些部分。</p>
-<h4 id="args"><em><code>Args:</code></em></h4>
+<h4 id="args"><em>Args:</em></h4>
 <p>列出每个参数的名字，在名字后使用一个冒号和一个空格，分隔对该参数的描述。如果描述太长超过了单行80字符，使用2或者4个空格的悬挂缩进（与文件其他部分保持一致）。描述应该包括所需的类型和含义。如果一个函数接受 <code>*foo</code>（可变长度参数列表）或者 <code>**bar</code>（任意关键字参数），应该详细列出 <code>*foo</code> 和 <code>**bar</code> 。</p>
-<h4 id="returns-yields"><em><code>Returns:</code>（或者 <code>Yields:</code> 用于生成器）</em></h4>
+<h4 id="returns-yields"><em>Returns:（或者 Yields: 用于生成器）</em></h4>
 <p>描述返回值的类型和语义。</p>
 <ul>
 <li>如果函数返回 <code>None</code> ，这一部分可以省略。</li>
 <li>如果文档字符串以 <code>Returns</code> 或 <code>Yields</code> 开头（例如： <code>"""Returns row from Bigtable as a tuple of strings."""</code>），并且开始的句子足以描述返回值，那么也可以省略。</li>
 </ul>
-<h4 id="raises"><em><code>Raises:</code></em></h4>
+<h4 id="raises"><em>Raises:</em></h4>
 <p>列出与接口有关的所有异常，然后给出说明。使用类似的异常名称 + 冒号 + 空格或换行符，并按 <code>Args：</code> 中所述悬挂缩进样式。如果违反了文档字符串中指定的 API，则不应该记录引发的异常（因为这会使违反 API 的行为成为 API 的一部分）。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">fetch_smalltable_rows</span><span class="p">(</span><span class="n">table_handle</span><span class="p">:</span> <span class="n">smalltable</span><span class="o">.</span><span class="n">Table</span><span class="p">,</span>
                           <span class="n">keys</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
@@ -1683,7 +1683,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div>
 <h3 id="384">3.8.4 类</h3>
-<p>类应该在其定义下有一个用于描述该类的文档字符串。如果你的类有公共属性（<code>Attributes</code>），那么文档中应该有一个属性（<code>Attributes</code>）段，并且应该遵守和<a href="#383">函数参数</a>相同的格式：</p>
+<p>类应该在其定义下有一个用于描述该类的文档字符串。如果你的类有公共属性（<code>Attributes</code>），那么文档中应该有一个属性（<code>Attributes</code>）段，并且应该遵守和<a href="#args">函数参数</a>相同的格式：</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SampleClass</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Summary of class here.</span>
 
