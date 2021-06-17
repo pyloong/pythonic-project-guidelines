@@ -1,0 +1,742 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>配置 - Python 项目工程化开发指南</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Python 项目工程化开发指南" class="md-header__button md-logo" aria-label="Python 项目工程化开发指南" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python 项目工程化开发指南
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              配置
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/pyloong/pythonic-project-guidelines/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pyloong/pythonic-project-guidelines
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Python 项目工程化开发指南" class="md-nav__button md-logo" aria-label="Python 项目工程化开发指南" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Python 项目工程化开发指南
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/pyloong/pythonic-project-guidelines/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pyloong/pythonic-project-guidelines
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        Python 开发指南
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick_start.html" class="md-nav__link">
+        快速上手
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        入门
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="入门" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          入门
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/virtualenv.html" class="md-nav__link">
+        虚拟环境
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        项目工程化
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="项目工程化" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          项目工程化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="language_rules.html" class="md-nav__link">
+        语言规范
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="style_rules.html" class="md-nav__link">
+        风格规范
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="project_structure.html" class="md-nav__link">
+        项目结构
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        日志
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="distribution.html" class="md-nav__link">
+        构建与发布
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="type_hint.html" class="md-nav__link">
+        类型标注
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="test.html" class="md-nav__link">
+        测试
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        项目实践
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="项目实践" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          项目实践
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practices/web.html" class="md-nav__link">
+        Web
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 一般做法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 动态配置示例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    项目实践
+  </a>
+  
+    <nav class="md-nav" aria-label="项目实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#django" class="md-nav__link">
+    Django 项目
+  </a>
+  
+    <nav class="md-nav" aria-label="Django 项目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    使用配置文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    使用环境变量
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pyloong/pythonic-project-guidelines/edit/master/docs/guidelines/configuration.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="_1">配置</h1>
+<p>配置是一个项目的核心驱动，可以在不更改源代码或减少源代码修改的情况下快速调整项目的运行。
+使用中心配置驱动项目，能让项目的使用更加灵活，运维工作更轻松。</p>
+<p>例如 Django 框架会自带一个 <code>settings.py</code> 文件，在 <code>settings.py</code> 中的配置项都会覆盖框架
+级别的默认配置，方便用户自定义修改。在代码中，可以使用 <code>django.settings</code> 对象获取所有
+配置项。 Scrapy 框架同样也有这种机制。</p>
+<p>这些成熟的框架增加了中心配置，就是为了通过开放出来的配置项来灵活控制框架所支持的内容。
+而在一般项目中，也可以参照这种设计，让项目部署更加灵活。</p>
+<h2 id="1">1. 一般做法</h2>
+<p>常见增加中心配置的做法是在项目中增加一个 <code>settings.py</code> 文件，该文件中模块级别常量定义配置项。
+在使用时，通过导入模块中的内容使用。</p>
+<p>例如：</p>
+<p>在项目中创建一个 <code>settings.py</code> 文件，在文件中定义模块级常量</p>
+<div class="highlight"><pre><span></span><code><span class="c1">## Settings</span>
+
+<span class="c1"># File config</span>
+<span class="n">SOURCE_FILE</span> <span class="o">=</span> <span class="s1">&#39;/tmp/foo.txt&#39;</span>
+
+<span class="c1"># Log config</span>
+<span class="n">LOG_LEVEL</span> <span class="o">=</span> <span class="s1">&#39;DEBUG&#39;</span>
+<span class="n">LOG_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
+</code></pre></div>
+<p>创建 <code>app.py</code> 文件，在文件中导入 <code>settings</code> 模块，并使用该模块中的常量。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Count a file &quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>  
+
+<span class="kn">import</span> <span class="nn">settings</span>
+
+
+<span class="c1"># Config root logger</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">LOG_LEVEL</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">LOG_FORMAT</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">count_word</span><span class="p">(</span><span class="n">source_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param source_file:</span>
+<span class="sd">    :return:    None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">total_words</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Read source_file</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Read file: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">source_file</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">source_file</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">source_obj</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">source_obj</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+            <span class="n">total_words</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;File has </span><span class="si">%s</span><span class="s1"> words&#39;</span><span class="p">,</span> <span class="n">total_words</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">count_word</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">SOURCE_FILE</span><span class="p">))</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="2">2. 动态配置示例</h2>
+<p>Dynaconf 是一个灵活的中心配置管理工具，底层设计和 Django 一致，会延迟加载配置。</p>
+<p>其具有如下特点：</p>
+<ul>
+<li>加载多个配置源</li>
+<li>配置分层</li>
+<li>Django Flask 扩展</li>
+<li>支持 Redis 和 Vault</li>
+</ul>
+<p>在项目中新建配置文件 <code>settings.yml</code></p>
+<p><strong>settings.yml</strong> ：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">foo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">bar</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+</code></pre></div>
+<p>新建配置模块 <code>config.py</code></p>
+<p><strong>config.py</strong> ：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dynaconf</span> <span class="kn">import</span> <span class="n">Dynaconf</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="n">Dynaconf</span><span class="p">(</span>
+    <span class="n">settings_files</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;settings.yml&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>新建一个 <code>app.py</code> 文件，使用配置</p>
+<p><strong>app.py</strong> ：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">settings</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">FOO</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BAR</span><span class="p">)</span>
+</code></pre></div>
+<p>然后运行 <code>python app.py</code> 可以看到已经能够自动获取 <code>settings.yml</code> 配置文件中的值。</p>
+<p>增加本地配置文件 <code>settings.local.yml</code></p>
+<p><strong>settings.local.yml</strong> :</p>
+<div class="highlight"><pre><span></span><code>foo: 10
+bar: 20
+</code></pre></div>
+<p>再次运行 <code>python app.py</code> ，程序会自动获取 <code>settings.local.yml</code> 。</p>
+<p>这是因为 <code>Dynaconf</code> 在初始化是传入了配置文件格式为 <code>settings.yml</code> ，在加载配置时，会同时查找 <code>settings.local.yml</code> 的配置文件。
+并将两个配置文件的内容合并，如果存在相同变量， <code>settings.local.yml</code> 会覆盖 <code>settings.yml</code> 中的配置。</p>
+<h2 id="_2">项目实践</h2>
+<h3 id="django">Django 项目</h3>
+<p>Dynaconf 可以搭配 Django 一起使用。虽然 Django 有自己的配置模块，但是并不灵活。</p>
+<p>搭配 Dynaconf ，可以启动层级配置，例如支持 <code>Dev</code> 、 <code>prod</code> 和 <code>test</code> 多种环境的配置，而且可以通过环境变量很方便的
+修改配置，包括加载其他地方的配置。</p>
+<p>在 Django 项目的 <code>settings.py</code> 文件最后添加如下内容：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">dynaconf</span>  <span class="c1"># pylint: disable=wrong-import-position</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="n">dynaconf</span><span class="o">.</span><span class="n">DjangoDynaconf</span><span class="p">(</span>
+    <span class="vm">__name__</span><span class="p">,</span>
+    <span class="n">envvar_prefix</span><span class="o">=</span><span class="s1">&#39;BLOG&#39;</span><span class="p">,</span>
+    <span class="n">settings_files</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s1">&#39;settings.local.yml&#39;</span>
+    <span class="p">],</span>
+    <span class="n">environments</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">load_dotenv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">ENVVAR_FOR_DYNACONF</span><span class="o">=</span><span class="s1">&#39;BLOG_SETTINGS&#39;</span><span class="p">,</span>
+    <span class="n">includes</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Path</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;etc&#39;</span><span class="p">,</span> <span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="s1">&#39;settings.yml&#39;</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>当 Django 加载 <code>settings.py</code> 模块的时候，会初始化 Dynaconf 。 Dynaconf 会将 Django 的 <code>settings</code> 对象中的配置加载到 Dynaconf 中，
+然后将自身的所有配置再重新加载到 Django 的 <code>settings</code> 对象中。</p>
+<p>Dynaconf 不仅会加载配置文件，也会加载以 <code>BLOG_</code> 开头的环境变量。</p>
+<h4 id="_3">使用配置文件</h4>
+<p>在初始化 Dynaconf 时，会加载项目根目录的 <code>settings.local.yml</code> 配置文件，此文件一般是开发时使用的本地配置，并且不应该被 Git 追踪。
+在不同的开发人员使用或者不同的环境中，可以使用多样化的本地配置。对于需要统一的默认配置，直接放在 <code>settings.py</code> 中就可以了。</p>
+<p>同时还会读取 <code>&lt;sys.prefix&gt;/etc/blog/settings.yml</code> 。这个一般作为生产环境的系统配置。如果使用的是系统 Python 环境，可能目录是在
+<code>/usr/local/etc/blog/settings.yml</code> ，如果是虚拟环境，则可能是 <code>/home/foo/.virtualenvs/blog-fxage/etc/blog/settings.yml</code> 。</p>
+<p>如果想自定义配置文件位置，可以通过设置环境变量 <code>BLOG_SETTINGS=/tmp/settings.yml</code> 指定 Dynaconf 加载文件的位置。</p>
+<div class="highlight"><pre><span></span><code><span class="nt">DEBUG</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">ALLOWED_HOSTS</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;*&#39;</span>
+
+<span class="nt">INSTALLED_APPS</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dynaconf_merge_unique</span>   <span class="c1"># 指示 Dynaconf 将 INSTALLED_APPS 与默认配置合并而不是覆盖，并且进行去重</span>
+ <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">debug_toolbar</span>    <span class="c1"># 指示 Dynaconf 将 debug_toolbar 添加到 INSTALLED_APPS 列表中</span>
+
+<span class="nt">MIDDLEWARE</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dynaconf_merge_unique</span>
+ <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">debug_toolbar.middleware.DebugToolbarMiddleware</span>
+
+<span class="nt">DATABASES</span><span class="p">:</span>
+  <span class="nt">default</span><span class="p">:</span>
+    <span class="nt">ENGINE</span><span class="p">:</span> <span class="s">&#39;django.db.backends.mysql&#39;</span>
+    <span class="nt">NAME</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blo</span>
+    <span class="nt">USER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class="nt">PASSWORD</span><span class="p">:</span> <span class="s">&#39;000000&#39;</span>
+    <span class="nt">HOST</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span>
+    <span class="nt">PORT</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3306</span>
+
+<span class="nt">REST_FRAMEWORK</span><span class="p">:</span>
+  <span class="c1"># 指示 Dynaconf 将 REST_FRAMEWORK 与默认配置合并，而不是覆盖</span>
+  <span class="nt">dynaconf_merge_unique</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="c1"># 指示 Dynaconf 只修改 PAGE_SIZE 的值，其他不变</span>
+  <span class="nt">PAGE_SIZE</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="err">}</span>
+</code></pre></div>
+<p>上述配置在 Dynaconf 读取后，可以覆盖 <code>settings.py</code> 中的默认配置。其中有几个点需要注意：</p>
+<ul>
+<li>如果直接文件中定义配置，会覆盖默认配置。</li>
+<li>如果需要和默认配置合并，可以使用 <code>dynaconf_merge</code> 。</li>
+</ul>
+<h4 id="_4">使用环境变量</h4>
+<p>Dynaconf 支持加载环境变量，也可以使用 .env 文件。</p>
+<p>在使用环境变量时，同样和配置文件一样，支持完全覆盖，和自动合并。</p>
+<p>需要额外强调一点的是， Dynaconf 初始化的时，使用了 <code>envvar_prefix=BLOG</code> 。 Dynaconf 会自动加载以 <code>BLOG_</code> 开头的
+环境变量。包括 <code>ENVVAR_FOR_DYNACONF='BLOG_SETTINGS'</code> 配置的 Dynaconf 加载配置文件的环境变量 <code>BLOG_SETTINGS</code> 。</p>
+<p>所以在使用环境变量的时候，不要错误的将 <code>BLOG_SETTINGS</code> 环境变量指定其他内容，而造成不必要的错误。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 使用环境变量配置单值</span>
+<span class="nb">export</span> <span class="nv">BLOG_DEBUG</span><span class="o">=</span><span class="s1">&#39;True&#39;</span>
+
+<span class="c1"># 使用环境变量配置对象</span>
+<span class="nb">export</span> <span class="nv">BLOG_DATABASES</span><span class="o">=</span><span class="s2">&quot;{&#39;default&#39;={&#39;ENGINE&#39;=&#39;django.db.backends.mysql&#39;, &#39;NAME&#39;=&#39;blog&#39;, &#39;USER&#39;=&#39;root&#39;, &#39;PASSWORD&#39;=&#39;000000&#39;, &#39;HOST&#39;=&#39;localhost&#39;, &#39;POST&#39;=3306}}&quot;</span>
+
+<span class="c1"># 使用环境变量配置合并内容</span>
+<span class="nb">export</span> <span class="nv">BLOG_MIDDLEWARE</span><span class="o">=</span><span class="s1">&#39;[&quot;dynaconf_merge_unique&quot;, &quot;debug_toolbar.middleware.DebugToolbarMiddleware&quot;]&#39;</span>   <span class="c1"># 使用 dynaconf_merge_unique 合并并去重</span>
+<span class="nb">export</span> <span class="nv">BLOG_MIDDLEWARE</span><span class="o">=</span><span class="s1">&#39;@merge [&quot;debug_toolbar.middleware.DebugToolbarMiddleware&quot;]&#39;</span> <span class="c1"># 使用 merge 关键字</span>
+<span class="nb">export</span> <span class="nv">BLOG_MIDDLEWARE</span><span class="o">=</span><span class="s1">&#39;@merge debug_toolbar.middleware.DebugToolbarMiddleware&#39;</span> <span class="c1"># 简写</span>
+
+<span class="nb">export</span> <span class="nv">BLOG_REST_FRAMEWORK</span><span class="o">=</span><span class="s1">&#39;{PAGE_SIZE=10, dynaconf_merge=true}&#39;</span>    <span class="c1"># 使用 dynaconf_merge 合并</span>
+<span class="nb">export</span> <span class="nv">BLOG_REST_FRAMEWORK</span><span class="o">=</span><span class="s1">&#39;@merge {PAGE_SIZE=10}&#39;</span>  <span class="c1"># 使用 merge 关键字</span>
+<span class="nb">export</span> <span class="nv">BLOG_REST_FRAMEWORK</span><span class="o">=</span><span class="s1">&#39;@merge PAGE_SIZE=10&#39;</span>    <span class="c1"># 简写</span>
+
+<span class="nb">export</span> <span class="nv">BLOG_DATABASES__default__PASSWORD</span><span class="o">=</span><span class="s1">&#39;123456&#39;</span>   <span class="c1"># 使用两个下划线 (__) 作为子级</span>
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>
