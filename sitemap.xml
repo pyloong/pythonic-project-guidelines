@@ -1,63 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>None</loc>
-         <lastmod>2021-06-17</lastmod>
+         <loc>https://pyloong.github.io/pythonic-project-guidelines/</loc>
+         <lastmod>2021-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2021-06-17</lastmod>
+         <loc>https://pyloong.github.io/pythonic-project-guidelines/quick_start/</loc>
+         <lastmod>2021-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2021-06-17</lastmod>
+         <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/advanced/configuration/</loc>
+         <lastmod>2021-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2021-06-17</lastmod>
+         <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/advanced/logging/</loc>
+         <lastmod>2021-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2021-06-17</lastmod>
+         <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/advanced/test/</loc>
+         <lastmod>2021-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2021-06-17</lastmod>
+         <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/advanced/type_hint/</loc>
+         <lastmod>2021-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2021-06-17</lastmod>
+         <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/project_management/distribution/</loc>
+         <lastmod>2021-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2021-06-17</lastmod>
+         <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/project_management/project_structure/</loc>
+         <lastmod>2021-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2021-06-17</lastmod>
+         <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/tutorial/init_project/</loc>
+         <lastmod>2021-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2021-06-17</lastmod>
+         <loc>https://pyloong.github.io/pythonic-project-guidelines/introduction/virtualenv/</loc>
+         <lastmod>2021-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2021-06-17</lastmod>
+         <loc>https://pyloong.github.io/pythonic-project-guidelines/practices/web/</loc>
+         <lastmod>2021-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2021-06-17</lastmod>
+         <loc>https://pyloong.github.io/pythonic-project-guidelines/standard/language_rules/</loc>
+         <lastmod>2021-07-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pyloong.github.io/pythonic-project-guidelines/standard/style_rules/</loc>
+         <lastmod>2021-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
