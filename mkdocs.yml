@@ -5,6 +5,20 @@ theme:
   langage: zh
   features:
     - search.highlight
+    - navigation.sections
+    - navigation.top
+    - navigation.tabs
+  palette:  # 主题模式切换。
+    - media: "(prefers-color-scheme: light)"  # 跟随系统注意模式
+      scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
   icon:
     repo: fontawesome/brands/github
 
@@ -14,9 +28,12 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 repo_url: https://github.com/pyloong/pythonic-project-guidelines
 repo_name: pyloong/pythonic-project-guidelines
+site_url: https://pyloong.github.io/pythonic-project-guidelines/
 
 plugins:
   - search
@@ -24,15 +41,22 @@ plugins:
 nav:
 - Python 开发指南: index.md
 - 快速上手: quick_start.md
-- 入门:
+- 开发前准备:
   - 虚拟环境: introduction/virtualenv.md
+- Python 规范:
+  - 风格规范: standard/style_rules.md
+  - 语言规范: standard/language_rules.md
 - 项目工程化:
-  - 语言规范: guidelines/language_rules.md
-  - 风格规范: guidelines/style_rules.md
-  - 项目结构: guidelines/project_structure.md
-  - 日志: guidelines/logging.md
-  - 构建与发布: guidelines/distribution.md
-  - 类型标注: guidelines/type_hint.md
-  - 测试: guidelines/test.md
-- 项目实践:
-  - Web: practices/web.md
+  - 初级教程: 
+    - 初始化项目: guidelines/tutorial/init_project.md
+  - 进阶教程:
+    - 类型标注: guidelines/advanced/type_hint.md
+    - 配置: guidelines/advanced/configuration.md
+    - 日志: guidelines/advanced/logging.md
+    - 测试: guidelines/advanced/test.md
+  - 项目管理:
+    - 项目结构: guidelines/project_management/project_structure.md
+    - 构建与发布: guidelines/project_management/distribution.md
+- 开发实践:
+  - Web: 
+    - Fastapi: practices/web.md
