@@ -28,6 +28,8 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 repo_url: https://github.com/pyloong/pythonic-project-guidelines
 repo_name: pyloong/pythonic-project-guidelines
@@ -42,17 +44,19 @@ nav:
 - 开发前准备:
   - 虚拟环境: introduction/virtualenv.md
 - Python 规范:
-  - 风格规范: guidelines/style_rules.md
-  - 语言规范: guidelines/language_rules.md
+  - 风格规范: standard/style_rules.md
+  - 语言规范: standard/language_rules.md
 - 项目工程化:
-  - 测试: guidelines/test.md
-  - 高级技巧:
-    - 配置: guidelines/configuration.md
-    - 日志: guidelines/logging.md
-    - 构建与发布: guidelines/distribution.md
-    - 类型标注: guidelines/type_hint.md
+  - 初级教程: 
+    - 初始化项目: guidelines/tutorial/init_project.md
+  - 进阶教程:
+    - 类型标注: guidelines/advanced/type_hint.md
+    - 配置: guidelines/advanced/configuration.md
+    - 日志: guidelines/advanced/logging.md
+    - 测试: guidelines/advanced/test.md
   - 项目管理:
-    - 项目结构: guidelines/project_structure.md
-- 项目实践:
+    - 项目结构: guidelines/project_management/project_structure.md
+    - 构建与发布: guidelines/project_management/distribution.md
+- 开发实践:
   - Web: 
     - Fastapi: practices/web.md
