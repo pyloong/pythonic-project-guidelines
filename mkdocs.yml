@@ -9,7 +9,7 @@ theme:
     - navigation.top
     - navigation.tabs
   palette:  # 主题模式切换。
-    - media: "(prefers-color-scheme: light)"  # 跟随系统注意模式
+    - media: "(prefers-color-scheme: light)"  # 跟随系统主题模式
       scheme: default
       toggle:
         icon: material/weather-sunny
@@ -28,6 +28,8 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.tabbed
+  - attr_list
+  - md_in_html
   - pymdownx.tasklist:
       custom_checkbox: true
 
@@ -42,20 +44,31 @@ nav:
 - Python 开发指南: index.md
 - 快速上手: quick_start.md
 - 开发前准备:
+  - Python 安装: introduction/install.md
   - 虚拟环境: introduction/virtualenv.md
+  - IDE 选择: introduction/ides.md
 - Python 规范:
   - 风格规范: standard/style_rules.md
   - 语言规范: standard/language_rules.md
 - 项目工程化:
   - 初级教程: 
-    - 初始化项目: guidelines/tutorial/init_project.md
+    - 项目说明: guidelines/tutorial/tutorial.md
+    - 初始化: guidelines/tutorial/init_project.md
+    - 开发: guidelines/tutorial/develop.md
+    - 测试: guidelines/tutorial/test.md
+    - 发布: guidelines/tutorial/publish.md
   - 进阶教程:
     - 类型标注: guidelines/advanced/type_hint.md
     - 配置: guidelines/advanced/configuration.md
+    - 异常: guidelines/advanced/exception.md
     - 日志: guidelines/advanced/logging.md
     - 测试: guidelines/advanced/test.md
+    - 信号: guidelines/advanced/signal_decouple.md
+    - 插件化: guidelines/advanced/plugin.md
   - 项目管理:
+    - 代码检测: guidelines/project_management/code_lint.md
     - 项目结构: guidelines/project_management/project_structure.md
+    - 文档管理: guidelines/project_management/document.md
     - 构建与发布: guidelines/project_management/distribution.md
 - 开发实践:
   - Web: 
