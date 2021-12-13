@@ -21,7 +21,7 @@ Python 中的信号解耦机制可以通过 [pydispatcher](http://pydispatcher.s
 
 [pydispatcher](http://pydispatcher.sourceforge.net/)  提供多生产者-多消费者信号注册和路由基础设施，以在多个上下文中使用。
 
-#### 使用示例
+#### pydispatcher 使用示例
 
 ```python
 from pydispatch import dispatcher
@@ -60,7 +60,7 @@ if __name__ == '__main__':
 [blinker](https://pythonhosted.org/blinker/) 为Python对象提供快速和简单的对象和广播信号。其内部逻辑依然使用的是弱引用。使用起来和
 [pydispatcher](http://pydispatcher.sourceforge.net/) 类似。
 
-#### 使用示例
+#### blinker 使用示例
 
 ```python
 from blinker import Signal
@@ -105,7 +105,7 @@ if __name__ == '__main__':
 [aiosignal](https://github.com/aio-libs/aiosignal) 是从 [aiohttp](https://github.com/aio-libs/aiohttp) 中独立出来的异步信号框架。
 它和上述两个信号框架区别有：一，它是一个异步信号框架，可以订阅异步事件；二，在订阅事件时，属于强引用。
 
-#### 使用示例
+#### aiosignal 使用示例
 
 ```python
 import asyncio

@@ -105,6 +105,8 @@ conda create --name demo
 
 **使用虚拟环境：**
 
+<!-- markdownlint-disable MD013 -->
+
 ```text
 C:\Users\test>conda activate demo
 
@@ -117,7 +119,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> sys.version
 '3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)]'
 ```
-
+<!-- markdownlint-restore -->
 **退出虚拟环境：**
 
 ```bash
