@@ -105,6 +105,8 @@ conda create --name demo
 
 **使用虚拟环境：**
 
+<!-- markdownlint-disable MD013 -->
+
 ```text
 C:\Users\test>conda activate demo
 
@@ -117,7 +119,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> sys.version
 '3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)]'
 ```
-
+<!-- markdownlint-restore -->
 **退出虚拟环境：**
 
 ```bash
@@ -267,7 +269,9 @@ pipenv install tox
 
 ### 2.5 Poetry
 
-[Poetry](https://python-poetry.org/) 是后期之秀，它的雄心不仅仅是做 Pipenv 的事，它还想把 Python 的打包管理一并做了，并消除 `setup.py` 文件。它使用基于 [PEP517](https://www.python.org/dev/peps/pep-0517/) 规范的 `pyproject.toml` 文件记录信息，并打包。具体内容可以参考 [PEP 517 -- A build-system independent format for source trees](https://www.python.org/dev/peps/pep-0517/) 。当前基于 PEP517 的构建模式已经完全可用。在 pip 的发行记录中，最早是在 [18.1 (2018-10-05)](https://pip.pypa.io/en/stable/news/#id438) 就引入了 PEP517 的 `0.2` 版本。
+[Poetry](https://python-poetry.org/) 是后期之秀，它的雄心不仅仅是做 Pipenv 的事，它还想把 Python 的打包管理一并做了，并消除 `setup.py` 文件。它使用基于 [PEP517](https://www.python.org/dev/peps/pep-0517/) 规范的 `pyproject.toml` 文件记录信息，并打包。
+具体内容可以参考 [PEP 517 -- A build-system independent format for source trees](https://www.python.org/dev/peps/pep-0517/) 。
+当前基于 PEP517 的构建模式已经完全可用。在 pip 的发行记录中，最早是在 [18.1 (2018-10-05)](https://pip.pypa.io/en/stable/news/#id438) 就引入了 PEP517 的 `0.2` 版本。
 
 在使用上，Poetry 给人的感觉更现代化。
 
