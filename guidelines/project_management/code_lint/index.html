@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://pyloong.github.io/pythonic-project-guidelines/guidelines/advanced/logging/">
+        <link rel="canonical" href="https://pyloong.github.io/pythonic-project-guidelines/guidelines/project_management/code_lint/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.1">
     
     
       
-        <title>日志 - Python 项目工程化开发指南</title>
+        <title>代码检测 - Python 项目工程化开发指南</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#logging" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              日志
+              代码检测
             
           </span>
         </div>
@@ -643,16 +643,14 @@
               
   
   
-    
-  
   
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
       
       
       
@@ -675,7 +673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../type_hint/" class="md-nav__link">
+      <a href="../../advanced/type_hint/" class="md-nav__link">
         类型标注
       </a>
     </li>
@@ -689,7 +687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../../advanced/configuration/" class="md-nav__link">
         配置
       </a>
     </li>
@@ -703,13 +701,106 @@
   
   
     <li class="md-nav__item">
-      <a href="../exception/" class="md-nav__link">
+      <a href="../../advanced/exception/" class="md-nav__link">
         异常
       </a>
     </li>
   
 
             
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/logging/" class="md-nav__link">
+        日志
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/test/" class="md-nav__link">
+        测试
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/signal_decouple/" class="md-nav__link">
+        信号
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/plugin/" class="md-nav__link">
+        插件化
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          项目管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="项目管理" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          项目管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
             
               
@@ -727,12 +818,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          日志
+          代码检测
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        日志
+        代码检测
       </a>
       
         
@@ -751,23 +842,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 简单使用
+  <a href="#_2" class="md-nav__link">
+    代码检测工具
   </a>
   
-    <nav class="md-nav" aria-label="1. 简单使用">
+    <nav class="md-nav" aria-label="代码检测工具">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
-    1.1 单文件使用
+  <a href="#black" class="md-nav__link">
+    black
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#12" class="md-nav__link">
-    1.2 一般项目中使用
+  <a href="#flake8" class="md-nav__link">
+    flake8
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylint" class="md-nav__link">
+    pylint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yapf" class="md-nav__link">
+    yapf
   </a>
   
 </li>
@@ -778,38 +883,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2. 通用实践
+  <a href="#_3" class="md-nav__link">
+    使用实践
   </a>
   
-    <nav class="md-nav" aria-label="2. 通用实践">
+    <nav class="md-nav" aria-label="使用实践">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-ini" class="md-nav__link">
-    2.1 使用 ini 格式文件配置日志
+  <a href="#_4" class="md-nav__link">
+    使用
+  </a>
+  
+    <nav class="md-nav" aria-label="使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tox" class="md-nav__link">
+    tox
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-yaml" class="md-nav__link">
-    2.2 使用 yaml 格式文件配置日志
+  <a href="#github-action" class="md-nav__link">
+    github action
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#23" class="md-nav__link">
-    2.3 注意事项
-  </a>
-  
-    <nav class="md-nav" aria-label="2.3 注意事项">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#231" class="md-nav__link">
-    2.3.1 优化
+  <a href="#gitlab-ci" class="md-nav__link">
+    gitlab-ci
   </a>
   
 </li>
@@ -839,98 +944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../test/" class="md-nav__link">
-        测试
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../signal_decouple/" class="md-nav__link">
-        信号
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../plugin/" class="md-nav__link">
-        插件化
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5_3">
-          项目管理
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="项目管理" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_3">
-          <span class="md-nav__icon md-icon"></span>
-          项目管理
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../project_management/code_lint/" class="md-nav__link">
-        代码检测
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../project_management/project_structure/" class="md-nav__link">
+      <a href="../project_structure/" class="md-nav__link">
         项目结构
       </a>
     </li>
@@ -944,7 +958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../project_management/document/" class="md-nav__link">
+      <a href="../document/" class="md-nav__link">
         文档管理
       </a>
     </li>
@@ -958,7 +972,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../project_management/distribution/" class="md-nav__link">
+      <a href="../distribution/" class="md-nav__link">
         构建与发布
       </a>
     </li>
@@ -1089,23 +1103,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 简单使用
+  <a href="#_2" class="md-nav__link">
+    代码检测工具
   </a>
   
-    <nav class="md-nav" aria-label="1. 简单使用">
+    <nav class="md-nav" aria-label="代码检测工具">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
-    1.1 单文件使用
+  <a href="#black" class="md-nav__link">
+    black
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#12" class="md-nav__link">
-    1.2 一般项目中使用
+  <a href="#flake8" class="md-nav__link">
+    flake8
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylint" class="md-nav__link">
+    pylint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yapf" class="md-nav__link">
+    yapf
   </a>
   
 </li>
@@ -1116,38 +1144,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2. 通用实践
+  <a href="#_3" class="md-nav__link">
+    使用实践
   </a>
   
-    <nav class="md-nav" aria-label="2. 通用实践">
+    <nav class="md-nav" aria-label="使用实践">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-ini" class="md-nav__link">
-    2.1 使用 ini 格式文件配置日志
+  <a href="#_4" class="md-nav__link">
+    使用
+  </a>
+  
+    <nav class="md-nav" aria-label="使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tox" class="md-nav__link">
+    tox
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-yaml" class="md-nav__link">
-    2.2 使用 yaml 格式文件配置日志
+  <a href="#github-action" class="md-nav__link">
+    github action
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#23" class="md-nav__link">
-    2.3 注意事项
-  </a>
-  
-    <nav class="md-nav" aria-label="2.3 注意事项">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#231" class="md-nav__link">
-    2.3.1 优化
+  <a href="#gitlab-ci" class="md-nav__link">
+    gitlab-ci
   </a>
   
 </li>
@@ -1174,213 +1202,202 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/pyloong/pythonic-project-guidelines/edit/master/docs/guidelines/advanced/logging.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/pyloong/pythonic-project-guidelines/edit/master/docs/guidelines/project_management/code_lint.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
-<h1 id="logging">Logging</h1>
-<p>在开发中，通常会使用 <code>print</code> 输出一些信息，或者诊断信息。在信息的完整性和信息格式上都不能简便且灵活控制。此时使用 <code>logging</code> 是个更好的选择，
-而且也鼓励开发人员尽可能的优先选用打印日志的方式在控制台输出信息。</p>
-<p>日志是对软件执行时所发生事件的一种追踪方式。软件开发人员对他们的代码添加日志调用，借此来指示某事件的发生。
-一个事件通过一些包含变量数据的描述信息来描述（比如：每个事件发生时的数据都是不同的）。开发者还会区分事件的重要性，
-重要性也被称为 <strong>等级</strong> 或 <strong>严重性</strong>。有一个好的日志实践，能让开发调试流程更顺畅，出现问题能更快速精准定位。</p>
-<p>本文不会以最基础的方式讲述 Python logging 的使用，而是以当前总结的实践方式结合实际操作案例展示 Logging 的使用，所以在阅读文章钱，
-你应该提前了解 <a href="https://docs.python.org/zh-cn/3/howto/logging.html">日志 HOWTO</a> 和
- <a href="https://docs.python.org/zh-cn/3/library/logging.html">Python 的日志记录工具</a> 两篇文档。</p>
-<h2 id="1">1. 简单使用</h2>
-<p>在一般开发中，对于临时开发的项目，可能为了快速完成任务，项目中大量使用了 <code>print</code> 将调试信息输出到控制台。
-项目后期就会出现调试困难等问题。本节会提供在简单环境下快速使用日志方式。</p>
-<h3 id="11">1.1 单文件使用</h3>
-<p>对于单文件的使用，直接使用根日志对象即可。由于默认的日志级别为 <code>WARNING</code> ，所以需要使用更低级别的日志是无法显示的。</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Simple logging&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">logging</span>
+<h1 id="_1">代码检测</h1>
+<p>代码检测是使用一些工具检查代码知否符合 Python 相关规范。</p>
+<p>当前主流的代码检测规范包括</p>
+<ul>
+<li><a href="https://github.com/psf/black">black</a></li>
+<li><a href="https://flake8.pycqa.org/">flake8</a></li>
+<li><a href="https://www.pylint.org/">pylint</a></li>
+<li><a href="https://github.com/google/yapf/">yapf</a></li>
+</ul>
+<h2 id="_2">代码检测工具</h2>
+<h3 id="black">black</h3>
+<p><a href="https://github.com/psf/black">black</a> 是 <a href="https://www.python.org/psf/github/">PSF</a> 组织下的一个代码格式化工具。
+其特点是强制格式化代码，使代码保持一致性。但缺点是会自动调整代码格式。</p>
+<p>特点：</p>
+<ul>
+<li>符合 PEP 8 标准</li>
+<li>支持自定义规则</li>
+<li>自动格式化代码</li>
+<li>IDE 插件</li>
+<li>psf 社区维护</li>
+</ul>
+<h3 id="flake8">flake8</h3>
+<p><a href="https://flake8.pycqa.org/">flake8</a> 是 <a href="http://meta.pycqa.org/">pycqa</a> 组织下的一个代码检测工具。它遵循 PEP 8 规范，
+指示出不符合规范的代码。</p>
+<p>特点：</p>
+<ul>
+<li>符合 PEP 8 规范</li>
+<li>集合使用 <a href="https://github.com/PyCQA/pycodestyle">pycodestyle</a> ， <a href="https://github.com/PyCQA/pyflakes">pyflakes</a> ， <a href="https://github.com/PyCQA/mccabe">mccabe</a> 等第三方插件。</li>
+<li>支持自定义规则</li>
+<li>提示不符合规范的内容</li>
+<li>IDE 插件</li>
+<li>git 或 Mercurial 扩展</li>
+<li>pycoa 社区维护</li>
+</ul>
+<h3 id="pylint">pylint</h3>
+<p><a href="https://www.pylint.org/">pylint</a> 是 <a href="http://meta.pycqa.org/">pycqa</a> 组织下维护的工具。它不仅仅是一款代码检测工具，还可以发现变成错误，代码异常，并提供简单的重构建议。</p>
+<p>特点：</p>
+<ul>
+<li>符合 PEP 8 规范</li>
+<li>支持自定义规则</li>
+<li>错误检测</li>
+<li>重构建议</li>
+<li>IDE 插件</li>
+<li>pycoa 社区维护</li>
+</ul>
+<h3 id="yapf">yapf</h3>
+<p><a href="https://github.com/google/yapf/">yapf</a> 是 <a href="https://opensource.google/">Google</a> 维护的一个代码检测工具。它和上述工具不同，
+使用基于 <a href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a> 的算法将代码重新格式化为复合风格指南的最佳格式。类似于 Golang 的 <code>gofmt</code> 工具。
+所以它和 <a href="https://github.com/psf/black">black</a> 工具有点类似。</p>
+<p>特点：</p>
+<ul>
+<li>符合 PEP 8 规范</li>
+<li>支持自定义规则</li>
+<li>自动格式化代码</li>
+<li>IDE 插件</li>
+<li>google 社区维护</li>
+</ul>
+<h2 id="_3">使用实践</h2>
+<p>虽然代码检测工具有很多，但是它们的初衷都是为了让 Python 代码符合一致的风格和规范。只不过是有的工具更激进而已。具有良好编码习惯的开发人员，写出的代码，
+无论使用哪种工具，都能轻松通过。所以代码检测工具的最终目的是告知开发人员尽可能遵守一致的风格来编写代码。</p>
+<p>考虑到代码检测工具的指导性，和功能性，推荐使用 <a href="https://www.pylint.org/">pylint</a> 作为首选检测工具。在实践中发现由于某些库和 pylint 的兼容性问题，当
+使用 <a href="https://www.pylint.org/">pylint</a> 有问题时，可以使用 <a href="https://flake8.pycqa.org/">flake8</a>  作为替代的检测工具。</p>
+<h3 id="_4">使用</h3>
+<p>在实际使用过程中，可以将代码检测逻辑放在自动化工具中运行。将逻辑放在 <code>tox</code> 中，可以在本地开发时方便使用。在 CI 阶段只需要调用 tox 就可以了。</p>
+<h4 id="tox">tox</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># tox (https://tox.readthedocs.io/) is a tool for running tests</span>
+<span class="c1"># in multiple virtualenvs. This configuration file will run the</span>
+<span class="c1"># test suite on all supported python versions. To use it, &quot;pip install tox&quot;</span>
+<span class="c1"># and then run &quot;tox&quot; from this directory.</span>
 
-<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;I love you ~&#39;</span><span class="p">)</span>
+<span class="k">[tox]</span>
+<span class="na">isolated_build</span> <span class="o">=</span> <span class="s">True</span>
+<span class="na">envlist</span> <span class="o">=</span>
+    <span class="na">py{37,38,39,310}</span>
+    <span class="na">isort</span>
+    <span class="na">lint</span>
+
+<span class="k">[testenv]</span>
+<span class="na">deps</span> <span class="o">=</span>
+    <span class="na">pipenv</span>
+<span class="na">usedevelop</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">commands</span> <span class="o">=</span>
+    <span class="na">pipenv sync -d</span>
+    <span class="na">pytest --cov</span><span class="o">=</span><span class="s">src</span>
+
+<span class="k">[testenv:isort]</span>
+<span class="na">deps</span> <span class="o">=</span>
+    <span class="na">isort</span>
+<span class="na">commands</span> <span class="o">=</span>
+    <span class="na">isort . --check-only --diff</span>
+
+<span class="k">[testenv:lint]</span>
+<span class="na">deps</span> <span class="o">=</span>
+    <span class="na">pipenv</span>
+<span class="na">changedir</span> <span class="o">=</span> <span class="s">{toxinidir}</span>
+<span class="na">commands</span> <span class="o">=</span>
+    <span class="na">pipenv sync -d</span>
+    <span class="na">pylint src tests</span>
 </code></pre></div>
-<p>如果后续开发有要控制日志级别的需求，直接在开始初始化日志配置就可以了；</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Simple logging&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">logging</span>
+<h4 id="github-action">github action</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># This workflow will install Python dependencies, run tests and lint with a single version of Python</span>
+<span class="c1"># For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions</span>
 
+<span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">main</span>
 
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="nt">on</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span> <span class="nv">pull_request</span><span class="p p-Indicator">]</span>
 
-<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;I love you ~&#39;</span><span class="p">)</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;I love you too ~&#39;</span><span class="p">)</span>
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">test</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ matrix.os  }}</span>
+
+    <span class="nt">strategy</span><span class="p">:</span>
+      <span class="nt">fail-fast</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+      <span class="nt">matrix</span><span class="p">:</span>
+        <span class="nt">os</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">ubuntu-20.04</span><span class="p p-Indicator">]</span>
+        <span class="nt">python</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;3.7&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;3.8&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;3.9&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;3.10&quot;</span><span class="p p-Indicator">]</span>
+
+    <span class="nt">steps</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Set up Python ${{ matrix.python }} on ${{ matrix.os }}</span>
+        <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span>
+        <span class="nt">with</span><span class="p">:</span>
+          <span class="nt">python-version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ matrix.python }}</span>
+
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+        <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">python -m pip install --upgrade pip</span>
+          <span class="no">pip install tox</span>
+
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Test with tox</span>
+        <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">tox -e py</span>
+
+  <span class="nt">linting</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+    <span class="nt">steps</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+      <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span>
+
+      <span class="p p-Indicator">-</span> <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pip install tox</span>
+      <span class="p p-Indicator">-</span> <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">tox -e isort</span>
+          <span class="no">tox -e lint</span>
 </code></pre></div>
-<p>当需要输出更详细的日志信息，如执行时间 、 日志级别 、 线程或进程信息，都可以很方便的控制。</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Simple logging&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">logging</span>
+<h4 id="gitlab-ci">gitlab-ci</h4>
+<div class="highlight"><pre><span></span><code><span class="nt">default</span><span class="p">:</span>
+  <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python:3.9</span>
+  <span class="nt">before_script</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pip install -U pip</span>
 
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
-    <span class="c1"># format=&#39;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#39;,</span>
-    <span class="c1"># format=&#39;%(asctime)s - %(name)s - %(levelname)s - %(module)s - %(process)d %(thread)d - %(message)s&#39;,</span>
-    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(module)s</span><span class="s1"> - </span><span class="si">%(process)d</span><span class="s1"> </span><span class="si">%(thread)d</span><span class="s1"> - </span><span class="si">%(pathname)s</span><span class="s1">:</span><span class="si">%(lineno)d</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%s</span><span class="s1">+0800&#39;</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="nt">.base_test</span><span class="p">:</span>
+  <span class="nt">stage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
+  <span class="nt">script</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pip install -U tox</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">tox -e py</span>
 
-<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;I love you ~&#39;</span><span class="p">)</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;I love you too ~&#39;</span><span class="p">)</span>
+<span class="nt">stages</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">build</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">upload</span>
+
+<span class="c1"># Due to gitlab ci not support matrix build. So use YAML anchors:</span>
+<span class="c1"># https://forum.gitlab.com/t/matrix-builds-in-ci/9629</span>
+<span class="l l-Scalar l-Scalar-Plain">test:py37</span><span class="p p-Indicator">:</span>
+  <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python:3.7</span>
+  <span class="nt">extends</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">.base_test</span>
+
+<span class="l l-Scalar l-Scalar-Plain">test:py38</span><span class="p p-Indicator">:</span>
+  <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python:3.8</span>
+  <span class="nt">extends</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">.base_test</span>
+
+<span class="l l-Scalar l-Scalar-Plain">test:py39</span><span class="p p-Indicator">:</span>
+  <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python:3.9</span>
+  <span class="nt">extends</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">.base_test</span>
+
+<span class="l l-Scalar l-Scalar-Plain">test:py310</span><span class="p p-Indicator">:</span>
+  <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python:3.10</span>
+  <span class="nt">extends</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">.base_test</span>
+
+<span class="l l-Scalar l-Scalar-Plain">test:lint</span><span class="p p-Indicator">:</span>
+  <span class="nt">stage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
+  <span class="nt">script</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pip install -U tox</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">tox -e isort</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">tox -e lint</span>
 </code></pre></div>
-<p>虽然使用 <code>print</code> 能更快速的在控制太输出想要看到的内容，但从上面的示例来看，直接使用默认的日志输出也是很方便的，唯一的区别可能
-就是需要导入了。而使用日志的话，想要在后续增加输出更精确的信息就显得比较灵活。</p>
-<p>日志格式所支持的字段请参考 <a href="https://docs.python.org/zh-cn/3/library/logging.html#logrecord-attributes">LogRecord 属性</a> 。</p>
-<p>这也是为什么建议优先使用日志的原因。</p>
-<h3 id="12">1.2 一般项目中使用</h3>
-<p>对于一般的项目，可能会有多个模块或者包，在每个模块中都初始化一下日志配置显然违反了 <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a> 原则。
-所以最好是有一个公共的日志模块，在该模块中初始化日志。</p>
-<p><strong>log.py</strong> ：</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Log config&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
-    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%s</span><span class="s1">+0800&#39;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
-</code></pre></div>
-<p>在其他模块中直接导入 <code>from log import logger</code> 即可使用。</p>
-<details class="node" open="open">
-<summary>提示</summary>
-<p>在 <code>log.py</code> 中初始化日志配置后，虽然可以在其他模块中直接使用 <code>logging</code> 打印日志，但如果启动脚本的时候没有导入该模块，
-该模块中的内容是不会加载的，也就是所日志配置并没有实际执行。</p>
-<p>此时可以重构代码：</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Log config&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-
-
-<span class="k">def</span> <span class="nf">config_logging</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Config logging&quot;&quot;&quot;</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-        <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
-        <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%s</span><span class="s1">+0800&#39;</span><span class="p">,</span>
-    <span class="p">)</span>
-</code></pre></div>
-<p>然后在项目实际执行之前调用方法初始化配置就可以了。</p>
-</details>
-<p>对于需要灵活控制日志配置的，可以将日志级别放到配置中，通过工厂方式初始化：</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Log config&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
-
-
-<span class="k">def</span> <span class="nf">config_logging</span><span class="p">(</span>
-        <span class="n">level</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
-        <span class="n">log_format</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Config logging</span>
-<span class="sd">    :param level:</span>
-<span class="sd">    :param log_format:</span>
-<span class="sd">    :return:</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-        <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
-        <span class="nb">format</span><span class="o">=</span><span class="n">log_format</span><span class="p">,</span>
-        <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%s</span><span class="s1">+0800&#39;</span><span class="p">,</span>
-    <span class="p">)</span>
-</code></pre></div>
-<p>在逻辑执行之前调用方法通过参数工厂化日志配置。</p>
-<h2 id="2">2. 通用实践</h2>
-<p>本节内容是在通用项目中可以使用的一般实践方法。</p>
-<h3 id="21-ini">2.1 使用 <code>ini</code> 格式文件配置日志</h3>
-<p>在项目中新建一个 <code>log.ini</code> 的配置文件：</p>
-<p><strong>log.ini</strong> ：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[loggers]</span>
-<span class="na">keys</span> <span class="o">=</span> <span class="s">root,simpleExample</span>
-
-<span class="k">[handlers]</span>
-<span class="na">keys</span> <span class="o">=</span> <span class="s">consoleHandler</span>
-
-<span class="k">[formatters]</span>
-<span class="na">keys</span> <span class="o">=</span> <span class="s">simpleFormatter</span>
-
-<span class="k">[logger_root]</span>
-<span class="na">level</span> <span class="o">=</span> <span class="s">DEBUG</span>
-<span class="na">handlers</span> <span class="o">=</span> <span class="s">consoleHandler</span>
-
-<span class="k">[logger_simpleExample]</span>
-<span class="na">level</span> <span class="o">=</span> <span class="s">DEBUG</span>
-<span class="na">handlers</span> <span class="o">=</span> <span class="s">consoleHandler</span>
-<span class="na">qualname</span> <span class="o">=</span> <span class="s">simpleExample</span>
-<span class="na">propagate</span> <span class="o">=</span> <span class="s">0</span>
-
-<span class="k">[handler_consoleHandler]</span>
-<span class="na">class</span> <span class="o">=</span> <span class="s">StreamHandler</span>
-<span class="na">level</span> <span class="o">=</span> <span class="s">DEBUG</span>
-<span class="na">formatter</span> <span class="o">=</span> <span class="s">simpleFormatter</span>
-<span class="na">args</span> <span class="o">=</span> <span class="s">(sys.stdout,)</span>
-
-<span class="k">[formatter_simpleFormatter]</span>
-<span class="na">format</span> <span class="o">=</span> <span class="s">%(asctime)s - %(name)s - %(levelname)s - %(message)s</span>
-<span class="na">datefmt</span> <span class="o">=</span>
-</code></pre></div>
-<p>新建一个 <code>log.py</code> 的包：</p>
-<p><strong>log.py</strong> ：</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">logging.config</span> <span class="kn">import</span> <span class="n">fileConfig</span>
-
-
-<span class="k">def</span> <span class="nf">init_ini_log</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">fileConfig</span><span class="p">(</span><span class="s1">&#39;log.ini&#39;</span><span class="p">)</span>
-</code></pre></div>
-<p>最后在程序执行前，初始化日志配置。</p>
-<p>logging 默认使用 <a href="https://docs.python.org/zh-cn/3/library/configparser.html#module-configparser">configparser</a> 解析 <code>ini</code> 格式文件。
-如果你想使用其他格式，如 <code>toml</code> 或者 <code>yaml</code> ，则需要自己手动读取并解析文件内容为 Dict 即可。</p>
-<h3 id="22-yaml">2.2 使用 <code>yaml</code> 格式文件配置日志</h3>
-<p>新建 <code>log.yml</code> 文件：</p>
-<p><strong>log.yml</strong> ：</p>
-<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-<span class="nt">formatters</span><span class="p">:</span>
-  <span class="nt">simple</span><span class="p">:</span>
-    <span class="nt">format</span><span class="p">:</span> <span class="s">&#39;%(asctime)s</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">%(name)s</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">%(levelname)s</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">%(message)s&#39;</span>
-<span class="nt">handlers</span><span class="p">:</span>
-  <span class="nt">console</span><span class="p">:</span>
-    <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">logging.StreamHandler</span>
-    <span class="nt">level</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
-    <span class="nt">formatter</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">simple</span>
-    <span class="nt">stream</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ext://sys.stdout</span>
-<span class="nt">loggers</span><span class="p">:</span>
-  <span class="nt">simpleExample</span><span class="p">:</span>
-    <span class="nt">level</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
-    <span class="nt">handlers</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">console</span>
-    <span class="nt">propagate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="nt">root</span><span class="p">:</span>
-  <span class="nt">level</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
-  <span class="nt">handlers</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">console</span>
-</code></pre></div>
-<p><a href="https://yaml.org/">YAML</a> 格式解析工具有三个，都在文档中有相应地址。在这里选用 <a href="https://pyyaml.org/">PyYAML</a> 。</p>
-<p>安装依赖：</p>
-<div class="highlight"><pre><span></span><code>pip install pyyaml
-</code></pre></div>
-<p>新建 <code>log.py</code> 模块：</p>
-<p><strong>log.py</strong> ：</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">logging.config</span> <span class="kn">import</span> <span class="n">dictConfig</span>
-<span class="kn">from</span> <span class="nn">yaml</span> <span class="kn">import</span> <span class="n">load</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">yaml</span> <span class="kn">import</span> <span class="n">CLoader</span> <span class="k">as</span> <span class="n">Loader</span><span class="p">,</span> <span class="n">CDumper</span> <span class="k">as</span> <span class="n">Dumper</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">yaml</span> <span class="kn">import</span> <span class="n">Loader</span><span class="p">,</span> <span class="n">Dumper</span>
-
-
-<span class="k">def</span> <span class="nf">init_yml_log</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;log.yml&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">obj</span><span class="p">:</span>
-        <span class="n">logging_config</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">Loader</span><span class="p">)</span>
-    <span class="n">dictConfig</span><span class="p">(</span><span class="n">logging_config</span><span class="p">)</span>
-</code></pre></div>
-<p>最后在程序执行前，初始化日志配置。</p>
-<h3 id="23">2.3 注意事项</h3>
-<h4 id="231">2.3.1 优化</h4>
-<p>根据文档中 <a href="https://docs.python.org/zh-cn/3/howto/logging.html#optimization">优化</a> 一节内容描述，日志中的参数化消息，
-应该延迟加载。这么做是为了减少在计算日志参数是所消耗的资源，因为如果日志记录非丢弃，则不需要消耗这部分资源。所以在
-日志记录上，应采用 <code>%</code> 的方式，而不是其他字符串格式化。</p>
-<p>关于性能的讨论可以参考 <a href="https://github.com/PyCQA/pylint/issues/2395">W1202 - logging-fstring-interpolation is not useful</a> 。</p>
 
               
             </article>
@@ -1399,7 +1416,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../exception/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 异常" rel="prev">
+        <a href="../../advanced/plugin/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 插件化" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1408,20 +1425,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              异常
+              插件化
             </div>
           </div>
         </a>
       
       
         
-        <a href="../test/" class="md-footer__link md-footer__link--next" aria-label="Next: 测试" rel="next">
+        <a href="../project_structure/" class="md-footer__link md-footer__link--next" aria-label="Next: 项目结构" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              测试
+              项目结构
             </div>
           </div>
           <div class="md-footer__button md-icon">
