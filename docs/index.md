@@ -2,7 +2,12 @@
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/pyloong/pythonic-project-guidelines/gh-deploy/main?label=gh-page&logo=github&style=flat-square)
 
-文档目标：
+## 重大更新进行中
+
+- 基于新的项目模板同步调整文档
+- 增加数据处理实践板块
+
+## 文档目标
 
 以通俗易懂结构清晰的文档向读者展示如何做 Python 工程化
 
