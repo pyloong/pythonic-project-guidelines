@@ -71,7 +71,7 @@ git clone https://github.com/pyloong/pythonic-project-guidelines
 
 创建虚拟环境：
 
-```
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
