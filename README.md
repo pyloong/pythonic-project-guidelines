@@ -1,6 +1,6 @@
 # Python 项目工程化开发指南
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/pyloong/pythonic-project-guidelines/gh-deploy/main?label=gh-page&logo=github&style=flat-square)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/pyloong/pythonic-project-guidelines/gh-page/main?label=gh-page&logo=github&style=flat-square)
 
 文档目标：
 
@@ -65,11 +65,18 @@ git clone https://github.com/pyloong/pythonic-project-guidelines
 
 ### 2. 初始化环境
 
-项目预览需要安装 Python 环境来启动 server，强烈建议使用 Python 3.6+ 的版本。如果本地没有 Python 环境，也可以使用 [Docker预览服务器](https://squidfunk.github.io/mkdocs-material/creating-your-site/#creating-your-site) 来启动。
+项目预览需要安装 Python 环境来启动 server，强烈建议使用 Python 3.9+ 的版本。如果本地没有 Python 环境，也可以使用 [Docker预览服务器](https://squidfunk.github.io/mkdocs-material/creating-your-site/#creating-your-site) 来启动。
 
 #### 2.1 本地初始化
 
-安装依赖
+创建虚拟环境：
+
+```
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+安装依赖：
 
 ```bash
 pip install -r requirements.txt
@@ -78,7 +85,7 @@ pip install -r requirements.txt
 #### 2.2 使用 Docker 初始化
 
 ```bash
-docker pull squidfunk/mkdocs-material
+docker pull squidfunk/mkdocs-material:8.4.1
 ```
 
 ### 3. 预览
@@ -94,18 +101,18 @@ mkdocs serve
 **uinx**:
 
 ```bash
-docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
+docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material:8.4.1
 ```
 
 **Windows**:
 
 ```bash
-docker run --rm -it -p 8000:8000 -v "%cd%":/docs squidfunk/mkdocs-material
+docker run --rm -it -p 8000:8000 -v "%cd%":/docs squidfunk/mkdocs-material:8.4.1
 ```
 
 ## 协作规范
 
-文档使用 Markdown 编写，使用 [mkdocs](https://www.mkdocs.org/) 配合 [mkdocs-material](https://squidfunk.github.io/mkdocs-material-insiders/) 主题构建。
+文档使用 Markdown 编写，使用 [mkdocs](https://www.mkdocs.org/) 配合 [mkdocs-material](https://squidfunk.github.io/mkdocs-material/) 主题构建。
 
 - form
 - code
