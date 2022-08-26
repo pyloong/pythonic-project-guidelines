@@ -48,7 +48,7 @@ pipenv install -d
 
 ### 任务需求
 
-现有汽车信息数据[car_price.csv](/docs/data/car_price.csv)
+现有汽车信息数据[car_price.csv](../../assets/data/car_price.csv)
 
 - 对`CarName`字段包含`[dirty data]`数据进行纠正，去除字符串`[dirty data]`
 
