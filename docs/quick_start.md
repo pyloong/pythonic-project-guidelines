@@ -8,7 +8,7 @@
 
 ### 1.1 Python 开发环境
 
-推荐使用 Python 3.7+ ，本项目使用 Python 3.7 。具体版本的 Python 环境可以在[官网](https://www.python.org/downloads/)下载。
+本项目使用 Python 3.10 。具体版本的 Python 环境可以在[官网](https://www.python.org/downloads/)下载。
 
 ### 1.2 开发工具
 
@@ -18,13 +18,13 @@
 
 ### 1.3 虚拟环境工具
 
-推荐使用 [pipenv](https://pipenv.pypa.io/en/latest/) 。pipenv 是 [Python官方推荐](https://packaging.python.org/tutorials/managing-dependencies/#managing-dependencies)的包管理工具，集成了 `virtualenv`, `pip` 和 `pyenv` 三者的功能。
-它能够自动为项目创建和管理虚拟环境，从 `Pipfile` 文件添加或删除安装的包，同时生成 `Pipfile.lock` 来锁定安装包的版本和依赖信息，避免构建错误。
+推荐使用 [Poetry](https://python-poetry.org/) ，既包含了虚拟环境管理工具也支持打包发布等功能。
 
-在安装好 Python 环境后，应该在全局环境中安装 pipenv 。
+在安装好 Python 环境后，应该在全局环境中安装 [Poetry](https://python-poetry.org/) 。
 
 ```bash
-pip3 install -U pipenv
+sudo python -m pip install -U pip
+sudo pip install -U poetry
 ```
 
 ### 1.4 初始化项目
@@ -34,7 +34,7 @@ pip3 install -U pipenv
 安装 cookiecutter
 
 ```bash
-pip3 install -U cookiecutter
+sudo pip3 install -U cookiecutter
 ```
 
 初始化项目
@@ -50,29 +50,23 @@ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project
 ❯ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project
 project_name [My Project]: Word Count
 project_slug [word_count]: 
-project_description [My Awesome Project!]: Word count project
-author_name [Author]: test
-author_email [test@example.com]: 
+project_description [My Awesome Project!]: Word Count Project
+author_name [Author]: 
+author_email [author@example.com]: 
 version [0.1.0]: 
 Select python_version:
-1 - 3.7
-2 - 3.8
-3 - 3.9
-Choose from 1, 2, 3 [1]: 
+1 - 3.10
+2 - 3.9
+Choose from 1, 2 [1]: 
 use_src_layout [y]: 
-use_pipenv [y]: 
-Select index_server:
-1 - none
-2 - aliyun
-3 - tendata
-Choose from 1, 2, 3 [1]: 
+use_poetry [y]: 
 use_docker [n]: 
 Select ci_tools:
 1 - none
 2 - Gitlab
 3 - Github
 Choose from 1, 2, 3 [1]: 
-init_bootstrap [n]: 
+init_skeleton [n]:
 ```
 
 如果你在使用项目模板过程中有任何问题或疑问，可以通过发起 [issues](https://github.com/pyloong/cookiecutter-pythonic-project/issues) 进行反馈。
@@ -80,39 +74,35 @@ init_bootstrap [n]:
 生成后的项目结构如下：
 
 ```txt
-
+word_count
+├── LICENSE
+├── README.md
 ├── docs
 │   └── development.md
-├── .gitignore
-├── LICENSE
-├── Pipfile
-├── README.md
-├── setup.cfg
-├── setup.py
+├── pyproject.toml
 ├── src
 │   └── word_count
 │       └── __init__.py
 ├── tests
-│   ├── conftest.py
 │   ├── __init__.py
-│   └── tests.py
+│   ├── conftest.py
+│   └── test_version.py
 └── tox.ini
-
 ```
 
 生成项目的 `src` 目录下有一个项目模块，用来存放项目源代码， `tests` 目录用来编写模块的相关测试代码。
 
-`Pipfile` 包含项目初始依赖，`setup.cfg` 和 `setup.py` 定义了项目描述信息，`tox.ini` 定义了任务自动化执行逻辑。
+`pyproject.toml` 包含项目初始依赖，和项目的描述信息，`tox.ini` 定义了任务自动化执行逻辑。
 
 ### 1.5 初始化项目环境
 
-使用 pipenv 初始化一个虚拟环境。
+使用 poetry 初始化一个虚拟环境。
 
 ```bash
-pipenv install -d
+poetry install
 ```
 
-初始化完成后，会生成一个 `Pipfile.lock`，可以用来锁定生产环境安装包的版本和依赖信息。
+初始化完成后，会生成一个 `poetry.lock`，可以用来锁定生产环境安装包的版本和依赖信息。
 
 ### 1.6 初始化 Git
 
@@ -130,12 +120,14 @@ git commit -m "feat: 初始化项目提交"
 
 ### 1.7 会用到的其他工具
 
-在生成的 `Pipfile` 文件中，默认添加了一些开发环境中常用的工具。
+在生成的 `pyproject.toml` 文件中，默认添加了一些开发环境中常用的工具。
 
 - `isort`: [isort](https://pycqa.github.io/isort/) 是一个自动格式化导入工具
 - `pylint`: [pylint](https://www.pylint.org/) 是一个检测代码风格工具
 - `pytest`: [pytest](https://docs.pytest.org/en/stable/) 是一个更加易用的测试框架，兼容 `unittest` 测试框架
 - `pytest-cov`: [pytest-cov](https://github.com/pytest-dev/pytest-cov) 是 `pytest` 的 [Coverage](https://coverage.readthedocs.io/en/latest/) 插件，用来统计测试覆盖率
+- `mkdocs`: [mkdocs](https://www.mkdocs.org/) 是一个项目文档构建工具，使用 markdown 编写内容，构建生成文档页面。
+- `mkdocs-material`: [mkdocs-material](https://squidfunk.github.io/mkdocs-material/) 是基于 [mkdocs](https://www.mkdocs.org/) 构建文档，并提供现代化主题的库。
 - `tox`: [tox](https://tox.readthedocs.io/en/latest/) 是一个任务自动化工具
 
 如果想要了解相关的功能，可以阅读对应的技术说明文档。
@@ -161,8 +153,10 @@ pip install -e .
 ```python
 """Count a file """
 import logging
-from pathlib import Path  # Config root logger
+from collections.abc import Generator
+from pathlib import Path
 
+# Config root logger
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -176,23 +170,28 @@ def count(source_file: str, dest_file: str):
     :param dest_file:
     :return:
     """
-    total = read_from_file(Path(source_file))
+    words = read_from_file(Path(source_file))
+
+    total = 0
+
+    for _ in words:
+        total += 1
+
     write_to_file(Path(dest_file), total)
 
 
-def read_from_file(source_file: Path) -> int:
+def read_from_file(source_file: Path) -> Generator[str, None, None]:
     """
 
     :param source_file:
     :return:
     """
-    total_words = 0
     # Read source_file
     logging.debug('Read file: %s', source_file)
-    with open(source_file, 'r') as source_obj:
-        for line in source_obj.readlines():
-            total_words += len(line.split(' '))
-    return total_words
+    with open(source_file, 'r', encoding='utf-8') as source_obj:
+        for line in source_obj:
+            for word in line.split(' '):
+                yield word
 
 
 def write_to_file(dest_file: Path, total_words: int) -> None:
@@ -203,7 +202,7 @@ def write_to_file(dest_file: Path, total_words: int) -> None:
     :return:
     """
     logging.debug('Count %s words, write to %d', dest_file, total_words)
-    with open(dest_file, 'w') as dest_obj:
+    with open(dest_file, 'w', encoding='utf-8') as dest_obj:
         dest_obj.write(f'Total count: {total_words}')
 
 ```
@@ -238,10 +237,10 @@ pylint tests src
 
 > 如果你使用的是 Pycharm 开发，可以通过点击  `File` --> `Settings` --> `Tools` --> `Python Integrated Tools` --> `Testing` --> `Default runner` 选择测试框架，推荐使用 `pytest`。
 
-为了方便使用 `mock` 可以安装 `pytest-mock` 模块，可以在 `pytest` 的 `fixture` 特性上使用 `mock`。
+为了方便使用 `mock` 需要安装 `pytest-mock` 模块，可以在 `pytest` 的 `fixture` 特性上使用 `mock`。
 
 ```bash
-pipenv install -d pytest-mock
+poetry add --dev pytest-mock
 ```
 
 添加测试配置，在 `tests/conftest.py` 中加入：
@@ -257,9 +256,8 @@ import pytest
 @pytest.fixture
 def mock_path() -> Path:
     """Mock a path, and clean when unit test done."""
-    temp_path = TemporaryDirectory()
-    yield Path(temp_path.name)
-    temp_path.cleanup()
+    with TemporaryDirectory() as temp_path:
+        yield Path(temp_path)
 
 ```
 
@@ -281,7 +279,7 @@ def fixture_mock_source_file(mock_path) -> Path:
     """mock source_file, this file has two words."""
     words = ['hello', ' ', 'words']
     source_file = mock_path / 'source.txt'
-    with open(source_file, 'w') as obj:
+    with open(source_file, 'w', encoding='utf-8') as obj:
         obj.write(''.join(words))
     yield source_file
 
@@ -289,14 +287,14 @@ def fixture_mock_source_file(mock_path) -> Path:
 def test_read_from_file(mock_source_file):
     """Test read_from_file"""
     result = read_from_file(mock_source_file)
-    assert result == 2
+    assert sum(1 for _ in result) == 2
 
 
 def test_write_to_file(mock_path):
     """Test write_to_file"""
     dest_file = mock_path / 'dest.txt'
     write_to_file(dest_file, 100)
-    with open(dest_file, 'r') as obj:
+    with open(dest_file, 'r', encoding='utf-8') as obj:
         txt = obj.read()
         assert 'Total count: 100' in txt
 
@@ -305,7 +303,7 @@ def test_count(mocker, mock_path, mock_source_file):
     """Test count"""
     mock_read_from_file = mocker.patch(
         'word_count.counter.read_from_file',
-        return_value=10
+        return_value=list(range(10))
     )
     mock_write_to_file = mocker.patch(
         'word_count.counter.write_to_file'
@@ -317,9 +315,9 @@ def test_count(mocker, mock_path, mock_source_file):
 
 ```
 
-运行 `pytest` ，让测试正确运行。
+运行 `pytest` ，让测试正确运行。如果测试用例失败，需要根据出错堆栈找到问题原因，解决掉后再次运行测试命令，直到代码测试通过。
 
-运行 `isort` 和 `pylint` 格式化代码并检查代码风格。
+然后运行 `isort` 和 `pylint` 格式化代码并检查代码风格。
 
 #### 2.2.4 提交代码
 
@@ -374,46 +372,50 @@ import sys
 
 import pytest
 
-from word_count.cmdline import main
+from word_count import cmdline
 
 
-@pytest.mark.parametrize(
-    '_help, source, dest, raise_value, count_called',
-    [
-        ('-h', '', '', 0, False),
-        ('-h', 'foo', 'bar', 0, False),
-        ('-h', '', 'bar', 0, False),
-        ('-h', 'foo', '', 0, False),
+def test_help(mocker, capsys):
+    """test help command"""
+    args = ['word_count', '-h']
+    mocker.patch.object(sys, 'argv', args)
+    with pytest.raises(SystemExit) as ex:
+        cmdline.main()
 
-        ('', 'foo', '', 2, False),
-        ('', '', 'foo', 2, False),
+    assert ex.value.code == 0
+    outerr = capsys.readouterr()
+    assert '-s SOURCE' in outerr.out
+    assert '-d DEST' in outerr.out
 
-        ('', 'foo', 'bar', None, True),    # Normal argument.
+def test_only_pass_source(mocker, capsys):
+    """test only pass -s """
+    args = ['word_count', '-s', 'foo']
+    mocker.patch.object(sys, 'argv', args)
+    with pytest.raises(SystemExit) as ex:
+        cmdline.main()
 
-    ]
-)
-def test_main(mocker, _help, source, dest, raise_value, count_called):
-    """Test main"""
-    args = ['program']
-    if _help:
-        args.append(_help)
-    if source:
-        args.extend(['-s', source])
-    if dest:
-        args.extend(['-d', dest])
+    assert ex.value.code == 2
+    outerr = capsys.readouterr()
+    assert 'the following arguments are required: -d' in outerr.err
+
+def test_only_pass_dest(mocker, capsys):
+    """test only pass -d"""
+    args = ['word_count', '-d', 'foo']
+    mocker.patch.object(sys, 'argv', args)
+    with pytest.raises(SystemExit) as ex:
+        cmdline.main()
+
+    assert ex.value.code == 2
+    outerr = capsys.readouterr()
+    assert 'the following arguments are required: -s' in outerr.err
+
+def test_main(mocker):
+    """test cmdline, and everything is fine."""
+    args = ['word_count', '-s', 'foo', '-d', 'bar']
     mocker.patch.object(sys, 'argv', args)
     mock_count = mocker.patch('word_count.cmdline.count')
-
-    if raise_value is not None:
-        # If use -h, will raise SystemExit(0)
-        # If some require argument miss, exit code > 0
-        with pytest.raises(SystemExit) as ex:
-            main()
-        assert ex.value.code == raise_value
-    else:
-        # Normal exc
-        main()
-        assert mock_count.called == count_called
+    cmdline.main()
+    mock_count.assert_called_once()
 
 ```
 
@@ -448,14 +450,13 @@ python src/word_count/cmdline.py -s foo.txt -d bar.txt
 
 如果希望别人能更方便的使用项目，可以将项目打包发布到 [pypi](https://pypi.org/) 中，然后在需要使用的地方运行 `pip install -U word-count`。
 
-但是安装到环境后去运行 `cmdline.py` 会比较困难，所以需要将 `cmdline.py` 注册成可执行命令。
+但是安装到环境后去运行 `cmdline.py` 会比较麻烦，所以需要将 `cmdline.py` 注册成可执行命令。
 
-修改 `setup.cfg` 文件，在 `[options.entry_points]` 下增加如下内容：
+修改 `pyproject.toml` ，增加如下内容：
 
-```ini
-[options.entry_points]
-console_scripts =
-    word_count = word_count.cmdline:main
+```toml
+[tool.poetry.plugins.console_scripts]
+word_count = "word_count.cmdline:main"
 ```
 
 当使用 `pip` 命令将项目包安装到环境后，会自动注册一个 `word_count` 的可执行命令。
@@ -466,7 +467,7 @@ console_scripts =
 pip install -e .
 ```
 
-然后就可以正常使用 `word_count` 命令了。
+然后就可以正常使用 `word_count` 命令：
 
 ```txt
 $ word_count -h
@@ -485,7 +486,7 @@ optional arguments:
 运行打包命令：
 
 ```bash
-python setup.py sdist bdist_wheel
+poetry build 
 ```
 
 `sdist` 会将项目打包成源码包， `bdist_wheel` 会将项目打包成编译后的二进制包。
@@ -496,10 +497,8 @@ python setup.py sdist bdist_wheel
 
 将开发好的项目发布到索引仓库，或内网的私有仓库。
 
-使用 [twine](https://twine.readthedocs.io/en/latest/) 上传：
-
 ```bash
-twine upload dist/*
+poetry publish
 ```
 
 默认会将项目发布到 [pypi](https://pypi.org/) 中，所以需要有对应的登录账号。
