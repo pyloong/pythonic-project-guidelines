@@ -2,122 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/quick_start/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/advanced/configuration/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/advanced/exception/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/advanced/logging/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/advanced/plugin/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/advanced/signal_decouple/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/advanced/test/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/advanced/type_hint/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/project_management/code_lint/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/project_management/distribution/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/project_management/document/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/project_management/project_structure/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/tutorial/develop/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/tutorial/init_project/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/tutorial/publish/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/tutorial/test/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/guidelines/tutorial/tutorial/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/introduction/ides/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/introduction/install/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/introduction/virtualenv/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/practices/web/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/standard/language_rules/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pyloong.github.io/pythonic-project-guidelines/standard/style_rules/</loc>
-         <lastmod>2022-08-26</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

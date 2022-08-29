@@ -1403,20 +1403,20 @@
 <p>示例项目是一个单词统计的演示程序，如果你想查看完整示例，可以浏览 <a href="https://github.com/pyloong/pythonic-project-samples/tree/feature/word_count">Word Count</a> 项目源码。</p>
 <h2 id="1">1. 开发环境搭建</h2>
 <h3 id="11-python">1.1 Python 开发环境</h3>
-<p>推荐使用 Python 3.7+ ，本项目使用 Python 3.7 。具体版本的 Python 环境可以在<a href="https://www.python.org/downloads/">官网</a>下载。</p>
+<p>本项目使用 Python 3.10 。具体版本的 Python 环境可以在<a href="https://www.python.org/downloads/">官网</a>下载。</p>
 <h3 id="12">1.2 开发工具</h3>
 <p>推荐使用 <a href="https://www.jetbrains.com/pycharm/">Pycharm</a> 开发工具，可以选择免费的社区版本。</p>
 <p><a href="https://code.visualstudio.com/">Visual Studio Code</a> 是微软开发的一款免费轻量级文本编辑器，通过安装插件可以自定义成一款功能强大的 IDE 开发工具。目前支持 Python 的插件体系已经较为完善，此方案也可以作为备用。</p>
 <h3 id="13">1.3 虚拟环境工具</h3>
-<p>推荐使用 <a href="https://pipenv.pypa.io/en/latest/">pipenv</a> 。pipenv 是 <a href="https://packaging.python.org/tutorials/managing-dependencies/#managing-dependencies">Python官方推荐</a>的包管理工具，集成了 <code>virtualenv</code>, <code>pip</code> 和 <code>pyenv</code> 三者的功能。
-它能够自动为项目创建和管理虚拟环境，从 <code>Pipfile</code> 文件添加或删除安装的包，同时生成 <code>Pipfile.lock</code> 来锁定安装包的版本和依赖信息，避免构建错误。</p>
-<p>在安装好 Python 环境后，应该在全局环境中安装 pipenv 。</p>
-<div class="highlight"><pre><span></span><code>pip3 install -U pipenv
+<p>推荐使用 <a href="https://python-poetry.org/">Poetry</a> ，既包含了虚拟环境管理工具也支持打包发布等功能。</p>
+<p>在安装好 Python 环境后，应该在全局环境中安装 <a href="https://python-poetry.org/">Poetry</a> 。</p>
+<div class="highlight"><pre><span></span><code>sudo python -m pip install -U pip
+sudo pip install -U poetry
 </code></pre></div>
 <h3 id="14">1.4 初始化项目</h3>
 <p><a href="https://cookiecutter.readthedocs.io/en/1.7.2/README.html">cookiecutter</a> 是一个通过项目模板创建项目的命令行工具。</p>
 <p>安装 cookiecutter</p>
-<div class="highlight"><pre><span></span><code>pip3 install -U cookiecutter
+<div class="highlight"><pre><span></span><code>sudo pip3 install -U cookiecutter
 </code></pre></div>
 <p>初始化项目</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> workspace
@@ -1426,56 +1426,48 @@ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project
 <div class="highlight"><pre><span></span><code>❯ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project
 project_name <span class="o">[</span>My Project<span class="o">]</span>: Word Count
 project_slug <span class="o">[</span>word_count<span class="o">]</span>: 
-project_description <span class="o">[</span>My Awesome Project!<span class="o">]</span>: Word count project
-author_name <span class="o">[</span>Author<span class="o">]</span>: <span class="nb">test</span>
-author_email <span class="o">[</span>test@example.com<span class="o">]</span>: 
+project_description <span class="o">[</span>My Awesome Project!<span class="o">]</span>: Word Count Project
+author_name <span class="o">[</span>Author<span class="o">]</span>: 
+author_email <span class="o">[</span>author@example.com<span class="o">]</span>: 
 version <span class="o">[</span><span class="m">0</span>.1.0<span class="o">]</span>: 
 Select python_version:
-<span class="m">1</span> - <span class="m">3</span>.7
-<span class="m">2</span> - <span class="m">3</span>.8
-<span class="m">3</span> - <span class="m">3</span>.9
-Choose from <span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span> <span class="o">[</span><span class="m">1</span><span class="o">]</span>: 
+<span class="m">1</span> - <span class="m">3</span>.10
+<span class="m">2</span> - <span class="m">3</span>.9
+Choose from <span class="m">1</span>, <span class="m">2</span> <span class="o">[</span><span class="m">1</span><span class="o">]</span>: 
 use_src_layout <span class="o">[</span>y<span class="o">]</span>: 
-use_pipenv <span class="o">[</span>y<span class="o">]</span>: 
-Select index_server:
-<span class="m">1</span> - none
-<span class="m">2</span> - aliyun
-<span class="m">3</span> - tendata
-Choose from <span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span> <span class="o">[</span><span class="m">1</span><span class="o">]</span>: 
+use_poetry <span class="o">[</span>y<span class="o">]</span>: 
 use_docker <span class="o">[</span>n<span class="o">]</span>: 
 Select ci_tools:
 <span class="m">1</span> - none
 <span class="m">2</span> - Gitlab
 <span class="m">3</span> - Github
 Choose from <span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span> <span class="o">[</span><span class="m">1</span><span class="o">]</span>: 
-init_bootstrap <span class="o">[</span>n<span class="o">]</span>: 
+init_skeleton <span class="o">[</span>n<span class="o">]</span>:
 </code></pre></div>
 <p>如果你在使用项目模板过程中有任何问题或疑问，可以通过发起 <a href="https://github.com/pyloong/cookiecutter-pythonic-project/issues">issues</a> 进行反馈。</p>
 <p>生成后的项目结构如下：</p>
-<div class="highlight"><pre><span></span><code>├── docs
-│   └── development.md
-├── .gitignore
+<div class="highlight"><pre><span></span><code>word_count
 ├── LICENSE
-├── Pipfile
 ├── README.md
-├── setup.cfg
-├── setup.py
+├── docs
+│   └── development.md
+├── pyproject.toml
 ├── src
 │   └── word_count
 │       └── __init__.py
 ├── tests
-│   ├── conftest.py
 │   ├── __init__.py
-│   └── tests.py
+│   ├── conftest.py
+│   └── test_version.py
 └── tox.ini
 </code></pre></div>
 <p>生成项目的 <code>src</code> 目录下有一个项目模块，用来存放项目源代码， <code>tests</code> 目录用来编写模块的相关测试代码。</p>
-<p><code>Pipfile</code> 包含项目初始依赖，<code>setup.cfg</code> 和 <code>setup.py</code> 定义了项目描述信息，<code>tox.ini</code> 定义了任务自动化执行逻辑。</p>
+<p><code>pyproject.toml</code> 包含项目初始依赖，和项目的描述信息，<code>tox.ini</code> 定义了任务自动化执行逻辑。</p>
 <h3 id="15">1.5 初始化项目环境</h3>
-<p>使用 pipenv 初始化一个虚拟环境。</p>
-<div class="highlight"><pre><span></span><code>pipenv install -d
+<p>使用 poetry 初始化一个虚拟环境。</p>
+<div class="highlight"><pre><span></span><code>poetry install
 </code></pre></div>
-<p>初始化完成后，会生成一个 <code>Pipfile.lock</code>，可以用来锁定生产环境安装包的版本和依赖信息。</p>
+<p>初始化完成后，会生成一个 <code>poetry.lock</code>，可以用来锁定生产环境安装包的版本和依赖信息。</p>
 <h3 id="16-git">1.6 初始化 Git</h3>
 <p>推荐使用 <a href="https://git-scm.com/">Git</a> 对项目进行版本管理。所以需要提前安装 Git ，并熟悉常用的 Git 概念和 Git 命令。</p>
 <div class="highlight"><pre><span></span><code>git init
@@ -1487,12 +1479,14 @@ git add .
 git commit -m <span class="s2">&quot;feat: 初始化项目提交&quot;</span>
 </code></pre></div>
 <h3 id="17">1.7 会用到的其他工具</h3>
-<p>在生成的 <code>Pipfile</code> 文件中，默认添加了一些开发环境中常用的工具。</p>
+<p>在生成的 <code>pyproject.toml</code> 文件中，默认添加了一些开发环境中常用的工具。</p>
 <ul>
 <li><code>isort</code>: <a href="https://pycqa.github.io/isort/">isort</a> 是一个自动格式化导入工具</li>
 <li><code>pylint</code>: <a href="https://www.pylint.org/">pylint</a> 是一个检测代码风格工具</li>
 <li><code>pytest</code>: <a href="https://docs.pytest.org/en/stable/">pytest</a> 是一个更加易用的测试框架，兼容 <code>unittest</code> 测试框架</li>
 <li><code>pytest-cov</code>: <a href="https://github.com/pytest-dev/pytest-cov">pytest-cov</a> 是 <code>pytest</code> 的 <a href="https://coverage.readthedocs.io/en/latest/">Coverage</a> 插件，用来统计测试覆盖率</li>
+<li><code>mkdocs</code>: <a href="https://www.mkdocs.org/">mkdocs</a> 是一个项目文档构建工具，使用 markdown 编写内容，构建生成文档页面。</li>
+<li><code>mkdocs-material</code>: <a href="https://squidfunk.github.io/mkdocs-material/">mkdocs-material</a> 是基于 <a href="https://www.mkdocs.org/">mkdocs</a> 构建文档，并提供现代化主题的库。</li>
 <li><code>tox</code>: <a href="https://tox.readthedocs.io/en/latest/">tox</a> 是一个任务自动化工具</li>
 </ul>
 <p>如果想要了解相关的功能，可以阅读对应的技术说明文档。</p>
@@ -1507,8 +1501,10 @@ git commit -m <span class="s2">&quot;feat: 初始化项目提交&quot;</span>
 <p>在 <code>src/word_count/</code> 下创建 <code>counter.py</code> 文件，同时加入如下内容：</p>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Count a file &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>  <span class="c1"># Config root logger</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Generator</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
+<span class="c1"># Config root logger</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
     <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
     <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
@@ -1522,23 +1518,28 @@ git commit -m <span class="s2">&quot;feat: 初始化项目提交&quot;</span>
 <span class="sd">    :param dest_file:</span>
 <span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">total</span> <span class="o">=</span> <span class="n">read_from_file</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">source_file</span><span class="p">))</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">read_from_file</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">source_file</span><span class="p">))</span>
+
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="mi">1</span>
+
     <span class="n">write_to_file</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">dest_file</span><span class="p">),</span> <span class="n">total</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">read_from_file</span><span class="p">(</span><span class="n">source_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">read_from_file</span><span class="p">(</span><span class="n">source_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">    :param source_file:</span>
 <span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">total_words</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="c1"># Read source_file</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Read file: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">source_file</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">source_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">source_obj</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">source_obj</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
-            <span class="n">total_words</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">total_words</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">source_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">source_obj</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">source_obj</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">word</span>
 
 
 <span class="k">def</span> <span class="nf">write_to_file</span><span class="p">(</span><span class="n">dest_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">total_words</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1549,7 +1550,7 @@ git commit -m <span class="s2">&quot;feat: 初始化项目提交&quot;</span>
 <span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Count </span><span class="si">%s</span><span class="s1"> words, write to </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dest_file</span><span class="p">,</span> <span class="n">total_words</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dest_obj</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dest_obj</span><span class="p">:</span>
         <span class="n">dest_obj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Total count: </span><span class="si">{</span><span class="n">total_words</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </code></pre></div>
 <h4 id="221">2.2.1 导入格式化</h4>
@@ -1569,8 +1570,8 @@ git commit -m <span class="s2">&quot;feat: 初始化项目提交&quot;</span>
 <blockquote>
 <p>如果你使用的是 Pycharm 开发，可以通过点击  <code>File</code> --&gt; <code>Settings</code> --&gt; <code>Tools</code> --&gt; <code>Python Integrated Tools</code> --&gt; <code>Testing</code> --&gt; <code>Default runner</code> 选择测试框架，推荐使用 <code>pytest</code>。</p>
 </blockquote>
-<p>为了方便使用 <code>mock</code> 可以安装 <code>pytest-mock</code> 模块，可以在 <code>pytest</code> 的 <code>fixture</code> 特性上使用 <code>mock</code>。</p>
-<div class="highlight"><pre><span></span><code>pipenv install -d pytest-mock
+<p>为了方便使用 <code>mock</code> 需要安装 <code>pytest-mock</code> 模块，可以在 <code>pytest</code> 的 <code>fixture</code> 特性上使用 <code>mock</code>。</p>
+<div class="highlight"><pre><span></span><code>poetry add --dev pytest-mock
 </code></pre></div>
 <p>添加测试配置，在 <code>tests/conftest.py</code> 中加入：</p>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Test config&quot;&quot;&quot;</span>
@@ -1583,9 +1584,8 @@ git commit -m <span class="s2">&quot;feat: 初始化项目提交&quot;</span>
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
 <span class="k">def</span> <span class="nf">mock_path</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Mock a path, and clean when unit test done.&quot;&quot;&quot;</span>
-    <span class="n">temp_path</span> <span class="o">=</span> <span class="n">TemporaryDirectory</span><span class="p">()</span>
-    <span class="k">yield</span> <span class="n">Path</span><span class="p">(</span><span class="n">temp_path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-    <span class="n">temp_path</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">temp_path</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">Path</span><span class="p">(</span><span class="n">temp_path</span><span class="p">)</span>
 </code></pre></div>
 <p>在 <code>tests/</code> 下添加与 <code>src/word_count</code> 目录中文件名相同的文件，并在文件名前添加 <code>test_</code> 前缀。</p>
 <p>添加文件 <code>tests/test_counter.py</code>：</p>
@@ -1602,7 +1602,7 @@ git commit -m <span class="s2">&quot;feat: 初始化项目提交&quot;</span>
     <span class="sd">&quot;&quot;&quot;mock source_file, this file has two words.&quot;&quot;&quot;</span>
     <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;words&#39;</span><span class="p">]</span>
     <span class="n">source_file</span> <span class="o">=</span> <span class="n">mock_path</span> <span class="o">/</span> <span class="s1">&#39;source.txt&#39;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">source_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">obj</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">source_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">obj</span><span class="p">:</span>
         <span class="n">obj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
     <span class="k">yield</span> <span class="n">source_file</span>
 
@@ -1610,14 +1610,14 @@ git commit -m <span class="s2">&quot;feat: 初始化项目提交&quot;</span>
 <span class="k">def</span> <span class="nf">test_read_from_file</span><span class="p">(</span><span class="n">mock_source_file</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test read_from_file&quot;&quot;&quot;</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">read_from_file</span><span class="p">(</span><span class="n">mock_source_file</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
 
 
 <span class="k">def</span> <span class="nf">test_write_to_file</span><span class="p">(</span><span class="n">mock_path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test write_to_file&quot;&quot;&quot;</span>
     <span class="n">dest_file</span> <span class="o">=</span> <span class="n">mock_path</span> <span class="o">/</span> <span class="s1">&#39;dest.txt&#39;</span>
     <span class="n">write_to_file</span><span class="p">(</span><span class="n">dest_file</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">obj</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">obj</span><span class="p">:</span>
         <span class="n">txt</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
         <span class="k">assert</span> <span class="s1">&#39;Total count: 100&#39;</span> <span class="ow">in</span> <span class="n">txt</span>
 
@@ -1626,7 +1626,7 @@ git commit -m <span class="s2">&quot;feat: 初始化项目提交&quot;</span>
     <span class="sd">&quot;&quot;&quot;Test count&quot;&quot;&quot;</span>
     <span class="n">mock_read_from_file</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
         <span class="s1">&#39;word_count.counter.read_from_file&#39;</span><span class="p">,</span>
-        <span class="n">return_value</span><span class="o">=</span><span class="mi">10</span>
+        <span class="n">return_value</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
     <span class="p">)</span>
     <span class="n">mock_write_to_file</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
         <span class="s1">&#39;word_count.counter.write_to_file&#39;</span>
@@ -1636,8 +1636,8 @@ git commit -m <span class="s2">&quot;feat: 初始化项目提交&quot;</span>
     <span class="n">mock_read_from_file</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">mock_source_file</span><span class="p">)</span>
     <span class="n">mock_write_to_file</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">dest_file</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </code></pre></div>
-<p>运行 <code>pytest</code> ，让测试正确运行。</p>
-<p>运行 <code>isort</code> 和 <code>pylint</code> 格式化代码并检查代码风格。</p>
+<p>运行 <code>pytest</code> ，让测试正确运行。如果测试用例失败，需要根据出错堆栈找到问题原因，解决掉后再次运行测试命令，直到代码测试通过。</p>
+<p>然后运行 <code>isort</code> 和 <code>pylint</code> 格式化代码并检查代码风格。</p>
 <h4 id="224">2.2.4 提交代码</h4>
 <p>一个功能特性开发完成后，需要提交代码来保存记录，避免意外操作。</p>
 <div class="highlight"><pre><span></span><code>git add .
@@ -1678,46 +1678,50 @@ git commit -m <span class="s2">&quot;feat(counter): 增加 Counter 逻辑，并�
 
 <span class="kn">import</span> <span class="nn">pytest</span>
 
-<span class="kn">from</span> <span class="nn">word_count.cmdline</span> <span class="kn">import</span> <span class="n">main</span>
+<span class="kn">from</span> <span class="nn">word_count</span> <span class="kn">import</span> <span class="n">cmdline</span>
 
 
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
-    <span class="s1">&#39;_help, source, dest, raise_value, count_called&#39;</span><span class="p">,</span>
-    <span class="p">[</span>
-        <span class="p">(</span><span class="s1">&#39;-h&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;-h&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;-h&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;-h&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="k">def</span> <span class="nf">test_help</span><span class="p">(</span><span class="n">mocker</span><span class="p">,</span> <span class="n">capsys</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;test help command&quot;&quot;&quot;</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;word_count&#39;</span><span class="p">,</span> <span class="s1">&#39;-h&#39;</span><span class="p">]</span>
+    <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;argv&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">SystemExit</span><span class="p">)</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="n">cmdline</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 
-        <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+    <span class="k">assert</span> <span class="n">ex</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">outerr</span> <span class="o">=</span> <span class="n">capsys</span><span class="o">.</span><span class="n">readouterr</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="s1">&#39;-s SOURCE&#39;</span> <span class="ow">in</span> <span class="n">outerr</span><span class="o">.</span><span class="n">out</span>
+    <span class="k">assert</span> <span class="s1">&#39;-d DEST&#39;</span> <span class="ow">in</span> <span class="n">outerr</span><span class="o">.</span><span class="n">out</span>
 
-        <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>    <span class="c1"># Normal argument.</span>
+<span class="k">def</span> <span class="nf">test_only_pass_source</span><span class="p">(</span><span class="n">mocker</span><span class="p">,</span> <span class="n">capsys</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;test only pass -s &quot;&quot;&quot;</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;word_count&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">]</span>
+    <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;argv&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">SystemExit</span><span class="p">)</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="n">cmdline</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 
-    <span class="p">]</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_main</span><span class="p">(</span><span class="n">mocker</span><span class="p">,</span> <span class="n">_help</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">raise_value</span><span class="p">,</span> <span class="n">count_called</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Test main&quot;&quot;&quot;</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;program&#39;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">_help</span><span class="p">:</span>
-        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_help</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">source</span><span class="p">:</span>
-        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="n">source</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">dest</span><span class="p">:</span>
-        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="n">ex</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="n">outerr</span> <span class="o">=</span> <span class="n">capsys</span><span class="o">.</span><span class="n">readouterr</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="s1">&#39;the following arguments are required: -d&#39;</span> <span class="ow">in</span> <span class="n">outerr</span><span class="o">.</span><span class="n">err</span>
+
+<span class="k">def</span> <span class="nf">test_only_pass_dest</span><span class="p">(</span><span class="n">mocker</span><span class="p">,</span> <span class="n">capsys</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;test only pass -d&quot;&quot;&quot;</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;word_count&#39;</span><span class="p">,</span> <span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">]</span>
+    <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;argv&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">SystemExit</span><span class="p">)</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="n">cmdline</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">ex</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="n">outerr</span> <span class="o">=</span> <span class="n">capsys</span><span class="o">.</span><span class="n">readouterr</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="s1">&#39;the following arguments are required: -s&#39;</span> <span class="ow">in</span> <span class="n">outerr</span><span class="o">.</span><span class="n">err</span>
+
+<span class="k">def</span> <span class="nf">test_main</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;test cmdline, and everything is fine.&quot;&quot;&quot;</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;word_count&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">]</span>
     <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;argv&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
     <span class="n">mock_count</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s1">&#39;word_count.cmdline.count&#39;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">raise_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># If use -h, will raise SystemExit(0)</span>
-        <span class="c1"># If some require argument miss, exit code &gt; 0</span>
-        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">SystemExit</span><span class="p">)</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
-            <span class="n">main</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="n">ex</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="n">raise_value</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Normal exc</span>
-        <span class="n">main</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="n">mock_count</span><span class="o">.</span><span class="n">called</span> <span class="o">==</span> <span class="n">count_called</span>
+    <span class="n">cmdline</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+    <span class="n">mock_count</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
 </code></pre></div>
 <p>运行 <code>pytest</code>，让测试正确运行。</p>
 <p>运行 <code>isort</code> 和 <code>pylint</code> 格式化代码并检查代码风格。</p>
@@ -1735,17 +1739,16 @@ git commit -m <span class="s2">&quot;feat(cmdline): 增加 cmdline 逻辑，并�
 </code></pre></div>
 <h3 id="25">2.5 打包发布</h3>
 <p>如果希望别人能更方便的使用项目，可以将项目打包发布到 <a href="https://pypi.org/">pypi</a> 中，然后在需要使用的地方运行 <code>pip install -U word-count</code>。</p>
-<p>但是安装到环境后去运行 <code>cmdline.py</code> 会比较困难，所以需要将 <code>cmdline.py</code> 注册成可执行命令。</p>
-<p>修改 <code>setup.cfg</code> 文件，在 <code>[options.entry_points]</code> 下增加如下内容：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[options.entry_points]</span><span class="w"></span>
-<span class="na">console_scripts</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">word_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">word_count.cmdline:main</span><span class="w"></span>
+<p>但是安装到环境后去运行 <code>cmdline.py</code> 会比较麻烦，所以需要将 <code>cmdline.py</code> 注册成可执行命令。</p>
+<p>修改 <code>pyproject.toml</code> ，增加如下内容：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[tool.poetry.plugins.console_scripts]</span><span class="w"></span>
+<span class="n">word_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;word_count.cmdline:main&quot;</span><span class="w"></span>
 </code></pre></div>
 <p>当使用 <code>pip</code> 命令将项目包安装到环境后，会自动注册一个 <code>word_count</code> 的可执行命令。</p>
 <p>再次将本地项目以可编辑方式安装到当前 Python 环境：</p>
 <div class="highlight"><pre><span></span><code>pip install -e .
 </code></pre></div>
-<p>然后就可以正常使用 <code>word_count</code> 命令了。</p>
+<p>然后就可以正常使用 <code>word_count</code> 命令：</p>
 <div class="highlight"><pre><span></span><code>$ word_count -h
 usage: word_count [-h] -s SOURCE -d DEST
 
@@ -1757,14 +1760,13 @@ optional arguments:
 </code></pre></div>
 <h4 id="251">2.5.1 打包</h4>
 <p>运行打包命令：</p>
-<div class="highlight"><pre><span></span><code>python setup.py sdist bdist_wheel
+<div class="highlight"><pre><span></span><code>poetry build 
 </code></pre></div>
 <p><code>sdist</code> 会将项目打包成源码包， <code>bdist_wheel</code> 会将项目打包成编译后的二进制包。</p>
 <p>打包后的文件在 <code>dist</code> 目录中。可以直接在其他地方运行 <code>pip install word_count.wheel</code> 安装。</p>
 <h4 id="252">2.5.2 发布</h4>
 <p>将开发好的项目发布到索引仓库，或内网的私有仓库。</p>
-<p>使用 <a href="https://twine.readthedocs.io/en/latest/">twine</a> 上传：</p>
-<div class="highlight"><pre><span></span><code>twine upload dist/*
+<div class="highlight"><pre><span></span><code>poetry publish
 </code></pre></div>
 <p>默认会将项目发布到 <a href="https://pypi.org/">pypi</a> 中，所以需要有对应的登录账号。</p>
 
