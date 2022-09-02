@@ -51,13 +51,14 @@ pip install pyspark
 
 [![windows_env_path](../../assets/images/pycharm/windows_env_path.png)](../../assets/images/pycharm/windows_env_path.png)
 
+
 ## MacOs系统环境
 
 TODO
 
-## 常见问题总结：
+## 常见问题总结
 
-### 问题1 （缺少`winutils.exe`, `hadoop.dll`）：
+### 问题1 （缺少`winutils.exe`, `hadoop.dll`）
 
 ```shell
 22/08/25 13:51:47 tid: [main] WARN  org.apache.hadoop.util.Shell - 
@@ -88,9 +89,9 @@ Windows在安装Hadoop环境时可能会遇到缺少文件`winutils.exe`和`hado
 
 > （如果还不成功的话可以尝试）将hadoop.dll复制到C:\Window\System32下
 
-### 问题2 （Python worker failed to connect back.）：
+### 问题2 （Python worker failed to connect back.）
 
-```
+```shell
 22/08/25 13:51:47 ERROR Executor: Exception in task 0.0 in stage 2.0 (TID 2)
 org.apache.spark.SparkException: Python worker failed to connect back.
 	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:189)
@@ -138,9 +139,21 @@ PYSPARK_DRIVER_PYTHON=jupyter;
 PYSPARK_PYTHON=python
 ```
 
+<<<<<<< HEAD
 ### 问题3 （Poetry下载资源"gbk" 格式异常）：
 
 ```
+=======
+<<<<<<< HEAD
+### 问题3 （Poetry下载资源"gbk" 格式异常）：
+
+```
+=======
+### 问题3 （Poetry下载资源"gbk" 格式异常）
+
+```shell
+>>>>>>> 3bd63ee (docs(pyspark etl doc quick_start and init): change virtualenv poetry and code format)
+>>>>>>> da2cb7e (fix BigData Doc virtualenv: poetry)
 The following packages are already present in the pyproject.toml and will be skipped: 
 
    'gbk' codec can't encode character '\u2022' in position 2: illegal multibyte sequence

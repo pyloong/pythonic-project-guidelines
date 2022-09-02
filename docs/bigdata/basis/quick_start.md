@@ -7,8 +7,6 @@
 
 ### 克隆项目模板
 
-[//]: # ( TODO [cookiecutter]&#40;https://cookiecutter.readthedocs.io/en/1.7.2/README.html&#41; 是一个通过项目模板创建项目的命令行工具。)
-
 使用[Git](https://git-scm.com/)克隆项目模板
 
 ```bash
@@ -51,6 +49,10 @@ poetry install
 
 ETL任务放在`Tasks`目录下，实现`AbstractTransform`和`AbstractTask`
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> da2cb7e (fix BigData Doc virtualenv: poetry)
 - `AbstractTask`: Task任务抽象类，`executor`执行器实例化`插件Task`，执行`AbstractTask`抽象父类的`run`方法
     - `run`: 执行Task任务流程
     - `_input`: 数据源抽取(抽象方法)
@@ -58,6 +60,18 @@ ETL任务放在`Tasks`目录下，实现`AbstractTransform`和`AbstractTask`
     - `_output`: 数据加载(抽象方法)
 - `AbstractTransform`: Transform抽象类，提供`AbstractTask`中`_transform`使用，同一个Task可以实现多个`_transform`
     - `_transform`: 数据转换(抽象方法)，指定转换流程，处理输入数据(DataFrame)
+<<<<<<< HEAD
+=======
+=======
+- `AbstractTask`：Task任务抽象类，`executor`执行器实例化`插件Task`，执行`AbstractTask`抽象父类的`run`方法
+    - `run`：执行Task任务流程
+    - `_input`：数据源抽取(抽象方法)
+    - `_transform`：数据转换(抽象方法)，执行转换流程，调用`AbstractTransform`子类
+    - `_output`：数据加载(抽象方法)
+- `AbstractTransform`：Transform抽象类，提供`AbstractTask`中`_transform`使用，同一个Task可以实现多个`_transform`
+    - `_transform`：数据转换(抽象方法)，指定转换流程，处理输入数据(DataFrame)
+>>>>>>> 3bd63ee (docs(pyspark etl doc quick_start and init): change virtualenv poetry and code format)
+>>>>>>> da2cb7e (fix BigData Doc virtualenv: poetry)
 
 ETL任务完成后需要注册插件：
 
@@ -70,8 +84,18 @@ demo = "poetry_demo_plugin.plugin:MyPlugin"
 
 开发环境需要初始化插件：
 
+<<<<<<< HEAD
 ```
 poetry plugin
+=======
+<<<<<<< HEAD
+```
+poetry plugin
+=======
+```shell
+poetry install
+>>>>>>> 3bd63ee (docs(pyspark etl doc quick_start and init): change virtualenv poetry and code format)
+>>>>>>> da2cb7e (fix BigData Doc virtualenv: poetry)
 ```
 
 ## 开发实践
@@ -225,7 +249,7 @@ poetry install
 
 ### 运行Task
 
-```bash
+```shell
 python src/etl_project/app.py --env=dev --task=car_etl_example
 ```
 
