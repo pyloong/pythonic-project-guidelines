@@ -2,7 +2,8 @@
 
 ## 开发环境
 
-本页总结了设置和开始开发PySpark ETL项目所需的基本步骤，前提已经安装完成[Python开发前准备](/pythonic-project-guidelines/introduction/install)。
+本页总结了设置和开始开发PySpark
+ETL项目所需的基本步骤，前提已经完成[Python开发前准备](/pythonic-project-guidelines/introduction/install)。
 
 使用[Pypi](https://pypi.org/project/pyspark/)
 安装[PySpark](https://spark.apache.org/docs/latest/api/python/getting_started/index.html)如下：
@@ -11,11 +12,6 @@
 pip install pyspark
 ```
 
-使用[Pipenv](/pythonic-project-guidelines/quick_start/#13)安装PySpark如下：
-
-```shell
-pipenv install pyspark
-```
 
 ## Windows系统环境
 
@@ -32,7 +28,8 @@ pipenv install pyspark
 
 建议使用解压工具对`.tar.gz`文件格式进行解压，如[Bandizip](https://cn.bandisoft.com/bandizip/dl/)
 
-在Windows PowerShell 运行`tar -zxvf`中可能发生[Maximum Path Length Limitation](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry)
+在Windows PowerShell 运行`tar -zxvf`
+中可能发生[Maximum Path Length Limitation](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry)
 
 ### 安装JDK
 
@@ -53,7 +50,6 @@ pipenv install pyspark
 配置`%JAVA_HOME%/bin`，`%HADOOP_HOME%/bin`
 
 [![windows_env_path](../../assets/images/pycharm/windows_env_path.png)](../../assets/images/pycharm/windows_env_path.png)
-
 
 ## MacOs系统环境
 
@@ -86,7 +82,8 @@ Caused by: java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are un
 
 __解决方案:__
 
-Windows在安装Hadoop环境时可能会遇到缺少文件`winutils.exe`和`hadoop.dll`，可以通过[github下载Hadoop文件](https://github.com/cdarlint/winutils)
+Windows在安装Hadoop环境时可能会遇到缺少文件`winutils.exe`和`hadoop.dll`
+，可以通过[github下载Hadoop文件](https://github.com/cdarlint/winutils)
 ，将安装时缺少的文件，放入%Hadoop%/bin目录下，重启IDE。
 
 > （如果还不成功的话可以尝试）将hadoop.dll复制到C:\Window\System32下
@@ -140,3 +137,17 @@ __解决方案:__
 PYSPARK_DRIVER_PYTHON=jupyter;
 PYSPARK_PYTHON=python
 ```
+
+### 问题3 （Poetry下载资源"gbk" 格式异常）：
+
+```
+The following packages are already present in the pyproject.toml and will be skipped: 
+
+   'gbk' codec can't encode character '\u2022' in position 2: illegal multibyte sequence
+   
+```
+
+__解决方案:__
+
+Windows系统语言设置为`utf-8`格式
+

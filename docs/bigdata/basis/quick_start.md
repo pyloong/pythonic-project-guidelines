@@ -12,16 +12,17 @@
 使用[Git](https://git-scm.com/)克隆项目模板
 
 ```bash
-git clone https://github.com/JingyuanR/pyspark-project-template.git
+git clone https://github.com/JingyuanR/pyspark-etl-template.git
 ```
 
 ### 创建虚拟环境
 
-切换到`pyspark-project-template` 文件路径下，项目使用 [pipenv](/pythonic-project-guidelines/quick_start/#13)
+切换到`pyspark-etl-template`
+文件路径下，项目使用 [poetry](/pythonic-project-guidelines/introduction/virtualenv/#25-poetry)
 管理虚拟环境，运行命令自动创建虚拟环境，同时安装开发环境依赖
 
 ```bash
-pipenv install -d
+poetry install
 ```
 
 ### IDE项目初始化
@@ -29,6 +30,8 @@ pipenv install -d
 #### 加载虚拟环境
 
 使用Pycharm打开项目 `File` | `Settings` | `Project` | `Python Interpreter`
+
+选择 `Poetry Environment`
 
 添加刚才创建的虚拟环境(选择`Existing`)
 
@@ -43,6 +46,33 @@ pipenv install -d
 将`src`和`tests`目录设置为`Sources`源代码路径
 
 [![add_project_structure](../../assets/images/pycharm/add_project_structure.png)](../../assets/images/pycharm/add_project_structure.png)
+
+#### ETL任务开发
+
+ETL任务放在`Tasks`目录下，实现`AbstractTransform`和`AbstractTask`
+
+- `AbstractTask`: Task任务抽象类，`executor`执行器实例化`插件Task`，执行`AbstractTask`抽象父类的`run`方法
+    - `run`: 执行Task任务流程
+    - `_input`: 数据源抽取(抽象方法)
+    - `_transform`: 数据转换(抽象方法)，执行转换流程，调用`AbstractTransform`子类
+    - `_output`: 数据加载(抽象方法)
+- `AbstractTransform`: Transform抽象类，提供`AbstractTask`中`_transform`使用，同一个Task可以实现多个`_transform`
+    - `_transform`: 数据转换(抽象方法)，指定转换流程，处理输入数据(DataFrame)
+
+ETL任务完成后需要注册插件：
+
+若使用[poetry](/pythonic-project-guidelines/introduction/virtualenv/#25-poetry)，`pyproject.toml`文件增加：
+
+```toml
+[tool.poetry.plugins."poetry.plugin"]
+demo = "poetry_demo_plugin.plugin:MyPlugin"
+```
+
+开发环境需要初始化插件：
+
+```
+poetry plugin
+```
 
 ## 开发实践
 
@@ -167,11 +197,11 @@ def _name_replace_udf(car_name):
 
 将上述实现的类注册到命名空间中。
 
-编辑`setup.cfg`文件，在`[options.entry_points]`中增加如下内容：
+编辑`pyproject.toml`文件，增加[poetry插件](https://python-poetry.org/docs/plugins/)如下内容：
 
-```angular2html
-etl.project.tasks =
-car_etl_example = etl_project.tasks:CarDataTask
+```toml
+[tool.poetry.plugins."etl_tasks"]
+car_etl_example = "pyspark_etl_template.tasks.car_etl_example.car_transform:CarTransform"
 ```
 
 这么做的目的是将 `CarDataTask` 注册到 `entry_points` 中， 然后在程序中使用 `import.metadata`
@@ -179,15 +209,18 @@ car_etl_example = etl_project.tasks:CarDataTask
 
 将项目以可编辑模式安装到当前环境：
 
-```angular2html
-pip install -e .
+```shell
+poetry install
 ```
 
-可以在 `src/example_etl.egg-info/entry_points.txt` 文件中查看打包后的注册信息：
+可以在 `Python Console` 下查看注册插件信息：
 
-```angular2html
-[etl.project.tasks]
-car_etl_example = etl_project.tasks:CarDataTask
+```bash
+>>> from importlib.metadata import entry_points
+
+>>> entry_points(group='etl_tasks')
+
+[EntryPoint(name='car_etl_example', value='pyspark_etl_template.tasks.car_etl_example.car_transform:CarTransform', group='etl_tasks')]
 ```
 
 ### 运行Task
