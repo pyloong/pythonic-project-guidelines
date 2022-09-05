@@ -139,21 +139,9 @@ PYSPARK_DRIVER_PYTHON=jupyter;
 PYSPARK_PYTHON=python
 ```
 
-<<<<<<< HEAD
-### 问题3 （Poetry下载资源"gbk" 格式异常）：
-
-```
-=======
-<<<<<<< HEAD
-### 问题3 （Poetry下载资源"gbk" 格式异常）：
-
-```
-=======
 ### 问题3 （Poetry下载资源"gbk" 格式异常）
 
 ```shell
->>>>>>> 3bd63ee (docs(pyspark etl doc quick_start and init): change virtualenv poetry and code format)
->>>>>>> da2cb7e (fix BigData Doc virtualenv: poetry)
 The following packages are already present in the pyproject.toml and will be skipped: 
 
    'gbk' codec can't encode character '\u2022' in position 2: illegal multibyte sequence
