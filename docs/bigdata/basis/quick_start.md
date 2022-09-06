@@ -57,17 +57,17 @@ ETL任务放在`Tasks`目录下，实现`AbstractTransform`和`AbstractTask`
 - `AbstractTransform`: Transform抽象类，提供`AbstractTask`中`_transform`使用，同一个Task可以实现多个`_transform`
     - `_transform`: 数据转换(抽象方法)，指定转换流程，处理输入数据(DataFrame)
 
-
 ETL任务完成后需要注册插件：
 
-若使用[poetry](/pythonic-project-guidelines/introduction/virtualenv/#25-poetry)，`pyproject.toml`文件增加：
+因为项目默认使用[poetry](/pythonic-project-guidelines/introduction/virtualenv/#25-poetry)
+管理虚拟环境，则需要在`pyproject.toml` 文件增加中增加如下内容：
 
 ```toml
 [tool.poetry.plugins."poetry.plugin"]
 demo = "poetry_demo_plugin.plugin:MyPlugin"
 ```
 
-开发环境需要初始化插件：
+使用如下命令将项目插件更新到环境中：
 
 ```shell
 poetry install
@@ -83,46 +83,46 @@ poetry install
 
 - 删除`price`小于`10000`的汽车数据
 
-- 最终结果Schema："car_id", "symboling", "car_name", "price", 将结果导出`json`文件
+- 最终结果Schema：`car_id`, `symboling`, `car_name`, `price`, 将结果导出`json`文件
 
 ### Task类
 
-创建ETL任务目录
-
-`src/etl_project/tasks/car_etl_example`
-
-创建汽车数据ETL任务**Task**类
-
-`src/etl_project/tasks/car_etl_example/task.py`
+创建汽车数据ETL任务`CarDataTask`类，`src/etl_project/tasks/car_etl_example/task.py`
 
 ```py title="task.py"
+"""Processing car data task."""
 from pyspark.sql import DataFrame
-from etl_project.tasks.abstract.task import AbstractTask
-from etl_project.tasks.car_etl_example.car_transform import CarTransform
+
+from pyspark_etl_example.tasks.abstract.task import AbstractTask
+from pyspark_etl_example.tasks.car_etl_example.car_transform import \
+    CarTransform
 
 
 class CarDataTask(AbstractTask):
-    """
-    Processing car data task.
-    """
-
-    input_path = 'example_data/input'
-    output_path = 'example_data/output'
+    """Processing car data task."""
 
     def _input(self) -> DataFrame:
-        df: DataFrame = self.spark.read.csv(self.input_path, encoding='utf-8', header=True, inferSchema=True)
-        self.logger.warn(f'Extract data from {self.input_path}')
+        """Read CSV file return DataFrame"""
+        df: DataFrame = self.spark.read.csv(
+            self.settings.input_path,
+            encoding='utf-8',
+            header=True,
+            inferSchema=True
+        )
+        self.logger.info(f'Extract data from {self.settings.input_path}')
         return df
 
     def _transform(self, df: DataFrame) -> DataFrame:
+        """execute CarTransform transform function"""
         return CarTransform().transform(df)
 
     def _output(self, df: DataFrame) -> None:
-        df.write.json(self.output_path, mode='overwrite', encoding='utf-8')
-        self.logger.warn(f'Load data to {self.output_path}')
+        """Load final data to output path"""
+        df.write.json(self.settings.output_path, mode='overwrite', encoding='utf-8')
+        self.logger.info(f'Load data to {self.settings.output_path}')
 ```
 
-每一个`Task`任务都会经理“输入”、“转换”和“输出”的过程，实现AbstractTask中的`_input`、`_transform`、`_output`抽象方法
+每一个`Task`任务都会经过“输入”、“转换”和“输出”的过程，实现`AbstractTask`中的`_input`、`_transform`、`_output`抽象方法
 
 - `_input`：读取`example_data/input`下csv文件
 - `_transform`：执行将实现的`Transform`类的`transform`方法
@@ -130,42 +130,45 @@ class CarDataTask(AbstractTask):
 
 ### Transform类
 
-创建汽车数据**Transform**类
-
-`src/etl_project/tasks/car_etl_example/car_transform.py`
+创建汽车数据`CarTransform`类，`src/etl_project/tasks/car_etl_example/car_transform.py`
 
 ```py title="car_transform.py"
+"""Car data Transformation."""
 from functools import reduce
+
 from pyspark.sql import DataFrame
-from pyspark.sql.functions import udf, col
+from pyspark.sql.functions import col
+from pyspark.sql.functions import udf
 from pyspark.sql.types import StringType
-from etl_project.tasks.abstract.transform import AbstractTransform
+
+from pyspark_etl_example.tasks.abstract.transform import AbstractTransform
 
 
 class CarTransform(AbstractTransform):
-    """
-    Car data Transformation.
-    """
-
+    """Car data Transformation."""
     def transform(self, df: DataFrame) -> DataFrame:
+        """Execute the transform process"""
         transformations = (
             self._filter_price,
             self._process_car_name,
             self._select_final_columns,
         )
-        return reduce(DataFrame.transform, transformations, df)  # type: ignore
+        return reduce(DataFrame.transform, transformations, df)
 
     @staticmethod
     def _filter_price(df: DataFrame) -> DataFrame:
-        return df.filter(col('price') > 10000)
+        """Filter results price > 1000"""
+        return df.filter(col('price') > 1000)
 
     @staticmethod
     def _process_car_name(df: DataFrame) -> DataFrame:
+        """Clean [dirty data] from CarName"""
         res_df = df.withColumn('CarName', _name_replace_udf(col('CarName')).alias('CarName'))
         return res_df
 
     @staticmethod
     def _select_final_columns(df: DataFrame) -> DataFrame:
+        """Car price data dataframe select final columns"""
         return df.select(
             col('car_ID').alias('car_id'),
             col('symboling'),
@@ -176,8 +179,9 @@ class CarTransform(AbstractTransform):
 
 @udf(returnType=StringType())
 def _name_replace_udf(car_name):
+    """Clean [dirty data] udf"""
     if not car_name:
-        return
+        return None
     err_str = '[dirty data]'
     if err_str not in car_name:
         return car_name
@@ -185,12 +189,22 @@ def _name_replace_udf(car_name):
     return car_name
 ```
 
-实现汽车数据Transform类，实现抽象函数`transform`，实现数据清洗流程：
+`CarTransform`类，实现以下方法：
 
-1. 筛选 `price` > 10000 的数据
-2. 将`CarName`包含脏数据"`[dirty_data]`"的内容，通过udf进行去除
-3. 查询`car_id`， `symboling`， `car_name`， `price`数据
-4. 返回数据结果，至此完成汽车数据转换过程
+- `_filter_price`的功能是筛选 `price` > 10000 的数据
+- `_process_car_name`的功能是使用udf方法`_name_replace_udf`，将`CarName`字段中包含脏数据`[dirty_data]`的内容进行处理
+- `_select_final_columns`方法是查询并返回`car_id`,`symboling`,`car_name`,`price`数据
+- `transform`的功能是执行处理流程，返回数据结果，至此完成汽车数据转换过程
+
+### 配置
+
+将如下配置更新到配置文件中，因为项目默认使用dev环境配置，则需要在`configs/dev.toml`中增加如下内容：
+
+```toml
+# example path
+input_path = '../../data/input/car_price.csv'
+output_path = '../../data/output'
+```
 
 ### 注册Task
 
@@ -203,8 +217,8 @@ def _name_replace_udf(car_name):
 car_etl_example = "pyspark_etl_template.tasks.car_etl_example.car_transform:CarTransform"
 ```
 
-这么做的目的是将 `CarDataTask` 注册到 `entry_points` 中， 然后在程序中使用 `import.metadata`
-根据名称空间查找。而 `stevedore` 则是封装了查找的复杂逻辑，让使用 更简单。
+这么做的目的是将`CarDataTask`注册到`entry_points`中， 然后在程序中使用`importlib.metadata`
+根据名称空间查找。而 `stevedore` 则是封装了查找的复杂逻辑，让使用插件更简单。
 
 将项目以可编辑模式安装到当前环境：
 
