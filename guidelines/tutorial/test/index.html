@@ -294,6 +294,29 @@
   
 
       
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../bigdata/basis/init/" class="md-tabs__link">
+        大数据开发实践
+      </a>
+    </li>
+  
+
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1046,6 +1069,103 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          大数据开发实践
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="大数据开发实践" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          大数据开发实践
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          基础
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="基础" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bigdata/basis/init/" class="md-nav__link">
+        前期准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bigdata/basis/quick_start/" class="md-nav__link">
+        快速上手
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1153,260 +1273,260 @@
 <p>测试时，使用的是 <code>pytest</code> 工具，而不是使用 <code>unittest</code> 。</p>
 <h2 id="extractor">测试 extractor</h2>
 <p>在 <code>tests</code> 包中新建 <code>test_extractor.py</code> 内容如下：</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Test extractor&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">pytest</span>
-
-<span class="kn">from</span> <span class="nn">example_etl.extractor.base</span> <span class="kn">import</span> <span class="n">BaseExtractor</span>
-<span class="kn">from</span> <span class="nn">example_etl.extractor.file</span> <span class="kn">import</span> <span class="n">FileExtractor</span>
-
-
-<span class="k">def</span> <span class="nf">test_base_source</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Test base extractor&quot;&quot;&quot;</span>
-    <span class="n">close_mock</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">BaseExtractor</span><span class="p">,</span> <span class="s1">&#39;close&#39;</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">):</span>
-        <span class="k">with</span> <span class="n">BaseExtractor</span><span class="p">(</span><span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">())</span> <span class="k">as</span> <span class="n">base</span><span class="p">:</span>
-            <span class="n">base</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="n">close_mock</span><span class="o">.</span><span class="n">called_once</span><span class="p">()</span>
-
-
-<span class="k">def</span> <span class="nf">test_file_source</span><span class="p">(</span><span class="n">mocker</span><span class="p">,</span> <span class="n">foo_file</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Test file extractor&quot;&quot;&quot;</span>
-    <span class="n">extractor</span> <span class="o">=</span> <span class="n">FileExtractor</span><span class="p">(</span><span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">())</span>
-    <span class="n">extractor</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">FILE_EXTRACTOR_PATH</span> <span class="o">=</span> <span class="n">foo_file</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">extractor</span><span class="o">.</span><span class="n">extract</span><span class="p">())</span>
-    <span class="k">assert</span> <span class="n">data</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">&quot;&quot;&quot;Test extractor&quot;&quot;&quot;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span> <span class="nn">pytest</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span> <span class="nn">example_etl.extractor.base</span> <span class="kn">import</span> <span class="n">BaseExtractor</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">from</span> <span class="nn">example_etl.extractor.file</span> <span class="kn">import</span> <span class="n">FileExtractor</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">def</span> <span class="nf">test_base_source</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="sd">&quot;&quot;&quot;Test base extractor&quot;&quot;&quot;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">close_mock</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">BaseExtractor</span><span class="p">,</span> <span class="s1">&#39;close&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">):</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="k">with</span> <span class="n">BaseExtractor</span><span class="p">(</span><span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">())</span> <span class="k">as</span> <span class="n">base</span><span class="p">:</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>            <span class="n">base</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="k">assert</span> <span class="n">close_mock</span><span class="o">.</span><span class="n">called_once</span><span class="p">()</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">def</span> <span class="nf">test_file_source</span><span class="p">(</span><span class="n">mocker</span><span class="p">,</span> <span class="n">foo_file</span><span class="p">):</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="sd">&quot;&quot;&quot;Test file extractor&quot;&quot;&quot;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">extractor</span> <span class="o">=</span> <span class="n">FileExtractor</span><span class="p">(</span><span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">())</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">extractor</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">FILE_EXTRACTOR_PATH</span> <span class="o">=</span> <span class="n">foo_file</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">extractor</span><span class="o">.</span><span class="n">extract</span><span class="p">())</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">assert</span> <span class="n">data</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]</span>
 </code></pre></div>
 <p>测试代码中，分别测试了 <code>BaseExtractor</code> 和 <code>FileExtractor</code> 的逻辑。</p>
 <p>在测试逻辑中使用了 <code>mocker</code> 功能，可以在测试单元逻辑时，将其依赖的东西 mock 掉。在 <code>pytest</code> 测试框架中，
 使用 <code>pytest-mock</code> 扩展可以很方便的使用 <code>mocker</code> 对象。</p>
 <p>安装 <code>pytest-mock</code> ：</p>
-<div class="highlight"><pre><span></span><code>pipenv install -d pytest-mock
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pipenv install -d pytest-mock
 </code></pre></div>
 <blockquote>
 <p>这里使用了 <code>pipenv install -d</code> ，意思是将 <code>pytest-mock</code> 安装到开发环境依赖中。
 当在一个新环境 <code>pipenv install</code> 安装时，是不会安装开发环境中的依赖的。</p>
 </blockquote>
 <p>测试代码中同时使用了 <code>foo_file</code> 的 fixture ，它定义在 <code>conftest.py</code> 中，内容如下：</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Test config&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">tempfile</span>
-
-<span class="kn">import</span> <span class="nn">pytest</span>
-<span class="kn">from</span> <span class="nn">click.testing</span> <span class="kn">import</span> <span class="n">CliRunner</span>
-
-
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">clicker</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;clicker fixture&quot;&quot;&quot;</span>
-    <span class="k">yield</span> <span class="n">CliRunner</span><span class="p">()</span>
-
-
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">foo_file</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;foo file&quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
-        <span class="n">file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-        <span class="k">yield</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="sd">&quot;&quot;&quot;Test config&quot;&quot;&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span> <span class="nn">tempfile</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kn">import</span> <span class="nn">pytest</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kn">from</span> <span class="nn">click.testing</span> <span class="kn">import</span> <span class="n">CliRunner</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">def</span> <span class="nf">clicker</span><span class="p">():</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="sd">&quot;&quot;&quot;clicker fixture&quot;&quot;&quot;</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="k">yield</span> <span class="n">CliRunner</span><span class="p">()</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="k">def</span> <span class="nf">foo_file</span><span class="p">():</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="sd">&quot;&quot;&quot;foo file&quot;&quot;&quot;</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>        <span class="n">file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>        <span class="k">yield</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span>
 </code></pre></div>
 <p>然后在命令行中运行 <code>pytest</code> ，测试刚刚编写的测试代码。可以看到如下输出：</p>
-<div class="highlight"><pre><span></span><code>❯ pytest
-================================================================= test session starts =================================================================
-platform linux -- Python 3.10.0, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
-rootdir: /tmp/test/example_etl, configfile: setup.cfg, testpaths: tests
-plugins: cov-3.0.0, mock-3.6.1
-collected 12 items                                                                                                                                    
-
-tests/test_cmdline.py .....                                                                                                                     [ 41%]
-tests/test_extcator.py ..                                                                                                                       [ 58%]
-tests/test_log.py ....                                                                                                                          [ 91%]
-tests/tests.py .                                                                                                                                [100%]
-
-================================================================= 12 passed in 0.18s ==================================================================
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>❯ pytest
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>================================================================= test session starts =================================================================
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>platform linux -- Python 3.10.0, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>rootdir: /tmp/test/example_etl, configfile: setup.cfg, testpaths: tests
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>plugins: cov-3.0.0, mock-3.6.1
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>collected 12 items                                                                                                                                    
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>tests/test_cmdline.py .....                                                                                                                     [ 41%]
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>tests/test_extcator.py ..                                                                                                                       [ 58%]
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>tests/test_log.py ....                                                                                                                          [ 91%]
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>tests/tests.py .                                                                                                                                [100%]
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>================================================================= 12 passed in 0.18s ==================================================================
 </code></pre></div>
 <p>测试成功。</p>
 <h2 id="transformer">测试 transformer</h2>
 <p>在 <code>tests</code> 包中创建 <code>test_transformer.py</code> 内容如下：</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Test transformer&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">pytest</span>
-
-<span class="kn">from</span> <span class="nn">example_etl.transformer.base</span> <span class="kn">import</span> <span class="n">BaseTransformer</span>
-<span class="kn">from</span> <span class="nn">example_etl.transformer.strip</span> <span class="kn">import</span> <span class="n">StripTransformer</span>
-
-
-<span class="k">def</span> <span class="nf">test_base_process</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Test base transformer&quot;&quot;&quot;</span>
-    <span class="n">process</span> <span class="o">=</span> <span class="n">BaseTransformer</span><span class="p">(</span><span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">())</span>
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">):</span>
-        <span class="n">process</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
-
-
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
-    <span class="s1">&#39;data, expect_value&#39;</span><span class="p">,</span>
-    <span class="p">[</span>
-        <span class="p">(</span><span class="s1">&#39;xx &#39;</span><span class="p">,</span> <span class="s1">&#39;xx&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39; xx &#39;</span><span class="p">,</span> <span class="s1">&#39;xx&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;xx&#39;</span><span class="p">,</span> <span class="s1">&#39;xx&#39;</span><span class="p">),</span>
-    <span class="p">]</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_strip_process</span><span class="p">(</span><span class="n">mocker</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">expect_value</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Test strip transformer&quot;&quot;&quot;</span>
-    <span class="n">processor</span> <span class="o">=</span> <span class="n">StripTransformer</span><span class="p">(</span><span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">())</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">res</span> <span class="o">==</span> <span class="n">expect_value</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="sd">&quot;&quot;&quot;Test transformer&quot;&quot;&quot;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">import</span> <span class="nn">pytest</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kn">from</span> <span class="nn">example_etl.transformer.base</span> <span class="kn">import</span> <span class="n">BaseTransformer</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="kn">from</span> <span class="nn">example_etl.transformer.strip</span> <span class="kn">import</span> <span class="n">StripTransformer</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">def</span> <span class="nf">test_base_process</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="sd">&quot;&quot;&quot;Test base transformer&quot;&quot;&quot;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">process</span> <span class="o">=</span> <span class="n">BaseTransformer</span><span class="p">(</span><span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">())</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">):</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>        <span class="n">process</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    <span class="s1">&#39;data, expect_value&#39;</span><span class="p">,</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    <span class="p">[</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>        <span class="p">(</span><span class="s1">&#39;xx &#39;</span><span class="p">,</span> <span class="s1">&#39;xx&#39;</span><span class="p">),</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>        <span class="p">(</span><span class="s1">&#39; xx &#39;</span><span class="p">,</span> <span class="s1">&#39;xx&#39;</span><span class="p">),</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>        <span class="p">(</span><span class="s1">&#39;xx&#39;</span><span class="p">,</span> <span class="s1">&#39;xx&#39;</span><span class="p">),</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>    <span class="p">]</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="p">)</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="k">def</span> <span class="nf">test_strip_process</span><span class="p">(</span><span class="n">mocker</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">expect_value</span><span class="p">):</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>    <span class="sd">&quot;&quot;&quot;Test strip transformer&quot;&quot;&quot;</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>    <span class="n">processor</span> <span class="o">=</span> <span class="n">StripTransformer</span><span class="p">(</span><span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">())</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>    <span class="n">res</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>    <span class="k">assert</span> <span class="n">res</span> <span class="o">==</span> <span class="n">expect_value</span>
 </code></pre></div>
 <p>在测试 <code>test_strip_process</code> 时，使用了 pytest 的参数化测试。可以在一个测试逻辑中，测试不同的输入输出值。</p>
 <p>再次运行 <code>pytest</code> 命令，检测测试是否正确。</p>
 <h2 id="loader">测试 loader</h2>
 <p>在 <code>tests</code> 包中创建 <code>test_loader.py</code> ，内容如下：</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Test loader&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">tempfile</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-
-<span class="kn">import</span> <span class="nn">pytest</span>
-
-<span class="kn">from</span> <span class="nn">example_etl.loader.base</span> <span class="kn">import</span> <span class="n">BaseLoader</span>
-<span class="kn">from</span> <span class="nn">example_etl.loader.file</span> <span class="kn">import</span> <span class="n">FileLoader</span>
-
-
-<span class="k">def</span> <span class="nf">test_base_dest</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Test base loader&quot;&quot;&quot;</span>
-    <span class="n">close_mock</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">BaseLoader</span><span class="p">,</span> <span class="s1">&#39;close&#39;</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">BaseLoader</span><span class="p">(</span><span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">())</span> <span class="k">as</span> <span class="n">base</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">):</span>
-            <span class="n">base</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">close_mock</span><span class="o">.</span><span class="n">called_once</span><span class="p">()</span>
-
-
-<span class="k">def</span> <span class="nf">test_file_dest</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Test file loader&quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">()</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">settings_mock</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
-        <span class="n">settings_mock</span><span class="o">.</span><span class="n">FILE_LOADER_PATH</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span>
-        <span class="k">with</span> <span class="n">FileLoader</span><span class="p">(</span><span class="n">settings_mock</span><span class="p">)</span> <span class="k">as</span> <span class="n">loader</span><span class="p">:</span>
-            <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
-        <span class="n">file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="n">stat</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="n">stat</span><span class="o">.</span><span class="n">st_size</span> <span class="o">==</span> <span class="mi">3</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="sd">&quot;&quot;&quot;Test loader&quot;&quot;&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span> <span class="nn">tempfile</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="kn">import</span> <span class="nn">pytest</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="kn">from</span> <span class="nn">example_etl.loader.base</span> <span class="kn">import</span> <span class="n">BaseLoader</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="kn">from</span> <span class="nn">example_etl.loader.file</span> <span class="kn">import</span> <span class="n">FileLoader</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="k">def</span> <span class="nf">test_base_dest</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="sd">&quot;&quot;&quot;Test base loader&quot;&quot;&quot;</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="n">close_mock</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">BaseLoader</span><span class="p">,</span> <span class="s1">&#39;close&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="k">with</span> <span class="n">BaseLoader</span><span class="p">(</span><span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">())</span> <span class="k">as</span> <span class="n">base</span><span class="p">:</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">):</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>            <span class="n">base</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>    <span class="k">assert</span> <span class="n">close_mock</span><span class="o">.</span><span class="n">called_once</span><span class="p">()</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="k">def</span> <span class="nf">test_file_dest</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    <span class="sd">&quot;&quot;&quot;Test file loader&quot;&quot;&quot;</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">()</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>        <span class="n">settings_mock</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>        <span class="n">settings_mock</span><span class="o">.</span><span class="n">FILE_LOADER_PATH</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>        <span class="k">with</span> <span class="n">FileLoader</span><span class="p">(</span><span class="n">settings_mock</span><span class="p">)</span> <span class="k">as</span> <span class="n">loader</span><span class="p">:</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>            <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>        <span class="n">file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>        <span class="n">stat</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>        <span class="k">assert</span> <span class="n">stat</span><span class="o">.</span><span class="n">st_size</span> <span class="o">==</span> <span class="mi">3</span>
 </code></pre></div>
 <p>在测试 <code>test_file_dest</code> 时，使用了一个临时文件作为目标写入，使用了 <code>with</code> 关键字打开文件，
 在测试完成后，会自动删除临时文件。</p>
 <p>再次运行 <code>pytest</code> 检车测试正确。</p>
 <h2 id="manage">测试 manage</h2>
 <p><code>manage</code> 的逻辑同样需要测试，在 <code>tests</code> 包中创建 <code>test_manage.py</code> 文件，内容如下：</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Test manage&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">pytest</span>
-
-<span class="kn">from</span> <span class="nn">example_etl.exceptions</span> <span class="kn">import</span> <span class="n">PluginNotFoundError</span>
-<span class="kn">from</span> <span class="nn">example_etl.extractor.file</span> <span class="kn">import</span> <span class="n">FileExtractor</span>
-<span class="kn">from</span> <span class="nn">example_etl.manage</span> <span class="kn">import</span> <span class="n">Manage</span><span class="p">,</span> <span class="n">get_extension</span>
-
-
-<span class="k">def</span> <span class="nf">test_get_extension</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Test get extension&quot;&quot;&quot;</span>
-    <span class="n">plugin</span> <span class="o">=</span> <span class="n">get_extension</span><span class="p">(</span><span class="s1">&#39;example_etl.extractor&#39;</span><span class="p">,</span> <span class="s1">&#39;file&#39;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="n">FileExtractor</span>
-
-
-<span class="k">def</span> <span class="nf">test_get_extension_error</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Test get extension error&quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">PluginNotFoundError</span><span class="p">):</span>
-        <span class="n">get_extension</span><span class="p">(</span><span class="s1">&#39;example_etl.extractor&#39;</span><span class="p">,</span> <span class="s1">&#39;xxx&#39;</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">test_manage_run</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Test manage run&quot;&quot;&quot;</span>
-    <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s1">&#39;example_etl.manage.get_extension&#39;</span><span class="p">)</span>
-    <span class="n">process_mock</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Manage</span><span class="p">,</span> <span class="s1">&#39;transform&#39;</span><span class="p">)</span>
-    <span class="n">manage</span> <span class="o">=</span> <span class="n">Manage</span><span class="p">()</span>
-
-    <span class="n">manage</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="n">process_mock</span><span class="o">.</span><span class="n">called_once</span><span class="p">()</span>
-
-
-<span class="k">def</span> <span class="nf">test_manage_transform</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Test manage transform&quot;&quot;&quot;</span>
-    <span class="n">magic_mock</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
-    <span class="n">manage</span> <span class="o">=</span> <span class="n">Manage</span><span class="p">()</span>
-    <span class="n">manage</span><span class="o">.</span><span class="n">transformer</span> <span class="o">=</span> <span class="n">magic_mock</span>
-    <span class="n">magic_mock</span><span class="o">.</span><span class="n">extract</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-    <span class="n">manage</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">magic_mock</span><span class="p">,</span> <span class="n">magic_mock</span><span class="p">)</span>
-
-    <span class="k">assert</span> <span class="n">magic_mock</span><span class="o">.</span><span class="n">extract</span><span class="o">.</span><span class="n">called_once</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="n">magic_mock</span><span class="o">.</span><span class="n">load</span><span class="o">.</span><span class="n">call_count</span> <span class="o">==</span> <span class="mi">2</span>
-    <span class="k">assert</span> <span class="n">magic_mock</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">call_count</span> <span class="o">==</span> <span class="mi">2</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="sd">&quot;&quot;&quot;Test manage&quot;&quot;&quot;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span> <span class="nn">pytest</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="kn">from</span> <span class="nn">example_etl.exceptions</span> <span class="kn">import</span> <span class="n">PluginNotFoundError</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="kn">from</span> <span class="nn">example_etl.extractor.file</span> <span class="kn">import</span> <span class="n">FileExtractor</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="kn">from</span> <span class="nn">example_etl.manage</span> <span class="kn">import</span> <span class="n">Manage</span><span class="p">,</span> <span class="n">get_extension</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="k">def</span> <span class="nf">test_get_extension</span><span class="p">():</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="sd">&quot;&quot;&quot;Test get extension&quot;&quot;&quot;</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="n">plugin</span> <span class="o">=</span> <span class="n">get_extension</span><span class="p">(</span><span class="s1">&#39;example_etl.extractor&#39;</span><span class="p">,</span> <span class="s1">&#39;file&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="k">assert</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="n">FileExtractor</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="k">def</span> <span class="nf">test_get_extension_error</span><span class="p">():</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>    <span class="sd">&quot;&quot;&quot;Test get extension error&quot;&quot;&quot;</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">PluginNotFoundError</span><span class="p">):</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>        <span class="n">get_extension</span><span class="p">(</span><span class="s1">&#39;example_etl.extractor&#39;</span><span class="p">,</span> <span class="s1">&#39;xxx&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="k">def</span> <span class="nf">test_manage_run</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>    <span class="sd">&quot;&quot;&quot;Test manage run&quot;&quot;&quot;</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>    <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s1">&#39;example_etl.manage.get_extension&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>    <span class="n">process_mock</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Manage</span><span class="p">,</span> <span class="s1">&#39;transform&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>    <span class="n">manage</span> <span class="o">=</span> <span class="n">Manage</span><span class="p">()</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>    <span class="n">manage</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>    <span class="k">assert</span> <span class="n">process_mock</span><span class="o">.</span><span class="n">called_once</span><span class="p">()</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="k">def</span> <span class="nf">test_manage_transform</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>    <span class="sd">&quot;&quot;&quot;Test manage transform&quot;&quot;&quot;</span>
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>    <span class="n">magic_mock</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>    <span class="n">manage</span> <span class="o">=</span> <span class="n">Manage</span><span class="p">()</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>    <span class="n">manage</span><span class="o">.</span><span class="n">transformer</span> <span class="o">=</span> <span class="n">magic_mock</span>
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>    <span class="n">magic_mock</span><span class="o">.</span><span class="n">extract</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>    <span class="n">manage</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">magic_mock</span><span class="p">,</span> <span class="n">magic_mock</span><span class="p">)</span>
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a>
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>    <span class="k">assert</span> <span class="n">magic_mock</span><span class="o">.</span><span class="n">extract</span><span class="o">.</span><span class="n">called_once</span><span class="p">()</span>
+<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a>    <span class="k">assert</span> <span class="n">magic_mock</span><span class="o">.</span><span class="n">load</span><span class="o">.</span><span class="n">call_count</span> <span class="o">==</span> <span class="mi">2</span>
+<a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a>    <span class="k">assert</span> <span class="n">magic_mock</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">call_count</span> <span class="o">==</span> <span class="mi">2</span>
 </code></pre></div>
 <p>在测试时，需要保证配置文件中存在之前在代码中使用的变量。</p>
 <p>在 <code>src/example_etl/config/settings.yml</code> 文件中加入如下内容：</p>
-<div class="highlight"><pre><span></span><code><span class="nt">extractor_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span><span class="w"></span>
-<span class="nt">transformer_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">strip</span><span class="w"></span>
-<span class="nt">loader_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">extractor_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span><span class="w"></span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">transformer_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">strip</span><span class="w"></span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nt">loader_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span><span class="w"></span>
 </code></pre></div>
 <p>配置程序默认使用三个已经实现的逻辑。</p>
 <p>再次运行 <code>pytest</code> 检查测试结果。</p>
 <h2 id="_2">检查测试覆盖率</h2>
 <p>测试覆盖率指示编写的单元测试，覆盖了多少源代码。能够通过测试覆盖率查看还有哪些内容没有被测试到。</p>
 <p>运行 <code>pytest --cov</code> 查看测试覆盖率。</p>
-<div class="highlight"><pre><span></span><code>❯ pytest --cov
-================================================================= test session starts =================================================================
-platform linux -- Python 3.10.0, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
-rootdir: /tmp/test/example_etl, configfile: setup.cfg, testpaths: tests
-plugins: cov-3.0.0, mock-3.6.1
-collected 24 items                                                                                                                                    
-
-tests/test_cmdline.py .....                                                                                                                     [ 20%]
-tests/test_extcator.py ..                                                                                                                       [ 29%]
-tests/test_loader.py ..                                                                                                                         [ 37%]
-tests/test_log.py ......                                                                                                                        [ 62%]
-tests/test_manage.py ....                                                                                                                       [ 79%]
-tests/test_transformer.py ....                                                                                                                  [ 95%]
-tests/tests.py .                                                                                                                                [100%]
-
----------- coverage: platform linux, python 3.10.0-final-0 -----------
-Name                                      Stmts   Miss  Cover
--------------------------------------------------------------
-src/example_etl/__init__.py                   1      0   100%
-src/example_etl/cmdline.py                   23      0   100%
-src/example_etl/config/__init__.py            8      0   100%
-src/example_etl/constants.py                  1      0   100%
-src/example_etl/exceptions.py                10      2    80%
-src/example_etl/extractor/__init__.py         0      0   100%
-src/example_etl/extractor/base.py            13      0   100%
-src/example_etl/extractor/file.py            12      0   100%
-src/example_etl/loader/__init__.py            0      0   100%
-src/example_etl/loader/base.py               12      0   100%
-src/example_etl/loader/file.py               15      0   100%
-src/example_etl/log.py                       19      0   100%
-src/example_etl/manage.py                    33      0   100%
-src/example_etl/transformer/__init__.py       0      0   100%
-src/example_etl/transformer/base.py           5      0   100%
-src/example_etl/transformer/strip.py          7      0   100%
-tests/__init__.py                             0      0   100%
-tests/conftest.py                            12      0   100%
-tests/test_cmdline.py                        10      0   100%
-tests/test_exceptions.py                      0      0   100%
-tests/test_extcator.py                       14      0   100%
-tests/test_loader.py                         20      0   100%
-tests/test_log.py                            10      0   100%
-tests/test_manage.py                         25      0   100%
-tests/test_transformer.py                    12      0   100%
-tests/tests.py                                3      0   100%
--------------------------------------------------------------
-TOTAL                                       265      2    99%
-
-
-================================================================= 24 passed in 0.41s ==================================================================
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>❯ pytest --cov
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>================================================================= test session starts =================================================================
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>platform linux -- Python 3.10.0, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>rootdir: /tmp/test/example_etl, configfile: setup.cfg, testpaths: tests
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>plugins: cov-3.0.0, mock-3.6.1
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>collected 24 items                                                                                                                                    
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>tests/test_cmdline.py .....                                                                                                                     [ 20%]
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>tests/test_extcator.py ..                                                                                                                       [ 29%]
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>tests/test_loader.py ..                                                                                                                         [ 37%]
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>tests/test_log.py ......                                                                                                                        [ 62%]
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>tests/test_manage.py ....                                                                                                                       [ 79%]
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>tests/test_transformer.py ....                                                                                                                  [ 95%]
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>tests/tests.py .                                                                                                                                [100%]
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>---------- coverage: platform linux, python 3.10.0-final-0 -----------
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>Name                                      Stmts   Miss  Cover
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>-------------------------------------------------------------
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>src/example_etl/__init__.py                   1      0   100%
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>src/example_etl/cmdline.py                   23      0   100%
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>src/example_etl/config/__init__.py            8      0   100%
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>src/example_etl/constants.py                  1      0   100%
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>src/example_etl/exceptions.py                10      2    80%
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>src/example_etl/extractor/__init__.py         0      0   100%
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>src/example_etl/extractor/base.py            13      0   100%
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>src/example_etl/extractor/file.py            12      0   100%
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>src/example_etl/loader/__init__.py            0      0   100%
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>src/example_etl/loader/base.py               12      0   100%
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>src/example_etl/loader/file.py               15      0   100%
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>src/example_etl/log.py                       19      0   100%
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>src/example_etl/manage.py                    33      0   100%
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>src/example_etl/transformer/__init__.py       0      0   100%
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>src/example_etl/transformer/base.py           5      0   100%
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>src/example_etl/transformer/strip.py          7      0   100%
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a>tests/__init__.py                             0      0   100%
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a>tests/conftest.py                            12      0   100%
+<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a>tests/test_cmdline.py                        10      0   100%
+<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a>tests/test_exceptions.py                      0      0   100%
+<a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a>tests/test_extcator.py                       14      0   100%
+<a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a>tests/test_loader.py                         20      0   100%
+<a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a>tests/test_log.py                            10      0   100%
+<a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a>tests/test_manage.py                         25      0   100%
+<a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a>tests/test_transformer.py                    12      0   100%
+<a id="__codelineno-8-44" name="__codelineno-8-44" href="#__codelineno-8-44"></a>tests/tests.py                                3      0   100%
+<a id="__codelineno-8-45" name="__codelineno-8-45" href="#__codelineno-8-45"></a>-------------------------------------------------------------
+<a id="__codelineno-8-46" name="__codelineno-8-46" href="#__codelineno-8-46"></a>TOTAL                                       265      2    99%
+<a id="__codelineno-8-47" name="__codelineno-8-47" href="#__codelineno-8-47"></a>
+<a id="__codelineno-8-48" name="__codelineno-8-48" href="#__codelineno-8-48"></a>
+<a id="__codelineno-8-49" name="__codelineno-8-49" href="#__codelineno-8-49"></a>================================================================= 24 passed in 0.41s ==================================================================
 </code></pre></div>
 <p>通过覆盖率可以看到 <code>src/example_etl/exceptions.py</code> 的逻辑还有没测试的。</p>
 <h2 id="_3">完善其他测试</h2>
 <p>在 <code>tests</code> 模块中创建 <code>test_exceptions.py</code> 文件，内容如下：</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Test exception&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">example_etl.exceptions</span> <span class="kn">import</span> <span class="n">PluginNotFoundError</span>
-
-
-<span class="k">def</span> <span class="nf">test_plugin_not_found_error</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;test plugin not found error&quot;&quot;&quot;</span>
-    <span class="n">error</span> <span class="o">=</span> <span class="n">PluginNotFoundError</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Can not found &quot;bar&quot; plugin in foo&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="sd">&quot;&quot;&quot;Test exception&quot;&quot;&quot;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kn">from</span> <span class="nn">example_etl.exceptions</span> <span class="kn">import</span> <span class="n">PluginNotFoundError</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">def</span> <span class="nf">test_plugin_not_found_error</span><span class="p">():</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="sd">&quot;&quot;&quot;test plugin not found error&quot;&quot;&quot;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="n">error</span> <span class="o">=</span> <span class="n">PluginNotFoundError</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Can not found &quot;bar&quot; plugin in foo&#39;</span>
 </code></pre></div>
 <p>再次运行 <code>pytest --cov</code> 可以看到覆盖率 100% 。</p>
 <h2 id="_4">代码风格检测</h2>
@@ -1497,7 +1617,7 @@ TOTAL                                       265      2    99%
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.highlight", "navigation.sections", "navigation.top", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.highlight", "navigation.sections", "navigation.top", "navigation.tabs", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

@@ -294,6 +294,29 @@
   
 
       
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../bigdata/basis/init/" class="md-tabs__link">
+        大数据开发实践
+      </a>
+    </li>
+  
+
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1123,6 +1146,103 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          大数据开发实践
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="大数据开发实践" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          大数据开发实践
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          基础
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="基础" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bigdata/basis/init/" class="md-nav__link">
+        前期准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bigdata/basis/quick_start/" class="md-nav__link">
+        快速上手
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1402,35 +1522,35 @@
 <h3 id="12-ubuntu-desktop-21">1.2 Ubuntu Desktop 21</h3>
 <p>对于编译安装，适用于大部分 Linux 系统，除了 Python 安装过程中的依赖包在特定操作系统中有区别外，其他操作都是一致的。</p>
 <h4 id="121">1.2.1 安装依赖</h4>
-<div class="highlight"><pre><span></span><code>sudo apt-get install build-essential gdb lcov pkg-config <span class="se">\</span>
-      libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev <span class="se">\</span>
-      libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev <span class="se">\</span>
-      lzma lzma-dev tk-dev uuid-dev zlib1g-dev
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo apt-get install build-essential gdb lcov pkg-config <span class="se">\</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>      libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev <span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>      libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev <span class="se">\</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>      lzma lzma-dev tk-dev uuid-dev zlib1g-dev
 </code></pre></div>
 <h4 id="122-python">1.2.2 安装 Python 环境</h4>
 <p>下载 <a href="https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tar.xz">XZ compressed source tarball</a> 源码包，然后解压到 <code>/tmp</code> ，
 然后解压：</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> /tmp/
-wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tar.xz
-tar -Jxf Python-3.10.0.tar.xz
-<span class="nb">cd</span> Python-3.10.0/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span> /tmp/
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tar.xz
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>tar -Jxf Python-3.10.0.tar.xz
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nb">cd</span> Python-3.10.0/
 </code></pre></div>
 <p>使用 ./configure 进行预编译。在预编译过程中，可以指定要编译到源代码中的内容。使用 ./configure --help 可以查看支持哪些选项。</p>
 <p>一般会进行如下操作：</p>
-<div class="highlight"><pre><span></span><code>./configure --enable-optimizations
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./configure --enable-optimizations
 </code></pre></div>
 <p>如果需要安装到其他位置，可以使用 --prefix=/usr/bin 指定。默认是安装到 /usr/local/bin 。</p>
 <p>当出现如下输出，说明预编译完成：</p>
-<div class="highlight"><pre><span></span><code>creating Modules/Setup.local
-creating Makefile
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>creating Modules/Setup.local
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>creating Makefile
 </code></pre></div>
 <p>编译
 使用 make 命令编译构建</p>
-<div class="highlight"><pre><span></span><code>make -s -j2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>make -s -j2
 </code></pre></div>
 <p>-j 可以指定并发构建任务数。如果多核 CPU 可以指定核心数。</p>
 <p>安装</p>
-<div class="highlight"><pre><span></span><code>sudo make altinstall
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo make altinstall
 </code></pre></div>
 <p>使用 altinstall 可以避免覆盖系统现有默认命令。即不会覆盖 python 命令。</p>
 <h4 id="123-python">1.2.3 测试 Python 环境</h4>
@@ -1446,7 +1566,7 @@ creating Makefile
 <li><a href="https://mirrors.163.com/.help/pypi.html">163 mirror</a></li>
 </ul>
 <p>下面使用阿里云镜像配置，如果需要使用其他镜像仓库，改动 <code>index-url</code> 后面的地址即可：</p>
-<div class="highlight"><pre><span></span><code>pip config <span class="nb">set</span> global.index-url https://mirrors.aliyun.com/pypi/simple/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pip config <span class="nb">set</span> global.index-url https://mirrors.aliyun.com/pypi/simple/
 </code></pre></div>
 <h2 id="3">3 多环境共存</h2>
 <p>多环境共存是为了在同一个操作系统中，同时使用不同版本的 Python 环境，或者编写的程序需要在
@@ -1456,28 +1576,28 @@ creating Makefile
 <h3 id="32-linux">3.2 Linux</h3>
 <p>Linux 本身的优势，可以使用软连接生成不同的可执行文件名。在安装好 Python 3.10 版本后，默认会在生成 <code>/usr/local/bin/python3.10</code>
 可执行文件。如果需要将默认的 Python 命令替换为 <code>python3.10</code> 则可以删除原有的 <code>python</code> 命令，然后重新软连接。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 备份当前默认的 python3 命令到 /tmp</span>
-mv /usr/bin/python3 /tmp
-<span class="c1"># 重新连接 python3 命令</span>
-ln -s /usr/local/bin/python3.10 /usr/bin/python3
-
-<span class="c1"># 备份当前默认 pip3 命令</span>
-mv /usr/bin/pip3 /tmp
-<span class="c1"># 重新连接 pip3 命令</span>
-ln -s /usr/local/bin/pip3.10 /usr/bin/pip3
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 备份当前默认的 python3 命令到 /tmp</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>mv /usr/bin/python3 /tmp
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># 重新连接 python3 命令</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>ln -s /usr/local/bin/python3.10 /usr/bin/python3
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># 备份当前默认 pip3 命令</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>mv /usr/bin/pip3 /tmp
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1"># 重新连接 pip3 命令</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>ln -s /usr/local/bin/pip3.10 /usr/bin/pip3
 </code></pre></div>
 <h2 id="4">4 问题排查</h2>
 <h3 id="41-linux">4.1 Linux 安装出现问题</h3>
 <p>如果编译过程中出现问题，请检查依赖是否安装完成。</p>
 <p>Debian / Ubuntu 系列操作系统依赖如下：</p>
-<div class="highlight"><pre><span></span><code>sudo apt-get install build-essential gdb lcov pkg-config <span class="se">\</span>
-      libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev <span class="se">\</span>
-      libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev <span class="se">\</span>
-      lzma lzma-dev tk-dev uuid-dev zlib1g-dev
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo apt-get install build-essential gdb lcov pkg-config <span class="se">\</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>      libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev <span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>      libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev <span class="se">\</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>      lzma lzma-dev tk-dev uuid-dev zlib1g-dev
 </code></pre></div>
 <p>对于 RHEL 系列操作系统，依赖安装如下：</p>
-<div class="highlight"><pre><span></span><code>sudo dnf install dnf-plugins-core  <span class="c1"># install this to use &#39;dnf builddep&#39;</span>
-sudo dnf builddep python3
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo dnf install dnf-plugins-core  <span class="c1"># install this to use &#39;dnf builddep&#39;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>sudo dnf builddep python3
 </code></pre></div>
 <h3 id="42-python">4.2 卸载 Python</h3>
 <p>注意：如果是 Linux 操作系统，你应该至少保留系统的默认 Python 环境，或者一个其他版本的 PYthon 环境，否则 操作系统可能无法正常使用。</p>
@@ -1493,20 +1613,20 @@ sudo dnf builddep python3
 <li><code>/usr/local/share/man/man1/python3.10.1</code></li>
 </ul>
 <p>运行命令删除：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 创建备份目录，以便出现问题，可以执行恢复</span>
-<span class="c1"># 注意不要在 /tmp 下创建，如果重启系统 /tmp 下的文件会删除。</span>
-<span class="c1"># 放在家目录，可以通过应急模式找到相应文件。</span>
-<span class="c1"># 等确保操作系统没有任何异常问题的时候，再删除</span>
-mkdir ~/removed_python310
-mv -f <span class="se">\</span>
-    /usr/lib/python3.10 <span class="se">\</span>
-    /usr/local/lib/libpython3.10.a <span class="se">\</span>
-    /usr/local/lib/python3.10 <span class="se">\</span>
-    /usr/local/include/python3.10 <span class="se">\</span>
-    /usr/local/bin/python3.10-config <span class="se">\</span>
-    /usr/local/bin/python3.10 <span class="se">\</span>
-    /usr/local/share/man/man1/python3.10.1 <span class="se">\</span>
-    ~/removed_python310
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># 创建备份目录，以便出现问题，可以执行恢复</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># 注意不要在 /tmp 下创建，如果重启系统 /tmp 下的文件会删除。</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1"># 放在家目录，可以通过应急模式找到相应文件。</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># 等确保操作系统没有任何异常问题的时候，再删除</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>mkdir ~/removed_python310
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>mv -f <span class="se">\</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    /usr/lib/python3.10 <span class="se">\</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    /usr/local/lib/libpython3.10.a <span class="se">\</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    /usr/local/lib/python3.10 <span class="se">\</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    /usr/local/include/python3.10 <span class="se">\</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>    /usr/local/bin/python3.10-config <span class="se">\</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    /usr/local/bin/python3.10 <span class="se">\</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>    /usr/local/share/man/man1/python3.10.1 <span class="se">\</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>    ~/removed_python310
 </code></pre></div>
 <p>如果你曾使用过 <code>pip3.10</code> 安装依赖，请检查用户目录下是否存在相关依赖目录：</p>
 <ul>
@@ -1588,7 +1708,7 @@ mv -f <span class="se">\</span>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["search.highlight", "navigation.sections", "navigation.top", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.highlight", "navigation.sections", "navigation.top", "navigation.tabs", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

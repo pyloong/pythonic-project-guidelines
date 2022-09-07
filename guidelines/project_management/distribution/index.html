@@ -294,6 +294,29 @@
   
 
       
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../bigdata/basis/init/" class="md-tabs__link">
+        大数据开发实践
+      </a>
+    </li>
+  
+
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1239,6 +1262,103 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          大数据开发实践
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="大数据开发实践" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          大数据开发实践
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          基础
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="基础" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bigdata/basis/init/" class="md-nav__link">
+        前期准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bigdata/basis/quick_start/" class="md-nav__link">
+        快速上手
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1570,44 +1690,47 @@
 </ul>
 <h5 id="2111">2.1.1.1 示例配置</h5>
 <p><strong>pyproject.toml</strong> :</p>
-<div class="highlight"><pre><span></span><code><span class="k">[build-system]</span><span class="w"></span>
-<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;setuptools&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wheel&quot;</span><span class="p">]</span><span class="w"></span>
-<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;setuptools.build_meta&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[build-system]</span><span class="w"></span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;setuptools&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wheel&quot;</span><span class="p">]</span><span class="w"></span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;setuptools.build_meta&quot;</span><span class="w"></span>
 </code></pre></div>
 <p>增加 <code>setup.py</code> 或者 <code>setup.cfg</code> 两种有其一即可。然后在文件中定义配置。</p>
 <p>推荐使用 <code>setup.cfg</code> 。</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">setup.cfg</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="k">[metadata]</span><span class="w"></span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mypackage</span><span class="w"></span>
-<span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0.1</span><span class="w"></span>
-
-<span class="k">[options]</span><span class="w"></span>
-<span class="na">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mypackage</span><span class="w"></span>
-<span class="na">install_requires</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">        </span><span class="na">requests</span><span class="w"></span>
-<span class="w">    </span><span class="na">importlib; python_version</span><span class="w"> </span><span class="o">=</span><span class="s">= &quot;3.7&quot;</span><span class="w"></span>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">setup.cfg</label><label for="__tabbed_1_2">setup.py</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[metadata]</span><span class="w"></span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mypackage</span><span class="w"></span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0.1</span><span class="w"></span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">[options]</span><span class="w"></span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="na">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mypackage</span><span class="w"></span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="na">install_requires</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="na">requests</span><span class="w"></span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="na">importlib; python_version</span><span class="w"> </span><span class="o">=</span><span class="s">= &quot;3.7&quot;</span><span class="w"></span>
 </code></pre></div>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">setup.py</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
-
-<span class="n">setup</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mypackage&#39;</span><span class="p">,</span>
-    <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.0.1&#39;</span><span class="p">,</span>
-    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mypackage&#39;</span><span class="p">],</span>
-    <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span>
-        <span class="s1">&#39;requests&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;importlib; python_version == &quot;2.6&quot;&#39;</span><span class="p">,</span>
-    <span class="p">],</span>
-<span class="p">)</span>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">setup</span><span class="p">(</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mypackage&#39;</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.0.1&#39;</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mypackage&#39;</span><span class="p">],</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="s1">&#39;requests&#39;</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="s1">&#39;importlib; python_version == &quot;2.6&quot;&#39;</span><span class="p">,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="p">],</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">)</span>
 </code></pre></div>
+</div>
 </div>
 </div>
 <p>此时你的项目结构应在是这样的：</p>
-<div class="highlight"><pre><span></span><code>~/mypackage/
-    pyproject.toml
-    setup.cfg # or setup.py
-    mypackage/__init__.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>~/mypackage/
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    pyproject.toml
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    setup.cfg # or setup.py
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    mypackage/__init__.py
 </code></pre></div>
 <h5 id="2112">2.1.1.2 通用方式构建</h5>
 <p>安装 PEP-517 规范的包生成器 <a href="https://pypi.org/project/build/">build</a> 和 <a href="https://pypi.org/project/setuptools/">setuptools</a>，<code>pip install build setuptools</code> 。</p>
@@ -1616,9 +1739,9 @@
 <p>此方法是在不安装 <a href="https://pypi.org/project/build/">build</a> 的情况下使用的。</p>
 <p>如果你只是用了 <code>setup.cfg</code> 配置的情况下，你还需要增加一个 <code>setup.py</code> 文件，内容如下：</p>
 <p><strong>setup.py</strong> ：</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
-
-<span class="n">setup</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">setup</span><span class="p">()</span>
 </code></pre></div>
 <p>如果你仅使用了 <code>setup.py</code> 配置 <a href="https://setuptools.readthedocs.io/en/latest/index.html">Setuptools</a> 的话，可以不需要 <code>setup.cfg</code> 文件。</p>
 <p>安装依赖 <code>pip install setuptools</code> ，然后进行构建 <code>python setup.py bdist_wheel</code> 。</p>
@@ -1628,7 +1751,7 @@
 <p>安装依赖： <code>pip install twine</code> 。</p>
 <p>使用 <a href="https://setuptools.readthedocs.io/en/latest/index.html">Setuptools</a> 构建项目，构建结果默认是放在项目根目录的 <code>./dist</code> 下面 。</p>
 <p>发布项目到 <a href="https://pypi.org/">Pypi</a> ：</p>
-<div class="highlight"><pre><span></span><code>twine upload dist/*
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>twine upload dist/*
 </code></pre></div>
 <h4 id="212-flit">2.1.2 flit</h4>
 <p><a href="https://flit.readthedocs.io/en/latest/">Flit</a> 是一个轻量简单的 Python 构建工具，它的出现也可以说是划时代的，因为它的出现促进了新标准的发现，
@@ -1654,15 +1777,15 @@
 </ul>
 <h5 id="2121">2.1.2.1 示例配置</h5>
 <p><strong>pyproject.toml</strong> ：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[build-system]</span><span class="w"></span>
-<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;flit_core &gt;=2,&lt;4&quot;</span><span class="p">]</span><span class="w"></span>
-<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;flit_core.buildapi&quot;</span><span class="w"></span>
-
-<span class="k">[tool.flit.metadata]</span><span class="w"></span>
-<span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;foobar&quot;</span><span class="w"></span>
-<span class="n">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Sir Robin&quot;</span><span class="w"></span>
-<span class="n">author-email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;robin@camelot.uk&quot;</span><span class="w"></span>
-<span class="n">home-page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://github.com/sirrobin/foobar&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">[build-system]</span><span class="w"></span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;flit_core &gt;=2,&lt;4&quot;</span><span class="p">]</span><span class="w"></span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;flit_core.buildapi&quot;</span><span class="w"></span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">[tool.flit.metadata]</span><span class="w"></span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;foobar&quot;</span><span class="w"></span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Sir Robin&quot;</span><span class="w"></span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">author-email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;robin@camelot.uk&quot;</span><span class="w"></span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">home-page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://github.com/sirrobin/foobar&quot;</span><span class="w"></span>
 </code></pre></div>
 <h5 id="2122">2.1.2.2 通用方式构建</h5>
 <p>安装 PEP-517 规范的包生成器  <a href="https://pypi.org/project/build/">build</a> 和 <a href="https://pypi.org/project/flit/">flit</a> ，<code>pip install build flit</code> 。</p>
@@ -1672,7 +1795,7 @@
 <p>安装依赖： <code>pip install flit</code> ，然后进行构建 <code>flit build --format wheel</code> 。</p>
 <h5 id="2124-flit">2.1.2.4 flit 发布</h5>
 <p><code>flit</code> 的发布命令会自行先构建 <code>wheel</code> 和 <code>sdist</code> 包，然后上传到 <a href="https://pypi.org/">Pypi</a> 或者其他仓库。</p>
-<div class="highlight"><pre><span></span><code>flit build --format wheel
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>flit build --format wheel
 </code></pre></div>
 <h4 id="213-poetry">2.1.3 poetry</h4>
 <p><a href="https://python-poetry.org/docs/">python-poetry</a> 是一个更高级的工具。它是一个构建工具的同时也是一个依赖管理工具。
@@ -1696,78 +1819,78 @@
 <li>不支持 zip 压缩选项</li>
 </ul>
 <h5 id="2131">2.1.3.1 示例配置</h5>
-<div class="highlight"><pre><span></span><code><span class="k">[build-system]</span><span class="w"></span>
-<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;poetry_core&gt;=1.0.0&quot;</span><span class="p">]</span><span class="w"></span>
-<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poetry.core.masonry.api&quot;</span><span class="w"></span>
-
-<span class="k">[tool.poetry]</span><span class="w"></span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poetry-demo&quot;</span><span class="w"></span>
-<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;0.1.0&quot;</span><span class="w"></span>
-<span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
-<span class="n">authors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Sébastien Eustace &lt;sebastien@eustace.io&gt;&quot;</span><span class="p">]</span><span class="w"></span>
-
-<span class="k">[tool.poetry.dependencies]</span><span class="w"></span>
-<span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="w"></span>
-
-<span class="k">[tool.poetry.dev-dependencies]</span><span class="w"></span>
-<span class="n">pytest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^3.4&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">[build-system]</span><span class="w"></span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;poetry_core&gt;=1.0.0&quot;</span><span class="p">]</span><span class="w"></span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poetry.core.masonry.api&quot;</span><span class="w"></span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">[tool.poetry]</span><span class="w"></span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poetry-demo&quot;</span><span class="w"></span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;0.1.0&quot;</span><span class="w"></span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">authors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Sébastien Eustace &lt;sebastien@eustace.io&gt;&quot;</span><span class="p">]</span><span class="w"></span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="k">[tool.poetry.dependencies]</span><span class="w"></span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="w"></span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="k">[tool.poetry.dev-dependencies]</span><span class="w"></span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="n">pytest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^3.4&quot;</span><span class="w"></span>
 </code></pre></div>
 <h3 id="22">2.2 打包构建</h3>
 <p>考虑到新工具的功能性，现阶段仍然选用 <code>setuptools</code> 作为构建工具。</p>
 <p>为项目指定所需要使用的构建工具。创建 <code>pyproject.toml</code> 文件，增加如下内容：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[build-system]</span><span class="w"></span>
-<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;setuptools&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wheel&quot;</span><span class="p">]</span><span class="w"></span>
-<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;setuptools.build_meta&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">[build-system]</span><span class="w"></span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;setuptools&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wheel&quot;</span><span class="p">]</span><span class="w"></span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;setuptools.build_meta&quot;</span><span class="w"></span>
 </code></pre></div>
 <p>创建 <code>setup.cfg</code> 文件，增加 <a href="https://setuptools.readthedocs.io/en/latest/index.html">Setuptools</a> 配置。</p>
-<div class="highlight"><pre><span></span><code><span class="k">[metadata]</span><span class="w"></span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">file2mongo</span><span class="w"></span>
-<span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">attr: file2mongo.__version__</span><span class="w"></span>
-<span class="na">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">demo</span><span class="w"></span>
-<span class="na">author_email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">demo@example.com</span><span class="w"></span>
-<span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">File data to MongoDB</span><span class="w"></span>
-<span class="na">keywords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">file2mongo</span><span class="w"></span>
-<span class="na">long_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">file: README.md</span><span class="w"></span>
-<span class="na">long_description_content_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">text/markdown</span><span class="w"></span>
-<span class="na">classifiers</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">Operating System :: OS Independent</span><span class="w"></span>
-<span class="w">    </span><span class="na">Programming Language :: Python :: 3.7</span><span class="w"></span>
-
-<span class="k">[options]</span><span class="w"></span>
-<span class="na">python_requires &gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3.7</span><span class="w"></span>
-<span class="na">include_package_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span><span class="w"></span>
-<span class="na">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">find:</span><span class="w"></span>
-<span class="na">package_dir</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
-<span class="na">install_requires</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">dynaconf</span><span class="w"></span>
-<span class="w">    </span><span class="na">click</span><span class="w"></span>
-<span class="w">    </span><span class="na">pymongo</span><span class="w"></span>
-
-<span class="k">[options.packages.find]</span><span class="w"></span>
-<span class="na">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
-<span class="na">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">tests*</span><span class="w"></span>
-<span class="w">    </span><span class="na">docs</span><span class="w"></span>
-
-<span class="c1"># https://setuptools.readthedocs.io/en/latest/userguide/entry_point.html</span><span class="w"></span>
-<span class="k">[options.entry_points]</span><span class="w"></span>
-<span class="na">console_scripts</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">file2mongo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">file2mongo.cmdline:main</span><span class="w"></span>
-
-<span class="c1"># Packaging project data in module file2mongo.</span><span class="w"></span>
-<span class="c1"># https://setuptools.readthedocs.io/en/latest/userguide/datafiles.html?highlight=package_data</span><span class="w"></span>
-<span class="k">[options.package_data]</span><span class="w"></span>
-<span class="na">file2mongo.config</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">settings.yml</span><span class="w"></span>
-
-<span class="c1"># Copy data for user from project when pip install.</span><span class="w"></span>
-<span class="c1"># The relative path is prefix `sys.prefix` . eg: `/usr/local/`.</span><span class="w"></span>
-<span class="c1"># Path and data will remove When pip uninstall.</span><span class="w"></span>
-<span class="c1"># https://docs.python.org/3/distutils/setupscript.html#installing-additional-files</span><span class="w"></span>
-<span class="k">[options.data_files]</span><span class="w"></span>
-<span class="na">etc/file2mongo</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">src/file2mongo/config/settings.yml</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">[metadata]</span><span class="w"></span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">file2mongo</span><span class="w"></span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">attr: file2mongo.__version__</span><span class="w"></span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="na">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">demo</span><span class="w"></span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="na">author_email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">demo@example.com</span><span class="w"></span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">File data to MongoDB</span><span class="w"></span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="na">keywords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">file2mongo</span><span class="w"></span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="na">long_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">file: README.md</span><span class="w"></span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="na">long_description_content_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">text/markdown</span><span class="w"></span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="na">classifiers</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">    </span><span class="na">Operating System :: OS Independent</span><span class="w"></span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">    </span><span class="na">Programming Language :: Python :: 3.7</span><span class="w"></span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="k">[options]</span><span class="w"></span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="na">python_requires &gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3.7</span><span class="w"></span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="na">include_package_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span><span class="w"></span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="na">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">find:</span><span class="w"></span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="na">package_dir</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="na">install_requires</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">    </span><span class="na">dynaconf</span><span class="w"></span>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="w">    </span><span class="na">click</span><span class="w"></span>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="w">    </span><span class="na">pymongo</span><span class="w"></span>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="k">[options.packages.find]</span><span class="w"></span>
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="na">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="na">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a><span class="w">    </span><span class="na">tests*</span><span class="w"></span>
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="w">    </span><span class="na">docs</span><span class="w"></span>
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>
+<a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a><span class="c1"># https://setuptools.readthedocs.io/en/latest/userguide/entry_point.html</span><span class="w"></span>
+<a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a><span class="k">[options.entry_points]</span><span class="w"></span>
+<a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a><span class="na">console_scripts</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a><span class="w">    </span><span class="na">file2mongo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">file2mongo.cmdline:main</span><span class="w"></span>
+<a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>
+<a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a><span class="c1"># Packaging project data in module file2mongo.</span><span class="w"></span>
+<a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a><span class="c1"># https://setuptools.readthedocs.io/en/latest/userguide/datafiles.html?highlight=package_data</span><span class="w"></span>
+<a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a><span class="k">[options.package_data]</span><span class="w"></span>
+<a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a><span class="na">file2mongo.config</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a><span class="w">    </span><span class="na">settings.yml</span><span class="w"></span>
+<a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a>
+<a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a><span class="c1"># Copy data for user from project when pip install.</span><span class="w"></span>
+<a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a><span class="c1"># The relative path is prefix `sys.prefix` . eg: `/usr/local/`.</span><span class="w"></span>
+<a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a><span class="c1"># Path and data will remove When pip uninstall.</span><span class="w"></span>
+<a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a><span class="c1"># https://docs.python.org/3/distutils/setupscript.html#installing-additional-files</span><span class="w"></span>
+<a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a><span class="k">[options.data_files]</span><span class="w"></span>
+<a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a><span class="na">etc/file2mongo</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a><span class="w">    </span><span class="na">src/file2mongo/config/settings.yml</span><span class="w"></span>
 </code></pre></div>
 <h4 id="221-metadata">2.2.1 metadata</h4>
 <p><a href="https://setuptools.readthedocs.io/en/latest/userguide/declarative_config.html?highlight=metadata#metadata">metadata</a> 是项目基本描述信息，有项目名称，版本号，作者相关信息，证书等。</p>
@@ -1800,7 +1923,7 @@ Setuptools 本身已经支持多种版本号控制方案。但推荐使用 <a hr
 <p>（另外，为了确保依赖项处理工具将知道您项目的哪个版本比其他版本新，在发布项目之前，请确保参阅上面的 <a href="https://setuptools.readthedocs.io/en/latest/userguide/distribution.html#specifying-your-project-s-version">指定项目的版本</a> 部分。）</p>
 <p>最后，如果您经常创建构建，并且在可下载的位置构建它们，或者将它们复制到分发服务器，那么您可能还应该检执行<a href="https://setuptools.readthedocs.io/en/latest/userguide/commands.html#rotate">rotate</a>
  命令，该命令会自动删除除 N 个最近修改的与 glob 模式匹配的发行版之外的所有发行版。操作如下:</p>
-<div class="highlight"><pre><span></span><code>setup.py egg_info -rbDEV bdist_egg rotate -m.egg -k3
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>setup.py egg_info -rbDEV bdist_egg rotate -m.egg -k3
 </code></pre></div>
 <p>构建一个 egg ，其版本信息包括“DEV-rNNNN”(其中NNNN是资源树的最新修订)，然后从发行目录中删除除最近构建的三个egg文件之外的所有egg文件。</p>
 <p>如果您必须管理多个包的自动化构建，每个包都有不同的标记和滚动策略，那么您可能还需要运行 <a href="https://setuptools.readthedocs.io/en/latest/setuptools.html#alias">alias</a> 命令，
@@ -1810,14 +1933,14 @@ Setuptools 本身已经支持多种版本号控制方案。但推荐使用 <a hr
 <p>当您发布正式版本，创建源代码或二进制发行版时，需要覆盖setup中的标记设置。这样就不用注册像 <code>foobar-0.7a1.dev-r34832</code> 这样的版本了。如果主分支上进行开发，
 并且为发行版使用标记或分支，那么就很容易做到只在分支或标记发行版之后更改 setup.cfg，这样主分支仍然会生成开发快照。</p>
 <p>另外，如果没有为发布版本进行分支，您可以在命令行上覆盖默认的版本选项，使用如下方法:</p>
-<div class="highlight"><pre><span></span><code>python setup.py egg_info -Db <span class="s2">&quot;&quot;</span> sdist bdist_egg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>python setup.py egg_info -Db <span class="s2">&quot;&quot;</span> sdist bdist_egg
 </code></pre></div>
 <p>该命令的第一部分( <code>egg_info -Db ""</code> )将在创建源和二进制 egg 之前覆盖已配置的标记信息。因此，这些命令将使用 <code>setup.py</code> 中的普通版本，而不添加构建指定字符串。</p>
 <p>当然，如果您经常这样做，您可能希望为这个操作创建一个个人别名，例如:</p>
-<div class="highlight"><pre><span></span><code>python setup.py <span class="nb">alias</span> -u release egg_info -Db <span class="s2">&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>python setup.py <span class="nb">alias</span> -u release egg_info -Db <span class="s2">&quot;&quot;</span>
 </code></pre></div>
 <p>然后你可以像这样使用它：</p>
-<div class="highlight"><pre><span></span><code>python setup.py release sdist bdist_egg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>python setup.py release sdist bdist_egg
 </code></pre></div>
 <p>当然，也可以创建更复杂的别名来完成上述所有操作。有关更多信息，请参阅 <a href="https://setuptools.readthedocs.io/en/latest/userguide/commands.html?highlight=alias#egg-info-create-egg-metadata-and-set-build-tags">egg_info</a> 和
  <a href="https://setuptools.readthedocs.io/en/latest/userguide/commands.html?highlight=alias#alias-define-shortcuts-for-commonly-used-commands">alias</a> 命令下面的部分。</p>
@@ -1841,18 +1964,18 @@ Setuptools 本身已经支持多种版本号控制方案。但推荐使用 <a hr
 <p>Setuptools 可以通过使用正确的扩展名自动生成脚本，甚至会在 Windows 上创建一个 <code>.exe</code> 文件。使用此特性的方法是在配置文件中定义 <code>entry points</code> ，
 指出生成的脚本应该导入和运行什么函数。例如，要创建两个名为 <code>foo</code> 和 <code>bar</code> 的控制台脚本和一个名为 <code>baz</code> 的 GUI 脚本，</p>
 <p>如下示例：</p>
-<div class="highlight"><pre><span></span><code><span class="n">setup</span><span class="p">(</span>
-    <span class="c1"># other arguments here...</span>
-    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
-        <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s1">&#39;foo = my_package.some_module:main_func&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;bar = other_module:some_func&#39;</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="s1">&#39;gui_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s1">&#39;baz = my_package_gui:start_func&#39;</span><span class="p">,</span>
-        <span class="p">]</span>
-    <span class="p">}</span>
-<span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">setup</span><span class="p">(</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="c1"># other arguments here...</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>        <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>            <span class="s1">&#39;foo = my_package.some_module:main_func&#39;</span><span class="p">,</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>            <span class="s1">&#39;bar = other_module:some_func&#39;</span><span class="p">,</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>        <span class="p">],</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>        <span class="s1">&#39;gui_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>            <span class="s1">&#39;baz = my_package_gui:start_func&#39;</span><span class="p">,</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>        <span class="p">]</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="p">}</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="p">)</span>
 </code></pre></div>
 <p>当该项目安装在非 Windows 平台上(使用 <code>setup.py install</code> 、<code>setup.py develop</code> 或使用 <code>pip install</code> )时，将安装一组 <code>foo</code> 、 <code>bar</code> 和 <code>baz</code> 脚本，
 从指定的模块导入 <code>main_func</code> 和 <code>some_func</code> 。指定的函数在没有参数的情况下被调用，并且返回值被传递给 <code>sys.exit()</code> ，因此可以返回一个错误级别日志或一条消息来打印到 <code>stderr</code> 。</p>
@@ -1864,58 +1987,58 @@ Setuptools 本身已经支持多种版本号控制方案。但推荐使用 <a hr
 <p>Setuptools 支持<a href="https://setuptools.readthedocs.io/en/latest/userguide/datafiles.html?highlight=package_data#data-files-support">打包数据文件</a> ，这样可以
 很方便的把包中的数据文件预先打包，在分发的时候直接使用。常见的文件就是配置了。</p>
 <p><strong>方法一</strong> ：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[options]</span><span class="w"></span>
-<span class="na">include_package_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[options]</span><span class="w"></span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="na">include_package_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span><span class="w"></span>
 </code></pre></div>
 <p><code>include_package_data</code> 会告诉 Setuptools 通过 <code>distutils</code> 的 <code>MANIFEST.in</code> 文件指定数据文件。</p>
 <p><strong>方法二</strong> ：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[options.package_data]</span><span class="w"></span>
-<span class="na">&quot;&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">&quot;*.txt&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="na">&quot;*.rst&quot;</span><span class="w"></span>
-<span class="na">&quot;hello&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-<span class="w">    </span><span class="na">&quot;*.msg&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">[options.package_data]</span><span class="w"></span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="na">&quot;&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="na">&quot;*.txt&quot;</span><span class="w"></span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="na">&quot;*.rst&quot;</span><span class="w"></span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="na">&quot;hello&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span><span class="na">&quot;*.msg&quot;</span><span class="w"></span>
 </code></pre></div>
 <p>使用 <code>package_data</code> 可以更细粒度的控制索要包含的数据文件。第一个配置是告诉 Setuptools 在通过全局模式递归匹配以 <code>.txt</code> 和 <code>.rst</code> 结尾
 的所有文件，第二个配置是查找 <code>hello</code> 下所有 <code>.msg</code> 结尾的文件，并在打包是包含匹配到的所有数据文件。</p>
 <p><strong>方法三（SRC 模式）</strong> ：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[options]</span><span class="w"></span>
-<span class="na">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">find:</span><span class="w"></span>
-<span class="na">package_dir</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
-
-<span class="k">[options.packages.find]</span><span class="w"></span>
-<span class="na">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
-
-<span class="k">[options.package_data]</span><span class="w"></span>
-<span class="na">&quot;&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">&quot;*.txt&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="na">&quot;*.rst&quot;</span><span class="w"></span>
-<span class="na">&quot;hello&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-<span class="w">    </span><span class="na">&quot;*.msg&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">[options]</span><span class="w"></span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="na">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">find:</span><span class="w"></span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="na">package_dir</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="k">[options.packages.find]</span><span class="w"></span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="na">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="k">[options.package_data]</span><span class="w"></span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="na">&quot;&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">    </span><span class="na">&quot;*.txt&quot;</span><span class="w"></span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">    </span><span class="na">&quot;*.rst&quot;</span><span class="w"></span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="na">&quot;hello&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">    </span><span class="na">&quot;*.msg&quot;</span><span class="w"></span>
 </code></pre></div>
 <p>当使用 <a href="https://pyloong.github.io/pythonic-project-guidelines/guidelines/project_structure/#3">SRC 项目结构</a> 时，需要采用上述配置。</p>
 <p><code>packages = find:</code> 中告诉 Setuptools 采用 <code>setuptools.find_packages</code> 方法查找项目包结构所在位置， <code>options.packages.find</code> 中会配置 <code>setuptools.find_packages</code> 方法的参数， <code>where = src</code> 则指定项目的包在 <code>src</code> 下。</p>
 <p><code>package_dir</code> 告诉 <code>distutils</code> 包在 <code>src</code> 下，因此 <code>options.package_data</code> 中的配置都会在 <code>src</code> 下的包中查找。</p>
 <h5 id="2223">2.2.2.3 安装附加文件</h5>
 <p><code>data_files</code> 可以指定需要安装到系统中的其他文件，如配置文件、消息目录，数据文件等。</p>
-<div class="highlight"><pre><span></span><code><span class="k">[options]</span><span class="w"></span>
-<span class="na">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">find:</span><span class="w"></span>
-<span class="na">package_dir</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
-
-<span class="k">[options.packages.find]</span><span class="w"></span>
-<span class="na">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
-
-<span class="k">[options.package_data]</span><span class="w"></span>
-<span class="na">my_package.config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">settings.yml</span><span class="w"></span>
-<span class="na">my_package.data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">users.csv</span><span class="w"></span>
-
-<span class="k">[options.data_files]</span><span class="w"></span>
-<span class="na">/etc/my_package</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">src/my_package/config/settings.yml</span><span class="w"></span>
-<span class="na">share/my_package/data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-<span class="w">    </span><span class="na">src/my_package/data/users.csv</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">[options]</span><span class="w"></span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="na">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">find:</span><span class="w"></span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="na">package_dir</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="k">[options.packages.find]</span><span class="w"></span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="na">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="k">[options.package_data]</span><span class="w"></span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="na">my_package.config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">settings.yml</span><span class="w"></span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="na">my_package.data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">users.csv</span><span class="w"></span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="k">[options.data_files]</span><span class="w"></span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="na">/etc/my_package</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">    </span><span class="na">src/my_package/config/settings.yml</span><span class="w"></span>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="na">share/my_package/data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="w">    </span><span class="na">src/my_package/data/users.csv</span><span class="w"></span>
 </code></pre></div>
 <p><code>options.data_files</code> 之前的几项配置告诉 Setuptools 在构建的时候，将需要的数据文件打包。
 它本身的配置内容是指定项目在使用 Pip 安装时，将项目包中 <code>src/my_package/config/settings.yml</code> 复制到系统目录 <code>/etc/my_package/settings.yml</code> 位置。
@@ -1924,7 +2047,7 @@ Setuptools 本身已经支持多种版本号控制方案。但推荐使用 <a hr
 <h4 id="223">2.2.3 构建</h4>
 <p>当配置完成后，就可以开始构建了。</p>
 <p>运行命令：</p>
-<div class="highlight"><pre><span></span><code>python -m build
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>python -m build
 </code></pre></div>
 <p>运行完成后，会在项目根目录的 <code>./dist</code> 中生成两个分发文件。一个是 <code>.tar.gz</code> 结尾的源码压缩包，一个是 <code>.whl</code> 结尾的二进制包。</p>
 <h2 id="3">3 分发</h2>
@@ -1937,37 +2060,37 @@ Setuptools 本身已经支持多种版本号控制方案。但推荐使用 <a hr
 <p>要发布到 <a href="https://pypi.org/">Pypi</a> ，首先需要注册账号，如果是要测试，则可以使用测试仓库<a href="https://test.pypi.org/">Test-Pypi</a> 。对于私有仓库，可以参考具体文档，但使用方法基本一致，
 只需要替换一下仓库地址。</p>
 <p>安装 <a href="https://twine.readthedocs.io/en/latest/">Twine</a> 工具。</p>
-<div class="highlight"><pre><span></span><code>pip install twine
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>pip install twine
 </code></pre></div>
 <p>上传到 <a href="https://test.pypi.org/">Test-Pypi</a> ：</p>
-<div class="highlight"><pre><span></span><code>twine upload -r testpypi dist/*
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>twine upload -r testpypi dist/*
 </code></pre></div>
 <p>填写用户名和密码即可上传。</p>
 <p>上传到 <a href="https://pypi.org/">Pypi</a> ：</p>
-<div class="highlight"><pre><span></span><code>twine upload dist/*
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>twine upload dist/*
 </code></pre></div>
 <h4 id="321-twine">3.2.1 Twine 配置</h4>
 <p>Twine 提供了配置，可以避免每次输密码或者仓库地址的麻烦。</p>
 <p><strong>配置文件</strong> ：</p>
 <p>Twine 可以使用 <a href="https://packaging.python.org/specifications/pypirc/">.pypirc</a> 中的配置。默认读取位置是 <code>~/.pypirc</code></p>
-<div class="highlight"><pre><span></span><code><span class="k">[distutils]</span><span class="w"></span>
-<span class="na">index-servers</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">pypi</span><span class="w"></span>
-<span class="w">    </span><span class="na">testpypi</span><span class="w"></span>
-<span class="w">    </span><span class="na">private-repository</span><span class="w"></span>
-
-<span class="k">[pypi]</span><span class="w"></span>
-<span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">__token__</span><span class="w"></span>
-<span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;PyPI token&gt;</span><span class="w"></span>
-
-<span class="k">[testpypi]</span><span class="w"></span>
-<span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">__token__</span><span class="w"></span>
-<span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;TestPyPI token&gt;</span><span class="w"></span>
-
-<span class="k">[private-repository]</span><span class="w"></span>
-<span class="na">repository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;private-repository URL&gt;</span><span class="w"></span>
-<span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;private-repository username&gt;</span><span class="w"></span>
-<span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;private-repository password&gt;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">[distutils]</span><span class="w"></span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="na">index-servers</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="na">pypi</span><span class="w"></span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">    </span><span class="na">testpypi</span><span class="w"></span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">    </span><span class="na">private-repository</span><span class="w"></span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="k">[pypi]</span><span class="w"></span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">__token__</span><span class="w"></span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;PyPI token&gt;</span><span class="w"></span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="k">[testpypi]</span><span class="w"></span>
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">__token__</span><span class="w"></span>
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;TestPyPI token&gt;</span><span class="w"></span>
+<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>
+<a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="k">[private-repository]</span><span class="w"></span>
+<a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="na">repository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;private-repository URL&gt;</span><span class="w"></span>
+<a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;private-repository username&gt;</span><span class="w"></span>
+<a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a><span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;private-repository password&gt;</span><span class="w"></span>
 </code></pre></div>
 <p>上述配置中有三个仓库，分别为 <code>pypi</code> 、 <code>test-pypi</code> 、 <code>private-repository</code> 。在使用时，默认是 <code>pypi</code> ，也可以使用 <code>-r</code> 参数指定。其中 <code>username</code> 、 <code>password</code> 为对应仓库用户名和密码。</p>
 <details class="danger" open="open">
@@ -1983,7 +2106,7 @@ Setuptools 本身已经支持多种版本号控制方案。但推荐使用 <a hr
 </ul>
 <p><strong>使用 keyring 管理密码</strong> ：</p>
 <p>使用 <a href="https://pypi.org/project/keyring/">keyring</a> 可以很安全的管理密码，在上传包的时候，输入用户名后即可从 <a href="https://pypi.org/project/keyring/">keyring</a> 中读取配置的密码。</p>
-<div class="highlight"><pre><span></span><code>keyring <span class="nb">set</span> https://upload.pypi.org/legacy/ your-username
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>keyring <span class="nb">set</span> https://upload.pypi.org/legacy/ your-username
 </code></pre></div>
 <details class="note" open="open">
 <summary>注意</summary>
@@ -1993,7 +2116,7 @@ Setuptools 本身已经支持多种版本号控制方案。但推荐使用 <a hr
 </details>
 <p><strong>禁用 Keyring</strong> ：</p>
 <p>在一些特殊情况下，可能并不想使用 <a href="https://pypi.org/project/keyring/">keyring</a> ，或者 <a href="https://pypi.org/project/keyring/">keyring</a> 的提示会造成系统流程出现意外，比如 CI 情况下。所以可以通过如下方式禁用：</p>
-<div class="highlight"><pre><span></span><code>keyring --disable
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>keyring --disable
 </code></pre></div>
 
 
@@ -2071,7 +2194,7 @@ Setuptools 本身已经支持多种版本号控制方案。但推荐使用 <a hr
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.highlight", "navigation.sections", "navigation.top", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.highlight", "navigation.sections", "navigation.top", "navigation.tabs", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

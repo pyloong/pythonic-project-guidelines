@@ -294,6 +294,29 @@
   
 
       
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../bigdata/basis/init/" class="md-tabs__link">
+        大数据开发实践
+      </a>
+    </li>
+  
+
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1098,6 +1121,103 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          大数据开发实践
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="大数据开发实践" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          大数据开发实践
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          基础
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="基础" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bigdata/basis/init/" class="md-nav__link">
+        前期准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bigdata/basis/quick_start/" class="md-nav__link">
+        快速上手
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1277,32 +1397,32 @@
 <p><a href="https://docs.python.org/zh-cn/3/library/venv.html#module-venv"><code>venv</code></a> 是 Python 标准库中的一个模块。如果系统中有多个版本的 Python 环境，可以创建指定版本的虚拟环境。</p>
 <p><strong>创建虚拟环境：</strong></p>
 <p>在当前目录创建一个名为 <code>demo</code> 的虚拟环境目录：</p>
-<div class="highlight"><pre><span></span><code>python3 -m venv demo
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python3 -m venv demo
 </code></pre></div>
 <p>如果 <code>demo</code> 不存在，就会创建该目录，同时在里面创建 Python 解释器，标准库和各种支持文件的副本目录。</p>
 <p>通常创建以点开头的 <code>.venv</code> 目录。既可以做到隐藏目录的效果，也可以和常见的 <code>.env</code> 环境变量定义文件区分。</p>
 <p><strong>使用虚拟环境：</strong></p>
 <p>下面激活环境变量</p>
 <p>Windows:</p>
-<div class="highlight"><pre><span></span><code>demo\Scripts\activate.bat
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>demo\Scripts\activate.bat
 </code></pre></div>
 <p>Unix 或 MacOs 上：</p>
-<div class="highlight"><pre><span></span><code><span class="nb">source</span> demo/bin/active
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">source</span> demo/bin/active
 </code></pre></div>
 <p>激活后就可以在终端中使用创建的虚拟环境了。</p>
-<div class="highlight"><pre><span></span><code>$ source demo/bin/activate
-(demo)  $ python
-Python 3.7.3 (default, Oct 28 2020, 14:33:53)
-[GCC 8.3.0] on linux
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-&gt;&gt;&gt; import sys
-&gt;&gt;&gt; sys.version
-&#39;3.7.3 (default, Oct 28 2020, 14:33:53) \n[GCC 8.3.0]&#39;
-&gt;&gt;&gt; sys.path
-[&#39;&#39;, &#39;/usr/lib/python37.zip&#39;, &#39;/usr/lib/python3.7&#39;, &#39;/usr/lib/python3.7/lib-dynload&#39;, &#39;/tmp/test/demo/lib/python3.7/site-packages&#39;]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ source demo/bin/activate
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>(demo)  $ python
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Python 3.7.3 (default, Oct 28 2020, 14:33:53)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>[GCC 8.3.0] on linux
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>&gt;&gt;&gt; import sys
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>&gt;&gt;&gt; sys.version
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>&#39;3.7.3 (default, Oct 28 2020, 14:33:53) \n[GCC 8.3.0]&#39;
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>&gt;&gt;&gt; sys.path
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>[&#39;&#39;, &#39;/usr/lib/python37.zip&#39;, &#39;/usr/lib/python3.7&#39;, &#39;/usr/lib/python3.7/lib-dynload&#39;, &#39;/tmp/test/demo/lib/python3.7/site-packages&#39;]
 </code></pre></div>
 <p><strong>退出虚拟环境：</strong></p>
-<div class="highlight"><pre><span></span><code>deactive
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>deactive
 </code></pre></div>
 <h3 id="22-conda">2.2 Conda</h3>
 <p>Conda 是在 Windows， macOS 和 Linux 上运行的开源软件包管理系统和环境管理系统。 Conda 快速安装，运行和更新软件包及其依赖项。Conda 可以轻松地在本地计算机上的环境中创建，保存，加载和切换。它是为 Python 程序创建的，但可以打包和分发适用于任何语言的软件。</p>
@@ -1314,59 +1434,59 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 <p>请确保 Python 环境是由 Anaconda 或 Miniconda 提供的。</p>
 <p><strong>创建虚拟环境：</strong></p>
 <p>创建一个名为 <code>demo</code> 目录的虚拟环境</p>
-<div class="highlight"><pre><span></span><code>conda create --name demo
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>conda create --name demo
 </code></pre></div>
 <p><strong>使用虚拟环境：</strong></p>
 <!-- markdownlint-disable MD013 -->
 
-<div class="highlight"><pre><span></span><code>C:\Users\test&gt;conda activate demo
-
-(demo) C:\Users\test&gt;python
-Python 3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)] :: Anaconda, Inc. on win32
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-&gt;&gt;&gt; import sys
-&gt;&gt;&gt; sys.path
-[&#39;&#39;, &#39;C:\\ProgramData\\Anaconda3\\python38.zip&#39;, &#39;C:\\ProgramData\\Anaconda3\\DLLs&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib&#39;, &#39;C:\\ProgramData\\Anaconda3&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib\\site-packages&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib\\site-packages\\win32&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib\\site-packages\\win32\\lib&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib\\site-packages\\Pythonwin&#39;]
-&gt;&gt;&gt; sys.version
-&#39;3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)]&#39;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>C:\Users\test&gt;conda activate demo
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>(demo) C:\Users\test&gt;python
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Python 3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)] :: Anaconda, Inc. on win32
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>&gt;&gt;&gt; import sys
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>&gt;&gt;&gt; sys.path
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>[&#39;&#39;, &#39;C:\\ProgramData\\Anaconda3\\python38.zip&#39;, &#39;C:\\ProgramData\\Anaconda3\\DLLs&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib&#39;, &#39;C:\\ProgramData\\Anaconda3&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib\\site-packages&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib\\site-packages\\win32&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib\\site-packages\\win32\\lib&#39;, &#39;C:\\ProgramData\\Anaconda3\\lib\\site-packages\\Pythonwin&#39;]
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>&gt;&gt;&gt; sys.version
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>&#39;3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)]&#39;
 </code></pre></div>
 <!-- markdownlint-restore -->
 <p><strong>退出虚拟环境：</strong></p>
-<div class="highlight"><pre><span></span><code>deactivate
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>deactivate
 </code></pre></div>
 <h3 id="23-virtualenv">2.3 Virtualenv</h3>
 <p><a href="https://virtualenv.pypa.io/en/latest/index.html">Virtualenv</a> 是一个第三库，现在由 Pypa 管理。其具有比 <code>venv</code> 更强大的功能，但现在 Virtualenv 的一些功能也在慢慢是配到 <code>venv</code> 上。</p>
 <p><strong>安装：</strong></p>
-<div class="highlight"><pre><span></span><code>pip install -U virtualenv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pip install -U virtualenv
 </code></pre></div>
 <p>Virtualenv 在 Conda 环境下会有 Bug 。<sup id="fnref:virtualenv-bug"><a class="footnote-ref" href="#fn:virtualenv-bug">1</a></sup></p>
 <p><strong>创建虚拟环境：</strong></p>
 <p>创建一个名为 <code>venv</code> 目录的虚拟环境</p>
-<div class="highlight"><pre><span></span><code>virtualenv venv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>virtualenv venv
 </code></pre></div>
 <p><strong>使用虚拟环境：</strong></p>
-<div class="highlight"><pre><span></span><code><span class="nb">source</span> venv/bin/activate
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">source</span> venv/bin/activate
 </code></pre></div>
 <p><strong>好用的工具：</strong></p>
 <p>搭配 <a href="https://virtualenvwrapper.readthedocs.io/en/latest/">VirtualenvWrapper</a> 可以更方便的使用和管理虚拟环境。</p>
 <p>Linux 安装：</p>
-<div class="highlight"><pre><span></span><code>pip install virtualenvwrapper
-<span class="c1"># 执行 virtualvnewrapper 初始化脚本。可以讲下面这一行加入到 `~/.bashrc` 中，方便当前用户使用，或者加入到 `/etc/profile` 中方便所有用户使用</span>
-<span class="nb">source</span> /usr/local/bin/virtualenvwrapper.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>pip install virtualenvwrapper
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># 执行 virtualvnewrapper 初始化脚本。可以讲下面这一行加入到 `~/.bashrc` 中，方便当前用户使用，或者加入到 `/etc/profile` 中方便所有用户使用</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">source</span> /usr/local/bin/virtualenvwrapper.sh
 </code></pre></div>
 <p>创建虚拟环境：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 执行命令，默认会在 `~/.virtualenvs` 下创建对应名称的虚拟环境目录，同时初始化虚拟环境。</span>
-<span class="c1"># 所有虚拟环境都会集中存放在这里。避免了项目根目录下有虚拟环境目录。</span>
-mkvirtualenv venv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># 执行命令，默认会在 `~/.virtualenvs` 下创建对应名称的虚拟环境目录，同时初始化虚拟环境。</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c1"># 所有虚拟环境都会集中存放在这里。避免了项目根目录下有虚拟环境目录。</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>mkvirtualenv venv
 </code></pre></div>
 <p>使用虚拟环境：</p>
-<div class="highlight"><pre><span></span><code>workon venv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>workon venv
 </code></pre></div>
 <p>删除虚拟环境：</p>
-<div class="highlight"><pre><span></span><code>rmvirtualenv venv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>rmvirtualenv venv
 </code></pre></div>
 <p>Windows 安装：</p>
-<div class="highlight"><pre><span></span><code>pip install virtualenvwrapper-win
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>pip install virtualenvwrapper-win
 </code></pre></div>
 <p>设置环境变量 <code>WORKON_HOME=D:/virtualenvs</code></p>
 <p>使用的方法和上面一致。</p>
@@ -1381,46 +1501,46 @@ mkvirtualenv venv
 <li>能根据依赖树的关系检测依赖冲突。</li>
 </ul>
 <p><strong>安装：</strong></p>
-<div class="highlight"><pre><span></span><code>pip install pipenv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>pip install pipenv
 </code></pre></div>
 <p>请注意 Virtualenv 在 Conda 环境下的 Bug [Virtualenv-bug] 。</p>
 <p><strong>创建虚拟环境：</strong></p>
 <p>在项目根目录执行 <code>pipenv install</code> ：</p>
 <!-- markdownlint-disable MD009 -->
-<div class="highlight"><pre><span></span><code>root@b2e8a92bace7:~/demo# pipenv install
-Creating a virtualenv for this project...
-Pipfile: /root/demo/Pipfile
-Using /usr/local/bin/python3 (3.7.7) to create virtualenv...
-⠸ Creating virtual environment...created virtual environment CPython3.7.7.final.0-64 in 175ms
-  creator CPython3Posix(dest=/root/.virtualenvs/demo-xfYnOzmm, clear=False, no_vcs_ignore=False, global=False)                                                              
-  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/root/.local/share/virtualenv)                                     
-    added seed packages: pip==20.2.4, setuptools==50.3.2, wheel==0.35.1                                                                                                     
-  activators BashActivator,CShellActivator,FishActivator,PowerShellActivator,PythonActivator,XonshActivator                                                                 
-
-✔ Successfully created virtual environment! 
-Virtualenv location: /root/.virtualenvs/demo-xfYnOzmm
-Creating a Pipfile for this project...
-Pipfile.lock not found, creating...
-Locking [dev-packages] dependencies...
-Locking [packages] dependencies...
-Updated Pipfile.lock (a65489)!
-Installing dependencies from Pipfile.lock (a65489)...
-  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 0/0 — 00:00:00
-To activate this project&#39;s virtualenv, run pipenv shell.
-Alternatively, run a command inside the virtualenv with pipenv run.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>root@b2e8a92bace7:~/demo# pipenv install
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Creating a virtualenv for this project...
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>Pipfile: /root/demo/Pipfile
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>Using /usr/local/bin/python3 (3.7.7) to create virtualenv...
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>⠸ Creating virtual environment...created virtual environment CPython3.7.7.final.0-64 in 175ms
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>  creator CPython3Posix(dest=/root/.virtualenvs/demo-xfYnOzmm, clear=False, no_vcs_ignore=False, global=False)                                                              
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/root/.local/share/virtualenv)                                     
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>    added seed packages: pip==20.2.4, setuptools==50.3.2, wheel==0.35.1                                                                                                     
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>  activators BashActivator,CShellActivator,FishActivator,PowerShellActivator,PythonActivator,XonshActivator                                                                 
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>✔ Successfully created virtual environment! 
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>Virtualenv location: /root/.virtualenvs/demo-xfYnOzmm
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>Creating a Pipfile for this project...
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>Pipfile.lock not found, creating...
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>Locking [dev-packages] dependencies...
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>Locking [packages] dependencies...
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>Updated Pipfile.lock (a65489)!
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>Installing dependencies from Pipfile.lock (a65489)...
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 0/0 — 00:00:00
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>To activate this project&#39;s virtualenv, run pipenv shell.
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>Alternatively, run a command inside the virtualenv with pipenv run.
 </code></pre></div>
 <!-- markdownlint-restore -->
 
 <p><strong>使用虚拟环境：</strong></p>
 <p>单次使用</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 查看虚拟环境的 Python 版本</span>
-pipenv run python --version
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># 查看虚拟环境的 Python 版本</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>pipenv run python --version
 </code></pre></div>
 <p>进入虚拟环境</p>
-<div class="highlight"><pre><span></span><code>pipenv shell
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>pipenv shell
 </code></pre></div>
 <p><strong>安装依赖：</strong></p>
-<div class="highlight"><pre><span></span><code>pipenv install tox
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>pipenv install tox
 </code></pre></div>
 <p>依赖安装完成后，会更新 <code>Pipfile</code> 文件，同时更新 <code>Pipfile.lock</code> 文件，记录安装的版本和对应 HASH 值。</p>
 <h3 id="25-poetry">2.5 Poetry</h3>
@@ -1429,23 +1549,23 @@ pipenv run python --version
 当前基于 PEP517 的构建模式已经完全可用。在 pip 的发行记录中，最早是在 <a href="https://pip.pypa.io/en/stable/news/#id438">18.1 (2018-10-05)</a> 就引入了 PEP517 的 <code>0.2</code> 版本。</p>
 <p>在使用上，Poetry 给人的感觉更现代化。</p>
 <p><strong>安装：</strong></p>
-<div class="highlight"><pre><span></span><code>pip install poetry
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>pip install poetry
 </code></pre></div>
 <p><strong>使用：</strong></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 使用前需要先初始化项目的基本信息，生成 `pyproject.toml` 文件</span>
-poetry init
-
-<span class="c1"># 安装依赖</span>
-poetry add tox
-
-<span class="c1"># 进入虚拟环境</span>
-poetry shell
-
-<span class="c1"># 构建项目</span>
-poetry build
-
-<span class="c1"># 发布项目</span>
-poetry publish
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># 使用前需要先初始化项目的基本信息，生成 `pyproject.toml` 文件</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>poetry init
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># 安装依赖</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>poetry add tox
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="c1"># 进入虚拟环境</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>poetry shell
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="c1"># 构建项目</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>poetry build
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="c1"># 发布项目</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>poetry publish
 </code></pre></div>
 <h2 id="3-pipenv">3. 虚拟环境实践(Pipenv)</h2>
 <p>众多的虚拟环境，和对应的工具，在选择时难免有点困惑，要选择一个好用的工具，最佳途径就是自己都尝试一遍。</p>
@@ -1456,18 +1576,18 @@ poetry publish
 <p>下面以一个项目的生命周期描述如何更好的使用 <code>Pipenv</code> 。</p>
 <h3 id="31">3.1 初始化项目</h3>
 <p>初始化项目后，使用 <code>Pipenv</code> 在项目根目录创建当前项目的虚拟环境。如果是 Pycharm ，可以直接选择使用 <code>Pipenv</code> 创建。</p>
-<div class="highlight"><pre><span></span><code>pipenv install
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>pipenv install
 </code></pre></div>
 <h3 id="32">3.2 安装项目依赖</h3>
 <p>当需要区分开发环境和普通环境时，就可以通过 <code>install -d</code> 选项安装开发环境依赖</p>
-<div class="highlight"><pre><span></span><code>pipenv install -d pytest tox
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>pipenv install -d pytest tox
 </code></pre></div>
 <p>一般的依赖直接安装即可。</p>
-<div class="highlight"><pre><span></span><code>pipenv install django requests scrapy sqlalchemy
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>pipenv install django requests scrapy sqlalchemy
 </code></pre></div>
 <h3 id="33">3.3 清理依赖</h3>
 <p>当需要从环境中清除不在需要的依赖时，可以使用命令卸载</p>
-<div class="highlight"><pre><span></span><code>pipenv uninstall scrapy
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>pipenv uninstall scrapy
 </code></pre></div>
 <p>或者直接修改 <code>Pipfile</code> 文件，删除不再需要的内容，然后通过 <code>pipenv lock</code> 生成 <code>Pipfile.lock</code> 文件。</p>
 <p>如果环境中还存在其他安装过的包，可以通过 <code>pipenv clean</code> 自动清理不在 <code>Pipfile</code> 中的依赖包。</p>
@@ -1475,19 +1595,19 @@ poetry publish
 <p>在部署时，强烈推荐使用 <code>pipenv sync</code> 安装在 <code>Pipfile.lock</code> 文件中依赖包。</p>
 <h3 id="35-requirementstxt">3.5 生成 <code>requirements.txt</code></h3>
 <p>使用 <code>pipenv lock -r</code> 可以看到所有依赖列表。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 查看所有依赖</span>
-pipenv lock -r
-<span class="c1"># 仅所有开发依赖</span>
-pipenv lock -r --dev-only
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># 查看所有依赖</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>pipenv lock -r
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="c1"># 仅所有开发依赖</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>pipenv lock -r --dev-only
 </code></pre></div>
 <p>当需要保存成文件直接使用重定向符号即可 <code>&gt;</code></p>
-<div class="highlight"><pre><span></span><code>pipenv lock -r &gt; requirements.txt
-pipenv lock -r --dev-only &gt; requirements.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>pipenv lock -r &gt; requirements.txt
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>pipenv lock -r --dev-only &gt; requirements.txt
 </code></pre></div>
 <h3 id="36-lock">3.6 Lock 卡住了</h3>
 <p>安装依赖时会生成一个 <code>Pipfile.lock</code> 的文件，用于记录使用的最终版和和该版本的 HASH ，这也是保证安全。</p>
 <p>有时可能因为网络问题，在生成 <code>Pipfile.lock</code> 的速度很慢。可以使用 <code>--skip-lock</code> 命令跳过。</p>
-<div class="highlight"><pre><span></span><code>pipenv install django --skip-lock
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>pipenv install django --skip-lock
 </code></pre></div>
 <p>但在发布前，建议还是要生成 <code>Pipfile.lock</code> 。如果真的不需要，直接将 <code>Pipfile.lock</code> 排除在版本管理之外就行啦。</p>
 <div class="footnote">
@@ -1574,7 +1694,7 @@ pipenv lock -r --dev-only &gt; requirements.txt
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["search.highlight", "navigation.sections", "navigation.top", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.highlight", "navigation.sections", "navigation.top", "navigation.tabs", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

@@ -294,6 +294,29 @@
   
 
       
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../bigdata/basis/init/" class="md-tabs__link">
+        大数据开发实践
+      </a>
+    </li>
+  
+
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1052,6 +1075,103 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          大数据开发实践
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="大数据开发实践" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          大数据开发实践
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          基础
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="基础" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bigdata/basis/init/" class="md-nav__link">
+        前期准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bigdata/basis/quick_start/" class="md-nav__link">
+        快速上手
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1168,31 +1288,31 @@
 <p>由于 Python 简单易用，很多开始使用 Python 的人都是从一个脚本文件开始，逐步形成多个 Python 文件组成的程序。也正因为如此大部分人并没以一个项目或工程的概念去看待自己的程序。而现在社区中的流行项目也存在两种不同的目录结构。</p>
 <h2 id="1">1 简单结构</h2>
 <p><a href="https://packaging.python.org/tutorials/packaging-projects/">Python 项目打包</a> 文章中以一个简单项目结构演示了如何打包一个 Python 项目</p>
-<div class="highlight"><pre><span></span><code>packaging_tutorial
-├── LICENSE
-├── README.md
-├── example_pkg
-│   └── __init__.py
-├── setup.py
-└── tests
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>packaging_tutorial
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── LICENSE
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── README.md
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── example_pkg
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   └── __init__.py
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── setup.py
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── tests
 </code></pre></div>
 <p>项目结构以根目录开始，作为项目的环境。因为，为了在开发中正常导入 <code>example_pkg</code> 中所有的东西，就需要将项目根目录添加到 <code>sys.path</code> 中。这也就让项目根目录下的所有包都变成了可导入。当有多个同级包时，它们都是扁平的散落在项目根目录。项目根目录下可能还存在其他非包目录，如 <code>data</code> 、 <code>docs</code> 等。如果需要本地引用第三方库，也需要放到根目录，但第三方包并不是项目的子包，而是它的一个引用。这样做会造成职责混乱。</p>
 <p>比如这样的一个项目：</p>
-<div class="highlight"><pre><span></span><code>tutorial
-├── LICENSE
-├── README.md
-├── data
-|   └── user.json
-├── docs
-│   └── history.md
-├── user
-│   └── __init__.py
-├── views
-│   └── __init__.py
-├── requests            # 这是需要本地打包的第三方包
-│   └── __init__.py
-├── setup.py
-└── tests
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>tutorial
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── LICENSE
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── README.md
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── data
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>|   └── user.json
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>├── docs
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   └── history.md
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>├── user
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   └── __init__.py
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>├── views
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   └── __init__.py
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>├── requests            # 这是需要本地打包的第三方包
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   └── __init__.py
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>├── setup.py
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>└── tests
 </code></pre></div>
 <p>当多个目录扁平的分布在项目根目录时，它们扮演者不同的功能，在开发上，会带了一定的混乱。而且在打包和测试上也会带来一些不便。</p>
 <p>在打包上，需要提供更多的配置排除不必要的目录，如 <code>docs</code> 或者其他不需要打包仅项目中的东西。</p>
@@ -1200,178 +1320,178 @@
 <p>使用自动化测试 <code>tox</code> 工具无法检测安装之后的问题，因为这种目录环境可以直接使用环境中的包（项目根目录被添加到 <code>sys.path</code> 中了）。</p>
 <h2 id="2-src">2 src 结构</h2>
 <p><a href="https://github.com/pypa/sampleproject">Pypa 维护的示例项目</a> 中采用了一种更推荐的结构 <code>src</code> 结构。</p>
-<div class="highlight"><pre><span></span><code>sampleproject
-├── data
-├── src
-|   └── sample
-|       └── __init__.py
-├── setup.py
-└── tests
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sampleproject
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── data
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├── src
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>|   └── sample
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>|       └── __init__.py
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>├── setup.py
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>└── tests
 </code></pre></div>
 <p>六年前的这篇文章 <a href="https://blog.ionelmc.ro/2014/05/25/python-packaging/#the-structure">Packaging a python library</a> 就详细阐述了使用 <code>src</code> 结构比简单结构的诸多有点。而现在也逐渐被社区作为一个标准遵循。虽然社区中有大量老的项目依然采用简单布局，但新项目推荐使用 <code>src</code> 结构。</p>
 <p>如下面这个示例项目结构：</p>
-<div class="highlight"><pre><span></span><code>sampleproject
-├── data
-│   └── user.json
-├── docs
-│   └── history.md
-├── setup.cfg
-├── setup.py
-├── src
-│   ├── requests
-│   │   └── __init__.py
-│   └── sample
-│       ├── __init__.py
-│       ├── user
-│       │   └── __init__.py
-│       └── views
-│           └── __init__.py
-├── tests
-│   ├── __init__.py
-│   ├── user
-│   │   └── __init__.py
-│   └── views
-│       └── __init__.py
-└── tox.ini
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sampleproject
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── data
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>│   └── user.json
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>├── docs
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>│   └── history.md
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>├── setup.cfg
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>├── setup.py
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>├── src
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>│   ├── requests
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>│   │   └── __init__.py
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>│   └── sample
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>│       ├── __init__.py
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>│       ├── user
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>│       │   └── __init__.py
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>│       └── views
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>│           └── __init__.py
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>├── tests
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>│   ├── __init__.py
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>│   ├── user
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>│   │   └── __init__.py
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>│   └── views
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>│       └── __init__.py
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>└── tox.ini
 </code></pre></div>
 <p>项目的包结构很清晰，在环境中只需要引入 <code>src</code> 目录，就可以轻松导入项目源代码。通过 <code>pip install -e .</code> 可编辑安装，也只会安装 <code>src</code> 中的包。管理起来更加清晰。</p>
 <h2 id="3">3 实践</h2>
 <p>下面以一个简单真实的项目来演示使用 <code>src</code> 组织项目</p>
 <h3 id="31">3.1 创建项目</h3>
 <p><strong>创建项目:</strong></p>
-<div class="highlight"><pre><span></span><code>mkdir sampleproject
-<span class="nb">cd</span> sampleproject
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mkdir sampleproject
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">cd</span> sampleproject
 </code></pre></div>
 <p><strong>初始化版本管理：</strong></p>
-<div class="highlight"><pre><span></span><code>git init
-<span class="c1"># 如果没有全局用户名和邮箱，需要先配置</span>
-git config user.email example@example.com
-git config user.name example
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git init
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># 如果没有全局用户名和邮箱，需要先配置</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git config user.email example@example.com
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>git config user.name example
 </code></pre></div>
 <p><strong>创建项目自述文件：</strong></p>
-<div class="highlight"><pre><span></span><code>touch README.md
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>touch README.md
 </code></pre></div>
 <h3 id="32">3.2 编写项目源代码</h3>
 <p><strong>创建项目包：</strong></p>
-<div class="highlight"><pre><span></span><code>mkdir src/sample_project
-touch src/sample_project/__init__.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mkdir src/sample_project
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>touch src/sample_project/__init__.py
 </code></pre></div>
 <p><strong>初始化版本号：</strong></p>
 <p><code>src/sample_project/__init__.py</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;0.1.0&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;0.1.0&#39;</span>
 </code></pre></div>
 <p><strong>安装依赖：</strong></p>
-<div class="highlight"><pre><span></span><code>pip install click
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>pip install click
 </code></pre></div>
 <p><strong>创建命令入口文件：</strong></p>
 <p><code>src/sample_project/cmdline.py</code></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">click</span>
-
-<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;Hello world!&#39;</span><span class="p">)</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">import</span> <span class="nn">click</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;Hello world!&#39;</span><span class="p">)</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="n">main</span><span class="p">()</span>
 </code></pre></div>
 <h3 id="33">3.3 编写测试</h3>
 <p><strong>创建测试目录：</strong></p>
-<div class="highlight"><pre><span></span><code>mkdir -p tests/sample_project
-touch tests/sample_project/__init__.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>mkdir -p tests/sample_project
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>touch tests/sample_project/__init__.py
 </code></pre></div>
 <p><strong>安装依赖：</strong></p>
-<div class="highlight"><pre><span></span><code>pip install pytest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>pip install pytest
 </code></pre></div>
 <p><strong>创建测试文件：</strong></p>
 <p><code>tests/sample_project/test_cmdline.py</code></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">click.testing</span> <span class="kn">import</span> <span class="n">CliRunner</span>
-
-<span class="kn">from</span> <span class="nn">sample_project</span> <span class="kn">import</span> <span class="n">cmdline</span>
-
-
-<span class="k">def</span> <span class="nf">test_main</span><span class="p">():</span>
-    <span class="n">runner</span> <span class="o">=</span> <span class="n">CliRunner</span><span class="p">()</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">cmdline</span><span class="o">.</span><span class="n">main</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="s1">&#39;Hello world!&#39;</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">output</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span> <span class="nn">click.testing</span> <span class="kn">import</span> <span class="n">CliRunner</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="kn">from</span> <span class="nn">sample_project</span> <span class="kn">import</span> <span class="n">cmdline</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="k">def</span> <span class="nf">test_main</span><span class="p">():</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="n">runner</span> <span class="o">=</span> <span class="n">CliRunner</span><span class="p">()</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">cmdline</span><span class="o">.</span><span class="n">main</span><span class="p">)</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>    <span class="k">assert</span> <span class="s1">&#39;Hello world!&#39;</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">output</span>
 </code></pre></div>
 <p><strong>运行测试：</strong></p>
-<div class="highlight"><pre><span></span><code>pip install -e .  <span class="c1"># 以可编辑安装方式到环境中</span>
-pytest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>pip install -e .  <span class="c1"># 以可编辑安装方式到环境中</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>pytest
 </code></pre></div>
 <p>测试运行成功，说明功能正确</p>
 <h3 id="34">3.4 初始化打包配置</h3>
 <p><strong>编写打包配置：</strong></p>
 <p><code>setup.py</code></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">setuptools</span>
-
-<span class="n">setuptools</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">import</span> <span class="nn">setuptools</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">setuptools</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
 </code></pre></div>
 <p><code>setup.cfg</code></p>
-<div class="highlight"><pre><span></span><code><span class="k">[metadata]</span><span class="w"></span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sample_project</span><span class="w"></span>
-<span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">attr: sample_project.__version__</span><span class="w"></span>
-<span class="na">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">example</span><span class="w"></span>
-<span class="na">author_email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">example@example.com</span><span class="w"></span>
-<span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Sample Project</span><span class="w"></span>
-<span class="na">keywords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ssl_manager</span><span class="w"></span>
-<span class="na">long_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">file: README.md</span><span class="w"></span>
-<span class="na">long_description_content_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">text/markdown</span><span class="w"></span>
-<span class="na">classifiers</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">Operating System :: OS Independent</span><span class="w"></span>
-<span class="w">    </span><span class="na">Programming Language :: Python :: 3.7</span><span class="w"></span>
-
-<span class="k">[options]</span><span class="w"></span>
-<span class="na">python_requires &gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3.7</span><span class="w"></span>
-<span class="na">include_package_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span><span class="w"></span>
-<span class="na">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">find:</span><span class="w"></span>
-<span class="na">package_dir</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
-<span class="na">install_requires</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">click</span><span class="w"></span>
-
-<span class="k">[options.entry_points]</span><span class="w"></span>
-<span class="na">console_scripts</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">ssl_manager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sample_project.cmdline:main</span><span class="w"></span>
-
-<span class="k">[options.packages.find]</span><span class="w"></span>
-<span class="na">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
-
-<span class="k">[tool:pytest]</span><span class="w"></span>
-<span class="na">testpaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">tests</span><span class="w"></span>
-<span class="na">python_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">tests.py test_*.py *_tests.py</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[metadata]</span><span class="w"></span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sample_project</span><span class="w"></span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">attr: sample_project.__version__</span><span class="w"></span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="na">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">example</span><span class="w"></span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="na">author_email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">example@example.com</span><span class="w"></span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Sample Project</span><span class="w"></span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="na">keywords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ssl_manager</span><span class="w"></span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="na">long_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">file: README.md</span><span class="w"></span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="na">long_description_content_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">text/markdown</span><span class="w"></span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="na">classifiers</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">    </span><span class="na">Operating System :: OS Independent</span><span class="w"></span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">    </span><span class="na">Programming Language :: Python :: 3.7</span><span class="w"></span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="k">[options]</span><span class="w"></span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="na">python_requires &gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3.7</span><span class="w"></span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="na">include_package_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span><span class="w"></span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="na">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">find:</span><span class="w"></span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="na">package_dir</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="na">install_requires</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="w">    </span><span class="na">click</span><span class="w"></span>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>
+<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a><span class="k">[options.entry_points]</span><span class="w"></span>
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="na">console_scripts</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="w">    </span><span class="na">ssl_manager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sample_project.cmdline:main</span><span class="w"></span>
+<a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a>
+<a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a><span class="k">[options.packages.find]</span><span class="w"></span>
+<a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a><span class="na">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
+<a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a>
+<a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a><span class="k">[tool:pytest]</span><span class="w"></span>
+<a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a><span class="na">testpaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">tests</span><span class="w"></span>
+<a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a><span class="na">python_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">tests.py test_*.py *_tests.py</span><span class="w"></span>
 </code></pre></div>
 <p><strong>打包：</strong></p>
-<div class="highlight"><pre><span></span><code>python setup.py bdist_wheel
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>python setup.py bdist_wheel
 </code></pre></div>
 <h3 id="35">3.5 总结</h3>
 <p>至此，一个项目开发完成，完整项目结构如下：</p>
-<div class="highlight"><pre><span></span><code>├── build
-│   ├── bdist.linux-x86_64
-│   └── lib
-│       └── sample_project
-│           ├── cmdline.py
-│           └── __init__.py
-├── dist
-│   └── sample_project-0.1.0.linux-x86_64.tar.gz
-├── setup.cfg
-├── setup.py
-├── src
-│   ├── sample_project
-│   │   ├── cmdline.py
-│   │   ├── __init__.py
-│   └── sample_project.egg-info
-│       ├── dependency_links.txt
-│       ├── entry_points.txt
-│       ├── PKG-INFO
-│       ├── requires.txt
-│       ├── SOURCES.txt
-│       └── top_level.txt
-└── tests
-    ├── __init__.py
-    └── sample_project
-        ├── __init__.py
-        └── test_cmdline.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>├── build
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>│   ├── bdist.linux-x86_64
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>│   └── lib
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>│       └── sample_project
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>│           ├── cmdline.py
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>│           └── __init__.py
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>├── dist
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>│   └── sample_project-0.1.0.linux-x86_64.tar.gz
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>├── setup.cfg
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>├── setup.py
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>├── src
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>│   ├── sample_project
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>│   │   ├── cmdline.py
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>│   │   ├── __init__.py
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>│   └── sample_project.egg-info
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>│       ├── dependency_links.txt
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>│       ├── entry_points.txt
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>│       ├── PKG-INFO
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>│       ├── requires.txt
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>│       ├── SOURCES.txt
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>│       └── top_level.txt
+<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>└── tests
+<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>    ├── __init__.py
+<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>    └── sample_project
+<a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>        ├── __init__.py
+<a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>        └── test_cmdline.py
 </code></pre></div>
 
 
@@ -1449,7 +1569,7 @@ pytest
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.highlight", "navigation.sections", "navigation.top", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.highlight", "navigation.sections", "navigation.top", "navigation.tabs", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>
