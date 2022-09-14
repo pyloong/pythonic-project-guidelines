@@ -5,12 +5,12 @@
 
 ## 初始化项目
 
-### 克隆项目模板
+### 创建项目骨架
 
-使用[Git](https://git-scm.com/)克隆项目模板
+使用 [cookiecutter](https://github.com/cookiecutter/cookiecutter) 加载项目模板。通过交互操作，可以选择使用的功能。
 
 ```bash
-git clone https://github.com/JingyuanR/pyspark-etl-template.git
+cookiecutter https://github.com/JingyuanR/cookiecutter-pyspark-etl-project
 ```
 
 ### 创建虚拟环境
@@ -208,13 +208,16 @@ output_path = '../../data/output'
 
 ### 注册Task
 
-将上述实现的类注册到命名空间中。
+将`main`命令行入口和上述实现的`Task`类注册到命名空间中。
 
 编辑`pyproject.toml`文件，增加[poetry插件](https://python-poetry.org/docs/plugins/)如下内容：
 
 ```toml
+[tool.poetry.plugins.console_scripts]
+pyspark_etl_template = "pyspark_etl_template.app:main"
+
 [tool.poetry.plugins."etl_tasks"]
-car_etl_example = "pyspark_etl_template.tasks.car_etl_example.car_transform:CarTransform"
+car_etl_example = "pyspark_etl_template.tasks.car_etl_example.task:CarDataTask"
 ```
 
 这么做的目的是将`CarDataTask`注册到`entry_points`中， 然后在程序中使用`importlib.metadata`
@@ -236,9 +239,17 @@ poetry install
 [EntryPoint(name='car_etl_example', value='pyspark_etl_template.tasks.car_etl_example.car_transform:CarTransform', group='etl_tasks')]
 ```
 
-### 运行Task
+将本地项目以可编辑方式安装到当前 Python 环境：
 
 ```shell
-python src/etl_project/app.py --env=dev --task=car_etl_example
+pip install -e .
+```
+
+### 运行Task
+
+然后通过命令行的方式运行`Task`：
+
+```shell
+pyspark_etl_template --env=development --task=car_etl_example
 ```
 
