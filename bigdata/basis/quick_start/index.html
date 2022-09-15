@@ -1098,7 +1098,7 @@
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    克隆项目模板
+    创建项目骨架
   </a>
   
 </li>
@@ -1262,7 +1262,7 @@
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    克隆项目模板
+    创建项目骨架
   </a>
   
 </li>
@@ -1390,9 +1390,9 @@
 <p>本文通过一个包含主要知识点的简单项目，向开发者展示一个通用、规范和易于理解的Pyspark ETL的项目开发流程。
 示例项目是一个将本地文件进行预处理，并将结果导出文件的演示程序。</p>
 <h2 id="_2">初始化项目</h2>
-<h3 id="_3">克隆项目模板</h3>
-<p>使用<a href="https://git-scm.com/">Git</a>克隆项目模板</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git clone https://github.com/JingyuanR/pyspark-etl-template.git
+<h3 id="_3">创建项目骨架</h3>
+<p>使用 <a href="https://github.com/cookiecutter/cookiecutter">cookiecutter</a> 加载项目模板。通过交互操作，可以选择使用的功能。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cookiecutter https://github.com/JingyuanR/cookiecutter-pyspark-etl-project
 </code></pre></div>
 <h3 id="_4">创建虚拟环境</h3>
 <p>切换到<code>pyspark-etl-template</code>
@@ -1559,10 +1559,13 @@
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">output_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;../../data/output&#39;</span><span class="w"></span>
 </code></pre></div>
 <h3 id="task_1">注册Task</h3>
-<p>将上述实现的类注册到命名空间中。</p>
+<p>将<code>main</code>命令行入口和上述实现的<code>Task</code>类注册到命名空间中。</p>
 <p>编辑<code>pyproject.toml</code>文件，增加<a href="https://python-poetry.org/docs/plugins/">poetry插件</a>如下内容：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[tool.poetry.plugins.&quot;etl_tasks&quot;]</span><span class="w"></span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">car_etl_example</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pyspark_etl_template.tasks.car_etl_example.car_transform:CarTransform&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[tool.poetry.plugins.console_scripts]</span><span class="w"></span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">pyspark_etl_template</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pyspark_etl_template.app:main&quot;</span><span class="w"></span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">[tool.poetry.plugins.&quot;etl_tasks&quot;]</span><span class="w"></span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">car_etl_example</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pyspark_etl_template.tasks.car_etl_example.task:CarDataTask&quot;</span><span class="w"></span>
 </code></pre></div>
 <p>这么做的目的是将<code>CarDataTask</code>注册到<code>entry_points</code>中， 然后在程序中使用<code>importlib.metadata</code>
 根据名称空间查找。而 <code>stevedore</code> 则是封装了查找的复杂逻辑，让使用插件更简单。</p>
@@ -1576,8 +1579,12 @@
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="o">[</span>EntryPoint<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;car_etl_example&#39;</span>, <span class="nv">value</span><span class="o">=</span><span class="s1">&#39;pyspark_etl_template.tasks.car_etl_example.car_transform:CarTransform&#39;</span>, <span class="nv">group</span><span class="o">=</span><span class="s1">&#39;etl_tasks&#39;</span><span class="o">)]</span>
 </code></pre></div>
+<p>将本地项目以可编辑方式安装到当前 Python 环境：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>pip install -e .
+</code></pre></div>
 <h3 id="task_2">运行Task</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>python src/etl_project/app.py --env<span class="o">=</span>dev --task<span class="o">=</span>car_etl_example
+<p>然后通过命令行的方式运行<code>Task</code>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>pyspark_etl_template --env<span class="o">=</span>development --task<span class="o">=</span>car_etl_example
 </code></pre></div>
 
 
