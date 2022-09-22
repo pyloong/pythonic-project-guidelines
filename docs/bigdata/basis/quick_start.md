@@ -85,6 +85,7 @@ poetry install
 - 最终结果Schema：`car_id`, `symboling`, `car_name`, `price`, 将结果导出`json`文件
 
 在命令行使用`cookiecutter`创建项目骨架:
+
 ```text
 ❯ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-bigdata-etl.git
 project_name [My Project]: Automotive Data Etl
@@ -246,6 +247,7 @@ spark_config.spark.driver.memory = '3G'
 spark_config.spark.executor.memory = '16G'
 spark_config.spark.sql.debug.maxToStringFields = 100
 ```
+
 将数据文件`car_price.csv`放入`input_path`目录下。
 
 ### 注册Task
