@@ -10,7 +10,7 @@
 使用 [cookiecutter](https://github.com/cookiecutter/cookiecutter) 加载项目模板。通过交互操作，可以选择使用的功能。
 
 ```bash
-cookiecutter https://github.com/pyloong/cookiecutter-pythonic-bigdata-etl.git
+cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project-bigdata-etl
 ```
 
 ### 创建虚拟环境
@@ -87,7 +87,7 @@ poetry install
 在命令行使用`cookiecutter`创建项目骨架:
 
 ```text
-❯ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-bigdata-etl.git
+❯ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project-bigdata-etl
 project_name [My Project]: Automotive Data Etl
 project_slug [automotive_data_etl]:
 project_description [My Awesome Project!]: This is my first etl package, i love it.
@@ -141,7 +141,7 @@ class AutomotiveDataTask(AbstractTask):
             header=True,
             inferSchema=True
         )
-        logging.info(f'Extract data from {self.settings.input_path}')
+        this.logger.info(f'Extract data from {self.settings.input_path}')
         return df
 
     def _transform(self, df: DataFrame) -> DataFrame:
@@ -151,15 +151,15 @@ class AutomotiveDataTask(AbstractTask):
     def _load(self, df: DataFrame) -> None:
         """Load final data to output path"""
         df.write.json(self.settings.output_path, mode='overwrite', encoding='utf-8')
-        logging.info(f'Load data to {self.settings.output_path}')
+        this.logger.info(f'Load data to {self.settings.output_path}')
 
 ```
 
 每一个`Task`任务都会经过“输入”、“转换”和“输出”的过程，实现`AbstractTask`中的`_extract`、`_transform`、`_load`抽象方法
 
-- `_extract`：读取`automotive_data_etl/../../data/input/car_price.csv`下csv文件
+- `_extract`：读取`tmp/input/car_price.csv`CSV文件
 - `_transform`：执行将实现的`Transform`类的`transform`方法
-- `_load`：将DataFrame以Json格式写入`automotive_data_etl/../../data/output`目录下
+- `_load`：将DataFrame以Json格式写入`tmp/output`目录下
 
 ### Transform类
 
@@ -237,18 +237,12 @@ def _name_replace_udf(car_name):
 
 
 ```toml
-# example path
-input_path = '../../data/input/car_price.csv'
-output_path = '../../data/output'
-
 # spark configs
 spark_master = 'local[*]'
 spark_config.spark.driver.memory = '3G'
 spark_config.spark.executor.memory = '16G'
 spark_config.spark.sql.debug.maxToStringFields = 100
 ```
-
-将数据文件`car_price.csv`放入`input_path`目录下。
 
 ### 注册Task
 
@@ -258,7 +252,7 @@ spark_config.spark.sql.debug.maxToStringFields = 100
 
 ```toml
 [tool.poetry.plugins.console_scripts]
-automotive_data_etl = "automotive_data_etl.app:main"
+automotive_data_etl = "automotive_data_etl.cmdline:main"
 
 [tool.poetry.plugins."etl_tasks"]
 automotive_task = "automotive_data_etl.tasks.automotive_task.task:AutomotiveDataTask"
@@ -291,9 +285,9 @@ pip install -e .
 
 ### 运行Task
 
-然后通过命令行的方式运行`Task`：
+然后通过命令行的方式运行`Task`，通过命令行参数的方式更新输入输出路径：
 
 ```shell
-automotive_data_etl --env=development --task=automotive_task
+automotive_data_etl --env=development --task=automotive_task --input=tmp/input/car_price.csv --output=tmp/output/
 ```
 
