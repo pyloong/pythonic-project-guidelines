@@ -284,7 +284,7 @@
   
     <li class="md-tabs__item">
       <a href="../../../practices/web/" class="md-tabs__link">
-        开发实践
+        应用实践
       </a>
     </li>
   
@@ -309,7 +309,7 @@
   
     <li class="md-tabs__item">
       <a href="../init/" class="md-tabs__link md-tabs__link--active">
-        大数据开发实践
+        数据开发实践
       </a>
     </li>
   
@@ -909,14 +909,14 @@
       
       
         <label class="md-nav__link" for="__nav_6">
-          开发实践
+          应用实践
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="开发实践" data-md-level="1">
+      <nav class="md-nav" aria-label="应用实践" data-md-level="1">
         <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
-          开发实践
+          应用实践
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -994,14 +994,14 @@
       
       
         <label class="md-nav__link" for="__nav_7">
-          大数据开发实践
+          数据开发实践
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="大数据开发实践" data-md-level="1">
+      <nav class="md-nav" aria-label="数据开发实践" data-md-level="1">
         <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
-          大数据开发实践
+          数据开发实践
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1024,14 +1024,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_1">
-          基础
+          ETL
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="基础" data-md-level="2">
+      <nav class="md-nav" aria-label="ETL" data-md-level="2">
         <label class="md-nav__title" for="__nav_7_1">
           <span class="md-nav__icon md-icon"></span>
-          基础
+          ETL
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1387,16 +1387,15 @@
 
 
 <h1 id="_1">快速上手</h1>
-<p>本文通过一个包含主要知识点的简单项目，向开发者展示一个通用、规范和易于理解的Pyspark ETL的项目开发流程。
-示例项目是一个将本地文件进行预处理，并将结果导出文件的演示程序。</p>
+<p>本文通过一个包含主要知识点的简单项目，向开发者展示一个通用、规范和易于理解的ETL的项目开发流程。
+示例项目使用<code>Pyspark</code>将本地文件进行预处理，并将结果导出文件的演示程序。</p>
 <h2 id="_2">初始化项目</h2>
 <h3 id="_3">创建项目骨架</h3>
 <p>使用 <a href="https://github.com/cookiecutter/cookiecutter">cookiecutter</a> 加载项目模板。通过交互操作，可以选择使用的功能。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cookiecutter https://github.com/JingyuanR/cookiecutter-pyspark-etl-project
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project-bigdata-etl
 </code></pre></div>
 <h3 id="_4">创建虚拟环境</h3>
-<p>切换到<code>pyspark-etl-template</code>
-文件路径下，项目使用 <a href="/pythonic-project-guidelines/introduction/virtualenv/#25-poetry">poetry</a>
+<p>切换到项目根目录下，项目使用 <a href="/pythonic-project-guidelines/introduction/virtualenv/#25-poetry">poetry</a>
 管理虚拟环境，运行命令自动创建虚拟环境，同时安装开发环境依赖</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>poetry install
 </code></pre></div>
@@ -1416,9 +1415,9 @@
 <ul>
 <li><code>AbstractTask</code>: Task任务抽象类，<code>executor</code>执行器实例化<code>插件Task</code>，执行<code>AbstractTask</code>抽象父类的<code>run</code>方法<ul>
 <li><code>run</code>: 执行Task任务流程</li>
-<li><code>_input</code>: 数据源抽取(抽象方法)</li>
+<li><code>_extract</code>: 数据源抽取(抽象方法)</li>
 <li><code>_transform</code>: 数据转换(抽象方法)，执行转换流程，调用<code>AbstractTransform</code>子类</li>
-<li><code>_output</code>: 数据加载(抽象方法)</li>
+<li><code>_load</code>: 数据加载(抽象方法)</li>
 </ul>
 </li>
 <li><code>AbstractTransform</code>: Transform抽象类，提供<code>AbstractTask</code>中<code>_transform</code>使用，同一个Task可以实现多个<code>_transform</code><ul>
@@ -1449,103 +1448,134 @@
 <p>最终结果Schema：<code>car_id</code>, <code>symboling</code>, <code>car_name</code>, <code>price</code>, 将结果导出<code>json</code>文件</p>
 </li>
 </ul>
-<h3 id="task">Task类</h3>
-<p>创建汽车数据ETL任务<code>CarDataTask</code>类，<code>src/etl_project/tasks/car_etl_example/task.py</code></p>
-<div class="highlight"><span class="filename">task.py</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="sd">&quot;&quot;&quot;Processing car data task.&quot;&quot;&quot;</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kn">from</span> <span class="nn">pyspark_etl_example.tasks.abstract.task</span> <span class="kn">import</span> <span class="n">AbstractTask</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="kn">from</span> <span class="nn">pyspark_etl_example.tasks.car_etl_example.car_transform</span> <span class="kn">import</span> \
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">CarTransform</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="k">class</span> <span class="nc">CarDataTask</span><span class="p">(</span><span class="n">AbstractTask</span><span class="p">):</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="sd">&quot;&quot;&quot;Processing car data task.&quot;&quot;&quot;</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="k">def</span> <span class="nf">_input</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>        <span class="sd">&quot;&quot;&quot;Read CSV file return DataFrame&quot;&quot;&quot;</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>        <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">input_path</span><span class="p">,</span>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>            <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span>
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>            <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>            <span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span>
-<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>        <span class="p">)</span>
-<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Extract data from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">input_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>        <span class="k">return</span> <span class="n">df</span>
-<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>
-<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>    <span class="k">def</span> <span class="nf">_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
-<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>        <span class="sd">&quot;&quot;&quot;execute CarTransform transform function&quot;&quot;&quot;</span>
-<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>        <span class="k">return</span> <span class="n">CarTransform</span><span class="p">()</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>
-<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>    <span class="k">def</span> <span class="nf">_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>        <span class="sd">&quot;&quot;&quot;Load final data to output path&quot;&quot;&quot;</span>
-<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>        <span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">output_path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;overwrite&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Load data to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">output_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<p>在命令行使用<code>cookiecutter</code>创建项目骨架:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>❯ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project-bigdata-etl
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>project_name [My Project]: Automotive Data Etl
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>project_slug [automotive_data_etl]:
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>project_description [My Awesome Project!]: This is my first etl package, i love it.
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>author_name [Author]: ming
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>author_email [ming@example.com]: ming@gmail.com
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>version [0.1.0]:
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>Select python_version:
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>1 - 3.10
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>2 - 3.9
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>Choose from 1, 2 [1]:
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>use_src_layout [y]:
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>use_poetry [y]:
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>use_docker [n]:
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>Select ci_tools:
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>1 - none
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>2 - Gitlab
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>3 - Github
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>Choose from 1, 2, 3 [1]:
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>Select use_framework:
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>1 - none
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>2 - pyspark
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>Choose from 1, 2 [1]: 2
 </code></pre></div>
-<p>每一个<code>Task</code>任务都会经过“输入”、“转换”和“输出”的过程，实现<code>AbstractTask</code>中的<code>_input</code>、<code>_transform</code>、<code>_output</code>抽象方法</p>
-<ul>
-<li><code>_input</code>：读取<code>example_data/input</code>下csv文件</li>
-<li><code>_transform</code>：执行将实现的<code>Transform</code>类的<code>transform</code>方法</li>
-<li><code>_output</code>：将DataFrame以Json格式写入<code>example_data/output</code>目录下</li>
-</ul>
-<h3 id="transform">Transform类</h3>
-<p>创建汽车数据<code>CarTransform</code>类，<code>src/etl_project/tasks/car_etl_example/car_transform.py</code></p>
-<div class="highlight"><span class="filename">car_transform.py</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="sd">&quot;&quot;&quot;Car data Transformation.&quot;&quot;&quot;</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<h3 id="task">Task类</h3>
+<p>创建汽车数据ETL任务<code>AutomotiveDataTask</code>类，<code>src/automotive_data_etl/tasks/automotive_task/task.py</code></p>
+<div class="highlight"><span class="filename">task.py</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="sd">&quot;&quot;&quot;Processing car data task.&quot;&quot;&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span> <span class="nn">logging</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">col</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">udf</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">StringType</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kn">from</span> <span class="nn">automotive_data_etl.tasks.abstract.task</span> <span class="kn">import</span> <span class="n">AbstractTask</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="kn">from</span> <span class="nn">automotive_data_etl.tasks.automotive_task.automotive_transform</span> <span class="kn">import</span> <span class="n">AutomotiveDataTransform</span>
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="kn">from</span> <span class="nn">pyspark_etl_example.tasks.abstract.transform</span> <span class="kn">import</span> <span class="n">AbstractTransform</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="k">class</span> <span class="nc">CarTransform</span><span class="p">(</span><span class="n">AbstractTransform</span><span class="p">):</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="sd">&quot;&quot;&quot;Car data Transformation.&quot;&quot;&quot;</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
-<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>        <span class="sd">&quot;&quot;&quot;Execute the transform process&quot;&quot;&quot;</span>
-<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>        <span class="n">transformations</span> <span class="o">=</span> <span class="p">(</span>
-<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_filter_price</span><span class="p">,</span>
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_process_car_name</span><span class="p">,</span>
-<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_select_final_columns</span><span class="p">,</span>
-<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>        <span class="p">)</span>
-<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>        <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span> <span class="n">transformations</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
-<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>
-<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>    <span class="nd">@staticmethod</span>
-<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    <span class="k">def</span> <span class="nf">_filter_price</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
-<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>        <span class="sd">&quot;&quot;&quot;Filter results price &gt; 1000&quot;&quot;&quot;</span>
-<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">)</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="k">class</span> <span class="nc">AutomotiveDataTask</span><span class="p">(</span><span class="n">AbstractTask</span><span class="p">):</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="sd">&quot;&quot;&quot;Processing car data task.&quot;&quot;&quot;</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">spark</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">get_spark_session</span><span class="p">()</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>    <span class="k">def</span> <span class="nf">_extract</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>        <span class="sd">&quot;&quot;&quot;Read CSV file return DataFrame&quot;&quot;&quot;</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>        <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">input_path</span><span class="p">,</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>            <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>            <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>            <span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>        <span class="p">)</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>        <span class="n">this</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Extract data from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">input_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>        <span class="k">return</span> <span class="n">df</span>
 <a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>
-<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>    <span class="nd">@staticmethod</span>
-<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>    <span class="k">def</span> <span class="nf">_process_car_name</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
-<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>        <span class="sd">&quot;&quot;&quot;Clean [dirty data] from CarName&quot;&quot;&quot;</span>
-<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>        <span class="n">res_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;CarName&#39;</span><span class="p">,</span> <span class="n">_name_replace_udf</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;CarName&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;CarName&#39;</span><span class="p">))</span>
-<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>        <span class="k">return</span> <span class="n">res_df</span>
-<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>
-<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>    <span class="nd">@staticmethod</span>
-<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>    <span class="k">def</span> <span class="nf">_select_final_columns</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
-<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>        <span class="sd">&quot;&quot;&quot;Car price data dataframe select final columns&quot;&quot;&quot;</span>
-<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
-<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>            <span class="n">col</span><span class="p">(</span><span class="s1">&#39;car_ID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;car_id&#39;</span><span class="p">),</span>
-<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>            <span class="n">col</span><span class="p">(</span><span class="s1">&#39;symboling&#39;</span><span class="p">),</span>
-<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>            <span class="n">col</span><span class="p">(</span><span class="s1">&#39;CarName&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;car_name&#39;</span><span class="p">),</span>
-<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>            <span class="n">col</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">),</span>
-<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>        <span class="p">)</span>
-<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>
-<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>
-<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a><span class="nd">@udf</span><span class="p">(</span><span class="n">returnType</span><span class="o">=</span><span class="n">StringType</span><span class="p">())</span>
-<a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a><span class="k">def</span> <span class="nf">_name_replace_udf</span><span class="p">(</span><span class="n">car_name</span><span class="p">):</span>
-<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>    <span class="sd">&quot;&quot;&quot;Clean [dirty data] udf&quot;&quot;&quot;</span>
-<a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">car_name</span><span class="p">:</span>
-<a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a>        <span class="k">return</span> <span class="kc">None</span>
-<a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a>    <span class="n">err_str</span> <span class="o">=</span> <span class="s1">&#39;[dirty data]&#39;</span>
-<a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a>    <span class="k">if</span> <span class="n">err_str</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">car_name</span><span class="p">:</span>
-<a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a>        <span class="k">return</span> <span class="n">car_name</span>
-<a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a>    <span class="n">car_name</span> <span class="o">=</span> <span class="n">car_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">err_str</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-<a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a>    <span class="k">return</span> <span class="n">car_name</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>    <span class="k">def</span> <span class="nf">_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>        <span class="sd">&quot;&quot;&quot;execute CarTransform transform function&quot;&quot;&quot;</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>        <span class="k">return</span> <span class="n">AutomotiveDataTransform</span><span class="p">()</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>    <span class="k">def</span> <span class="nf">_load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>        <span class="sd">&quot;&quot;&quot;Load final data to output path&quot;&quot;&quot;</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>        <span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">output_path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;overwrite&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>        <span class="n">this</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Load data to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">output_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </code></pre></div>
-<p><code>CarTransform</code>类，实现以下方法：</p>
+<p>每一个<code>Task</code>任务都会经过“输入”、“转换”和“输出”的过程，实现<code>AbstractTask</code>中的<code>_extract</code>、<code>_transform</code>、<code>_load</code>抽象方法</p>
+<ul>
+<li><code>_extract</code>：读取<code>tmp/input/car_price.csv</code>CSV文件</li>
+<li><code>_transform</code>：执行将实现的<code>Transform</code>类的<code>transform</code>方法</li>
+<li><code>_load</code>：将DataFrame以Json格式写入<code>tmp/output</code>目录下</li>
+</ul>
+<h3 id="transform">Transform类</h3>
+<p>创建汽车数据<code>AutomotiveDataTransform</code>类，<code>src/automotive_data_etl/tasks/automotive_task/automotive_transform.py</code></p>
+<div class="highlight"><span class="filename">automotive_transform.py</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="sd">&quot;&quot;&quot;Car data Transformation.&quot;&quot;&quot;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">col</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">udf</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">StringType</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="kn">from</span> <span class="nn">automotive_data_etl.tasks.abstract.transform</span> <span class="kn">import</span> <span class="n">AbstractTransform</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="k">class</span> <span class="nc">AutomotiveDataTransform</span><span class="p">(</span><span class="n">AbstractTransform</span><span class="p">):</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>    <span class="sd">&quot;&quot;&quot;Car data Transformation.&quot;&quot;&quot;</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>        <span class="sd">&quot;&quot;&quot;Execute the transform process&quot;&quot;&quot;</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>        <span class="n">transformations</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_filter_price</span><span class="p">,</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_process_car_name</span><span class="p">,</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_select_final_columns</span><span class="p">,</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>        <span class="p">)</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>        <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span> <span class="n">transformations</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>    <span class="nd">@staticmethod</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>    <span class="k">def</span> <span class="nf">_filter_price</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>        <span class="sd">&quot;&quot;&quot;Filter results price &gt; 1000&quot;&quot;&quot;</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">)</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>    <span class="nd">@staticmethod</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>    <span class="k">def</span> <span class="nf">_process_car_name</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>        <span class="sd">&quot;&quot;&quot;Clean [dirty data] from CarName&quot;&quot;&quot;</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>        <span class="n">res_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;CarName&#39;</span><span class="p">,</span> <span class="n">_name_replace_udf</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;CarName&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;CarName&#39;</span><span class="p">))</span>
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>        <span class="k">return</span> <span class="n">res_df</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>    <span class="nd">@staticmethod</span>
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>    <span class="k">def</span> <span class="nf">_select_final_columns</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>        <span class="sd">&quot;&quot;&quot;Car price data dataframe select final columns&quot;&quot;&quot;</span>
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a>        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>            <span class="n">col</span><span class="p">(</span><span class="s1">&#39;car_ID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;car_id&#39;</span><span class="p">),</span>
+<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a>            <span class="n">col</span><span class="p">(</span><span class="s1">&#39;symboling&#39;</span><span class="p">),</span>
+<a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a>            <span class="n">col</span><span class="p">(</span><span class="s1">&#39;CarName&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;car_name&#39;</span><span class="p">),</span>
+<a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a>            <span class="n">col</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">),</span>
+<a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a>        <span class="p">)</span>
+<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a>
+<a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a>
+<a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a><span class="nd">@udf</span><span class="p">(</span><span class="n">returnType</span><span class="o">=</span><span class="n">StringType</span><span class="p">())</span>
+<a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a><span class="k">def</span> <span class="nf">_name_replace_udf</span><span class="p">(</span><span class="n">car_name</span><span class="p">):</span>
+<a id="__codelineno-6-48" name="__codelineno-6-48" href="#__codelineno-6-48"></a>    <span class="sd">&quot;&quot;&quot;Clean [dirty data] udf&quot;&quot;&quot;</span>
+<a id="__codelineno-6-49" name="__codelineno-6-49" href="#__codelineno-6-49"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">car_name</span><span class="p">:</span>
+<a id="__codelineno-6-50" name="__codelineno-6-50" href="#__codelineno-6-50"></a>        <span class="k">return</span> <span class="kc">None</span>
+<a id="__codelineno-6-51" name="__codelineno-6-51" href="#__codelineno-6-51"></a>    <span class="n">err_str</span> <span class="o">=</span> <span class="s1">&#39;[dirty data]&#39;</span>
+<a id="__codelineno-6-52" name="__codelineno-6-52" href="#__codelineno-6-52"></a>    <span class="k">if</span> <span class="n">err_str</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">car_name</span><span class="p">:</span>
+<a id="__codelineno-6-53" name="__codelineno-6-53" href="#__codelineno-6-53"></a>        <span class="k">return</span> <span class="n">car_name</span>
+<a id="__codelineno-6-54" name="__codelineno-6-54" href="#__codelineno-6-54"></a>    <span class="n">car_name</span> <span class="o">=</span> <span class="n">car_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">err_str</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-55" name="__codelineno-6-55" href="#__codelineno-6-55"></a>    <span class="k">return</span> <span class="n">car_name</span>
+</code></pre></div>
+<p><code>AutomotiveDataTransform</code>类，实现以下方法：</p>
 <ul>
 <li><code>_filter_price</code>的功能是筛选 <code>price</code> &gt; 10000 的数据</li>
 <li><code>_process_car_name</code>的功能是使用udf方法<code>_name_replace_udf</code>，将<code>CarName</code>字段中包含脏数据<code>[dirty_data]</code>的内容进行处理</li>
@@ -1554,37 +1584,39 @@
 </ul>
 <h3 id="_9">配置</h3>
 <p>将如下配置更新到配置文件中，因为项目默认使用dev环境配置，则需要在<code>configs/dev.toml</code>中增加如下内容：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># example path</span><span class="w"></span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">input_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;../../data/input/car_price.csv&#39;</span><span class="w"></span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">output_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;../../data/output&#39;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># spark configs</span><span class="w"></span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">spark_master</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;local[*]&#39;</span><span class="w"></span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">spark_config</span><span class="p">.</span><span class="n">spark</span><span class="p">.</span><span class="n">driver</span><span class="p">.</span><span class="n">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;3G&#39;</span><span class="w"></span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">spark_config</span><span class="p">.</span><span class="n">spark</span><span class="p">.</span><span class="n">executor</span><span class="p">.</span><span class="n">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;16G&#39;</span><span class="w"></span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">spark_config</span><span class="p">.</span><span class="n">spark</span><span class="p">.</span><span class="n">sql</span><span class="p">.</span><span class="n">debug</span><span class="p">.</span><span class="n">maxToStringFields</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="w"></span>
 </code></pre></div>
 <h3 id="task_1">注册Task</h3>
 <p>将<code>main</code>命令行入口和上述实现的<code>Task</code>类注册到命名空间中。</p>
 <p>编辑<code>pyproject.toml</code>文件，增加<a href="https://python-poetry.org/docs/plugins/">poetry插件</a>如下内容：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[tool.poetry.plugins.console_scripts]</span><span class="w"></span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">pyspark_etl_template</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pyspark_etl_template.app:main&quot;</span><span class="w"></span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">[tool.poetry.plugins.&quot;etl_tasks&quot;]</span><span class="w"></span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">car_etl_example</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pyspark_etl_template.tasks.car_etl_example.task:CarDataTask&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">[tool.poetry.plugins.console_scripts]</span><span class="w"></span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">automotive_data_etl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;automotive_data_etl.cmdline:main&quot;</span><span class="w"></span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">[tool.poetry.plugins.&quot;etl_tasks&quot;]</span><span class="w"></span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">automotive_task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;automotive_data_etl.tasks.automotive_task.task:AutomotiveDataTask&quot;</span><span class="w"></span>
 </code></pre></div>
-<p>这么做的目的是将<code>CarDataTask</code>注册到<code>entry_points</code>中， 然后在程序中使用<code>importlib.metadata</code>
+<p>这么做的目的是将<code>AutomotiveDataTask</code>注册到<code>entry_points</code>中， 然后在程序中使用<code>importlib.metadata</code>
 根据名称空间查找。而 <code>stevedore</code> 则是封装了查找的复杂逻辑，让使用插件更简单。</p>
 <p>将项目以可编辑模式安装到当前环境：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>poetry install
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>poetry install
 </code></pre></div>
 <p>可以在 <code>Python Console</code> 下查看注册插件信息：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>&gt;&gt;&gt; from importlib.metadata import entry_points
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>&gt;&gt;&gt; entry_points<span class="o">(</span><span class="nv">group</span><span class="o">=</span><span class="s1">&#39;etl_tasks&#39;</span><span class="o">)</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="o">[</span>EntryPoint<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;car_etl_example&#39;</span>, <span class="nv">value</span><span class="o">=</span><span class="s1">&#39;pyspark_etl_template.tasks.car_etl_example.car_transform:CarTransform&#39;</span>, <span class="nv">group</span><span class="o">=</span><span class="s1">&#39;etl_tasks&#39;</span><span class="o">)]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>&gt;&gt;&gt; from importlib.metadata import entry_points
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>&gt;&gt;&gt; entry_points<span class="o">(</span><span class="nv">group</span><span class="o">=</span><span class="s1">&#39;etl_tasks&#39;</span><span class="o">)</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="o">[</span>EntryPoint<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;automotive_task&#39;</span>, <span class="nv">value</span><span class="o">=</span><span class="s1">&#39;automotive_data_etl.tasks.automotive_task.task:AutomotiveDataTask&#39;</span>, <span class="nv">group</span><span class="o">=</span><span class="s1">&#39;etl_tasks&#39;</span><span class="o">)]</span>
 </code></pre></div>
 <p>将本地项目以可编辑方式安装到当前 Python 环境：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>pip install -e .
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>pip install -e .
 </code></pre></div>
 <h3 id="task_2">运行Task</h3>
-<p>然后通过命令行的方式运行<code>Task</code>：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>pyspark_etl_template --env<span class="o">=</span>development --task<span class="o">=</span>car_etl_example
+<p>然后通过命令行的方式运行<code>Task</code>，通过命令行参数的方式更新输入输出路径：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>automotive_data_etl --env<span class="o">=</span>development --task<span class="o">=</span>automotive_task --input<span class="o">=</span>tmp/input/car_price.csv --output<span class="o">=</span>tmp/output/
 </code></pre></div>
 
 
