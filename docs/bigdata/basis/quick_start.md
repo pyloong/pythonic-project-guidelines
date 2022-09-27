@@ -1,7 +1,7 @@
 # 快速上手
 
-本文通过一个包含主要知识点的简单项目，向开发者展示一个通用、规范和易于理解的Pyspark ETL的项目开发流程。
-示例项目是一个将本地文件进行预处理，并将结果导出文件的演示程序。
+本文通过一个包含主要知识点的简单项目，向开发者展示一个通用、规范和易于理解的ETL的项目开发流程。
+示例项目使用`Pyspark`将本地文件进行预处理，并将结果导出文件的演示程序。
 
 ## 初始化项目
 
@@ -10,13 +10,12 @@
 使用 [cookiecutter](https://github.com/cookiecutter/cookiecutter) 加载项目模板。通过交互操作，可以选择使用的功能。
 
 ```bash
-cookiecutter https://github.com/JingyuanR/cookiecutter-pyspark-etl-project
+cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project-bigdata-etl
 ```
 
 ### 创建虚拟环境
 
-切换到`pyspark-etl-template`
-文件路径下，项目使用 [poetry](/pythonic-project-guidelines/introduction/virtualenv/#25-poetry)
+切换到项目根目录下，项目使用 [poetry](/pythonic-project-guidelines/introduction/virtualenv/#25-poetry)
 管理虚拟环境，运行命令自动创建虚拟环境，同时安装开发环境依赖
 
 ```bash
@@ -51,9 +50,9 @@ ETL任务放在`Tasks`目录下，实现`AbstractTransform`和`AbstractTask`
 
 - `AbstractTask`: Task任务抽象类，`executor`执行器实例化`插件Task`，执行`AbstractTask`抽象父类的`run`方法
     - `run`: 执行Task任务流程
-    - `_input`: 数据源抽取(抽象方法)
+    - `_extract`: 数据源抽取(抽象方法)
     - `_transform`: 数据转换(抽象方法)，执行转换流程，调用`AbstractTransform`子类
-    - `_output`: 数据加载(抽象方法)
+    - `_load`: 数据加载(抽象方法)
 - `AbstractTransform`: Transform抽象类，提供`AbstractTask`中`_transform`使用，同一个Task可以实现多个`_transform`
     - `_transform`: 数据转换(抽象方法)，指定转换流程，处理输入数据(DataFrame)
 
@@ -85,23 +84,56 @@ poetry install
 
 - 最终结果Schema：`car_id`, `symboling`, `car_name`, `price`, 将结果导出`json`文件
 
+在命令行使用`cookiecutter`创建项目骨架:
+
+```text
+❯ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project-bigdata-etl
+project_name [My Project]: Automotive Data Etl
+project_slug [automotive_data_etl]:
+project_description [My Awesome Project!]: This is my first etl package, i love it.
+author_name [Author]: ming
+author_email [ming@example.com]: ming@gmail.com
+version [0.1.0]:
+Select python_version:
+1 - 3.10
+2 - 3.9
+Choose from 1, 2 [1]:
+use_src_layout [y]:
+use_poetry [y]:
+use_docker [n]:
+Select ci_tools:
+1 - none
+2 - Gitlab
+3 - Github
+Choose from 1, 2, 3 [1]:
+Select use_framework:
+1 - none
+2 - pyspark
+Choose from 1, 2 [1]: 2
+```
+
 ### Task类
 
-创建汽车数据ETL任务`CarDataTask`类，`src/etl_project/tasks/car_etl_example/task.py`
+创建汽车数据ETL任务`AutomotiveDataTask`类，`src/automotive_data_etl/tasks/automotive_task/task.py`
 
 ```py title="task.py"
 """Processing car data task."""
+import logging
+
 from pyspark.sql import DataFrame
 
-from pyspark_etl_example.tasks.abstract.task import AbstractTask
-from pyspark_etl_example.tasks.car_etl_example.car_transform import \
-    CarTransform
+from automotive_data_etl.tasks.abstract.task import AbstractTask
+from automotive_data_etl.tasks.automotive_task.automotive_transform import AutomotiveDataTransform
 
 
-class CarDataTask(AbstractTask):
+class AutomotiveDataTask(AbstractTask):
     """Processing car data task."""
 
-    def _input(self) -> DataFrame:
+    def __init__(self):
+        super().__init__()
+        self.spark = self.ctx.get_spark_session()
+
+    def _extract(self) -> DataFrame:
         """Read CSV file return DataFrame"""
         df: DataFrame = self.spark.read.csv(
             self.settings.input_path,
@@ -109,30 +141,31 @@ class CarDataTask(AbstractTask):
             header=True,
             inferSchema=True
         )
-        self.logger.info(f'Extract data from {self.settings.input_path}')
+        this.logger.info(f'Extract data from {self.settings.input_path}')
         return df
 
     def _transform(self, df: DataFrame) -> DataFrame:
         """execute CarTransform transform function"""
-        return CarTransform().transform(df)
+        return AutomotiveDataTransform().transform(df)
 
-    def _output(self, df: DataFrame) -> None:
+    def _load(self, df: DataFrame) -> None:
         """Load final data to output path"""
         df.write.json(self.settings.output_path, mode='overwrite', encoding='utf-8')
-        self.logger.info(f'Load data to {self.settings.output_path}')
+        this.logger.info(f'Load data to {self.settings.output_path}')
+
 ```
 
-每一个`Task`任务都会经过“输入”、“转换”和“输出”的过程，实现`AbstractTask`中的`_input`、`_transform`、`_output`抽象方法
+每一个`Task`任务都会经过“输入”、“转换”和“输出”的过程，实现`AbstractTask`中的`_extract`、`_transform`、`_load`抽象方法
 
-- `_input`：读取`example_data/input`下csv文件
+- `_extract`：读取`tmp/input/car_price.csv`CSV文件
 - `_transform`：执行将实现的`Transform`类的`transform`方法
-- `_output`：将DataFrame以Json格式写入`example_data/output`目录下
+- `_load`：将DataFrame以Json格式写入`tmp/output`目录下
 
 ### Transform类
 
-创建汽车数据`CarTransform`类，`src/etl_project/tasks/car_etl_example/car_transform.py`
+创建汽车数据`AutomotiveDataTransform`类，`src/automotive_data_etl/tasks/automotive_task/automotive_transform.py`
 
-```py title="car_transform.py"
+```py title="automotive_transform.py"
 """Car data Transformation."""
 from functools import reduce
 
@@ -141,11 +174,12 @@ from pyspark.sql.functions import col
 from pyspark.sql.functions import udf
 from pyspark.sql.types import StringType
 
-from pyspark_etl_example.tasks.abstract.transform import AbstractTransform
+from automotive_data_etl.tasks.abstract.transform import AbstractTransform
 
 
-class CarTransform(AbstractTransform):
+class AutomotiveDataTransform(AbstractTransform):
     """Car data Transformation."""
+
     def transform(self, df: DataFrame) -> DataFrame:
         """Execute the transform process"""
         transformations = (
@@ -153,7 +187,7 @@ class CarTransform(AbstractTransform):
             self._process_car_name,
             self._select_final_columns,
         )
-        return reduce(DataFrame.transform, transformations, df)
+        return reduce(DataFrame.transform, transformations, df)  # type: ignore
 
     @staticmethod
     def _filter_price(df: DataFrame) -> DataFrame:
@@ -187,9 +221,10 @@ def _name_replace_udf(car_name):
         return car_name
     car_name = car_name.replace(err_str, '')
     return car_name
+
 ```
 
-`CarTransform`类，实现以下方法：
+`AutomotiveDataTransform`类，实现以下方法：
 
 - `_filter_price`的功能是筛选 `price` > 10000 的数据
 - `_process_car_name`的功能是使用udf方法`_name_replace_udf`，将`CarName`字段中包含脏数据`[dirty_data]`的内容进行处理
@@ -200,10 +235,13 @@ def _name_replace_udf(car_name):
 
 将如下配置更新到配置文件中，因为项目默认使用dev环境配置，则需要在`configs/dev.toml`中增加如下内容：
 
+
 ```toml
-# example path
-input_path = '../../data/input/car_price.csv'
-output_path = '../../data/output'
+# spark configs
+spark_master = 'local[*]'
+spark_config.spark.driver.memory = '3G'
+spark_config.spark.executor.memory = '16G'
+spark_config.spark.sql.debug.maxToStringFields = 100
 ```
 
 ### 注册Task
@@ -214,13 +252,13 @@ output_path = '../../data/output'
 
 ```toml
 [tool.poetry.plugins.console_scripts]
-pyspark_etl_template = "pyspark_etl_template.app:main"
+automotive_data_etl = "automotive_data_etl.cmdline:main"
 
 [tool.poetry.plugins."etl_tasks"]
-car_etl_example = "pyspark_etl_template.tasks.car_etl_example.task:CarDataTask"
+automotive_task = "automotive_data_etl.tasks.automotive_task.task:AutomotiveDataTask"
 ```
 
-这么做的目的是将`CarDataTask`注册到`entry_points`中， 然后在程序中使用`importlib.metadata`
+这么做的目的是将`AutomotiveDataTask`注册到`entry_points`中， 然后在程序中使用`importlib.metadata`
 根据名称空间查找。而 `stevedore` 则是封装了查找的复杂逻辑，让使用插件更简单。
 
 将项目以可编辑模式安装到当前环境：
@@ -236,7 +274,7 @@ poetry install
 
 >>> entry_points(group='etl_tasks')
 
-[EntryPoint(name='car_etl_example', value='pyspark_etl_template.tasks.car_etl_example.car_transform:CarTransform', group='etl_tasks')]
+[EntryPoint(name='automotive_task', value='automotive_data_etl.tasks.automotive_task.task:AutomotiveDataTask', group='etl_tasks')]
 ```
 
 将本地项目以可编辑方式安装到当前 Python 环境：
@@ -247,9 +285,9 @@ pip install -e .
 
 ### 运行Task
 
-然后通过命令行的方式运行`Task`：
+然后通过命令行的方式运行`Task`，通过命令行参数的方式更新输入输出路径：
 
 ```shell
-pyspark_etl_template --env=development --task=car_etl_example
+automotive_data_etl --env=development --task=automotive_task --input=tmp/input/car_price.csv --output=tmp/output/
 ```
 
