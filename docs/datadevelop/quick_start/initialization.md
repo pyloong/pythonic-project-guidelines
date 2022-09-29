@@ -66,7 +66,7 @@ ETL任务完成后需要注册插件：
 task_name = "{task_class_path}:TaskExample"
 ```
 
-使用如下命令将项目插件更新到环境中：gon
+使用如下命令将项目插件更新到环境中：
 
 ```shell
 poetry install

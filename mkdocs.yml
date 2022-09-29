@@ -84,6 +84,6 @@ nav:
 - 数据开发实践:
   - 快速上手:
     - 环境准备: datadevelop/quick_start/preparation.md
-    - 初始化项目: datadevelop/quick_start/Initialization.md
+    - 初始化项目: datadevelop/quick_start/initialization.md
     - 测试: datadevelop/quick_start/tests.md
     - 部署: datadevelop/quick_start/deployment.md
