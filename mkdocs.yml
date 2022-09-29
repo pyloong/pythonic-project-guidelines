@@ -78,10 +78,12 @@ nav:
     - 项目结构: guidelines/project_management/project_structure.md
     - 文档管理: guidelines/project_management/document.md
     - 构建与发布: guidelines/project_management/distribution.md
-- 应用实践:
+- 应用开发实践:
   - Web: 
     - Fastapi: practices/web.md
 - 数据开发实践:
-  - ETL:
-    - 前期准备: bigdata/basis/init.md
-    - 快速上手: bigdata/basis/quick_start.md
+  - 快速上手:
+    - 环境准备: datadevelop/quick_start/preparation.md
+    - 初始化项目: datadevelop/quick_start/Initialization.md
+    - 测试: datadevelop/quick_start/tests.md
+    - 部署: datadevelop/quick_start/deployment.md
