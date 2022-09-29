@@ -1,9 +1,9 @@
-# 快速上手
+# 初始化项目
 
 本文通过一个包含主要知识点的简单项目，向开发者展示一个通用、规范和易于理解的ETL的项目开发流程。
 示例项目使用`Pyspark`将本地文件进行预处理，并将结果导出文件的演示程序。
 
-## 初始化项目
+## 工程化开发
 
 ### 创建项目骨架
 
@@ -62,11 +62,11 @@ ETL任务完成后需要注册插件：
 管理虚拟环境，则需要在`pyproject.toml` 文件增加中增加如下内容：
 
 ```toml
-[tool.poetry.plugins."poetry.plugin"]
-demo = "poetry_demo_plugin.plugin:MyPlugin"
+[tool.poetry.plugins."etl_tasks"]
+task_name = "{task_class_path}:TaskExample"
 ```
 
-使用如下命令将项目插件更新到环境中：
+使用如下命令将项目插件更新到环境中：gon
 
 ```shell
 poetry install
@@ -191,8 +191,8 @@ class AutomotiveDataTransform(AbstractTransform):
 
     @staticmethod
     def _filter_price(df: DataFrame) -> DataFrame:
-        """Filter results price > 1000"""
-        return df.filter(col('price') > 1000)
+        """Filter results price > 10000"""
+        return df.filter(col('price') > 10000)
 
     @staticmethod
     def _process_car_name(df: DataFrame) -> DataFrame:
@@ -235,7 +235,6 @@ def _name_replace_udf(car_name):
 
 将如下配置更新到配置文件中，因为项目默认使用dev环境配置，则需要在`configs/dev.toml`中增加如下内容：
 
-
 ```toml
 # spark configs
 spark_master = 'local[*]'
@@ -243,51 +242,3 @@ spark_config.spark.driver.memory = '3G'
 spark_config.spark.executor.memory = '16G'
 spark_config.spark.sql.debug.maxToStringFields = 100
 ```
-
-### 注册Task
-
-将`main`命令行入口和上述实现的`Task`类注册到命名空间中。
-
-编辑`pyproject.toml`文件，增加[poetry插件](https://python-poetry.org/docs/plugins/)如下内容：
-
-```toml
-[tool.poetry.plugins.console_scripts]
-automotive_data_etl = "automotive_data_etl.cmdline:main"
-
-[tool.poetry.plugins."etl_tasks"]
-automotive_task = "automotive_data_etl.tasks.automotive_task.task:AutomotiveDataTask"
-```
-
-这么做的目的是将`AutomotiveDataTask`注册到`entry_points`中， 然后在程序中使用`importlib.metadata`
-根据名称空间查找。而 `stevedore` 则是封装了查找的复杂逻辑，让使用插件更简单。
-
-将项目以可编辑模式安装到当前环境：
-
-```shell
-poetry install
-```
-
-可以在 `Python Console` 下查看注册插件信息：
-
-```bash
->>> from importlib.metadata import entry_points
-
->>> entry_points(group='etl_tasks')
-
-[EntryPoint(name='automotive_task', value='automotive_data_etl.tasks.automotive_task.task:AutomotiveDataTask', group='etl_tasks')]
-```
-
-将本地项目以可编辑方式安装到当前 Python 环境：
-
-```shell
-pip install -e .
-```
-
-### 运行Task
-
-然后通过命令行的方式运行`Task`，通过命令行参数的方式更新输入输出路径：
-
-```shell
-automotive_data_etl --env=development --task=automotive_task --input=tmp/input/car_price.csv --output=tmp/output/
-```
-
