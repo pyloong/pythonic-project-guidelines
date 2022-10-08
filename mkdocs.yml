@@ -58,7 +58,7 @@ nav:
 - Python 规范:
   - 风格规范: standard/style_rules.md
   - 语言规范: standard/language_rules.md
-- 项目工程化:
+- 应用开发实践:
   - 初级教程: 
     - 项目说明: guidelines/tutorial/tutorial.md
     - 初始化: guidelines/tutorial/init_project.md
@@ -78,12 +78,13 @@ nav:
     - 项目结构: guidelines/project_management/project_structure.md
     - 文档管理: guidelines/project_management/document.md
     - 构建与发布: guidelines/project_management/distribution.md
-- 应用开发实践:
-  - Web: 
-    - Fastapi: practices/web.md
+  - 开发实践:
+    - Web:
+      - Fastapi: practices/web.md
 - 数据开发实践:
-  - 快速上手:
+  - 初级教程:
     - 环境准备: datadevelop/quick_start/preparation.md
     - 初始化项目: datadevelop/quick_start/initialization.md
+    - 应用开发: datadevelop/quick_start/etl_develop.md
     - 测试: datadevelop/quick_start/tests.md
     - 部署: datadevelop/quick_start/deployment.md
