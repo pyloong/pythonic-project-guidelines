@@ -87,4 +87,4 @@ nav:
     - 初始化项目: datadevelop/quick_start/initialization.md
     - 应用开发: datadevelop/quick_start/etl_develop.md
     - 测试: datadevelop/quick_start/tests.md
-    - 部署: datadevelop/quick_start/deployment.md
+    - 发布: datadevelop/quick_start/release.md

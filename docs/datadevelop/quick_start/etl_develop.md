@@ -1,8 +1,8 @@
 # 应用开发
 
-## ETL开发实践
+提供ETL工程化的项目示例，帮助初学者快速理解和学习ETL完整的工程化开发。
 
-### 任务需求
+## 任务需求
 
 现有汽车信息数据[car_price.csv](../../assets/data/car_price.csv)
 
@@ -40,7 +40,7 @@ Select use_framework:
 Choose from 1, 2 [1]: 2
 ```
 
-### Task类
+## Task类
 
 创建汽车数据ETL任务`AutomotiveDataTask`类，`src/automotive_data_etl/tasks/automotive_task/task.py`
 
@@ -89,7 +89,7 @@ class AutomotiveDataTask(AbstractTask):
 - `_transform`：执行将实现的`Transform`类的`transform`方法
 - `_load`：将DataFrame以Json格式写入`tmp/output`目录下
 
-### Transform类
+## Transform类
 
 创建汽车数据`AutomotiveDataTransform`类，`src/automotive_data_etl/tasks/automotive_task/automotive_transform.py`
 
@@ -159,7 +159,7 @@ def _name_replace_udf(car_name):
 - `_select_final_columns`方法是查询并返回`car_id`,`symboling`,`car_name`,`price`数据
 - `transform`的功能是执行处理流程，返回数据结果，至此完成汽车数据转换过程
 
-### 配置
+## 配置
 
 将如下配置更新到配置文件中，因为项目默认使用dev环境配置，则需要在`configs/dev.toml`中增加如下内容：
 

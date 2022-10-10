@@ -2,7 +2,7 @@
 
 ## 开发环境
 
-本页总结了数据开发项目所需的准备工作，前提已经完成[Python开发前准备](/pythonic-project-guidelines/introduction/install)
+本页总结了数据开发项目所需的准备工作，前提已经完成[开发前准备](/pythonic-project-guidelines/introduction/install)
 和安装[Cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/README.html)。
 
 快速上手示例项目使用Pyspark进行开发，可以通过[Pypi](https://pypi.org/project/pyspark/)
