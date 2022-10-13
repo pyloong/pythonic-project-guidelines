@@ -44,8 +44,6 @@ poetry install
 
 ### ETL项目概述
 
-[//]: # (TODO 详细介绍项目工程化结构，并附加代码块)
-
 在开发ETL任务的时候，建议在`tasks`目录下新建文件夹来存放对应ETL任务代码，这样做的好处是方便管理和阅读。
 
 #### Executor
@@ -85,7 +83,7 @@ class Executor:
         """calls its `run()` method in the task class"""
         task_class = self._load_task(TASK_NAMESPACE, self.task)
         logging.info(f"Running task: {task_class}")
-        task_class(self.ctx).run()
+        task_class().run()
 
     @staticmethod
     def _load_task(namespace: str, name: str) -> Callable:
@@ -183,29 +181,48 @@ class AbstractTransform(ABC):
 
 #### Context
 
-`context.py`负责整个项目的上下文内容管理，单例模式实现，开发者可以将公共属性或方法在`context`中进行实现。
+`context.py`负责整个项目的上下文内容管理，单例模式实现，开发者可以将公共的属性或方法在`Context`
+中进行实现。这样可以避免对象的重复实例化，始终使用同一个`Context`并调用其中的属性和方法。
 
 ```python
 """Context"""
 from dynaconf.base import Settings
 
 from etl_project.constants import ENV_DEVELOPMENT
-from etl_project.dependencies.config import settings
+from etl_project.dependencies.config import config_manager
+from etl_project.dependencies.logger import LoggerManager
 
 
+@singleton
 class Context:
-    _instance = None
+    """
+    Context for project, Provide properties and methods
+    """
     environment = ENV_DEVELOPMENT
-
-    def __new__(cls):
-        """Singleton mode"""
-        if cls._instance is None:
-            cls._instance = super(Context, cls).__new__(cls)
-        return cls._instance
 
     def __init__(self):
         """Context Parameters"""
-        self.settings: Settings = settings.from_env(self.environment)
+        self.settings = config_manager.from_env(self.environment)
+        self.logger = LoggerManager(self.settings).get_logger()
+
+```
+
+`Context`所使用的`@singleton`单例模式装饰器实现如下：
+
+```python
+"""Singleton pattern decorator"""
+_instance = {}
+
+
+def singleton(cls):
+    # 创建一个字典用来保存被装饰类的实例对象 _instance = {}
+    def _singleton(*args, **kwargs):
+        # 判断这个类有没有创建过对象，没有新创建一个，有则返回之前创建的
+        if cls not in _instance:
+            _instance[cls] = cls(*args, **kwargs)
+        return _instance[cls]
+
+    return _singleton
 
 ```
 
