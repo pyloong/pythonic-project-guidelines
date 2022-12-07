@@ -20,9 +20,9 @@
 
 ### 1.3 虚拟环境工具
 
-推荐使用 [pipenv](https://pipenv.pypa.io/en/latest/) 。Pipenv 相比使用 `requirements.txt` 管理依赖列表，更加强大。它支持同时管理开发生产环境依赖，自动查找虚拟环境，生成依赖锁定文件等其他特性。
+推荐使用 [poetry](https://python-poetry.org/)。poetry 相比使用 `requirements.txt` 管理依赖列表，更加强大。它支持同时管理开发生产环境依赖，自动查找虚拟环境，生成依赖锁定文件等其他特性。
 
-在安装好 Python 环境后，应该在全局环境中安装 pipenv 。
+在安装好 Python 环境后，应该在全局环境中安装 poetry 。
 
 ### 1.4 Git 使用
 
@@ -39,8 +39,6 @@
 ```txt
 .
 ├── README.md
-├── setup.cfg
-├── setup.py
 ├── src
 │   └── example_blog
 │       └── __init__.py
@@ -51,55 +49,29 @@
 初始化项目虚拟环境：
 
 ```bash
-pipenv install
+poetry init
 ```
 
-安装完成后，项目目录会自动生成 `Pipfile` 和 `Pipfile.lock` 两个文件。
+根据交互式提示，进行相应内容选取填写，安装完成后，项目目录会自动生成 `pyproject.toml` 文件。
 
 ### 2.2 初始化项目基本信息
 
-编辑 `setup.py` 文件：
+编辑 `pyproject.toml` 文件， 配置项目描述信息：
 
-```python
-import setuptools
+```toml
+[tool.poetry]
+name = "example_blog"
+version = "0.1.0"
+description = "This is example blog system."
+authors = ["huagang517 <huagang517@126.com>"]
+readme = "README.md"
 
-setuptools.setup()
+[tool.poetry.dependencies]
+python = "^3.10"
 
-```
-
-编辑 `setup.cfg` 文件，配置项目描述信息：
-
-```ini
-[metadata]
-name = example_blog
-version = attr: example_blog.__version__
-author = huagang
-author_email = huagang517@126.com
-description = This is example blog system.
-keywords = blog example
-long_description = file: README.md
-long_description_content_type = text/markdown
-classifiers =
-    Operating System :: OS Independent
-    Programming Language :: Python :: 3.7
-
-[options]
-python_requires > = 3.7
-include_package_data = True
-packages = find:
-package_dir =
-    =src
-install_requires =
-
-[options.packages.find]
-where = src
-
-```
-
-编辑 `src/example_blog/__init__.py` ，创建初始版本号：
-
-```python
-__version__ = '0.1.0'
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 ```
 
 ### 2.3 增加项目自述文件
@@ -340,6 +312,12 @@ Temporary Items
 .idea
 ```
 
+### 2.5 安装开发包
+
+```bash
+poetry install 
+```
+
 ### 2.6 初始 Git 提交
 
 ```bash
@@ -350,17 +328,6 @@ git add .
 git commit -m "feat: First commit!"
 ```
 
-### 2.5 安装开发包
-
-将项目以编辑方式安装到环境中：
-
-```bash
-pip install -e .
-```
-
-!!! warning "注意"
-    这里不要使用 `pipenv` 命令，否则会写入 `Pipfile` 。
-
 ## 3. 项目功能开发
 
 ### 3.1 创建命令行入口
@@ -370,14 +337,14 @@ pip install -e .
 安装依赖：
 
 ```bash
-pipenv install click
+poetry add click
 ```
 
-编辑 `setup.cfg` ，将增加安装依赖：
+查看 `pyproject.toml` ，将增加安装依赖：
 
-```ini
-install_requires =
-    click
+```toml
+[tool.poetry.dependencies]
+click = "^8.1.3"
 ```
 
 创建 `src/example_blog/cmdline.py` 文件：
@@ -394,31 +361,18 @@ def main(ctx, version):
 
 ```
 
-编辑 `setup.cfg` ，将命令行入口注册到项目描述文件中：
+编辑 `pyproject.toml` ，将命令行入口注册到项目描述文件中：
 
-```ini
-[options.entry_points]
-console_scripts =
-    example_blog = example_blog.cmdline:main
-```
-
-重新安装项目：
-
-```bash
-pip install -e .
-```
-
-测试命令是否生效：
-
-```bash
-example_blog -V
+```toml
+[tool.poetry.scripts]
+example_blog = "example_blog.cmdline:main"
 ```
 
 提交代码：
 
 ```bash
 git add .
-git commit -m "feat: Add commline."
+git commit -m "feat: Add cmdline."
 ```
 
 ### 3.2 引入项目配置系统
@@ -430,15 +384,15 @@ git commit -m "feat: Add commline."
 安装依赖：
 
 ```bash
-pipenv install dynaconf
+poetry add dynaconf
 ```
 
-编辑 `setup.cfg` ，将增加安装依赖：
+查看 `pyproject.toml` ，将增加安装依赖：
 
-```ini
-install_requires =
-    click
-    dynaconf
+```toml
+[tool.poetry.dependencies]
+click = "^8.1.3"
+dynaconf = "^3.1.11"
 ```
 
 建立配置包，和配置文件：
@@ -497,25 +451,7 @@ LOG_LEVEL: DEBUG
 **/settings.local.yml
 ```
 
-编辑 `setup.cfg` ，将默认配置文件包含打包范围之内：
-
-```ini
-[options.package_data]
-example_blog.config = settings.yml
-```
-
-编辑 `setup.cfg` ，增加外部配置路径：
-
-```ini
-[options.data_files]
-etc/example_blog = src/example_blog/config/settings.yml
-```
-
-**注意：**
-
-`data_files` 中的相对路径会写入到 `sys.prefix` 位置下。当安装后，会在该目录下生成 `etc/example_blog/settings.yml` 的配置文件。可以通过修改该文件驱动项目配置。此文件属于用户级别配置。会覆盖默认配置。
-
-提交代码。
+提交代码:
 
 ```bash
 git add .
@@ -574,17 +510,17 @@ git commit -m "feat: Add log"
 安装依赖：
 
 ```bash
-pipenv install sqlalchemy mysqlclient
+poetry add sqlalchemy mysqlclient
 ```
 
-编辑 `setup.cfg` ，将增加安装依赖：
+查看 `pyproject.toml` ，将增加安装依赖：
 
-```ini
-install_requires =
-    click
-    dynaconf
-    sqlalchemy
-    mysqlclient
+```toml
+[tool.poetry.dependencies]
+click = "^8.1.3"
+dynaconf = "^3.1.11"
+sqlalchemy = "^1.4.44"
+mysqlclient = "^2.1.1"
 ```
 
 编写 `src/example_blog/config/settings.yml` ，增加数据库配置信息：
@@ -679,18 +615,18 @@ class Article(BaseModel):
 安装依赖：
 
 ```bash
-pipenv install pydantic
+poetry add pydantic
 ```
 
-编辑 `setup.cfg` ，将增加安装依赖：
+查看 `pyproject.toml` ，将增加安装依赖：
 
-```ini
-install_requires =
-    click
-    dynaconf
-    sqlalchemy
-    mysqlclient
-    pydantic
+```toml
+[tool.poetry.dependencies]
+click = "^8.1.3"
+dynaconf = "^3.1.11"
+sqlalchemy = "^1.4.44"
+mysqlclient = "^2.1.1"
+pydantic = "^1.10.2"
 ```
 
 创建 `src/example_blog/schemas.py` ，创建对象模型：
@@ -857,20 +793,20 @@ git commit -m "feat: Add services."
 安装依赖：
 
 ```bash
-pipenv install fastapi uvicorn
+poetry add fastapi uvicorn
 ```
 
-编辑 `setup.cfg` ，增加安装依赖：
+查看 `pyproject.toml` ，增加安装依赖：
 
-```ini
-install_requires =
-    click
-    dynaconf
-    sqlalchemy
-    mysqlclient
-    pydantic
-    fastapi
-    uvicorn
+```toml
+[tool.poetry.dependencies]
+click = "^8.1.3"
+dynaconf = "^3.1.11"
+sqlalchemy = "^1.4.44"
+mysqlclient = "^2.1.1"
+pydantic = "^1.10.2"
+fastapi = "^0.88.0"
+uvicorn = "^0.20.0"
 ```
 
 创建 `src/examp.e_blog/views.py` ，创建视图：
@@ -1077,6 +1013,12 @@ git commit -m "feat: Add server cmdline."
 
 ### 3.8 启动 Server
 
+将本项目以可编辑方式安装到当前 Python 环境：
+
+```bash
+pip install -e .
+```
+
 命令行运行：
 
 ```bash
@@ -1107,21 +1049,21 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 安装依赖：
 
 ```bash
-pipenv install alembic
+poetry add alembic
 ```
 
-编辑 `setup.cfg` ，将增加安装依赖：
+查看 `pyproject.toml` ，将增加安装依赖：
 
-```ini
-install_requires =
-    click
-    dynaconf
-    sqlalchemy
-    mysqlclient
-    pydantic
-    fastapi
-    uvicorn
-    alembic
+```toml
+[tool.poetry.dependencies]
+click = "^8.1.3"
+dynaconf = "^3.1.11"
+sqlalchemy = "^1.4.44"
+mysqlclient = "^2.1.1"
+pydantic = "^1.10.2"
+fastapi = "^0.88.0"
+uvicorn = "^0.20.0"
+alembic = "^1.8.1"
 ```
 
 初始化 alembic ：
@@ -1363,17 +1305,6 @@ def chdir(path: Union[str, PathLike]):
 
 创建 `src/example_blog/migration/__init__.py` 和 `src/example_blog/migration/versions/__init__.py`
 
-编辑 `setup.cfg` ，将迁移脚本配置信息加入打包系统：
-
-```ini
-[options.package_data]
-example_blog.config = settings.yml
-example_blog.migration =
-    alembic.ini
-    README
-    script.py.mako
-```
-
 创建空白数据库迁移版本：
 
 ```bash
@@ -1414,7 +1345,7 @@ git commit -m "Add alembic migrate."
 安装依赖：
 
 ```bash
-pipenv install -d pytest
+poetry add -D pytest
 ```
 
 创建 `tests/settings.yml` ，初始化测试配置：
@@ -1686,7 +1617,7 @@ def client():
 由于 Fastapi 的 `TestClient` 依赖 `requests` ，所以需要先安装：
 
 ```bash
-pipenv install -d requests
+poetry add -D requests
 ```
 
 创建 `tests/test_views.py` ，测试试图：
@@ -1793,7 +1724,6 @@ git commit -m "test: Add view test."
 from click.testing import CliRunner
 
 
-
 @pytest.fixture
 def cli():
     runner = CliRunner(echo_stdin=True, mix_stderr=False)
@@ -1836,7 +1766,7 @@ def test_migrate(cli, mocker):
 因为单元测试中使用了 [mock](https://docs.python.org/3/library/unittest.mock.html) ，所以安装配合 pytest 使用的 [pytest-mock](https://github.com/pytest-dev/pytest-mock/)
 
 ```bash
-pipenv install -d pytest-mock
+poetry add -D pytest-mock
 ```
 
 运行测试：
@@ -1925,7 +1855,7 @@ git commit -m "test: Add other test."
 安装依赖：
 
 ```bash
-pipenv install -d isort
+poetry add -D isort
 ```
 
 格式化代码：
@@ -1943,7 +1873,7 @@ isort .
 安装依赖：
 
 ```bash
-pipenv install -d flake8
+poetry add -D flake8
 ```
 
 检测代码：
@@ -1963,54 +1893,39 @@ git commit -m "feat: Lint code"
 
 ## 5. 打包发布
 
-到这一步， `setup.cfg` 文件应该是这样的：
+到这一步， `pyproject.toml` 文件应该是这样的：
+```toml
+[tool.poetry]
+name = "example_blog"
+version = "0.1.0"
+description = "This is example blog system."
+authors = ["huagang <huagang517@126.com>"]
+readme = "README.md"
 
-```ini
-[metadata]
-name = example_blog
-version = attr: example_blog.__version__
-author = huagang
-author_email = huagang517@126.com
-description = This is example blog system.
-keywords = blog example
-long_description = file: README.md
-long_description_content_type = text/markdown
-classifiers =
-    Operating System :: OS Independent
-    Programming Language :: Python :: 3.7
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi-sa = "^0.0.1.dev0"
+sqlalchemy = "^1.4.44"
+mysqlclient = "^2.1.1"
+pydantic = "^1.10.2"
+dynaconf = "^3.1.11"
+fastapi = "^0.88.0"
+uvicorn = "^0.20.0"
+alembic = "^1.8.1"
 
-[options]
-python_requires > = 3.7
-include_package_data = True
-packages = find:
-package_dir =
-    =src
-install_requires =
-    click
-    dynaconf
-    sqlalchemy
-    mysqlclient
-    pydantic
-    fastapi
-    uvicorn
-    alembic
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
+isort = "^5.10.1"
+requests = "^2.28.1"
+pytest-mock = "^3.10.0"
+flake8 = "^6.0.0"
 
-[options.packages.find]
-where = src
+[tool.poetry.scripts]
+example_blog = "example_blog.cmdline:main"
 
-[options.entry_points]
-console_scripts =
-    example_blog = example_blog.cmdline:main
-
-[options.package_data]
-example_blog.config = settings.yml
-example_blog.migration =
-    alembic.ini
-    README
-    script.py.mako
-
-[options.data_files]
-etc/example_blog = src/example_blog/config/settings.yml
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 ```
 
 在整个开发过程中，是逐步丰富此文件的。这是项目的描述文件，描述了打包的配置信息。
@@ -2018,7 +1933,7 @@ etc/example_blog = src/example_blog/config/settings.yml
 ### 5.1 打包
 
 ```bash
-python setup.py sdist bdist_wheel
+poetry build
 ```
 
 在 `dist` 目录中可以看到两个文件，一个是 `.tar.gz` 的源码打包文件，一个是 `.whl` 的二进制文件。
@@ -2027,10 +1942,10 @@ python setup.py sdist bdist_wheel
 
 将开发好的项目发布到索引仓库，或内网的私有仓库。
 
-使用 [twine](https://twine.readthedocs.io/en/latest/) 上传：
+使用 [poetry](https://python-poetry.org/docs/cli/#publish) 上传：
 
 ```bash
-twine upload dist/*
+poetry publish
 ```
 
 [^1]: https://www.python.org/doc/sunset-python-2/
