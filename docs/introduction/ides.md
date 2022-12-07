@@ -22,26 +22,26 @@
 
 从插件中心安装中文插件：
 
-[![windows-vscode-language-config](../../assets/images/ides/windows-vscode-language-config.png)](../../assets/images/ides/windows-vscode-language-config.png)
+[![windows-vscode-language-config](../assets/images/ides/windows-vscode-language-config.png)](../assets/images/ides/windows-vscode-language-config.png)
 
 从插件中心安装 `Python Extension Pack` 插件：
 
-[![windows-vscode-python-config](../../assets/images/ides/windows-vscode-python-config.png)](../../assets/images/ides/windows-vscode-python-config.png)
+[![windows-vscode-python-config](../assets/images/ides/windows-vscode-python-config.png)](../assets/images/ides/windows-vscode-python-config.png)
 
 ### 使用
 
 创建一个临时目录，然后选择使用 vscode 打开。Windows 可以通过右击，选择 `通过 Code 打开` ， Linux 可以在终端使用 `code demo` 命令打开。
 
-[![windows-vscode-open-demo](../../assets/images/ides/windows-vscode-open-demo.png)](../../assets/images/ides/windows-vscode-open-demo.png)
+[![windows-vscode-open-demo](../assets/images/ides/windows-vscode-open-demo.png)](../assets/images/ides/windows-vscode-open-demo.png)
 
 然后使用快捷键 ``Ctrl + ` `` 组合键打开终端，执行 `pipenv lock` 生成虚拟环境和 Pipenv 的配置文件：
 
-[![windows-vscode-demo-pipenv](../../assets/images/ides/windows-vscode-demo-pipenv.png)](../../assets/images/ides/windows-vscode-demo-pipenv.png)
+[![windows-vscode-demo-pipenv](../assets/images/ides/windows-vscode-demo-pipenv.png)](../assets/images/ides/windows-vscode-demo-pipenv.png)
 
 然后使用 `Ctrl + Shift + p` 打开 vscode 的指令窗口，在窗口中输入 `>python: select Interpreter` 来选择项目需要使用的 Python 解释器，
 然后选择上面一步创建的 Python 解释器：
 
-[![windows-vscode-demo-select-interpreter](../../assets/images/ides/windows-vscode-demo-select-interpreter.png)](../../assets/images/ides/windows-vscode-demo-select-interpreter.png)
+[![windows-vscode-demo-select-interpreter](../assets/images/ides/windows-vscode-demo-select-interpreter.png)](../assets/images/ides/windows-vscode-demo-select-interpreter.png)
 
 然后可以看到窗口的左下角已经出现了上一步选择 Python 解释器。
 
@@ -55,15 +55,15 @@ print(sys.version)
 
 ```
 
-[![windows-vscode-demo-new-file](../../assets/images/ides/windows-vscode-demo-new-file.png)](../../assets/images/ides/windows-vscode-demo-new-file.png)
+[![windows-vscode-demo-new-file](../assets/images/ides/windows-vscode-demo-new-file.png)](../assets/images/ides/windows-vscode-demo-new-file.png)
 
 然后右击该文件，选择 `在终端中运行 Python 文件` ：
 
-[[![windows-vscode-demo-run-file](../../assets/images/ides/windows-vscode-demo-run-file.png)]](../../assets/images/ides/windows-vscode-demo-run-file.png)
+[[![windows-vscode-demo-run-file](../assets/images/ides/windows-vscode-demo-run-file.png)]](../assets/images/ides/windows-vscode-demo-run-file.png)
 
 可以看到输入：
 
-[![windows-vscode-demo-run-file-out](../../assets/images/ides/windows-vscode-demo-run-file-out.png)](../../assets/images/ides/windows-vscode-demo-run-file-out.png)
+[![windows-vscode-demo-run-file-out](../assets/images/ides/windows-vscode-demo-run-file-out.png)](../assets/images/ides/windows-vscode-demo-run-file-out.png)
 
 更多关于在 vscode 中使用 Python 的内容，请参考 [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) 。
 
@@ -73,7 +73,7 @@ print(sys.version)
 
 ### 因为在此系统上禁止运行脚本
 
-[![windows-vscode-console-disable-psfile](../../assets/images/ides/windows-vscode-console-disable-psfile.png)](../../assets/images/ides/windows-vscode-console-disable-psfile.png)
+[![windows-vscode-console-disable-psfile](../assets/images/ides/windows-vscode-console-disable-psfile.png)](../assets/images/ides/windows-vscode-console-disable-psfile.png)
 
 #### 问题原因
 
