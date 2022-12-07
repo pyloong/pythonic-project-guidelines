@@ -1,6 +1,6 @@
 # Python 风格规范
 
-> 本文档为 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) 第二章 [Python Style Rules](https://google.github.io/styleguide/pyguide.html#3-python-style-rules) 的译文。
+> 本文档为 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) 第三章 [Python Style Rules](https://google.github.io/styleguide/pyguide.html#3-python-style-rules) 的译文。
 >
 > 最后更新时间： 2021-05-12
 >
