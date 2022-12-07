@@ -1,19 +1,16 @@
-# 前期准备
+# 环境准备
 
 ## 开发环境
 
-本页总结了设置和开始开发PySpark
-ETL项目所需的基本步骤，前提已经完成[Python开发前准备](/pythonic-project-guidelines/introduction/install)。
+本页总结了数据开发项目所需的准备工作，前提已经完成[开发前准备](/pythonic-project-guidelines/introduction/install)
+和安装[Cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/README.html)。
 
-使用[Pypi](https://pypi.org/project/pyspark/)
+快速上手示例项目使用Pyspark进行开发，可以通过[Pypi](https://pypi.org/project/pyspark/)
 安装[PySpark](https://spark.apache.org/docs/latest/api/python/getting_started/index.html)如下：
 
 ```shell
 pip install pyspark
 ```
-
-
-## Windows系统环境
 
 本地运行PySpark项目时环境依赖[Hadoop](https://archive.apache.org/dist/hadoop/common/)
 和[JDK](https://www.oracle.com/java/technologies/downloads/#java8)，需要安装并配置环境变量
@@ -50,11 +47,6 @@ pip install pyspark
 配置`%JAVA_HOME%/bin`，`%HADOOP_HOME%/bin`
 
 [![windows_env_path](../../assets/images/pycharm/windows_env_path.png)](../../assets/images/pycharm/windows_env_path.png)
-
-
-## MacOs系统环境
-
-TODO
 
 ## 常见问题总结
 
