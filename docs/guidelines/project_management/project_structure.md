@@ -18,7 +18,7 @@ packaging_tutorial
 ├── README.md
 ├── example_pkg
 │   └── __init__.py
-├── setup.py
+├── pyproject.toml
 └── tests
 ```
 
@@ -40,7 +40,7 @@ tutorial
 │   └── __init__.py
 ├── requests            # 这是需要本地打包的第三方包
 │   └── __init__.py
-├── setup.py
+├── pyproject.toml
 └── tests
 ```
 
@@ -62,7 +62,7 @@ sampleproject
 ├── src
 |   └── sample
 |       └── __init__.py
-├── setup.py
+├── pyproject.toml
 └── tests
 ```
 
@@ -76,8 +76,7 @@ sampleproject
 │   └── user.json
 ├── docs
 │   └── history.md
-├── setup.cfg
-├── setup.py
+├── pyproject.toml
 ├── src
 │   ├── requests
 │   │   └── __init__.py
@@ -146,7 +145,7 @@ __version__ = '0.1.0'
 **安装依赖：**
 
 ```bash
-pip install click
+poetry add click
 ```
 
 **创建命令入口文件：**
@@ -177,7 +176,7 @@ touch tests/sample_project/__init__.py
 **安装依赖：**
 
 ```bash
-pip install pytest
+poetry add -D pytest
 ```
 
 **创建测试文件：**
@@ -210,84 +209,56 @@ pytest
 
 **编写打包配置：**
 
-`setup.py`
-
-```python
-import setuptools
-
-setuptools.setup()
-```
-
-`setup.cfg`
+`pyproject.toml`
 
 ```ini
-[metadata]
-name = sample_project
-version = attr: sample_project.__version__
-author = example
-author_email = example@example.com
-description = Sample Project
-keywords = ssl_manager
-long_description = file: README.md
-long_description_content_type = text/markdown
-classifiers =
-    Operating System :: OS Independent
-    Programming Language :: Python :: 3.7
+[tool.poetry]
+name = "sample_project"
+version = "0.1.0"
+description = "Sample Project"
+readme = "README.md"
+authors = ["example <example@example.com>"]
+license = "MIT"
+classifiers = [
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.10",
+]
 
-[options]
-python_requires > = 3.7
-include_package_data = True
-packages = find:
-package_dir =
-    = src
-install_requires =
-    click
+[tool.poetry.dependencies]
+python = "^3.10"
+click = "^8.1.3"
 
-[options.entry_points]
-console_scripts =
-    ssl_manager = sample_project.cmdline:main
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
 
-[options.packages.find]
-where = src
+[tool.poetry.plugins."scripts"]
+sample_project = "sample_project.cmdline:main"
 
-[tool:pytest]
-testpaths = tests
-python_files = tests.py test_*.py *_tests.py
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 ```
 
 **打包：**
 
 ```bash
-python setup.py bdist_wheel
+poetry build
 ```
-
 
 ### 3.5 总结
 
 至此，一个项目开发完成，完整项目结构如下：
 
 ```txt
-├── build
-│   ├── bdist.linux-x86_64
-│   └── lib
-│       └── sample_project
-│           ├── cmdline.py
-│           └── __init__.py
 ├── dist
-│   └── sample_project-0.1.0.linux-x86_64.tar.gz
-├── setup.cfg
-├── setup.py
+│   ├── sample_project-0.1.0.tar.gz 
+|   └── sample_project-0.1.0-py3-none-any.whl
+├── poetry.lock
+├── pyproject.toml
 ├── src
-│   ├── sample_project
-│   │   ├── cmdline.py
-│   │   ├── __init__.py
-│   └── sample_project.egg-info
-│       ├── dependency_links.txt
-│       ├── entry_points.txt
-│       ├── PKG-INFO
-│       ├── requires.txt
-│       ├── SOURCES.txt
-│       └── top_level.txt
+│   └── sample_project
+│       ├── cmdline.py
+│       ├── __init__.py
 └── tests
     ├── __init__.py
     └── sample_project
