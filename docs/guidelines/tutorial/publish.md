@@ -5,38 +5,24 @@
 
 ## 打包
 
-根据 PEP 517 规范，新的打包机制通过 `build` 工具来操作。
+根据 PEP 517 规范，新的打包机制可通过 `poetry` 工具来操作。
 
 安装打包工具：
 
 ```bash
-pip install build
+pip install poetry
 ```
 
 然后运行打包命令：
 
 ```bash
-python -m build -w
+poetry build
 ```
-
-其中使用 `-w` 将会生成一个 Whl 的包。
 
 ## 发布
 
-使用 `twine` 将已经打包好的文件发布到 Pypi 仓库中。
-
-> 注意：发布时，需要提供 Pypi 仓库的账号和密码，请提前注册。
-
-安装 `twine` 依赖：
-
 ```bash
-pip install twine
-```
-
-然后发布：
-
-```bash
-twine upload dist/example_etl-0.0.1.dev0-py3-none-any.whl
+poetry publish
 ```
 
 输入账号密码后，即可将项目发布到 Pypi
