@@ -9,7 +9,7 @@
 - [Pycharm](https://www.jetbrains.com/pycharm/)
 - [Eclipse](https://www.eclipse.org/downloads/)
 
-上述软件除了 `[Pycharm](https://www.jetbrains.com/pycharm/)` 专业版是收费的，其余都是免费。如果需要使用 [Pycharm](https://www.jetbrains.com/pycharm/)，
+上述软件除了 [Pycharm](https://www.jetbrains.com/pycharm/) 专业版是收费的，其余都是免费。如果需要使用 [Pycharm](https://www.jetbrains.com/pycharm/)，
 建议使用社区版，或者购买正版。
 
 ## Visual Studio Code
@@ -34,9 +34,9 @@
 
 [![windows-vscode-open-demo](../assets/images/ides/windows-vscode-open-demo.png)](../assets/images/ides/windows-vscode-open-demo.png)
 
-然后使用快捷键 ``Ctrl + ` `` 组合键打开终端，执行 `pipenv lock` 生成虚拟环境和 Pipenv 的配置文件：
+然后使用快捷键 ``Ctrl + ` `` 组合键打开终端，执行 `poetry init` 根据提示操作，初始化 `pyproject.toml` 的配置文件，执行 `poetry shell`进行虚拟环境创建，执行 `poetry install`进行依赖安装：
 
-[![windows-vscode-demo-pipenv](../assets/images/ides/windows-vscode-demo-pipenv.png)](../assets/images/ides/windows-vscode-demo-pipenv.png)
+[![windows-vscode-demo-pipenv](../assets/images/ides/windows-vscode-demo-poetry.png)](../assets/images/ides/windows-vscode-demo-poetry.png)
 
 然后使用 `Ctrl + Shift + p` 打开 vscode 的指令窗口，在窗口中输入 `>python: select Interpreter` 来选择项目需要使用的 Python 解释器，
 然后选择上面一步创建的 Python 解释器：
@@ -59,7 +59,7 @@ print(sys.version)
 
 然后右击该文件，选择 `在终端中运行 Python 文件` ：
 
-[[![windows-vscode-demo-run-file](../assets/images/ides/windows-vscode-demo-run-file.png)]](../assets/images/ides/windows-vscode-demo-run-file.png)
+[![windows-vscode-demo-run-file](../assets/images/ides/windows-vscode-demo-run-file.png)](../assets/images/ides/windows-vscode-demo-run-file.png)
 
 可以看到输入：
 
@@ -77,12 +77,12 @@ print(sys.version)
 
 #### 问题原因
 
-由于 Pipenv 为终端(默认是 Powershell) 启动虚拟环境时，使用的 ps1 脚本文件，而 Powershell 默认的执行策略
+由于 poetry 为终端(默认是 Powershell) 启动虚拟环境时，使用的 ps1 脚本文件，而 Powershell 默认的执行策略
 是禁用脚本文件执行的。所以当 vscode 配置了虚拟环境后，启动终端，会无法执行脚本文件。
 
 #### 解决方法
 
-参考 [https:/go.microsoft.com/fwlink/?LinkID=135170] 的说明，并更改当前用户的 Powershell 执行策略：
+参考 [about_Execution_Policies](https:/go.microsoft.com/fwlink/?LinkID=135170) 的说明，并更改当前用户的 Powershell 执行策略：
 
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
