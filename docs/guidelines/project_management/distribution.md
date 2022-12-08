@@ -300,7 +300,7 @@ build-backend = "poetry.core.masonry.api"
 - `description` : 项目简短描述。必需字段
 - `license` ： 许可证。可选字段，建议添加
 - `author` ： 项目作者。必需字段
-- `maintainers` : 维护者。这是一个维护者列表，应该与作者区分开来。 可能包含一个电子邮件，格式为 name <email>。可选字段
+- `maintainers` : 维护者。这是一个维护者列表，应该与作者区分开来。 可能包含一个电子邮件，格式为 `name <email>`。可选字段
 - `readme` : 项目的 README 文件或相对应的路径或路径列表。可选字段
 - `homepage` : 项目网站的 URL。可选字段
 - `keywords` ： 项目关键字，有助于模糊搜索匹配。可选字段
