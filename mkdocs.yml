@@ -30,6 +30,9 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.tabbed
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
   - attr_list
   - md_in_html
   - pymdownx.tasklist:
