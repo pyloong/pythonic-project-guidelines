@@ -212,8 +212,6 @@ Pipenv 具有如下特点
 pip install pipenv
 ```
 
-请注意 Virtualenv 在 Conda 环境下的 Bug [Virtualenv-bug] 。
-
 **创建虚拟环境：**
 
 在项目根目录执行 `pipenv install` ：
@@ -351,11 +349,11 @@ poetry add django requests scrapy sqlalchemy
 poetry remove scrapy
 ```
 
-或者直接修改 `pyproject.toml` 文件，删除不再需要的内容，然后通过 `poetry lock` 生成 `poetry.lock` 文件。
+或者直接修改 `pyproject.toml` 文件，删除不再需要的内容，然后通过 `poetry lock` 更新 `poetry.lock` 文件。
 
 ### 3.4 部署
 
-在部署时，强烈推荐使用 `poetry install` 安装在 `Pipfile.lock` 文件中依赖包。
+在部署时，强烈推荐使用 `poetry install` 安装在 `pyproject.toml` 文件中依赖包。
 
 ### 3.5 生成 `requirements.txt`
 

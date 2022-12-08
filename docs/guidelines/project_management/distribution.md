@@ -11,7 +11,7 @@
 
 项目源代码可以在 [pythonic-project-samples](https://github.com/whg517/pythonic-project-samples/tree/example/file2mongo) 中获取。
 
-项目采用 `src` 目录结构，项目描述信息都在 `setup.cfg` 中定义。
+项目采用 `src` 目录结构，项目描述信息都在 `pyproject.toml` 中定义。
 
 ## 2. 项目打包
 

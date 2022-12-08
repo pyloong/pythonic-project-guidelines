@@ -176,7 +176,7 @@ def test_file_dest(mocker):
 在测试 `test_file_dest` 时，使用了一个临时文件作为目标写入，使用了 `with` 关键字打开文件，
 在测试完成后，会自动删除临时文件。
 
-再次运行 `pytest` 检车测试正确。
+再次运行 `pytest` 检查测试结果。
 
 ## 测试 manage
 
