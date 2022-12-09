@@ -37,48 +37,92 @@
 
 ### 实践案例
 
-首先创建一个 `example-doc` 的目录，然后初始化项目虚拟环境：
+首先创建一个 `example-doc` 的目录，然后初始化项目虚拟环境，安装环境依赖：
 
 ```text
 ❯ mkdir example-doc
 ❯ cd example-doc
-❯ pipenv install mkdocs
-Creating a virtualenv for this project...
-Pipfile: /tmp/test/example-doc/Pipfile
-Using /usr/local/bin/python3.9 (3.9.7) to create virtualenv...
-⠸ Creating virtual environment...created virtual environment CPython3.9.7.final.0-64 in 140ms
-  creator CPython3Posix(dest=/home/kevin/.virtualenvs/example-doc-dabLH6DG, clear=False, no_vcs_ignore=False, global=False)                                        
-  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/kevin/.local/share/virtualenv)                      
-    added seed packages: pip==21.3.1, setuptools==58.5.3, wheel==0.37.0                                                                                            
-  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator                                                      
-                                                                                                                                                                   
-✔ Successfully created virtual environment! 
-Virtualenv location: /home/kevin/.virtualenvs/example-doc-dabLH6DG
-Creating a Pipfile for this project...
-Installing mkdocs...
-Adding mkdocs to Pipfile's [packages]...
-✔ Installation Succeeded 
-Pipfile.lock not found, creating...
-Locking [dev-packages] dependencies...
-Locking [packages] dependencies...
-Building requirements...
+❯ poetry init
+Package name [example-doc]: 
+Version [0.1.0]: 
+Description []: 
+Author [doc <doc@example.com>, n to skip]: 
+License []: 
+Compatible Python versions [^3.10]: 
+
+Would you like to define your main dependencies interactively? (yes/no) [yes]
+You can specify a package in the following forms:
+  - A single name (requests): this will search for matches on PyPI
+  - A name and a constraint (requests@^2.23.0)
+  - A git url (git+https://github.com/python-poetry/poetry.git)
+  - A git url with a revision (git+https://github.com/python-poetry/poetry.git#develop)
+  - A file path (../my-package/my-package.whl)
+  - A directory (../my-package/)
+  - A url (https://example.com/packages/my-package-0.1.0.tar.gz)
+
+Package to add or search for (leave blank to skip):
+
+Would you like to define your development dependencies interactively? (yes/no) [yes]
+Package to add or search for (leave blank to skip):
+
+Generated file
+
+[tool.poetry]
+name = "example-doc"
+version = "0.1.0"
+description = ""
+authors = ["doc <doc@example.com>"]
+readme = "README.md"
+packages = [{include = "example_doc"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+Do you confirm generation? (yes/no) [yes]
+
+❯ poetry shell
+Creating virtualenv example-doc-DN2_2NFH-py3.10 in C:\Users\qiang.xie\AppData\Local\pypoetry\Cache\virtualenvs
+Spawning shell within C:\Users\qiang.xie\AppData\Local\pypoetry\Cache\virtualenvs\example-doc-DN2_2NFH-py3.10
+❯ poetry add mkdocs
+Using version ^1.4.2 for mkdocs
+
+Updating dependencies
 Resolving dependencies...
-✔ Success! 
-Updated Pipfile.lock (493bb6)!
-Installing dependencies from Pipfile.lock (493bb6)...
-  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 0/0 — 00:00:00
-To activate this project's virtualenv, run pipenv shell.
-Alternatively, run a command inside the virtualenv with pipenv run.
+
+Writing lock file
+
+Package operations: 14 installs, 0 updates, 0 removals
+
+  • Installing six (1.16.0)
+  • Installing colorama (0.4.6)
+  • Installing markupsafe (2.1.1)
+  • Installing python-dateutil (2.8.2)
+  • Installing pyyaml (6.0)
+  • Installing click (8.1.3)
+  • Installing ghp-import (2.1.0)
+  • Installing jinja2 (3.1.2)
+  • Installing packaging (22.0)
+  • Installing pyyaml-env-tag (0.1)
+  • Installing watchdog (2.2.0)
+  • Installing mergedeep (1.3.4)
+  • Installing markdown (3.3.7)
+  • Installing mkdocs (1.4.2)
 ```
 
-进入到虚拟环境后，初始化文档配置：
+初始化文档配置：
 
 ```text
 ❯ mkdocs new .
 INFO     -  Writing config file: ./mkdocs.yml
 INFO     -  Writing initial docs: ./docs/index.md
 ❯ ls
-docs  mkdocs.yml  Pipfile  Pipfile.lock
+docs  mkdocs.yml  pyproject.toml  poetry.lock
 
 ```
 
@@ -100,7 +144,7 @@ INFO     -  [11:00:22] Serving on http://127.0.0.1:8000/
 安装 `mkdocs-material` ：
 
 ```bash
-pipenv install mkdocs-material
+poetry add mkdocs-material
 ```
 
 修改配置文件 `mkdocs.yml` ，增加如下内容：

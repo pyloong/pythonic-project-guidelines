@@ -1,6 +1,6 @@
 # Python 风格规范
 
-> 本文档为 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) 第二章 [Python Style Rules](https://google.github.io/styleguide/pyguide.html#3-python-style-rules) 的译文。
+> 本文档为 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) 第三章 [Python Style Rules](https://google.github.io/styleguide/pyguide.html#3-python-style-rules) 的译文。
 >
 > 最后更新时间： 2021-05-12
 >
@@ -520,7 +520,7 @@ class SampleClass:
         """Performs operation blah."""
 ```
 
-#### 3.8.5 块注释和行注释
+### 3.8.5 块注释和行注释
 
 最需要写注释的是代码中那些技巧性的部分。如果你在下次[代码审查](http://en.wikipedia.org/wiki/Code_review)的时候必须解释一下，那么你应该现在就给它写注释。对于复杂的操作，应该在其操作开始前写上若干行注释，对于不是一目了然的代码，应在其行尾添加注释。
 

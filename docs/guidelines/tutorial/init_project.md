@@ -17,23 +17,17 @@ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project
 ❯ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project
 You've downloaded /home/kevin/.cookiecutters/cookiecutter-pythonic-project before. Is it okay to delete and re-download it? [yes]: yes
 project_name [My Project]: example-etl
-project_slug [example_etl]: 
+project_slug [example_etl]:
 project_description [My Awesome Project!]: Example etl tools
 author_name [Author]: huagang
 author_email [huagang@example.com]: huagang517@126.com
-version [0.1.0]: 
+version [0.1.0]:
 Select python_version:
-1 - 3.7
-2 - 3.8
-3 - 3.9
-4 - 3.10
-Choose from 1, 2, 3, 4 [1]: 4
+1 - 3.10
+2 - 3.9
+Choose from 1, 2 [1]: 1
 use_src_layout [y]: y
-use_pipenv [y]: y
-Select index_server:
-1 - none
-2 - aliyun
-Choose from 1, 2 [1]: 
+use_poetry [y]: y
 use_docker [n]: y
 Select ci_tools:
 1 - none
@@ -57,121 +51,73 @@ code example_etl
 ```text
 ❯ tree example_etl
 example_etl
-├── Dockerfile
-├── docs
-│   └── development.md
-├── LICENSE
-├── MANIFEST.in
-├── Pipfile
-├── pyproject.toml
-├── README.md
-├── setup.cfg
-├── src
-│   └── example_etl
-│       ├── cmdline.py
-│       ├── config
-│       │   ├── __init__.py
-│       │   └── settings.yml
-│       ├── __init__.py
-│       └── log.py
-├── tests
-│   ├── conftest.py
-│   ├── __init__.py
-│   ├── test_cmdline.py
-│   ├── test_log.py
-│   └── tests.py
-└── tox.ini
+│  .dockerignore
+│  .gitignore
+│  Dockerfile
+│  LICENSE
+│  pyproject.toml
+│  README.md
+│  tox.ini
+├─.github
+│  └─workflows
+│          main.yml
+├─docs
+│      development.md
+├─src
+│  └─example_etl
+│      │  cmdline.py
+│      │  log.py
+│      │  __init__.py
+│      │
+│      └─config
+│              settings.yml
+│              __init__.py
+└─tests
+        conftest.py
+        test_cmdline.py
+        test_log.py
+        test_version.py
+        __init__.py
 
-5 directories, 19 files
-
-```
-
-#### setup.cfg
-
-`setup.cfg` 是项目的打包配置文件。文件前面 `metadata` 中设置了项目的基本信息。 `options` 中配置了此项目必须使用的一些信息。
-最后几行还包含了 `pytest` 的配置，这是因为他们可以共用这些配置。
-
-文件内容如下：
-
-```ini
-[metadata]
-name = example_etl
-version = attr: example_etl.__version__
-author = huagang
-author_email = huagang517@126.com
-description = Example etl tools
-keywords = example-etl
-long_description = file: README.md
-long_description_content_type = text/markdown
-classifiers =
-    Operating System :: OS Independent
-    Programming Language :: Python :: 3.10
-
-[options]
-python_requires > = 3.10
-include_package_data = True
-packages = find:
-package_dir =
-    = src
-install_requires =
-    dynaconf
-    click
-
-[options.packages.find]
-where = src
-exclude =
-    tests*
-    docs
-
-# https://setuptools.readthedocs.io/en/latest/userguide/entry_point.html
-[options.entry_points]
-console_scripts =
-    example_etl = example_etl.cmdline:main
-
-# Packaging project data in module example_etl.
-# https://setuptools.readthedocs.io/en/latest/userguide/datafiles.html?highlight=package_data
-[options.package_data]
-example_etl.config =
-    settings.yml
-
-# Copy data for user from project when pip install.
-# The relative path is prefix `sys.prefix` . eg: `/usr/local/`.
-# Path and data will remove When pip uninstall.
-# https://docs.python.org/3/distutils/setupscript.html#installing-additional-files
-[options.data_files]
-etc/example_etl =
-    src/example_etl/config/settings.yml
-
-[tool:pytest]
-testpaths = tests
-python_files = tests.py test_*.py
 ```
 
 #### pyproject.toml
 
-`pyproject.toml` 是 PEP 517 的打包规范所需要的配置文件，用来指示使用哪种打包工具。
+`pyproject.toml` 是项目的打包配置文件。文件前面 `tool.poetry` 中设置了项目的基本信息。 `tool.poetry.dependencies` 中配置了此项目的依赖库。
+
+文件内容如下：
 
 ```toml
+[tool.poetry]
+name = "example_etl"
+version = "0.1.0"
+description = "Example etl tools"
+readme = "README.md"
+authors = ["huagang <huagang517@126.com>"]
+license = "MIT"
+classifiers = [
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.10",
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+dynaconf = "^3.1.9"
+click = "^8.1.3"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.14.5"
+isort = "^5.10.1"
+pytest = "^7.1.2"
+mkdocs = "^1.3.1"
+mkdocs-material = "^8.4.1"
+
+[tool.poetry.plugins."scripts"]
+example_etl = "example_etl.cmdline:main"
+
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
-
-```
-
-#### MANIFEST.in
-
-`MANIFEST.in` 指示打包时需要包含或排除的文件。可以通过正则等配置。
-
-```text
-include LICENSE
-include MANIFEST.in
-include *.md
-graft docs
-graft tests
-graft src/example_etl
-recursive-include src/example_etl/config/settings.yml
-global-exclude __pycache__
-global-exclude *.py[co]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 ```
 
 #### src/example_etl/cmdline.py
@@ -350,34 +296,9 @@ settings = Dynaconf(
 
 ## 初始化环境
 
-项目使用 `pipenv` 管理虚拟环境，运行命令自动创建虚拟环境，同时安装开发环境依赖
+项目使用 `poetry` 管理虚拟环境，运行命令自动创建虚拟环境，同时安装开发环境依赖
 
-```bash
-pipenv install -d
-```
-
-输入如下：
-
-```text
-❯ pipenv install -d
-Creating a virtualenv for this project...
-Pipfile: /tmp/test/example_etl/Pipfile
-Using /usr/local/bin/python3.10 (3.10.0) to create virtualenv...
-⠸ Creating virtual environment...created virtual environment CPython3.10.0.final.0-64 in 201ms
-  creator CPython3Posix(dest=/home/kevin/.virtualenvs/example_etl-H6lUq1jb, clear=False, no_vcs_ignore=False, global=False)
-  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/kevin/.local/share/virtualenv)
-    added seed packages: pip==21.3.1, setuptools==58.5.3, wheel==0.37.0
-  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
-
-✔ Successfully created virtual environment! 
-Virtualenv location: /home/kevin/.virtualenvs/example_etl-H6lUq1jb
-Installing dependencies from Pipfile.lock (96296b)...
-  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 26/26 — 00:00:14
-To activate this project's virtualenv, run pipenv shell.
-Alternatively, run a command inside the virtualenv with pipenv run.
-```
-
-然后执行 `pipenv shell` 进入到虚拟环境。
+执行 `poetry shell` 进入到虚拟环境， 然后执行 `poetry install` 安装环境依赖。
 
 在使用 vscode 的时候，可以运行 `Ctrl + Shift + p` 打开指令，输入 `> Python: Select Interpreter` 选择刚刚创建的虚拟环境。
 如果看不到，只需要点击旁边的刷新按钮即可。然后重新打开一个新的终端，会自动进入虚拟环境。
@@ -393,7 +314,7 @@ tox
 可以看到最后输出如下：
 
 ```text
-_______________________________________________________________________ summary _______________________________________________________________________
+__________________________________ summary __________________________________
   py310: commands succeeded
   isort: commands succeeded
   pylint: commands succeeded

@@ -45,11 +45,11 @@ def test_file_source(mocker, foo_file):
 安装 `pytest-mock` ：
 
 ```bash
-pipenv install -d pytest-mock
+poetry add -D pytest-mock
 ```
 
-> 这里使用了 `pipenv install -d` ，意思是将 `pytest-mock` 安装到开发环境依赖中。
-> 当在一个新环境 `pipenv install` 安装时，是不会安装开发环境中的依赖的。
+> 这里使用了 `poetry add -D` ，意思是将 `pytest-mock` 安装到开发环境依赖中。
+> 当在一个新环境 `poetry install` 安装时，安装所有非可选组的依赖项。
 
 测试代码中同时使用了 `foo_file` 的 fixture ，它定义在 `conftest.py` 中，内容如下：
 
@@ -176,7 +176,7 @@ def test_file_dest(mocker):
 在测试 `test_file_dest` 时，使用了一个临时文件作为目标写入，使用了 `with` 关键字打开文件，
 在测试完成后，会自动删除临时文件。
 
-再次运行 `pytest` 检车测试正确。
+再次运行 `pytest` 检查测试结果。
 
 ## 测试 manage
 
@@ -251,7 +251,7 @@ loader_name: file
 ❯ pytest --cov
 ================================================================= test session starts =================================================================
 platform linux -- Python 3.10.0, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
-rootdir: /tmp/test/example_etl, configfile: setup.cfg, testpaths: tests
+rootdir: /tmp/test/example_etl, configfile: pyproject.toml, testpaths: tests
 plugins: cov-3.0.0, mock-3.6.1
 collected 24 items                                                                                                                                    
 

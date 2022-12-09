@@ -128,7 +128,7 @@ deactivate
 
 ### 2.3 Virtualenv
 
-[Virtualenv](https://virtualenv.pypa.io/en/latest/index.html) 是一个第三库，现在由 Pypa 管理。其具有比 `venv` 更强大的功能，但现在 Virtualenv 的一些功能也在慢慢是配到 `venv` 上。
+[Virtualenv](https://virtualenv.pypa.io/en/latest/index.html) 是一个第三方库，现在由 Pypa 管理。其具有比 `venv` 更强大的功能，但现在 Virtualenv 的一些功能也在慢慢是配到 `venv` 上。
 
 **安装：**
 
@@ -160,7 +160,7 @@ Linux 安装：
 
 ```bash
 pip install virtualenvwrapper
-# 执行 virtualvnewrapper 初始化脚本。可以讲下面这一行加入到 `~/.bashrc` 中，方便当前用户使用，或者加入到 `/etc/profile` 中方便所有用户使用
+# 执行 virtualvnewrapper 初始化脚本。可以将下面这一行加入到 `~/.bashrc` 中，方便当前用户使用，或者加入到 `/etc/profile` 中方便所有用户使用
 source /usr/local/bin/virtualenvwrapper.sh
 ```
 
@@ -194,7 +194,7 @@ pip install virtualenvwrapper-win
 
 使用的方法和上面一致。
 
-### 2.4 Pipenv (推荐使用)
+### 2.4 Pipenv
 
 [Pipenv](https://pipenv.pypa.io/en/latest/) 是一个更高级的虚拟环境管理工具，其依赖 `Virtualenv` ，并在之上做了许多其他功能。正如其官网中所说，它的目的是要把所有最好的包管理（ `bundler` , `composer` , `npm` ， `yarn` 等）引入到 Python 中。
 
@@ -211,8 +211,6 @@ Pipenv 具有如下特点
 ```bash
 pip install pipenv
 ```
-
-请注意 Virtualenv 在 Conda 环境下的 Bug [Virtualenv-bug] 。
 
 **创建虚拟环境：**
 
@@ -267,7 +265,7 @@ pipenv install tox
 
 依赖安装完成后，会更新 `Pipfile` 文件，同时更新 `Pipfile.lock` 文件，记录安装的版本和对应 HASH 值。
 
-### 2.5 Poetry
+### 2.5 Poetry (推荐使用)
 
 [Poetry](https://python-poetry.org/) 是后期之秀，它的雄心不仅仅是做 Pipenv 的事，它还想把 Python 的打包管理一并做了，并消除 `setup.py` 文件。它使用基于 [PEP517](https://www.python.org/dev/peps/pep-0517/) 规范的 `pyproject.toml` 文件记录信息，并打包。
 具体内容可以参考 [PEP 517 -- A build-system independent format for source trees](https://www.python.org/dev/peps/pep-0517/) 。
@@ -300,7 +298,7 @@ poetry build
 poetry publish
 ```
 
-## 3. 虚拟环境实践(Pipenv)
+## 3. 虚拟环境实践(Poetry)
 
 众多的虚拟环境，和对应的工具，在选择时难免有点困惑，要选择一个好用的工具，最佳途径就是自己都尝试一遍。
 
@@ -308,32 +306,39 @@ poetry publish
 
 当你需要管理不同开发环境下的依赖时，就需要两个或更多个 `requirements.txt` 。例如 `requirements-devlopment.txt` ， `requirements-production.txt` 或这 `requirements-test.txt` 。
 
-`Poetry` 是看起来更酷的工具，无论是交互的输出，还是它基于 PEP517 的特性。但它毕竟还太过于年轻，存在一些不稳定性，比如有时命令错误，就直接返回错误堆栈信息。另外现在的 PEP517 规范还没在社区大规模使用，甚至有相当于一部分人还没接触到它，大家还是熟悉通过 `setup.py` 或 `setup.cfg` 编写项目就配置，然后通过 `setup` 命令构建打包。
+`Poetry` 是一个更酷的工具，无论是交互地输出，还是它基于 PEP517 的特性。它允许您声明您的项目所依赖的库，它将为您管理（安装/更新）它们。Poetry 提供了一个锁定文件以确保可重复安装，并可以构建您的项目以供分发。
+poetry 通过配置文件 pyproject.toml 来完成依赖管理、环境配置、基本信息配置等功能，相当于把 Python 项目中的 Pipfile、setup.py、setup.cfg、requirements.txt、MANIFEST.in 融合到一起。
 
-综合来看 `Pipenv` 就显得更加合适，支持多种环境管理，提供依赖关系校验，和依赖的 lock 文件，也有自动管理依赖的操作。
+综合来看 `Poetry` 就显得更加合适，支持多种环境管理，提供依赖关系校验，和依赖的 poetry.lock 文件，也有自动管理依赖的操作。同时可以用于 Python 工程打包和发布。
 
-下面以一个项目的生命周期描述如何更好的使用 `Pipenv` 。
+下面以一个项目的生命周期描述如何更好的使用 `Poetry` 。
 
 ### 3.1 初始化项目
 
-初始化项目后，使用 `Pipenv` 在项目根目录创建当前项目的虚拟环境。如果是 Pycharm ，可以直接选择使用 `Pipenv` 创建。
+初始化项目，使用 `Poetry` 在项目根目录创建当前项目的虚拟环境。
 
 ```bash
-pipenv install
+poetry init
+```
+
+进入当前项目的虚拟环境。
+
+```bash
+poetry shell
 ```
 
 ### 3.2 安装项目依赖
 
-当需要区分开发环境和普通环境时，就可以通过 `install -d` 选项安装开发环境依赖
+当需要区分开发环境和普通环境时，就可以通过 `add -D` 选项安装开发环境依赖
 
 ```bash
-pipenv install -d pytest tox
+poetry add -D pytest tox
 ```
 
 一般的依赖直接安装即可。
 
 ```bash
-pipenv install django requests scrapy sqlalchemy
+poetry add django requests scrapy sqlalchemy
 ```
 
 ### 3.3 清理依赖
@@ -341,45 +346,28 @@ pipenv install django requests scrapy sqlalchemy
 当需要从环境中清除不在需要的依赖时，可以使用命令卸载
 
 ```bash
-pipenv uninstall scrapy
+poetry remove scrapy
 ```
 
-或者直接修改 `Pipfile` 文件，删除不再需要的内容，然后通过 `pipenv lock` 生成 `Pipfile.lock` 文件。
-
-如果环境中还存在其他安装过的包，可以通过 `pipenv clean` 自动清理不在 `Pipfile` 中的依赖包。
+或者直接修改 `pyproject.toml` 文件，删除不再需要的内容，然后通过 `poetry lock` 更新 `poetry.lock` 文件。
 
 ### 3.4 部署
 
-在部署时，强烈推荐使用 `pipenv sync` 安装在 `Pipfile.lock` 文件中依赖包。
+在部署时，强烈推荐使用 `poetry install` 安装在 `pyproject.toml` 文件中依赖包。
 
 ### 3.5 生成 `requirements.txt`
 
-使用 `pipenv lock -r` 可以看到所有依赖列表。
+使用 `poetry show` 可以看到所有依赖列表。
 
 ```bash
 # 查看所有依赖
-pipenv lock -r
+poetry show
 # 仅所有开发依赖
-pipenv lock -r --dev-only
+poetry show --only dev 
 ```
-
-当需要保存成文件直接使用重定向符号即可 `>`
 
 ```bash
-pipenv lock -r > requirements.txt
-pipenv lock -r --dev-only > requirements.txt
+poetry export -f requirements.txt --output --without-hashes
 ```
-
-### 3.6 Lock 卡住了
-
-安装依赖时会生成一个 `Pipfile.lock` 的文件，用于记录使用的最终版和和该版本的 HASH ，这也是保证安全。
-
-有时可能因为网络问题，在生成 `Pipfile.lock` 的速度很慢。可以使用 `--skip-lock` 命令跳过。
-
-```bash
-pipenv install django --skip-lock
-```
-
-但在发布前，建议还是要生成 `Pipfile.lock` 。如果真的不需要，直接将 `Pipfile.lock` 排除在版本管理之外就行啦。
 
 [^virtualenv-bug]: 如果你的是 Conda 环境，请使用 `20.0.34` 之前的 Virtualenv 。具体请参考 [virtualenv==20.0.34 not compatible with python on windows #12094](https://github.com/ContinuumIO/anaconda-issues/issues/12094) 和 [conda support - Windows 3.7+ #1986](https://github.com/pypa/virtualenv/issues/1986) 。如果这个问题已经修复，请忽略。

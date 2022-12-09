@@ -266,7 +266,7 @@ def init_yml_log() -> None:
 #### 2.3.1 优化
 
 根据文档中 [优化](https://docs.python.org/zh-cn/3/howto/logging.html#optimization) 一节内容描述，日志中的参数化消息，
-应该延迟加载。这么做是为了减少在计算日志参数是所消耗的资源，因为如果日志记录非丢弃，则不需要消耗这部分资源。所以在
+应该延迟加载。这么做是为了减少在计算日志参数时所消耗的资源，因为如果日志记录非丢弃，则不需要消耗这部分资源。所以在
 日志记录上，应采用 `%` 的方式，而不是其他字符串格式化。
 
 关于性能的讨论可以参考 [W1202 - logging-fstring-interpolation is not useful](https://github.com/PyCQA/pylint/issues/2395) 。

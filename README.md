@@ -14,7 +14,6 @@
 
 指南主要包含以下主题：
 
-
 - [x] 快速上手（一个最通用，最初级的示例项目）
 - [x] 开发前准备
     - [x] Python 环境的安装
@@ -23,7 +22,7 @@
 - [x] Python 规范
     - [x] 风格规范
     - [x] 语言规范
-- [x] 项目工程化
+- [x] 应用开发实践
     - [x] 初级教程(一个包含完整开发流程的示例项目)
         - [x] 初始化项目
         - [x] 功能开发
@@ -42,18 +41,21 @@
         - [x] 项目结构
         - [x] 文档管理
         - [x] 打包发布
-- [ ] 开发实践
-    - [ ] Web
-        - [x] Fastapi
-        - [ ] Django
-        - [ ] Flask
-    - [ ] 爬虫
-        - [ ] Scrapy
-        - [ ] aiohttp
-    - [ ] 数据库
-        - [ ] SQLALchemy
+    - [ ] 开发实践
+        - [ ] Web
+            - [x] Fastapi
+            - [ ] Django
+            - [ ] Flask
+        - [ ] 爬虫
+            - [ ] Scrapy
+            - [ ] aiohttp
+        - [ ] 数据库
+            - [ ] SQLALchemy
+- [x] 数据开发实践
+    - [x] 初级教程
 
-> 如果您对文档有任何建议或意见，欢迎提交 [issues](https://github.com/pyloong/pythonic-project-guidelines/issues) 进行讨论。当然我们更期待与您共同协作开发，让文档变得更加完善。
+> 如果您对文档有任何建议或意见，欢迎提交 [issues](https://github.com/pyloong/pythonic-project-guidelines/issues)
+> 进行讨论。当然我们更期待与您共同协作开发，让文档变得更加完善。
 
 ## 使用方式
 
@@ -65,7 +67,9 @@ git clone https://github.com/pyloong/pythonic-project-guidelines
 
 ### 2. 初始化环境
 
-项目预览需要安装 Python 环境来启动 server，强烈建议使用 Python 3.9+ 的版本。如果本地没有 Python 环境，也可以使用 [Docker预览服务器](https://squidfunk.github.io/mkdocs-material/creating-your-site/#creating-your-site) 来启动。
+项目预览需要安装 Python 环境来启动 server，强烈建议使用 Python 3.9+ 的版本。如果本地没有 Python
+环境，也可以使用 [Docker预览服务器](https://squidfunk.github.io/mkdocs-material/creating-your-site/#creating-your-site)
+来启动。
 
 #### 2.1 本地初始化
 
@@ -98,7 +102,7 @@ mkdocs serve
 
 #### 3.2 使用 Docker 预览
 
-**uinx**:
+**unix**:
 
 ```bash
 docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material:8.4.1
@@ -112,8 +116,9 @@ docker run --rm -it -p 8000:8000 -v "%cd%":/docs squidfunk/mkdocs-material:8.4.1
 
 ## 协作规范
 
-文档使用 Markdown 编写，使用 [mkdocs](https://www.mkdocs.org/) 配合 [mkdocs-material](https://squidfunk.github.io/mkdocs-material/) 主题构建。
+文档使用 Markdown 编写，使用 [mkdocs](https://www.mkdocs.org/)
+配合 [mkdocs-material](https://squidfunk.github.io/mkdocs-material/) 主题构建。
 
-- form
+- fork
 - code
 - pr
