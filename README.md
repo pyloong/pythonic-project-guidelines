@@ -102,7 +102,7 @@ mkdocs serve
 
 #### 3.2 使用 Docker 预览
 
-**uinx**:
+**unix**:
 
 ```bash
 docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material:8.4.1
@@ -119,6 +119,6 @@ docker run --rm -it -p 8000:8000 -v "%cd%":/docs squidfunk/mkdocs-material:8.4.1
 文档使用 Markdown 编写，使用 [mkdocs](https://www.mkdocs.org/)
 配合 [mkdocs-material](https://squidfunk.github.io/mkdocs-material/) 主题构建。
 
-- form
+- fork
 - code
 - pr
