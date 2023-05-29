@@ -1,6 +1,6 @@
 # Python 项目工程化开发指南
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/pyloong/pythonic-project-guidelines/gh-page/main?label=gh-page&logo=github&style=flat-square)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/pyloong/pythonic-project-guidelines/gh-page.yml?style=flat-square)
 
 文档目标：
 
