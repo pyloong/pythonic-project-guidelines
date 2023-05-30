@@ -1,5 +1,12 @@
 # 功能开发
 
+在本章节内容，你将学习到如下内容：
+
+- 设计 ETL 三个阶段的接口并做默认实现
+- 使用插件化机制注册和发现接口实现
+- 通过配置选择使用的实现内容
+- 更新命令行
+
 根据前面的系统设计， ETL 项目总共有三个核心模块，分别是 `extractor` 、 `transformer` 和 `loader` 。为了
 能运行逻辑，还需要一个 `manage` 模块用来编排三个模块的逻辑。然后会在命令行中注册一个入口方法，调用 `mange` 的逻辑。
 
@@ -13,11 +20,11 @@
 
 创建 `extractor` 包，并在里面新建一个 `base.py` 文件，文件内容如下：
 
-> 注意：Python 的包是一个文件夹，里面包含一个 `__init__.py` 文件。只是一个空文件夹，不是合法的 Python 包。
+> 注意：Python 的包是一个文件夹，里面必须包含一个 `__init__.py` 文件。只有一个空文件夹，不是合法的 Python 包。
 
 `src/example_etl/extractor/base.py`
 
-```python
+```python linenums="1"
 """Base extractor."""
 from typing import Iterable
 
@@ -63,7 +70,7 @@ class BaseExtractor:
 
 `src/example_etl/extractor/file.py`
 
-```python
+```python linenums="1"
 """
 File extractor
 
@@ -92,11 +99,21 @@ class FileExtractor(BaseExtractor):
 ```
 
 在实现的 `extract` 方法中，从 `FileExtractor.settings` 对象中获取了一个 `FILE_EXTRACTOR_PATH` 变量，这个变量是从
-配置文件中获取的。使用时，需要在配置文件中增加 `file_extractor_path: /tmp/foo.txt` 的值。
+配置文件中获取的。因此需要在配置文件 `src/example_etl/config/settings.yml` 中增加 `file_extractor_path: /tmp/foo.txt` 的值:
+
+```yaml linenums="1" hl_lines="6"
+verbose: false
+debug: false
+loglevel: warning
+logpath: /tmp/example_etl
+
+file_extractor_path: /tmp/foo.txt
+
+```
 
 `extract` 方法中直接可以通过返回迭代对象的方式自动管理文件读对象。
 
-注意一点的是，打开文件时使用了默认字符集的常量值 `DEFAULT_ENCODING` 。所以还要创建 ``src/example_etl/constants.py``，
+注意一点的是，打开文件时使用了默认字符集的常量值 `DEFAULT_ENCODING` 。所以还要创建 `src/example_etl/constants.py`，
 并加入如下内容：
 
 ```python
@@ -120,9 +137,9 @@ DEFAULT_ENCODING = 'utf-8'
 
 首先创建 `transformer` 包，然后新建 `BaseTransformer.py` 文件：
 
-`src/example_etl/transformer/BaseTransformer.py`
+`src/example_etl/transformer/base.py`
 
-```python
+```python linenums="1"
 """Base transformer"""
 
 
@@ -149,7 +166,7 @@ class BaseTransformer:
 
 `src/example_etl/transformer/strip.py`
 
-```python
+```python linenums="1"
 """Transform data and remove blank of data star and end."""
 import logging
 
@@ -187,7 +204,7 @@ class StripTransformer(BaseTransformer):
 
 `src/example_etl/loader/base.py`
 
-```python
+```python linenums="1"
 """Base loader"""
 
 
@@ -230,7 +247,7 @@ class BaseLoader:
 
 `src/example_etl/loader/file.py`
 
-```python
+```python linenums="1"
 """
 File loader
 
@@ -270,6 +287,21 @@ class FileLoader(BaseLoader):
 该类在 `setup` 方法中打开文件对象，并在 `close` 方法中关闭文件。 `load` 方法会写入数据，并立即
 将内容刷新到文件中。
 
+初始化 `FileLoader` 时需要通过配置读取文件，并写入。所以需要在配置文件 `src/example_etl/config/settings.yml`
+中增加配置 `file_loader_path: /tmp/bar.txt` :
+
+```yaml linenums="1" hl_lines="7"
+verbose: false
+debug: false
+loglevel: warning
+logpath: /tmp/example_etl
+
+file_extractor_path: /tmp/foo.txt
+file_loader_path: /tmp/bar.txt
+
+```
+
+
 ## 插件注册
 
 三个基础模块使用插件机制自动发现，并通过配置文件指定需要使用的具体实现。在后续使用中，基于抽象基类
@@ -278,106 +310,65 @@ class FileLoader(BaseLoader):
 安装插件框架 [stevedore](https://docs.openstack.org/stevedore/latest/index.html) ：
 
 ```bash
-pipenv install stevedore
-```
-
-将 `stevedore` 依赖加入到项目安装依赖列表中。
-
-编辑 `setup.cfg` 文件，在 `options` 下的 `install_requires` 下增加 `stevedore` ：
-
-```ini
-[options]
-python_requires > = 3.9
-include_package_data = True
-packages = find:
-package_dir =
-    = src
-install_requires =
-    click
-    dynaconf
-    stevedore
-
+poetry add stevedore
 ```
 
 ### 注册插件
 
 将上述实现的三个类注册到命名空间中。
 
-编辑 `setup.cfg` 文件，在 `[options.entry_points]` 中增加如下内容：
+编辑 `pyproject.toml` 文件，增加如下内容：
 
-```ini
+```toml linenums="1" hl_lines="28-35"
+[tool.poetry]
+name = "example_etl"
+version = "0.1.0"
+description = "This is my first etl project."
+readme = "README.md"
+authors = ["test <test@example.com>"]
+license = "MIT"
+classifiers = [
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.10",
+]
 
-example_etl.extractor =
-    file = example_etl.extractor.file:FileExtractor
+[tool.poetry.dependencies]
+python = "^3.10"
+dynaconf = "^3.1.12"
+click = "^8.1.3"
 
-example_etl.loader =
-    file = example_etl.loader.file:FileLoader
+[tool.poetry.group.dev.dependencies]
+pylint = "^2.17.4"
+isort = "^5.12.0"
+pytest = "^7.3.1"
+tox = "^4.5.2"
+mkdocs = "^1.4.3"
+mkdocs-material = "^8.5.11"
+pytest-pylint = "^0.19.0"
+pre-commit = "^3.3.2"
 
-example_etl.transformer =
-    strip = example_etl.transformer.strip:StripTransformer
-```
+[tool.poetry.plugins."example_etl.extractor"]
+file = "example_etl.extractor.file:FileExtractor"
 
-修改完后的文件内容如下：
+[tool.poetry.plugins."example_etl.loader"]
+file = "example_etl.loader.file:FileLoader"
 
-```ini
-[metadata]
-name = example_etl
-version = attr: example_etl.__version__
-author = huagang
-author_email = huagang517@126.com
-description = Etl tools
-keywords = etl
-long_description = file: README.md
-long_description_content_type = text/markdown
-classifiers =
-    Operating System :: OS Independent
-    Programming Language :: Python :: 3.9
-    Programming Language :: Python :: 3.10
+[tool.poetry.plugins."example_etl.transformer"]
+strip = "example_etl.transformer.strip:StripTransformer"
 
-[options]
-python_requires > = 3.9
-include_package_data = True
-packages = find:
-package_dir =
-    = src
-install_requires =
-    click == 8.0.3
-    dynaconf == 3.1.7
-    stevedore == 3.5.0
+[tool.poetry.scripts]
+example_etl = "example_etl.cmdline:main"
 
-[options.packages.find]
-where = src
-exclude =
-    tests*
-    docs
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 
-# https://setuptools.readthedocs.io/en/latest/userguide/entry_point.html
-[options.entry_points]
-console_scripts =
-    example_etl = example_etl.cmdline:main
+[tool.pytest.ini_options]
+testpaths = "tests"
+python_files = "tests.py test_*.py *_tests.py"
 
-example_etl.extractor =
-    file = example_etl.extractor.file:FileExtractor
-
-example_etl.loader =
-    file = example_etl.loader.file:FileLoader
-
-example_etl.transformer =
-    strip = example_etl.transformer.strip:StripTransformer
-
-# Packaging project data in module example_etl.
-# https://setuptools.readthedocs.io/en/latest/userguide/datafiles.html?highlight=package_data
-[options.package_data]
-example_etl.config =
-    settings.yml
-
-# Copy data for user from project when pip install.
-# The relative path is prefix `sys.prefix` . eg: `/usr/local/`.
-# Path and data will remove When pip uninstall.
-# https://docs.python.org/3/distutils/setupscript.html#installing-additional-files
-[options.data_files]
-etc/example_etl =
-    src/example_etl/config/settings.yml
+[tool.pylint.design]
+max-line-length = 120
 
 ```
 
@@ -388,34 +379,16 @@ etc/example_etl =
 将项目以可编辑模式安装到当前环境：
 
 ```bash
-pip install -e .
+poetry install
 ```
 
-可以在 `src/example_etl.egg-info/entry_points.txt` 文件中查看打包后的注册信息：
-
-```text
-[console_scripts]
-example_etl = example_etl.cmdline:main
-
-[example_etl.extractor]
-file = example_etl.extractor.file:FileExtractor
-
-[example_etl.loader]
-file = example_etl.loader.file:FileLoader
-
-[example_etl.transformer]
-strip = example_etl.transformer.strip:StripTransformer
-
-
-```
-
-## manage
+## 管理模块
 
 `manage` 模块是用来编排前面三个模块的逻辑。
 
-创建 `manage.py` ，文件内容如下：
+创建 `src/example_etl/manage.py` ，文件内容如下：
 
-```python
+```python linenums="1"
 """Manage"""
 import logging
 from typing import Type
@@ -491,9 +464,32 @@ def get_extension(namespace: str, name: str):
 `transform` 方法中调用 `extractor.extract` 方法遍历读取的数据，并在转换后将数据通过 `loader.load` 写入
 目标位置。
 
-最后创建一个 `exceptions.py` 文件，内容如下：
+在使用 `Manage` 的时候，需要从配置中读取三个具体实现，所以需要在配置文件 `src/example_etl/config/settings.yml` 中增加如下变量：
 
-```python
+```yaml linenums="1" hl_lines="9-11"
+verbose: false
+debug: false
+loglevel: warning
+logpath: /tmp/example_etl
+
+file_extractor_path: /tmp/foo.txt
+file_loader_path: /tmp/bar.txt
+
+extractor_name: file
+loader_name: file
+transformer_name: strip
+
+```
+
+## 异常处理
+
+在使用异常的时候，建议创建一个项目级别的异常累，用来定义当前项目的顶级异常。项目内部的其他异常都
+需要基于项目顶级异常实现。这么做的一个好处是当你的项目被别人引用时，调用方可以通过捕获项目顶级
+异常，来统一处理项目的所有异常。
+
+创建一个 `src/example_etl/exceptions.py` 文件，内容如下：
+
+```python linenums="1"
 """Exception"""
 
 
@@ -522,9 +518,46 @@ class PluginNotFoundError(EtlError):
 
 ## 增加命令行调用
 
-编辑 `cmdline.py` 文件，修改 `rum` 方法，内容如下：
+编辑 `src/example_etl/cmdline.py` 文件，修改 `rum` 方法，修改内容如下：
 
-```python
+```python linenums="1" hl_lines="8 38-43"
+"""Command line"""
+import click
+from click import Context
+
+from example_etl import __version__
+from example_etl.config import settings
+from example_etl.log import init_log
+from example_etl.manage import Manage
+
+
+@click.group(invoke_without_command=True)
+@click.pass_context
+@click.option(
+    '-V',
+    '--version',
+    is_flag=True,
+    help='Show version and exit.'
+)  # If it's true, it will override `settings.VERBOSE`
+@click.option('-v', '--verbose', is_flag=True, help='Show more info.')
+@click.option(
+    '--debug',
+    is_flag=True,
+    help='Enable debug.'
+)  # If it's true, it will override `settings.DEBUG`
+def main(ctx: Context, version: str, verbose: bool, debug: bool):
+    """Main commands"""
+    if version:
+        click.echo(__version__)
+    elif ctx.invoked_subcommand is None:
+        click.echo(ctx.get_help())
+    else:
+        if verbose:
+            settings.set('VERBOSE', True)
+        if debug:
+            settings.set('DEBUG', True)
+
+
 @main.command()
 def run():
     """Run command"""
@@ -535,3 +568,149 @@ def run():
 ```
 
 在使用命令 `example_etl` 调用时，可以通过传递 `run` 指令运行。
+
+## 检查代码
+
+编码完成后，建议通过 `isort` 检查导包风格，使用 `pylint` 检查代码的语法和编码风格。
+
+运行 `isort` ：
+
+```bash
+$ isort .
+Skipped 1 files
+
+```
+
+运行 `pylint` ：
+
+```bash
+$ pylint src tests
+************* Module example_etl.transformer.strip
+src/example_etl/transformer/strip.py:9:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+************* Module example_etl.transformer.base
+src/example_etl/transformer/base.py:4:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+
+-------------------------------------------------------------------
+Your code has been rated at 9.89/10 (previous run: 10.00/10, -0.11)
+
+```
+
+可以看到根据 `pylint` 的默认语法规范，我们有两个方法不符合。但根据实际情况我们的实现是没有问题的，所以我们需要调整 `pylint` 的规则。
+
+编辑 `src/example_etl/transformer/base.py` ，调整内容如下：
+
+```python linenums="1" hl_lines="4"
+"""Base transformer"""
+
+
+# pylint: disable=too-few-public-methods
+
+class BaseTransformer:
+    """Base transformer"""
+
+    def __init__(self, settings):
+        self.settings = settings
+
+    def transform(self, data: str) -> str:
+        """Transform data"""
+        raise NotImplementedError()
+
+```
+
+编辑 `src/example_etl/transformer/strip.py` ，调整内容如下：
+
+```python linenums="1" hl_lines="9"
+"""Transform data and remove blank of data star and end."""
+import logging
+
+from example_etl.transformer.base import BaseTransformer
+
+logger = logging.getLogger(__name__)
+
+
+# pylint: disable=too-few-public-methods
+
+class StripTransformer(BaseTransformer):
+    """
+    Transform data and remove blank of data star and end.
+    """
+    def transform(self, data: str) -> str:
+        """Remove blank of data star and end."""
+        logger.debug('Strip data: "%s"', data)
+        return data.strip()
+
+```
+
+上面两处调整，是使用了 pylint 的规则金庸功能，在这两个模块上，抑制 pylint 的 `too-few-public-methods` 规则。
+
+此时再次运行 `pylint` 检查代码：
+
+```bash
+$ pylint src tests
+
+-------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 9.89/10, +0.11)
+
+
+```
+
+可以看到代码都正常了。这是符合我们的预期的。
+
+## 提交代码
+
+在本节中，我们通过抽象  ETL 逻辑代码，并根据具体业务做一个实现，然后将实现注册到环境中，并根据配置调用具体实现。
+
+此时项目结构如下：
+
+```bash
+example_etl
+├── .editorconfig
+├── .gitignore
+├── .pre-commit-config.yaml
+├── LICENSE
+├── README.md
+├── all.log
+├── docs
+│   └── development.md
+├── poetry.lock
+├── pyproject.toml
+├── src
+│   └── example_etl
+│       ├── __init__.py
+│       ├── cmdline.py
+│       ├── config
+│       │   ├── __init__.py
+│       │   └── settings.yml
+│       ├── constants.py
+│       ├── exceptions.py
+│       ├── extractor
+│       │   ├── __init__.py
+│       │   ├── base.py
+│       │   └── file.py
+│       ├── loader
+│       │   ├── __init__.py
+│       │   ├── base.py
+│       │   └── file.py
+│       ├── log.py
+│       ├── manage.py
+│       └── transformer
+│           ├── __init__.py
+│           ├── base.py
+│           └── strip.py
+├── tests
+│   ├── __init__.py
+│   ├── conftest.py
+│   ├── settings.yml
+│   ├── test_cmdline.py
+│   ├── test_log.py
+│   └── test_version.py
+└── tox.ini
+
+```
+
+提及本次功能：
+
+```bash
+git add .
+git commit -m "feat: add etl logic."
+```

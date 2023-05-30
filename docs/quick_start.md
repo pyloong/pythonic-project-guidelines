@@ -50,13 +50,13 @@ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project
 ❯ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project
 project_name [My Project]: Word Count
 project_slug [word_count]: 
-project_description [My Awesome Project!]: Word Count Project
-author_name [Author]: 
-author_email [author@example.com]: 
+project_description [My Awesome Project!]: Word Count Project.
+author_name [Author]: test
+author_email [author@example.com]: test@example.com
 version [0.1.0]: 
 Select python_version:
 1 - 3.10
-2 - 3.9
+2 - 3.11
 Choose from 1, 2 [1]: 
 use_src_layout [y]: 
 use_poetry [y]: 
@@ -67,6 +67,7 @@ Select ci_tools:
 3 - Github
 Choose from 1, 2, 3 [1]: 
 init_skeleton [n]:
+
 ```
 
 如果你在使用项目模板过程中有任何问题或疑问，可以通过发起 [issues](https://github.com/pyloong/cookiecutter-pythonic-project/issues) 进行反馈。
@@ -75,6 +76,9 @@ init_skeleton [n]:
 
 ```txt
 word_count
+├── .editorconfig
+├── .gitignore
+├── .pre-commit-config.yaml
 ├── LICENSE
 ├── README.md
 ├── docs
@@ -86,8 +90,11 @@ word_count
 ├── tests
 │   ├── __init__.py
 │   ├── conftest.py
+│   ├── settings.yml
 │   └── test_version.py
 └── tox.ini
+
+5 directories, 13 files
 ```
 
 生成项目的 `src` 目录下有一个项目模块，用来存放项目源代码， `tests` 目录用来编写模块的相关测试代码。
@@ -99,7 +106,8 @@ word_count
 使用 poetry 初始化一个虚拟环境。
 
 ```bash
-poetry install
+cd word_count
+poetry install -v
 ```
 
 初始化完成后，会生成一个 `poetry.lock`，可以用来锁定生产环境安装包的版本和依赖信息。
@@ -137,7 +145,7 @@ git commit -m "feat: 初始化项目提交"
 首先将项目以可编辑方式安装到环境中：
 
 ```bash
-pip install -e .
+poetry install
 ```
 
 这样做的目的是将 `src` 下的包安装到 Python 环境中，否则无法正常导入包中的模块。
@@ -239,8 +247,10 @@ pylint tests src
 
 为了方便使用 `mock` 需要安装 `pytest-mock` 模块，可以在 `pytest` 的 `fixture` 特性上使用 `mock`。
 
+安装开发环境依赖：
+
 ```bash
-poetry add --dev pytest-mock
+poetry add --group dev pytest-mock
 ```
 
 添加测试配置，在 `tests/conftest.py` 中加入：
@@ -317,7 +327,7 @@ def test_count(mocker, mock_path, mock_source_file):
 
 运行 `pytest` ，让测试正确运行。如果测试用例失败，需要根据出错堆栈找到问题原因，解决掉后再次运行测试命令，直到代码测试通过。
 
-然后运行 `isort` 和 `pylint` 格式化代码并检查代码风格。
+然后运行 `isort` 和 `pylint src tests` 格式化代码并检查代码风格。
 
 #### 2.2.4 提交代码
 
@@ -333,7 +343,6 @@ git commit -m "feat(counter): 增加 Counter 逻辑，并完成测试。"
 在 `src/word_count/` 目录下，创建 `cmdline.py` 文件，加入如下内容：
 
 ```python
-"""Cmdline"""
 """Cmdline"""
 import argparse
 import sys
@@ -443,7 +452,7 @@ tox
 现在可以在终端中运行单词统计：
 
 ```bash
-python src/word_count/cmdline.py -s foo.txt -d bar.txt
+python src/word_count/cmdline.py -s LICENSE -d /tmp/res.txt
 ```
 
 ### 2.5 打包发布
@@ -464,7 +473,7 @@ word_count = "word_count.cmdline:main"
 再次将本地项目以可编辑方式安装到当前 Python 环境：
 
 ```bash
-pip install -e .
+poetry install
 ```
 
 然后就可以正常使用 `word_count` 命令：

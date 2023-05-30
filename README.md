@@ -1,6 +1,6 @@
 # Python 项目工程化开发指南
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/pyloong/pythonic-project-guidelines/gh-page/main?label=gh-page&logo=github&style=flat-square)
+![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/pyloong/pythonic-project-guidelines/gh-page.yml?style=flat-square)
 
 文档目标：
 
@@ -89,7 +89,7 @@ pip install -r requirements.txt
 #### 2.2 使用 Docker 初始化
 
 ```bash
-docker pull squidfunk/mkdocs-material:8.4.1
+docker pull squidfunk/mkdocs-material:9.1.11
 ```
 
 ### 3. 预览
@@ -105,13 +105,13 @@ mkdocs serve
 **unix**:
 
 ```bash
-docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material:8.4.1
+docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material:9.1.11
 ```
 
 **Windows**:
 
 ```bash
-docker run --rm -it -p 8000:8000 -v "%cd%":/docs squidfunk/mkdocs-material:8.4.1
+docker run --rm -it -p 8000:8000 -v "%cd%":/docs squidfunk/mkdocs-material:9.1.11
 ```
 
 ## 协作规范

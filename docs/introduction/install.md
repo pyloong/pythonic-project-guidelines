@@ -37,18 +37,18 @@
 
 注意：安装时，需要账户控制权限。
 
-[![windows-install-setup](../assets/images/install/windows-install-setup.png)](../assets/images/install/windows-install-setup.png)
+![windows-install-setup](../assets/images/install/windows-install-setup.png)
 
 如果想要将 Python 安装到默认目录，直接点击 `Install Now` 即可。
 
 点击 `Customize Installation` :
 
-[![windows-install-optional-features](../assets/images/install/windows-install-optional-features.png)](../assets/images/install/windows-install-optional-features.png)
+![windows-install-optional-features](../assets/images/install/windows-install-optional-features.png)
 
 此时可以选择可选的特性，不过还不是你不知道它们是做什么的，或者不清楚你是否需要它们，那么保持默认即可。
 然后点击 `Next` ：
 
-[![windows-install-advanced-options](../assets/images/install/windows-install-advanced-options.png)](../assets/images/install/windows-install-advanced-options.png)
+![windows-install-advanced-options](../assets/images/install/windows-install-advanced-options.png)
 
 然后进行如下操作：
 
@@ -58,12 +58,12 @@
 
 然后点击 `Install` ，将 Python 安装到指定的目录。此过程需要账户授权。
 
-[![winsots-install-setup-progress](../assets/images/install/windows-install-setup-progress.png)](../assets/images/install/windows-install-setup-progress.png)
+![winsots-install-setup-progress](../assets/images/install/windows-install-setup-progress.png)
 
 等待安装完成后，点击 `Close` 。当然建议点击 `Disable path length limit` ，来禁用 Windows 下的 260 字节文件
 路径的限制。
 
-[![windows-install-successful](../assets/images/install/windows-install-successful.png)](../assets/images/install/windows-install-successful.png)
+![windows-install-successful](../assets/images/install/windows-install-successful.png)
 
 至此安装完成。
 
@@ -73,7 +73,7 @@
 
 打开 Windows 的 CMD ，然后输入 `python --version` 即可获得 Python 版本：
 
-[![windows-test-python](../assets/images/install/windows-test-python.png)](../assets/images/install/windows-test-python.png)
+![windows-test-python](../assets/images/install/windows-test-python.png)
 
 ### 1.2 Ubuntu Desktop 21
 

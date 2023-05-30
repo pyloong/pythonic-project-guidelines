@@ -1,11 +1,53 @@
 # 测试
 
+在本章节，你将学到如下内容：
+
+- 使用 pytest 编写单元测试
+- 使用 pytest-mock 模拟单元测试中的依赖逻辑
+- 使用 tox 自动化测试流程
+
 测试是保障安全上线一个重要的步骤，编写良好的测试，可以在发布之前尽可能避免 BUG 出现。
 在修改功能后，也可以通过回归测试，检查现有功能的稳定性。
 
 编写单元测试过程，和开发顺序一直，现测试三个模块，再测试 `manage` 模块，最后测试调用逻辑。
 
 测试时，使用的是 `pytest` 工具，而不是使用 `unittest` 。
+
+## 调整测试代码
+
+```py hl_lines="18" linenums="1"
+"""Test cmdline"""
+from __future__ import annotations  # PEP 585
+
+import pytest
+from click.testing import CliRunner
+
+from example_etl import __version__
+from example_etl.cmdline import main
+
+
+@pytest.mark.parametrize(
+    ['invoke_args', 'exit_code', 'output_keyword'],
+    [
+        ([], 0, 'help'),
+        (['--help'], 0, 'help'),
+        (['--version'], 0, __version__),
+        (['-V'], 0, __version__),
+
+    ]
+)
+def test_main(
+        clicker: CliRunner,
+        invoke_args: list[str],
+        exit_code: int,
+        output_keyword: str,
+):
+    """Test main cmdline"""
+    result = clicker.invoke(main, invoke_args)
+    assert result.exit_code == exit_code
+    assert output_keyword in result.output
+
+```
 
 ## 测试 extractor
 
@@ -45,7 +87,7 @@ def test_file_source(mocker, foo_file):
 安装 `pytest-mock` ：
 
 ```bash
-poetry add -D pytest-mock
+poetry add --group dev pytest-mock
 ```
 
 > 这里使用了 `poetry add -D` ，意思是将 `pytest-mock` 安装到开发环境依赖中。
@@ -79,23 +121,42 @@ def foo_file():
 
 然后在命令行中运行 `pytest` ，测试刚刚编写的测试代码。可以看到如下输出：
 
+<!-- markdownlint-disable MD013 MD033-->
+
 ```text
 ❯ pytest
-================================================================= test session starts =================================================================
-platform linux -- Python 3.10.0, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
-rootdir: /tmp/test/example_etl, configfile: setup.cfg, testpaths: tests
-plugins: cov-3.0.0, mock-3.6.1
-collected 12 items                                                                                                                                    
+================================================================================================================================= test session starts =================================================================================================================================
+platform darwin -- Python 3.10.11, pytest-7.3.1, pluggy-1.0.0
+rootdir: /private/tmp/example_etl
+configfile: pyproject.toml
+testpaths: tests
+plugins: pylint-0.19.0, mock-3.10.0
+collected 12 items                                                                                                                                                                                                                                                                    
 
-tests/test_cmdline.py .....                                                                                                                     [ 41%]
-tests/test_extcator.py ..                                                                                                                       [ 58%]
-tests/test_log.py ....                                                                                                                          [ 91%]
-tests/tests.py .                                                                                                                                [100%]
+tests/test_cmdline.py .....                                                                                                                                                                                                                                                     [ 35%]
+tests/test_exceptions.py .                                                                                                                                                                                                                                                      [ 42%]
+tests/test_extractor.py ..                                                                                                                                                                                                                                                      [ 57%]
+tests/test_log.py .....                                                                                                                                                                                                                                                         [ 92%]
+tests/test_version.py .                                                                                                                                                                                                                                                         [100%]
 
-================================================================= 12 passed in 0.18s ==================================================================
+
+
+================================================================================================================================== warnings summary ===================================================================================================================================
+../../../Users/kevin/Library/Caches/pypoetry/virtualenvs/example-etl-B-7RVLBy-py3.10/lib/python3.10/site-packages/pkg_resources/__init__.py:121
+  /Users/kevin/Library/Caches/pypoetry/virtualenvs/example-etl-B-7RVLBy-py3.10/lib/python3.10/site-packages/pkg_resources/__init__.py:121: DeprecationWarning: pkg_resources is deprecated as an API
+    warnings.warn("pkg_resources is deprecated as an API", DeprecationWarning)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================================================================================================================ 12 passed, 1 warning in 0.04s ============================================================================================================================
+
 ```
 
+<!-- markdownlint-restore -->
+
 测试成功。
+
+**说明：** 上面测试结果中有 `pkg_resources` 的警告，这是由于当前版本的 `dynaocnf` 中的一个逻辑在 python3.10 下被提示出 API 弃用的警告造成的。这个问题在 `dynaconf` 的下一个版本中已经修复了。当
+`dynaconf` 的下一个版本发布后，可以将 `dynaconf` 的版本升级到下一个版本，这个警告就会消失。当前 `dynaconf` 版本为 `3.1.12` 。
 
 ## 测试 transformer
 
@@ -229,45 +290,52 @@ def test_manage_transform(mocker):
 
 在测试时，需要保证配置文件中存在之前在代码中使用的变量。
 
-在 `src/example_etl/config/settings.yml` 文件中加入如下内容：
-
-```yaml
-extractor_name: file
-transformer_name: strip
-loader_name: file
-```
-
-配置程序默认使用三个已经实现的逻辑。
-
 再次运行 `pytest` 检查测试结果。
 
 ## 检查测试覆盖率
 
 测试覆盖率指示编写的单元测试，覆盖了多少源代码。能够通过测试覆盖率查看还有哪些内容没有被测试到。
 
+增加 `pytest-cov` 依赖：
+
+```bash
+poetry add --group dev pytest-cov
+```
+
 运行 `pytest --cov` 查看测试覆盖率。
+
+<!-- markdownlint-disable MD013 MD033-->
 
 ```text
 ❯ pytest --cov
-================================================================= test session starts =================================================================
-platform linux -- Python 3.10.0, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
-rootdir: /tmp/test/example_etl, configfile: pyproject.toml, testpaths: tests
-plugins: cov-3.0.0, mock-3.6.1
-collected 24 items                                                                                                                                    
+================================================================================================================================= test session starts =================================================================================================================================
+platform darwin -- Python 3.10.11, pytest-7.3.1, pluggy-1.0.0
+rootdir: /private/tmp/example_etl
+configfile: pyproject.toml
+testpaths: tests
+plugins: pylint-0.19.0, mock-3.10.0, cov-4.1.0
+collected 23 items                                                                                                                                                                                                                                                                    
 
-tests/test_cmdline.py .....                                                                                                                     [ 20%]
-tests/test_extcator.py ..                                                                                                                       [ 29%]
-tests/test_loader.py ..                                                                                                                         [ 37%]
-tests/test_log.py ......                                                                                                                        [ 62%]
-tests/test_manage.py ....                                                                                                                       [ 79%]
-tests/test_transformer.py ....                                                                                                                  [ 95%]
-tests/tests.py .                                                                                                                                [100%]
+tests/test_cmdline.py .....                                                                                                                                                                                                                                                     [ 21%]
+tests/test_extractor.py ..                                                                                                                                                                                                                                                      [ 30%]
+tests/test_loader.py ..                                                                                                                                                                                                                                                         [ 39%]
+tests/test_log.py .....                                                                                                                                                                                                                                                         [ 60%]
+tests/test_manage.py ....                                                                                                                                                                                                                                                       [ 78%]
+tests/test_transformer.py ....                                                                                                                                                                                                                                                  [ 95%]
+tests/test_version.py .                                                                                                                                                                                                                                                         [100%]
 
----------- coverage: platform linux, python 3.10.0-final-0 -----------
+================================================================================================================================== warnings summary ===================================================================================================================================
+../../../Users/kevin/Library/Caches/pypoetry/virtualenvs/example-etl-B-7RVLBy-py3.10/lib/python3.10/site-packages/pkg_resources/__init__.py:121
+  /Users/kevin/Library/Caches/pypoetry/virtualenvs/example-etl-B-7RVLBy-py3.10/lib/python3.10/site-packages/pkg_resources/__init__.py:121: DeprecationWarning: pkg_resources is deprecated as an API
+    warnings.warn("pkg_resources is deprecated as an API", DeprecationWarning)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+--------- coverage: platform darwin, python 3.10.11-final-0 ----------
 Name                                      Stmts   Miss  Cover
 -------------------------------------------------------------
 src/example_etl/__init__.py                   1      0   100%
-src/example_etl/cmdline.py                   23      0   100%
+src/example_etl/cmdline.py                   26      0   100%
 src/example_etl/config/__init__.py            8      0   100%
 src/example_etl/constants.py                  1      0   100%
 src/example_etl/exceptions.py                10      2    80%
@@ -282,23 +350,23 @@ src/example_etl/manage.py                    33      0   100%
 src/example_etl/transformer/__init__.py       0      0   100%
 src/example_etl/transformer/base.py           5      0   100%
 src/example_etl/transformer/strip.py          7      0   100%
-tests/__init__.py                             0      0   100%
+tests/__init__.py                             7      0   100%
 tests/conftest.py                            12      0   100%
 tests/test_cmdline.py                        10      0   100%
-tests/test_exceptions.py                      0      0   100%
-tests/test_extcator.py                       14      0   100%
+tests/test_extractor.py                      14      0   100%
 tests/test_loader.py                         20      0   100%
-tests/test_log.py                            10      0   100%
+tests/test_log.py                             9      0   100%
 tests/test_manage.py                         25      0   100%
 tests/test_transformer.py                    12      0   100%
-tests/tests.py                                3      0   100%
+tests/test_version.py                         3      0   100%
 -------------------------------------------------------------
-TOTAL                                       265      2    99%
+TOTAL                                       274      2    99%
 
-
-================================================================= 24 passed in 0.41s ==================================================================
+============================================================================================================================ 23 passed, 1 warning in 0.08s ============================================================================================================================
 
 ```
+
+<!-- markdownlint-restore -->
 
 通过覆盖率可以看到 `src/example_etl/exceptions.py` 的逻辑还有没测试的。
 
