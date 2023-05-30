@@ -18,34 +18,37 @@
 
 从官网下载并安装。
 
+
+![windows-vscode-installed](../assets/images/ides/windows-vscode-installed.jpg)
+
 ### 配置
 
 从插件中心安装中文插件：
 
-![windows-vscode-language-config](../assets/images/ides/windows-vscode-language-config.png)
+![windows-vscode-language-config](../assets/images/ides/windows-vscode-language-config.jpg)
 
 从插件中心安装 `Python Extension Pack` 插件：
 
-![windows-vscode-python-config](../assets/images/ides/windows-vscode-python-config.png)
+![windows-vscode-python-config](../assets/images/ides/windows-vscode-python-config.jpg)
 
 ### 使用
 
 创建一个临时目录，然后选择使用 vscode 打开。Windows 可以通过右击，选择 `通过 Code 打开` ， Linux 可以在终端使用 `code demo` 命令打开。
 
-![windows-vscode-open-demo](../assets/images/ides/windows-vscode-open-demo.png)
+![windows-vscode-open-demo](../assets/images/ides/windows-vscode-open-demo.jpg)
 
 然后使用快捷键 ``Ctrl + ` `` 组合键打开终端，执行 `poetry init` 根据提示操作，初始化 `pyproject.toml` 的配置文件，执行 `poetry shell`进行虚拟环境创建，执行 `poetry install`进行依赖安装：
 
-![windows-vscode-demo-pipenv](../assets/images/ides/windows-vscode-demo-pipenv.png)
+![windows-vscode-demo-poetry](../assets/images/ides/windows-vscode-demo-poetry.jpg)
 
 然后使用 `Ctrl + Shift + p` 打开 vscode 的指令窗口，在窗口中输入 `>python: select Interpreter` 来选择项目需要使用的 Python 解释器，
 然后选择上面一步创建的 Python 解释器：
 
-![windows-vscode-demo-select-interpreter](../assets/images/ides/windows-vscode-demo-select-interpreter.png)
+![windows-vscode-demo-select-interpreter](../assets/images/ides/windows-vscode-demo-select-interpreter.jpg)
 
 然后可以看到窗口的左下角已经出现了上一步选择 Python 解释器。
 
-创建新文件，并输入如下代码：
+创建新文件 `demo.py`，并输入如下代码：
 
 ```python
 import sys
@@ -55,15 +58,15 @@ print(sys.version)
 
 ```
 
-![windows-vscode-demo-new-file](../assets/images/ides/windows-vscode-demo-new-file.png)
+![windows-vscode-demo-new-file](../assets/images/ides/windows-vscode-demo-new-file.jpg)
 
 然后右击该文件，选择 `在终端中运行 Python 文件` ：
 
-![windows-vscode-demo-run-file](../assets/images/ides/windows-vscode-demo-run-file.png)
+![windows-vscode-demo-run-file](../assets/images/ides/windows-vscode-demo-run-file.jpg)
 
 可以看到输入：
 
-![windows-vscode-demo-run-file-out](../assets/images/ides/windows-vscode-demo-run-file-out.png)
+![windows-vscode-demo-run-file-out](../assets/images/ides/windows-vscode-demo-run-file-out.jpg)
 
 更多关于在 vscode 中使用 Python 的内容，请参考 [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) 。
 
@@ -71,9 +74,9 @@ print(sys.version)
 
 ## 问题排查
 
-### 因为在此系统上禁止运行脚本
+### vscode 终端无法自动启用 虚拟环境
 
-![windows-vscode-console-disable-psfile](../assets/images/ides/windows-vscode-console-disable-psfile.png)
+![windows-vscode-console-disable-psfile](../assets/images/ides/windows-vscode-console-disable-psfile.jpg)
 
 #### 问题原因
 
@@ -87,3 +90,5 @@ print(sys.version)
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
+
+然后关闭终端窗口后再次打开即可。

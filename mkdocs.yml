@@ -4,52 +4,54 @@ theme:
   name: material
   langage: zh
   features:
-    - search.highlight
-    - navigation.sections
-    - navigation.top
-    - navigation.tabs
-    - navigation.tracking   # 锚点导航
-#    - content.tabs.link     # 链接的内容选项卡
-  palette:  # 主题模式切换。
-    - media: "(prefers-color-scheme: light)"  # 跟随系统主题模式
-      scheme: default
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      toggle:
-        icon: material/weather-night
-        name: Switch to light mode
+  - search.highlight
+  - navigation.sections
+  - navigation.top
+  - navigation.tabs
+  - navigation.tracking # 锚点导航
+  #    - content.tabs.link     # 链接的内容选项卡
+  palette: # 主题模式切换。
+  - media: "(prefers-color-scheme: light)" # 跟随系统主题模式
+    scheme: default
+    toggle:
+      icon: material/weather-sunny
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    toggle:
+      icon: material/weather-night
+      name: Switch to light mode
   icon:
     repo: fontawesome/brands/github
 
 markdown_extensions:
-  - footnotes
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.tabbed
-  - pymdownx.caret
-  - pymdownx.mark
-  - pymdownx.tilde
-  - attr_list
-  - md_in_html
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
+- footnotes
+- admonition
+- pymdownx.details
+- pymdownx.superfences
+- pymdownx.tabbed
+- pymdownx.caret
+- pymdownx.mark
+- pymdownx.tilde
+- attr_list
+- md_in_html
+- pymdownx.tasklist:
+    custom_checkbox: true
+- pymdownx.tabbed:
+    alternate_style: true
+- pymdownx.highlight:
+    anchor_linenums: true
+    line_spans: __span
+    pygments_lang_class: true
+- pymdownx.inlinehilite
+- pymdownx.snippets
 
 repo_url: https://github.com/pyloong/pythonic-project-guidelines
 repo_name: pyloong/pythonic-project-guidelines
 site_url: https://pyloong.github.io/pythonic-project-guidelines/
 
 plugins:
-  - search
+- search
 
 nav:
 - Python 开发指南: index.md
@@ -62,7 +64,7 @@ nav:
   - 风格规范: standard/style_rules.md
   - 语言规范: standard/language_rules.md
 - 应用开发实践:
-  - 初级教程: 
+  - 初级教程:
     - 项目说明: guidelines/tutorial/tutorial.md
     - 初始化: guidelines/tutorial/init_project.md
     - 开发: guidelines/tutorial/develop.md
