@@ -107,7 +107,7 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
     - [typing](https://google.github.io/styleguide/pyguide.html#typing-imports)
     - [collections.abc](https://google.github.io/styleguide/pyguide.html#typing-imports)
-    - [typing_extensions](https://github.com/python/typing_extensions/blob/main/README.md) 
+    - [typing_extensions](https://github.com/python/typing_extensions/blob/main/README.md)  
 
 - 重定向模块 [Six.moves](https://six.readthedocs.io/#module-six.moves)
 
@@ -184,7 +184,7 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 - 如果有必要，请使用内置异常类。例如，抛出 `ValureError`
   来指示编程错误。比如违反了前置条件（需要一个正数，但传递了一个负数）。不要使用 `assert` 语句验证公共 API 的参数值。`assert`
-  用于确保内部正确性，不得强制使用，也不表示发生了某些意外事件。如果在后一种情况下需要使用异常，请使用 raise 语句。例如： 
+  用于确保内部正确性，不得强制使用，也不表示发生了某些意外事件。如果在后一种情况下需要使用异常，请使用 raise 语句。例如：  
 
     !!! success "推荐"
 
@@ -842,6 +842,7 @@ Python 是一种异常灵活的语言，它为你提供了很多花哨的特性�
 推荐使用 `from __future__ import` 语句。所有的新代码都应该包含以下内容，现有的代码也应该在有条件的情况下进行兼容更新。
 
 在 3.5 版本（而不是 >= 3.7）上执行的代码中，导入：
+
 ```python
 from __future__ import generator_stop
 ```

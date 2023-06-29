@@ -1438,7 +1438,8 @@ def deals_with_text_data(x: str) -> str:
 def deals_with_binary_data(x: bytes) -> bytes:
   ...
 ```
-如果函数的所有字符串类型始终相同，例如，如果返回类型与上面代码中的参数类型相同，请使用 
+
+如果函数的所有字符串类型始终相同，例如，如果返回类型与上面代码中的参数类型相同，请使用
 [AnyStr](https://google.github.io/styleguide/pyguide.html#typing-type-var)。
 想要正确的标注字符串类型，取决于代码将使用哪个版本的 Python 。
 
@@ -1459,7 +1460,7 @@ Python 代码中去定义（无论是否有类型）。如果模块中的类型�
 from typing import Any as AnyType
 ```
 
-推荐使用内置类型作为注释（如果可用）。 Python 通过 Python 3.9 中引入的 [PEP-585](https://peps.python.org/pep-0585/) 
+推荐使用内置类型作为注释（如果可用）。 Python 通过 Python 3.9 中引入的 [PEP-585](https://peps.python.org/pep-0585/)
 支持使用参数容器类型的类型注释。
 
 ```python
@@ -1468,6 +1469,7 @@ def generate_foo_scores(foo: set[str]) -> list[float]:
 ```
 
 注意：[Apache Beam](https://github.com/apache/beam/issues/23366) 的用户应继续通过输入导入参数容器。
+
 ```python
 from typing import Set, List
 
