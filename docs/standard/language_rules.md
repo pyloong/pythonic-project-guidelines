@@ -26,9 +26,9 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 
 ### 1.1.4 结论
 
-确保对你的代码运行 `pylint`。抑制不准确的警告，以便能够将其他警告暴露出来。
+确保对你的代码运行 `pylint`。
 
-你可以通过设置一个行注释来抑制告警。例如：
+抑制不准确的警告，以便能够将其他警告暴露出来。你可以通过设置一个行注释来抑制告警：
 
 ```python
 def do_PUT(self):  # WSGI name, so pylint: disable=invalid-name
@@ -50,7 +50,7 @@ pylint --list-msgs
 获取关于特定消息的更多信息，可以执行：
 
 ```bash
-pylint --help-msg=C6409
+pylint --help-msg=invalid-name
 ```
 
 相比较于之前使用的 `pylint: disable-msg`，本文推荐使用 `pylint: disable`。
@@ -69,7 +69,7 @@ def viking_cafe_order(spam, beans, eggs=None):
 
 ## 1.2 导入
 
-只对包和模块使用 import 语句，而不是单独的类或函数。注意： `typing` 模块是个特例。
+只对包和模块使用 `import` 语句，而不是单独的类或函数。
 
 ### 1.2.1 定义
 
@@ -87,7 +87,14 @@ def viking_cafe_order(spam, beans, eggs=None):
 
 - 使用 `import x` 来导入包和模块。
 - 使用 `from x import y`，其中 `x` 是包前缀，`y` 是不带前缀的模块名。
-- 使用 `from x import y as z`，如果两个要导入的模块都叫做 `y` 或者 `y` 太长了。
+- 在以下任一情况下使用 `from x import y as z`：
+
+    - 名字都为 `y` 的模块。
+    - `y` 与当前模块中顶级名称冲突。
+    - `y` 与作为公共 API 一部分的公共参数名称（例如功能）冲突。
+    - `y` 是一个长名称，使用不太方便。
+    - `y` 在代码上下文中过于通用（例如：`from storage.file_system import options as fs_options`）
+
 - 只有当 `z` 是标准缩写（例如，`numpy` 为 `np`）时，才使用 `import y as z`。
 
 例如，模块 `sound.effects.echo` 可以用如下方式导入：
@@ -113,15 +120,15 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ## 1.3 包
 
-使用模块的全路径名来导入每个模块
+使用模块的全路径名来导入每个模块。
 
 ### 1.3.1 优点
 
-避免模块名冲突。查找包更容易。
+避免模块名称冲突或因模块搜索路径与作者预期不符而导致的错误导入。查找包更容易。
 
 ### 1.3.2 缺点
 
-部署代码变难，因为你必须复制包层次。
+因为要复制包层次结构，所以在部署代码时会更加困难。但是对于现代的部署机制来说，这并不是真正的问题。
 
 ### 1.3.3 结论
 
@@ -149,7 +156,7 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
     _FOO = flags.DEFINE_string(...)
     ```
 
-!!! fail "不推荐 ( 假设 `jodie.py` 文件在 `doctor/who/where` 中 )"
+!!! fail "不推荐 ( 假设 `jodie.py` 文件在 `doctor/who/` 中 )"
 
     ```python
     # Unclear what module the author wanted and what will be imported.  The actual
@@ -238,7 +245,7 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 - 永远不要使用 `expect:` 语句来捕获所有异常，也不要捕获 `Exception` 或者   `StandardError`，除非：
 
     - 重新触发该异常，或
-    - 你已经在当前线程的最外层（记得还是要打印一条错误消息）
+    - 在程序中创建一个隔离点，其中异常不会传播，而是被记录和抑制，例如通过保护线程的最外层块来防止程序崩溃。
 
   在异常这方面, Python 非常宽容， `expect:` 可以捕获所有拼写错误的名称， `sys.exit()` 调用， `Ctrl+C` 中断，`unittest`
   失败和所有你不想捕获的其他异常。
@@ -261,16 +268,17 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.5.3 缺点
 
-- 破坏封装，例如使用全局状态管理数据库连接，同时连接到两个不同的数据库变得困难。
+- 破坏封装：这种设计可能会让有效目标的实现变得困难。例如使用全局状态来管理数据库连接，则同时连接两个不同的数据库变得困难（例如再迁移期间
+计算差异）。全局注册表也容易出现类似的问题。
 - 导入时可能改变模块行为，因为导入模块时会对模块级变量赋值。
 
 ### 1.5.4 结论
 
 避免使用全局变量。
 
-虽然模块级常量在技术上是变量，但是允许和鼓励使用。例如： `MAX_HOLY_HANDGRENADE_COUNT = 3` 。常量的命名必须使用全大写和下划线。具体请参阅命名规范。
+如果需要，全局变量应该仅在模块内部可用，并通过在名称前加上 `_` 前缀使其成为模块的内部变量。外部访问必须通过模块级的公共函数来访问。具体请参阅命名规范。请在注释或与注释相关的文档中说明使用可变全局状态的设计原因。
 
-如果需要，全局变量应该仅在模块内部可用，并通过在名称前加上 `_` 前缀使其成为模块的内部变量。外部访问必须通过模块级的公共函数来访问。具体请参阅命名规范。
+模块级常量是允许和鼓励使用的。例如： `_MAX_HOLY_HANDGRENADE_COUNT = 3` (对内部使用常量)或 `SIR_LANCELOTS_FAVORITE_COLOR = "blue"`(对公共 API 常量)。常量的命名必须使用全大写和下划线。具体请参阅命名规范。
 
 ## 1.6 嵌套/局部/内部类或函数
 
@@ -387,8 +395,7 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.8.4 结论
 
-如果类型支持，就使用默认迭代器和操作符，例如列表、字典和文件。内建类型也定义了迭代器方法。优先考虑这些方法，而不是那些返回列表的方法。当然，这样遍历容器时，你将不能修改容器。除非特殊情况，否则不要使用
-Python 2 特定的迭代方法 `dict.iter*()` 。
+如果类型支持，就使用默认迭代器和操作符，例如列表、字典和文件。内建类型也定义了迭代器方法。优先考虑这些方法，而不是那些返回列表的方法。当然，这样遍历容器时，你将不能修改容器。
 
 !!! success "推荐"
 
@@ -412,7 +419,8 @@ Python 2 特定的迭代方法 `dict.iter*()` 。
 
 ### 1.9.1 定义
 
-所谓生成器函数，就是每当它执行一次生成 `yield` 语句，它就返回一个迭代器，这个迭代器生成一个值。生成值后，生成器函数的运行状态将被挂起，直到下一次生成。
+所谓生成器函数，就是每当它执行一次生成 `yield` 语句，它就返回一个迭代器，这个迭代器生成一个值。
+生成值后，生成器函数的运行状态将被挂起，直到需要下一次值为止。
 
 ### 1.9.2 优点
 
@@ -425,6 +433,10 @@ Python 2 特定的迭代方法 `dict.iter*()` 。
 ### 1.9.4 结论
 
 鼓励使用。注意在生成器函数的文档字符串中使用“`Yields:`”而不是“`Returns:`”。
+
+如果生成器管理着一个昂贵的资源，请确保强制进行清理。
+
+一个很好的清理方式是使用上下文管理器 [PEP-0533](https://peps.python.org/pep-0533/) 来包装生成器。
 
 ## 1.10 Lambda 函数
 
@@ -494,8 +506,7 @@ Python 2 特定的迭代方法 `dict.iter*()` 。
 
 ### 1.12.1 定义
 
-你可以在函数参数列表的最后指定变量的值，例如， `def(a, b=0):` 。如果调用 `foo` 时只带一个参数，则 `b` 被设为 `0`
-，如果带两个参数，则 `b` 的值等于第二个参数。
+你可以在函数参数列表的最后指定变量的值，例如， `def(a, b=0):` 。如果调用 `foo` 时只带一个参数，则 `b` 被设为 `0`，如果带两个参数，则 `b` 的值等于第二个参数。
 
 ### 1.12.2 优点
 
@@ -542,7 +553,10 @@ Python 也不支持重载方法和函数，默认参数是一种“模拟”重�
     ```
 
     ```python
-    def foo(a, b=FLAGS.my_thing):  # sys.argv has not yet been parsed...
+    from absl import flags
+    _FOO = flags.DEFINE_string(...)
+
+    def foo(a, b=_FOO.value):  # sys.argv has not yet been parsed...
          ...
     ```
 
@@ -553,7 +567,7 @@ Python 也不支持重载方法和函数，默认参数是一种“模拟”重�
 
 ## 1.13 属性（properties）
 
-访问和设置数据成员时，你通常会使用简单，轻量级的访问和设置函数。建议用属性（properties）来代替它们。
+属性（properties）可以用于控制需要进行简单计算或逻辑的属性的获取或设置。其实现必须符合常规属性访问的一般期望：它们应该是简单，直接，且易于理解。
 
 ### 1.13.1 定义
 
@@ -561,8 +575,10 @@ Python 也不支持重载方法和函数，默认参数是一种“模拟”重�
 
 ### 1.13.2 优点
 
-通过消除简单的属性访问时显式的 `get` 和 `set` 方法调用，可读性提高了。允许延迟加载。用 `Pythonic`
-的方式来维护类的接口。就性能而言，当直接访问变量是合理的，添加访问方法就显得琐碎而无意义。使用属性可以绕过这个问题。将来也可以在不破坏接口的情况下将访问方法加上。
+- 允许进行属性访问和赋值的 API，而不是调用 `getter` 和 `setter` 方法。
+- 可使得属性为只读。
+- 允许延迟加载。
+- 提供了一种方式，在类的内部与外部独立演化时，仍然能够保持类的公共接口不变。
 
 ### 1.13.3 缺点
 
@@ -571,57 +587,13 @@ Python 也不支持重载方法和函数，默认参数是一种“模拟”重�
 
 ### 1.13.4 结论
 
-你通常习惯于使用访问或设置方法来访问或设置数据，它们简单而轻量。不过我们建议你在新的代码中使用属性。只读属性应该用 `@property`
-装饰器来创建。
+与运算符重载一样，在必要的情况下可以使用属性，并且应符合典型属性访问的预期；否则，请遵循 `getters` 和 `setters` 规则进行操作。
 
-如果子类没有覆盖属性，那么属性的继承可能看上去不明显。因此使用者必须确保访问方法间接被调用，以保证子类中的重载方法被属性调用（使用[模板方法设计模式](https://en.wikipedia.org/wiki/Template_method_pattern)
-）。
+例如，使用属性同时获取和设置内部属性是不允许的：因为没有进行任何计算，所以属性是不必要的（可以将属性公开而不用使用属性）。相比之下，使用属性来控制属性访问或计算一个很容易得出的值是被允许的：因为逻辑简单，且易于理解。
 
-!!! success "推荐"
+应该使用 `@property` [装饰器](https://google.github.io/styleguide/pyguide.html#s2.17-function-and-method-decorators)创建属性。手动实现属性描述符被认为是威力过大的特性。
 
-    ```python
-    import math
-
-    class Square:
-        """A square with two properties: a writable area and a read-only perimeter.
-
-        To use:
-        >>> sq = Square(3)
-        >>> sq.area
-        9
-        >>> sq.perimeter
-        12
-        >>> sq.area = 16
-        >>> sq.side
-        4
-        >>> sq.perimeter
-        16
-        """
-
-        def __init__(self, side):
-            self.side = side
-
-        @property
-        def area(self):
-            """Area of the square."""
-            return self._get_area()
-
-        @area.setter
-        def area(self, area):
-            return self._set_area(area)
-
-        def _get_area(self):
-            """Indirect accessor to calculate the 'area' property."""
-            return self.side ** 2
-
-        def _set_area(self, area):
-            """Indirect setter to set the 'area' property."""
-            self.side = math.sqrt(area)
-
-        @property
-        def perimeter(self):
-            return self.side * 4
-    ```
+属性的继承可能是不明显的。不要使用属性来实现子类可能想要重写和扩展的计算。
 
 ## 1.14 `True` / `False` 的求值
 
@@ -681,7 +653,7 @@ Python 在布尔上下文中会将某些值求值为 `False` 。按简单的直�
         ```
 
 - 注意： `'0'` （即： `0` 作为字符串）的计算结果是 `True` 。
-- 注意： Numpy 数组可能会在隐式布尔上下文中引发异常。测试一组 `np.array`为空首选 `.size` 属性 （例如 `if not users.size`）。
+- 注意： Numpy 数组可能会在隐式布尔上下文中引发异常。测试一组 `np.array` 为空首选 `.size` 属性 （例如 `if not users.size`）。
 
 ## 1.16 词法作用域（Lexical Scoping）
 
@@ -764,7 +736,8 @@ class C:
 
 ### 1.17.3 缺点
 
-装饰器可以在函数的参数或返回值上执行任何操作，这可能导致让人惊异的隐藏行为。而且，饰器在导入时执行。从装饰器代码的失败中恢复更加不可能。
+装饰器可以在函数的参数或返回值上执行任何操作，这可能导致让人惊异的隐藏行为。此外，装饰器在对象定义时执行。
+对于模块级别的对象（类、模块函数等），此过程发生在导入时。从装饰器代码的失败中恢复更加不可能。
 
 ### 1.17.4 结论
 
@@ -819,21 +792,21 @@ Python 是一种异常灵活的语言，它为你提供了很多花哨的特性�
 
 ## 1.20 新版 Python:`from __future__ imports`
 
-新的语言版本的语义变化可能会通过特殊的 future import 进行控制，以便在早期的运行时环境中以文件为基础启用它们。
+可以使用导入 future 这种特殊操在老版本中使用新版本的语法特性。
 
 ### 1.20.1 定义
 
-能够通过 `from __future__ import` 语句打开一些更现代的功能，可以尽早使用预期的未来 Python 版本中的功能。
+使用 `from __future__ import` 语句可以在老版本中启用新版本的功能。
 
 ### 1.20.2 优点
 
-- 事实证明，这可以使运行时版本升级更加顺利，因为可以在每个文件的基础上进行更改，同时声明兼容性并防止这些文件内的回归。
-- 现代代码更易于维护，因为它不太可能积累技术债务，而技术债务在未来的运行时升级期间会出现问题。
+经验证明，在声明兼容性并防止这些文件中的回归的同时，对每个文件进行更改，可以使运行时版本升级更加平滑。
+现代代码更易于维护，因为它不太可能在将来的运行时升级期间积累技术债务。
 
 ### 1.20.3 缺点
 
-- 在引入所需的 future 语句之前，此类代码可能无法在非常旧的解释器版本上运行。
-- 在支持极其广泛的环境的项目中，这种需求更为常见。
+- 没有引入所需的 future 语句时，这些代码可能无法在老版本的解释器版本上运行。
+- 在支持各种环境的项目中，这种需求更为常见。
 
 ### 1.20.4 结论
 
@@ -841,26 +814,18 @@ Python 是一种异常灵活的语言，它为你提供了很多花哨的特性�
 
 推荐使用 `from __future__ import` 语句。所有的新代码都应该包含以下内容，现有的代码也应该在有条件的情况下进行兼容更新。
 
-在 3.5 版本（而不是 >= 3.7）上执行的代码中，导入：
+在 3.5 或更早的版本（而不是 >= 3.7）上执行的代码中，导入：
 
 ```python
 from __future__ import generator_stop
 ```
 
-获取有关这些导入的更多信息，请参阅 [absolute imports](https://www.python.org/dev/peps/pep-0328/)
-、 [division behavior](https://google.github.io/styleguide/pyguide.html)
-和 [the print function](https://www.python.org/dev/peps/pep-3105/)。
+有关更多信息，请阅读 [Python future](https://docs.python.org/3/library/__future__.html) 语句定义文档。
 
-即使当前在模块中没有使用这些导入，也请不要忽略或删除它们，除非代码仅适用于 Python 3 版本。最好始终在所有文件中包含 `future`
-的导入，以便在有人开始使用这些特性时，不会在以后的编辑中忘记它们。
+不要删除这些导入，除非您确信代码在当前环境运行没有问题。即使您现在没有使用当前代码中特定的 future 导入启用的特性，
+保留这些导入便于以后修改代码时直接使用。
 
 还有一些其他的 `from __future__` 语句，可以在需要的时候使用。
-
-**`six` 、 `future` 和 `past`**
-
-当项目同时需要支持 Python 2 和 3 版本时，可以使用 [`six`](https://pypi.org/project/six/)
-、 [`future`](https://pypi.org/project/future/) 和 [`past`](https://pypi.org/project/past/) 。
-这些库就是为了让代码实现更清晰简单而存在的。
 
 ## 1.21 代码类型标注
 

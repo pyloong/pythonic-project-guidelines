@@ -24,10 +24,8 @@
 
 不要使用反斜杠来[显式延续行](https://docs.python.org/3/reference/lexical_analysis.html#explicit-line-joining)。
 
-Python
-会将[圆括号、方括号和花括号中的行隐式的连接起来](https://docs.python.org/3/reference/lexical_analysis.html#implicit-line-joining)
-，
-你可以利用这个特点。如果需要，你可以在表达式外围增加一对额外的圆括号。
+相反，Python
+会将[圆括号、方括号和花括号中的行隐式的连接起来](https://docs.python.org/3/reference/lexical_analysis.html#implicit-line-joining)，你可以利用这个特点。如果需要，你可以在表达式外围增加一对额外的圆括号。
 
 请注意，此规则并不禁止字符串中反斜杠转义的换行符（见下文）。
 
@@ -131,7 +129,7 @@ x = ('This will build a very long long '
 
 宁缺毋滥的使用括号。
 
-除非是用于实现行连接，否则不要在返回语句或条件语句中使用括号，不过在元组两边使用括号是可以的。
+除非是用于实现行连接，否则不要在返回语句或条件语句中使用括号，隐式的行连接或者元组两边使用括号除外。
 
 !!! success "推荐"
 
@@ -468,15 +466,20 @@ directory.
 
 下文所指的函数，包括函数，方法，生成器以及属性。
 
-一个函数必须要有文档字符串，除非它满足以下条件：
+每个具有以下一项或多项特性的函数都必须有文档字符串：
 
-- 外部不可见
-- 非常短小
-- 简单明了
+- 公共 API 的一部分
+- 规模大
+- 逻辑复杂
 
-文档字符串应该提供足够的信息，当别人编写代码调用该函数时，他不需要看一行代码，只要看文档字符串就可以了。文档字符串应该是描述性的（ `"""Fetches rows from a Bigtable."""`
-） 而不是命令式的（ `"""Fetch rows from a Bigtable."""` ） ，除了 `@property` 数据描述符，它应该使用[与属性相同的样式](#384)
-。文档字符串应该包含函数做什么，以及输入和输出的详细描述。通常，不应该描述“怎么做”，除非是一些复杂的算法。对于复杂的代码，在代码旁边加注释会比使用文档字符串更有意义。
+文档字符串应该提供足够的信息，当别人编写代码调用该函数时，他不需要看一行代码，只要看文档字符串就可以了。
+文档字符串应描述函数的调用语法和语义，但通常不描述其实现细节，除非这些细节与函数的使用方式相关。
+例如，作为副作用会改变其参数的函数应在其文档字符串中注明这一点。否则，对于调用者不相关的函数实现的微妙但重要的细节，
+最好将其表达为代码旁边的注释，而不是在函数的文档字符串中。
+
+文档字符串应该是描述性的（ `"""Fetches rows from a Bigtable."""`） 或者命令式的（ `"""Fetch rows from a Bigtable."""` ），
+但是在一个文件中，风格应该保持一直。对于 @property 数据描述符的文档字符串应该使用与属性或函数参数的文档字符串相同的风格
+（ `"""The Bigtable path."""` 而不是 `"""Returns the Bigtable path."""` ）。
 
 重写基类中的方法时，用一个简单的文档字符串引导读者查看被覆盖方法的文档字符串，例如： `"""See base class."""`
 。这样做的好处是，无需重复基本方法中的文档字符串信息。但是，如果重写方法的行为发生了改变，或者需要提供详细信息（例如：记录额外副作用），那么重写方法至少需要通过文档字符串来描述这些差异。
@@ -490,11 +493,12 @@ directory.
 
 #### *Returns:（或者 Yields: 用于生成器）*
 
-描述返回值的类型和语义。
-
-- 如果函数返回 `None` ，这一部分可以省略。
-- 如果文档字符串以 `Returns` 或 `Yields` 开头（例如： `"""Returns row from Bigtable as a tuple of strings."""`
-  ），并且开始的句子足以描述返回值，那么也可以省略。
+返回值的语义应该被描述清楚，包括类型注释所不能提供的任何类型信息。
+如果函数只返回 None，则不需要此部分。如果文档字符串以 `Returns` 或 `Yields` 开头
+（例如 `"""Returns row from Bigtable as a tuple of strings."""`），并且开头的句子足以描述返回值，则可以省略此部分。
+不要模仿像 `NumPy风格`，该风格通常将元组返回值记录为多个带有单独名称的返回值（从不提到元组）。
+相反，应将此类返回值描述为：`Returns: A tuple (mat_a, mat_b), where mat_a is …, and …`。
+文档字符串中的辅助名称不一定需要与函数体中使用的任何内部名称相对应（因为它们不是 API 的一部分）。
 
 #### *Raises:*
 
@@ -502,10 +506,11 @@ directory.
 API，则不应该记录引发的异常（因为这会使违反 API 的行为成为 API 的一部分）。
 
 ```python
-def fetch_smalltable_rows(table_handle: smalltable.Table,
-                          keys: Sequence[Union[bytes, str]],
-                          require_all_keys: bool = False,
-                          ) -> Mapping[bytes, Tuple[str]]:
+def fetch_smalltable_rows(
+    table_handle: smalltable.Table,
+    keys: Sequence[bytes | str],
+    require_all_keys: bool = False,
+) -> Mapping[bytes, tuple[str, ...]]:
     """Fetches rows from a Smalltable.
 
     Retrieves rows pertaining to the given keys from the Table instance
@@ -515,8 +520,8 @@ def fetch_smalltable_rows(table_handle: smalltable.Table,
         table_handle: An open smalltable.Table instance.
         keys: A sequence of strings representing the key of each table
           row to fetch.  String keys will be UTF-8 encoded.
-        require_all_keys: Optional; If require_all_keys is True only
-          rows with values set for all keys will be returned.
+        require_all_keys: If True only rows with values set for all keys will be
+          returned.
 
     Returns:
         A dict mapping keys to the corresponding table row data
@@ -539,10 +544,11 @@ def fetch_smalltable_rows(table_handle: smalltable.Table,
 如下所示， Args 中参数换行也是允许的：
 
 ```python
-def fetch_smalltable_rows(table_handle: smalltable.Table,
-                          keys: Sequence[Union[bytes, str]],
-                          require_all_keys: bool = False,
-                          ) -> Mapping[bytes, Tuple[str]]:
+def fetch_smalltable_rows(
+    table_handle: smalltable.Table,
+    keys: Sequence[bytes | str],
+    require_all_keys: bool = False,
+) -> Mapping[bytes, tuple[str, ...]]:
     """Fetches rows from a Smalltable.
 
     Retrieves rows pertaining to the given keys from the Table instance
@@ -555,8 +561,7 @@ def fetch_smalltable_rows(table_handle: smalltable.Table,
         A sequence of strings representing the key of each table row to
         fetch.  String keys will be UTF-8 encoded.
       require_all_keys:
-        Optional; If require_all_keys is True only rows with values set
-        for all keys will be returned.
+        If True only rows with values set for all keys will be returned.
 
     Returns:
       A dict mapping keys to the corresponding table row data
@@ -585,16 +590,20 @@ def fetch_smalltable_rows(table_handle: smalltable.Table,
 class SampleClass:
     """Summary of class here.
 
-    Longer class information....
-    Longer class information....
+    Longer class information...
+    Longer class information...
 
     Attributes:
         likes_spam: A boolean indicating if we like SPAM or not.
         eggs: An integer count of the eggs we have laid.
     """
 
-    def __init__(self, likes_spam=False):
-        """Inits SampleClass with blah."""
+    def __init__(self, likes_spam: bool = False):
+        """Initializes the instance based on spam preference.
+
+        Args:
+          likes_spam: Defines if instance exhibits this preference.
+        """
         self.likes_spam = likes_spam
         self.eggs = 0
 
@@ -609,12 +618,13 @@ class SampleClass:
 
     ```python
     class CheeseShopAddress:
-      """The address of a cheese shop.
-      ...
-      """
+        """The address of a cheese shop.
+
+        ...
+        """
 
     class OutOfCheeseError(Exception):
-      """No more cheese is available."""
+        """No more cheese is available."""
     ```
 
 
@@ -622,12 +632,13 @@ class SampleClass:
 
     ```python
     class CheeseShopAddress:
-      """Class that describes the address of a cheese shop.
-      ...
-      """
-    
+        """Class that describes the address of a cheese shop.
+
+        ...
+        """
+
     class OutOfCheeseError(Exception):
-      """Raised when no more cheese is available."""
+        """Raised when no more cheese is available."""
     ```
 
 
@@ -866,6 +877,7 @@ if i & (i - 1) == 0:  # True if i is 0 or a power of 2.
 这还包括 [mmap mappings](https://docs.python.org/3/library/mmap.html),
 [h5py File objects](https://google.github.io/styleguide/pyguide.html#3-python-style-rules)和
 [matplotlib.pyplot figure windows](https://matplotlib.org/2.1.0/api/_as_gen/matplotlib.pyplot.close.html)。
+
 除文件外，sockets 或其他类似文件的对象在没有必要的情况下打开，会有许多副作用，例如：
 
 - 它们可能会消耗有限的系统资源。如文件描述符。如果这些资源在使用后没有及时归还系统，那么用于处理这些对象的代码会将资源消耗殆尽。
@@ -877,6 +889,8 @@ if i & (i - 1) == 0:  # True if i is 0 or a power of 2.
 - 没有任何方法可以确保运行环境会真正的执行文件的析构。不同的 Python
   实现采用不同的内存管理技术，比如延时垃圾处理机制。延时垃圾处理机制可能会导致对象生命周期被任意无限制的延长。
 - 对于文件意外的引用，会导致对于文件的持有时间超出预期（比如对于异常的跟踪，包含有全局变量等）。
+
+多次发现，依赖于自动清理机制在近几十年内的多个语言中导致了重大问题（例如: java中的 [this article](https://wiki.sei.cmu.edu/confluence/display/java/MET12-J.+Do+not+use+finalizers)）
 
 管理文件的首选方法是使用 [`with` 语句](http://docs.python.org/reference/compound_stmts.html#the-with-statement)：
 
@@ -920,9 +934,10 @@ XML 请求就移除这些代码）。
 !!! success "推荐"
 
     ```python
+    from collections.abc import Mapping, Sequence
     import os
     import sys
-    from typing import Mapping, Sequence
+    from typing import Any, NewType
     ```
 
 !!! fail "不推荐"
@@ -1023,7 +1038,7 @@ from otherproject.ai import soul
 
 ## 3.15 Getters and Setters
 
-当 getter 和 setter 函数（也称为访问器和修改器）为获取或设置变量的值提供有意义的角色或行为时，应该使用它们。
+当 getter 和 setter 函数（也称为访问器和修改器）为获取或设置变量的值提供有意义的角色或行为时，则应该使用它们。
 
 特别是，当当前或合理的未来获取或设置变量很复杂或成本很高时，应该使用它们。
 
@@ -1031,8 +1046,9 @@ from otherproject.ai import soul
 那么它应该是一个 setter 函数。函数调用暗示正在发生潜在的重要操作。或者，当需要简单逻辑或重构以不再需要 getter 和 setter 时，
 `property` 可能是一个选项。
 
-另一方面，如果访问更复杂，或者变量的访问开销很显著，那么你应该使用像 `get_foo()` 和 `set_foo()`
-这样的函数调用（遵循[命名](#316)准则）。如果之前的代码行为允许通过属性（`property`
+Getter 和 setter 应该遵循命名规范，例如： `get_foo()` 和 `set_foo()`。
+
+如果之前的代码行为允许通过属性（`property`
 ）访问，那么就不要将新的访问函数与属性绑定。这样，任何试图通过老方法访问变量的代码就没法运行，使用者也就会意识到复杂性发生了变化。
 
 ## 3.16 命名
@@ -1064,14 +1080,13 @@ from otherproject.ai import soul
 ### 3.16.2 命名约定
 
 - 所谓“内部（`Internal`）”表示仅模块内可用，或者在类内是保护或私有的。
-- 用单下划线（`_`）开头表示模块变量或函数是 `protected` 的（使用 `import * from` 时不会包含）。
-- 用双下划线（`__`  ）开头的实例变量或方法表示类内私有，但并不推荐这么做，因为会影响代码的可读性或可测试性，而且也不是真正的私有。
+- 在模块变量和函数前加一个下划线(`_`)，可以在一定程度上保护它们（代码检查工具会标记访问受保护的成员）。
+- 用双下划线（`__`  ）开头的实例变量或方法表示类内私有，但并不推荐这么做，因为会影响代码的可读性或可测试性，而且也不是真正的私有。建议使用 单下划线`_`。
 - 将相关的类和顶级函数放在同一个模块里。不像 Java ，没必要限制一个类一个模块。
 - 对类名使用大写字母开头的单词（如 `CapWords`，即 Pascal 风格），但是模块名应该用小写加下划线的方式（如 `lower_with_under.py` ）。
   尽管已经有很多现存的模块使用类似于 `CapWords.py` 这样的命名，但现在已经不鼓励这样做，因为如果模块名碰巧和类名一致，这会让人困扰。（“想想
   我应该用 `import StringIO` 还是 `from StringIO import StringIO` ？”）
-- 下划线可能会出现在以 `test` 开头的 `unittest` 方法名称中，常用于分隔逻辑组件的名称，即使组件名称使用 `CapWords`
-  也应如此。一种可用的模式是： `test<MethodUnderTest>_<state>`，例如`testPop_EmptyStack`。其实对于测试方法的命名并没有强制规定。
+- 新的单元测试文件遵循 PEP 8 兼容的下划线命名法，例如，`test_<被测试的方法><状态>`。为了与遵循 `CapWords` 函数名称的旧模块保持一致，方法名称中可以出现下划线，以便分隔名称的逻辑组件，其中以 test 开头的方法名可能采用 `test<被测试的方法><状态`> 的模式。
 
 ### 3.16.3 文件命名
 
@@ -1106,7 +1121,7 @@ API，最好使用符合 PEP8 的描述性名称（`descriptive_names`），这�
 以及单元测试要求模块必须是可导入的。如果文件打算作为可执行文件使用，那么它的主要功能应该放在 `main()`
 函数中。你的代码应该在执行主程序前总是检查 `if __name__ == '__main__'`，这样当模块被导入时主程序就不会被执行。
 
-当使用 [`absl`](https://github.com/abseil/abseil-py) 时，请使用 `app.run` ：
+当使用 [absl](https://github.com/abseil/abseil-py) 时，请使用 `app.run` ：
 
 ```python
 from absl import app
@@ -1146,7 +1161,7 @@ if __name__ == '__main__':
 
 ### 3.19.1 通用规则
 
-- 熟悉 [PEP-484](https://www.python.org/dev/peps/pep-0484/)
+- 熟悉 [PEP-484](https://www.python.org/dev/peps/pep-0484/)。
 - 在方法中，只有在需要正确的类型信息时才标注 `self` 或 `cls` 。例如：
 
     ```python
@@ -1155,6 +1170,7 @@ if __name__ == '__main__':
         return cls()
     ```
 
+- 同样，不必强制注释 `__init__` 的返回值（其中 None 是唯一有效的选项）。
 - 如果无法表示任何其他变量或返回类型，请使用 `Any` 。
 - 你不需要标注模块中的所有函数。
     - 至少要标注公共 API。
@@ -1167,13 +1183,15 @@ if __name__ == '__main__':
 
 遵循现有[缩进规则](#34)。
 
-在标注之后，许多函数签名将变成“每行一个参数”。
+在注释之后，许多函数签名将变为“每行一个参数”。为确保返回类型也有自己的一行，可以在最后一个参数后面加上一个逗号。
 
 ```python
-def my_method(self,
-              first_var: int,
-              second_var: Foo,
-              third_var: Optional[Bar]) -> int:
+def my_method(
+    self,
+    first_var: int,
+    second_var: Foo,
+    third_var: Bar | None,
+) -> int:
     ...
 ```
 
@@ -1185,22 +1203,26 @@ def my_method(self, first_var: int) -> int:
 ```
 
 如果函数名、最后一个参数和返回类型组合起来太长了，可以新换一行并缩进4个字符。
+在使用换行符时，建议将每个参数和返回类型放在自己的行上，并将右括号与 `def` 对齐。
 
 ```python
 def my_method(
-        self, first_var: int) -> Tuple[MyLongType1, MyLongType1]:
+    self,
+    other_arg: MyLongType | None,
+) -> tuple[MyLongType1, MyLongType1]:
     ...
 ```
 
-当返回类型与最后一个参数不在同一行时，推荐的做法是在新行中将参数缩进4个字符，并将右括号与 `def` 对齐。
+或者，返回类型可以与最后一个参数放在同一行：
 
 !!! success "推荐"
 
     ```python
     def my_method(
-        self, other_arg: Optional[MyLongType]
-    ) -> Dict[OtherLongType, MyLongType]:
-    ...
+        self,
+        first_var: int,
+        second_var: int) -> dict[OtherLongType, MyLongType]:
+        ...
     ```
 
 Pylint 允许您将右括号移到新行，并与左括号对齐，但这么做可读性会比较差。
@@ -1222,7 +1244,7 @@ def my_method(
     first_var: Tuple[List[MyLongType1],
                      List[MyLongType2]],
     second_var: List[Dict[
-        MyLongType3, MyLongType4]]
+        MyLongType3, MyLongType4]],
 ) -> None:
     ...
 ```
@@ -1251,7 +1273,8 @@ def my_method(
 
 ### 3.19.3 前置声明
 
-如果你需要在同一模块中使用没有定义的类名（例如，需要在声明类中使用类名，或者类似下面的定义），可以使用字符串作为类名。
+如果你需要使用一个尚未定义的类名（来自同一模块），例如，如果你需要在该类的声明内部使用类名，或者如果你使用的类是在代码后面定义的，
+那么可以使用 `from future import annotations` 或使用字符串作为类名。
 
 !!! success "推荐"
 
@@ -1262,6 +1285,17 @@ def my_method(
       def __init__(self, stack: Sequence[MyClass], item: OtherClass) -> None:
     
     class OtherClass:
+    
+    ```
+
+!!! success "推荐"
+
+    ```python
+    class MyClass:
+        def __init__(self, stack: Sequence['MyClass'], item: 'OtherClass') -> None:
+
+    class OtherClass:
+        ...
     
     ```
 
@@ -1286,18 +1320,18 @@ def my_method(
 
 ### 3.19.5 NoneType
 
-在 Python 类型系统中， `NoneType` 是“第一类（first class）”类型，而且为了方便拼写，定义了 `None` 作为 `NoneType`
-的别名。如果一个参数可以为 `None` ，就必须声明它！你也可以使用 `Union` ，但如果只有一种类型，请使用 `Optional` 。
+在 Python 类型系统中，`NoneType` 是“一等公民”类型，而在类型注释中，None 是 NoneType 的别名。如果一个参数可以是 None，
+那么必须声明它！您可以使用 `|` 联合类型表达式（建议在新的 Python 3.10+ 代码中使用），也可以使用旧的 `Optional` 和 `Union` 语法。
 
-使用显式 `Optional` 替代隐式 `Optional` 。PEP-484 的早期版本允许将 `a: str = None` 解释为 `a: Optional[str] = None`
-，但现在已经不推荐了。
+请使用显式的 `X | None` 而不是隐式的。PEP 484 的早期版本允许将 `a: str = None` 解释为 `a: str | None = None`，但现在已经不推荐了。
+
 
 !!! success "推荐"
 
     ```python
-    def func(a: Optional[str], b: Optional[str] = None) -> str:
+    def modern_or_union(a: str | int | None, b: str | None = None) -> str:
         ...
-    def multiple_nullable_union(a: Union[None, str, int]) -> str
+    def union_optional(a: Union[str, int, None], b: Optional[str] = None) -> str:
         ...
     ```
 
@@ -1315,11 +1349,13 @@ def my_method(
 可以为复杂类型声明别名。别名应该是大写的（`CapWorded`
 ）。如果别名仅在模块中使用，那么应该使用前置下划线让其变成私有的（如 `_Private`）。
 
-例如，如果模块名称和类型在一起太长了：
+请注意，仅 3.10+ 版本支持 `:TypeAlias` 注释。
 
 ```python
-_ShortName = module_with_long_name.TypeWithLongName
-ComplexMap = Mapping[Text, List[Tuple[int, int]]]
+from typing import TypeAlias
+
+_LossAndGradient: TypeAlias = tuple[tf.Tensor, tf.Tensor]
+ComplexTFMap: TypeAlias = Mapping[str, _LossAndGradient]
 ```
 
 其他例子还有复杂的嵌套类型和函数的多个返回变量（作为元组）。
@@ -1336,22 +1372,20 @@ ComplexMap = Mapping[Text, List[Tuple[int, int]]]
 
 ### 3.19.8 标注变量
 
-如果内部变量的类型很难推断或者无法推断时，可以通过以下几种方式指定其类型。
-
-*[类型注释](https://google.github.io/styleguide/pyguide.html#type-comments)*
-
-在行末尾使用 `# type:` 类型注释。
-
-```python
-a = SomeUndecoratedFunction()  # type: Foo
-```
-
 *[赋值标注](https://google.github.io/styleguide/pyguide.html#annotated-assignments)*
 
-在变量名和值之间使用冒号和类型，就像函数参数一样：
+如果一个内部变量的类型很难或无法推断出，则使用带注释的赋值指定它的类型 - 在变量名和值之间使用 `:` 和 `type`（与具有默认值的函数参数相同的做法）：
 
 ```python
 a: Foo = SomeUndecoratedFunction()
+```
+
+*[类型注释](https://google.github.io/styleguide/pyguide.html#type-comments)*
+
+虽然你可能会看到这些注释在代码库中仍然存在（它们在 Python 3.6 之前是必要的），但不要再在行末添加任何 `# type: <type name>` 的注释了：
+
+```python
+a = SomeUndecoratedFunction()  # type: Foo
 ```
 
 ### 3.19.9 元组 vs 列表
@@ -1377,13 +1411,13 @@ _P = ParamSpec("_P")
 _T = TypeVar("_T")
 ...
 def next(l: list[_T]) -> _T:
-  return l.pop()
+    return l.pop()
 
 def print_when_called(f: Callable[_P, _T]) -> Callable[_P, _T]:
-  def inner(*args: P.args, **kwargs: P.kwargs) -> R:
-    print('Function was called')
-    return f(*args, **kwargs)
-  return inner
+    def inner(*args: P.args, **kwargs: P.kwargs) -> R:
+        print('Function was called')
+        return f(*args, **kwargs)
+    return inner
 ```
 
 TypeVar 可以被约束：
@@ -1391,7 +1425,7 @@ TypeVar 可以被约束：
 ```python
 AddableType = TypeVar("AddableType", int, float, str)
 def add(a: AddableType, b: AddableType) -> AddableType:
-  return a + b
+    return a + b
 ```
 
 `typing` 模块中一个常见的预定义类型变量是 `AnyStr` 。可以用于标注 `bytes` 或 `unicode` ，但是必须是在相同类型中使用。
@@ -1399,9 +1433,9 @@ def add(a: AddableType, b: AddableType) -> AddableType:
 ```python
 from typing import AnyStr
 def check_length(x: AnyStr) -> AnyStr:
-  if len(x) <= 42:
-    return x
-  raise ValueError()
+    if len(x) <= 42:
+        return x
+    raise ValueError()
 ```
 
 类型变量必须具有描述性名称，除非它满足以下所有条件：
@@ -1429,8 +1463,9 @@ def check_length(x: AnyStr) -> AnyStr:
 
 ### 3.19.11 字符串类型
 
-不要在新代码中使用`typing.Text`。它仅用于 Python 2/3 兼容性。
-使用 `str` 作为字符串/文本数据。对于处理二进制数据的代码，请使用`bytes`。
+> 不要在新代码中使用 `typing.Text` 。它仅用于 Python 2/3 兼容性。
+
+使用 `str` 作为`string` / `text` 数据。对于处理二进制数据的代码，请使用 `bytes` 。
 
 ```python
 def deals_with_text_data(x: str) -> str:
@@ -1441,7 +1476,6 @@ def deals_with_binary_data(x: bytes) -> bytes:
 
 如果函数的所有字符串类型始终相同，例如，如果返回类型与上面代码中的参数类型相同，请使用
 [AnyStr](https://google.github.io/styleguide/pyguide.html#typing-type-var)。
-想要正确的标注字符串类型，取决于代码将使用哪个版本的 Python 。
 
 ### 3.19.12 类型导入
 
@@ -1453,7 +1487,7 @@ from collections.abc import Mapping, Sequence
 from typing import Any, Generic
 ```
 
-既然这种从 `typing` 模块导入的方式会将导入项添加到本地命名空间， 那么 `typing` 中的任何名称都应该类似于关键字，而且不要在你的
+既然这种从 `typing` 模块导入的方式会将导入项添加到本地命名空间， 那么 `typing` 或 `collections.abc` 中的任何名称都应该类似于关键字，而且不要在你的
 Python 代码中去定义（无论是否有类型）。如果模块中的类型和现有名称之间存在冲突，请使用 `import x as y` 导入。
 
 ```python
@@ -1465,19 +1499,7 @@ from typing import Any as AnyType
 
 ```python
 def generate_foo_scores(foo: set[str]) -> list[float]:
-  ...
-```
-
-注意：[Apache Beam](https://github.com/apache/beam/issues/23366) 的用户应继续通过输入导入参数容器。
-
-```python
-from typing import Set, List
-
-# Only use this older style if you are required to by introspection
-# code such as Apache Beam that has not yet been updated for PEP-585,
-# or if your code needs to run on Python versions earlier than 3.9.
-def generate_foo_scores(foo: Set[str]) -> List[float]:
-  ...
+    ...
 ```
 
 ### 3.19.13 条件导入
@@ -1520,29 +1542,34 @@ def my_method(self, var: "some_mod.SomeType") -> None:
 
 进行标注时，最好为泛型类型指定类型参数；否则，[泛型参数将被假定为 `Any`](https://www.python.org/dev/peps/pep-0484/#the-any-type)。
 
-```python
-def get_names(employee_ids: List[int]) -> Dict[int, Any]:
-    ...
-```
+!!! success "推荐"
 
-```python
-# These are both interpreted as get_names(employee_ids: List[Any]) -> Dict[Any, Any]
-def get_names(employee_ids: list) -> Dict:
-    ...
+    ```python
+    def get_names(employee_ids: Sequence[int]) -> Mapping[int, str]:
+        ...
+    ```
 
-def get_names(employee_ids: List) -> Dict:
-    ...
-```
+!!! fail "不推荐"
+
+    ```python
+    # This is interpreted as get_names(employee_ids: Sequence[Any]) -> Mapping[Any, Any]
+    def get_names(employee_ids: Sequence) -> Mapping:
+        ...
+    ```
 
 如果泛型的最佳类型参数是 `Any`，请使用显式设置。但请记住，在许多情况下 [`TypeVar`](#31910-typevars) 可能更合适。
 
-```python
-def get_names(employee_ids: List[Any]) -> Dict[Any, Text]:
-    """Returns a mapping from employee ID to employee name for given IDs."""
-```
+!!! fail "不推荐"
 
-```python
-_T = TypeVar('_T')
-def get_names(employee_ids: List[_T]) -> Dict[_T, Text]:
-    """Returns a mapping from employee ID to employee name for given IDs."""
-```
+    ```python
+    def get_names(employee_ids: Sequence[Any]) -> Mapping[Any, str]:
+        """Returns a mapping from employee ID to employee name for given IDs."""
+    ```
+
+!!! success "推荐"
+
+    ```python
+    _T = TypeVar('_T')
+    def get_names(employee_ids: Sequence[_T]) -> Mapping[_T, str]:
+        """Returns a mapping from employee ID to employee name for given IDs."""
+    ```
