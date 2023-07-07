@@ -1,8 +1,9 @@
 # Python 语言规范
 
-> 本文档为 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) 第二章 [Python Language Rules](https://google.github.io/styleguide/pyguide.html#2-python-language-rules) 的译文。
+> 本文档为 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
+> 第二章 [Python Language Rules](https://google.github.io/styleguide/pyguide.html#2-python-language-rules) 的译文。
 >
-> 最后更新时间： 2021-04-28
+> 最后更新时间： 2023-06-26
 >
 > 如果有翻译错误或表述不准确的问题，欢迎提交 PR，感谢您的参与。
 
@@ -12,7 +13,8 @@
 
 ### 1.1.1 定义
 
-`Pylint` 是一个在 Python 源代码中查找 bug 和风格问题的工具。对于 C 和 C++ 这样的不那么动态的语言，这些问题通常由编译器来捕获。由于 Python 的动态特性，有些警告可能不对。不过伪告警应该很少。
+`Pylint` 是一个在 Python 源代码中查找 bug 和风格问题的工具。对于 C 和 C++ 这样的不那么动态的语言，这些问题通常由编译器来捕获。由于
+Python 的动态特性，有些警告可能不对。不过伪告警应该很少。
 
 ### 1.1.2 优点
 
@@ -24,12 +26,13 @@
 
 ### 1.1.4 结论
 
-确保对你的代码运行 `pylint`。抑制不准确的警告，以便能够将其他警告暴露出来。
+确保对你的代码运行 `pylint`。
 
-你可以通过设置一个行注释来抑制告警。例如：
+抑制不准确的警告，以便能够将其他警告暴露出来。你可以通过设置一个行注释来抑制告警：
 
 ```python
-dict = 'something awful'  # Bad idea... pylint: disable=redefined-builtin
+def do_PUT(self):  # WSGI name, so pylint: disable=invalid-name
+    ...
 ```
 
 `pylint` 警告是以一个符号名 (如 `empty-docstring`) 来标识的，Google 特定的警告以 g- 开头。
@@ -47,7 +50,7 @@ pylint --list-msgs
 获取关于特定消息的更多信息，可以执行：
 
 ```bash
-pylint --help-msg=C6409
+pylint --help-msg=invalid-name
 ```
 
 相比较于之前使用的 `pylint: disable-msg`，本文推荐使用 `pylint: disable`。
@@ -66,7 +69,7 @@ def viking_cafe_order(spam, beans, eggs=None):
 
 ## 1.2 导入
 
-只对包和模块使用 import 语句，而不是单独的类或函数。注意： `typing` 模块是个特例。
+只对包和模块使用 `import` 语句，而不是单独的类或函数。
 
 ### 1.2.1 定义
 
@@ -84,32 +87,48 @@ def viking_cafe_order(spam, beans, eggs=None):
 
 - 使用 `import x` 来导入包和模块。
 - 使用 `from x import y`，其中 `x` 是包前缀，`y` 是不带前缀的模块名。
-- 使用 `from x import y as z`，如果两个要导入的模块都叫做 `z` 或者 `y` 太长了。
+- 在以下任一情况下使用 `from x import y as z`：
+
+    - 名字都为 `y` 的模块。
+    - `y` 与当前模块中顶级名称冲突。
+    - `y` 与作为公共 API 一部分的公共参数名称（例如功能）冲突。
+    - `y` 是一个长名称，使用不太方便。
+    - `y` 在代码上下文中过于通用（例如：`from storage.file_system import options as fs_options`）
+
 - 只有当 `z` 是标准缩写（例如，`numpy` 为 `np`）时，才使用 `import y as z`。
 
 例如，模块 `sound.effects.echo` 可以用如下方式导入：
 
 ```python
 from sound.effects import echo
+
 ...
 echo.EchoFilter(input, output, delay=0.7, atten=4)
 ```
 
 导入时不要使用相对名称。即使模块在同一个包中，也要使用完整包名。这能帮助你避免无意间导入一个包两次。
 
-从 `typing` 模块和 `six.moves` 模块导入不受此规则约束。
+以下规则不受约束：
+
+- 用于支持静态分析和类型检查：
+
+    - [typing](https://google.github.io/styleguide/pyguide.html#typing-imports)
+    - [collections.abc](https://google.github.io/styleguide/pyguide.html#typing-imports)
+    - [typing_extensions](https://github.com/python/typing_extensions/blob/main/README.md)  
+
+- 重定向模块 [Six.moves](https://six.readthedocs.io/#module-six.moves)
 
 ## 1.3 包
 
-使用模块的全路径名来导入每个模块
+使用模块的全路径名来导入每个模块。
 
 ### 1.3.1 优点
 
-避免模块名冲突。查找包更容易。
+避免模块名称冲突或因模块搜索路径与作者预期不符而导致的错误导入。查找包更容易。
 
 ### 1.3.2 缺点
 
-部署代码变难，因为你必须复制包层次。
+因为要复制包层次结构，所以在部署代码时会更加困难。但是对于现代的部署机制来说，这并不是真正的问题。
 
 ### 1.3.3 结论
 
@@ -117,27 +136,27 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 应该像下面这样导入：
 
-???+ success "推荐"
+!!! success "推荐"
 
     ```python
     # Reference absl.flags in code with the complete name (verbose).
     import absl.flags
     from doctor.who import jodie
 
-    FLAGS = absl.flags.FLAGS
+    _FOO = absl.flags.DEFINE_string(...)
     ```
 
-???+ success "推荐"
+!!! success "推荐"
 
     ```python
     # Reference flags in code with just the module name (common).
     from absl import flags
     from doctor.who import jodie
 
-    FLAGS = flags.FLAGS
+    _FOO = flags.DEFINE_string(...)
     ```
 
-???+ warning "不推荐 ( 假设 `jodie.py` 文件在 `doctor/who/where` 中 )"
+!!! fail "不推荐 ( 假设 `jodie.py` 文件在 `doctor/who/` 中 )"
 
     ```python
     # Unclear what module the author wanted and what will be imported.  The actual
@@ -146,7 +165,8 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
     import jodie
     ```
 
-尽管在某些环境中会发生这种情况，但不应假定主二进制文件所在的目录位于 `sys.path` 中。在这种情况下，代码应假定 `import jodie` 引用了名为 `jodie` 的第三方或顶级程序包，而不是本地的 `jodie.py`。
+尽管在某些环境中会发生这种情况，但不应假定主二进制文件所在的目录位于 `sys.path` 中。在这种情况下，代码应假定 `import jodie`
+引用了名为 `jodie` 的第三方或顶级程序包，而不是本地的 `jodie.py`。
 
 ## 1.4 异常
 
@@ -158,7 +178,8 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.4.1 优点
 
-正常操作代码的控制流不会和错误处理代码混在一起。当某种条件发生时，它也允许控制流跳过多个框架。例如，一步跳出 N 个嵌套的函数，而不必继续执行错误的代码。
+正常操作代码的控制流不会和错误处理代码混在一起。当某种条件发生时，它也允许控制流跳过多个框架。例如，一步跳出 N
+个嵌套的函数，而不必继续执行错误的代码。
 
 ### 1.4.2 缺点
 
@@ -168,9 +189,11 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 异常必须遵守特定条件：
 
-- 如果有必要，请使用内置异常类。例如，抛出 `ValureError` 来指示编程错误。比如违反了前置条件（需要一个正数，但传递了一个负数）。不要使用 `assert` 语句验证公共 API 的参数值。`assert` 用于确保内部正确性，不得强制使用，也不表示发生了某些意外事件。如果在后一种情况下需要使用异常，请使用 raise 语句。例如：
+- 如果有必要，请使用内置异常类。例如，抛出 `ValureError`
+  来指示编程错误。比如违反了前置条件（需要一个正数，但传递了一个负数）。不要使用 `assert` 语句验证公共 API 的参数值。`assert`
+  用于确保内部正确性，不得强制使用，也不表示发生了某些意外事件。如果在后一种情况下需要使用异常，请使用 raise 语句。例如：  
 
-    ???+ success "推荐"
+    !!! success "推荐"
 
         ```python
         def connect_to_next_port(self, minimum):
@@ -199,7 +222,7 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
             return port
         ```
 
-    ???+ warning "不推荐"
+    !!! fail "不推荐"
 
         ```python
         def connect_to_next_port(self, minimum):
@@ -217,15 +240,18 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
             return port
         ```
 
-- 模块或包应该定义自己的特定域的异常基类。这个基类应该从内建的 `Exception` 类继承。异常名称应该以 `Error` 结尾，而且不应该难以理解（`foo.FooError`）。
+- 模块或包应该定义自己的特定域的异常基类。这个基类应该从内建的 `Exception` 类继承。异常名称应该以 `Error`
+  结尾，而且不应该难以理解（`foo.FooError`）。
 - 永远不要使用 `expect:` 语句来捕获所有异常，也不要捕获 `Exception` 或者   `StandardError`，除非：
 
     - 重新触发该异常，或
-    - 你已经在当前线程的最外层（记得还是要打印一条错误消息）
-  
-  在异常这方面, Python 非常宽容， `expect:` 可以捕获所有拼写错误的名称， `sys.exit()` 调用， `Ctrl+C` 中断，`unittest` 失败和所有你不想捕获的其他异常。
+    - 在程序中创建一个隔离点，其中异常不会传播，而是被记录和抑制，例如通过保护线程的最外层块来防止程序崩溃。
 
-- 尽量减少 `try/except` 块中的代码量。 `try` 块的体积越大，期望之外的异常就越容易被触发。在这些情况下，`try/except` 块将隐藏真正的错误。
+  在异常这方面, Python 非常宽容， `expect:` 可以捕获所有拼写错误的名称， `sys.exit()` 调用， `Ctrl+C` 中断，`unittest`
+  失败和所有你不想捕获的其他异常。
+
+- 尽量减少 `try/except` 块中的代码量。 `try` 块的体积越大，期望之外的异常就越容易被触发。在这些情况下，`try/except`
+  块将隐藏真正的错误。
 - 使用 `finally` 子句来执行那些无论 `try` 块中有没有异常都应该被执行的代码。这对于清理资源常常很有用，例如关闭文件。
 
 ## 1.5 全局变量
@@ -242,15 +268,17 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.5.3 缺点
 
-导入时可能改变模块行为，因为导入模块时会对模块级变量赋值。
+- 破坏封装：这种设计可能会让有效目标的实现变得困难。例如使用全局状态来管理数据库连接，则同时连接两个不同的数据库变得困难（例如再迁移期间
+计算差异）。全局注册表也容易出现类似的问题。
+- 导入时可能改变模块行为，因为导入模块时会对模块级变量赋值。
 
 ### 1.5.4 结论
 
 避免使用全局变量。
 
-虽然模块级常量在技术上是变量，但是允许和鼓励使用。例如： `MAX_HOLY_HANDGRENADE_COUNT = 3` 。常量的命名必须使用全大写和下划线。具体请参阅命名规范。
+如果需要，全局变量应该仅在模块内部可用，并通过在名称前加上 `_` 前缀使其成为模块的内部变量。外部访问必须通过模块级的公共函数来访问。具体请参阅命名规范。请在注释或与注释相关的文档中说明使用可变全局状态的设计原因。
 
-如果需要，全局变量应该仅在模块内部可用，并通过在名称前加上 `_` 前缀使其成为模块的内部变量。外部访问必须通过模块级的公共函数来访问。具体请参阅命名规范。
+模块级常量是允许和鼓励使用的。例如： `_MAX_HOLY_HANDGRENADE_COUNT = 3` (对内部使用常量)或 `SIR_LANCELOTS_FAVORITE_COLOR = "blue"`(对公共 API 常量)。常量的命名必须使用全大写和下划线。具体请参阅命名规范。
 
 ## 1.6 嵌套/局部/内部类或函数
 
@@ -272,7 +300,8 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.6.4 结论
 
-可以使用，但有一些限制。避免使用嵌套函数或类，除非要关闭局部值。不要仅仅为了对用户隐藏模块的某个函数而进行嵌套。相反，应该在模块级别的名称上加 `_` 前缀，这样方便测试。
+可以使用，但有一些限制。避免使用嵌套函数或类，除非要关闭局部值。不要仅仅为了对用户隐藏模块的某个函数而进行嵌套。相反，应该在模块级别的名称上加 `_`
+前缀，这样方便测试。
 
 ## 1.7 推导式和生成表达式
 
@@ -280,7 +309,8 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.7.1 定义
 
-`List`、`Dict` 和 `Set` 推导式与生成器表达式提供了一种简洁而有效的方法来创建列表和迭代器，而不必借助传统的循环、`map()`、`filter()` 或者 `lambda`。
+`List`、`Dict` 和 `Set` 推导式与生成器表达式提供了一种简洁而有效的方法来创建列表和迭代器，而不必借助传统的循环、`map()`
+、`filter()` 或者 `lambda`。
 
 ### 1.7.2 优点
 
@@ -292,9 +322,10 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.7.4 结论
 
-适用于简单情况。每个部分应该单独置于一行：`mapping` 表达式，`for` 子句，`filter` 表达式。禁止多重 `for` 语句或过滤器表达式。复杂情况下还是使用循环。
+适用于简单情况。每个部分应该单独置于一行：`mapping` 表达式，`for` 子句，`filter` 表达式。禁止多重 `for`
+语句或过滤器表达式。复杂情况下还是使用循环。
 
-???+ success "推荐"
+!!! success "推荐"
 
     ```python
     result = [mapping_expr for value in iterable if filter_expr]
@@ -329,7 +360,7 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
         if jelly_bean.color == 'black')
     ```
 
-???+ warning "不推荐"
+!!! fail "不推荐"
 
     ```python
     result = [complicated_transform(
@@ -360,30 +391,26 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.8.3 缺点
 
-你没法通过阅读方法名来区分对象的类型（例如，`has_key()` 意味着字典）。不过这也是优点。
+您无法通过读取方法名称来判断对象的类型（除非变量具有类型注释）。这也是一个优点。
 
 ### 1.8.4 结论
 
-如果类型支持，就使用默认迭代器和操作符，例如列表、字典和文件。内建类型也定义了迭代器方法。优先考虑这些方法，而不是那些返回列表的方法。当然，这样遍历容器时，你将不能修改容器。除非特殊情况，否则不要使用 Python 2 特定的迭代方法 `dict.iter*()` 。
+如果类型支持，就使用默认迭代器和操作符，例如列表、字典和文件。内建类型也定义了迭代器方法。优先考虑这些方法，而不是那些返回列表的方法。当然，这样遍历容器时，你将不能修改容器。
 
-???+ success "推荐"
+!!! success "推荐"
 
     ```python
     for key in adict: ...
-    if key not in adict: ...
     if obj in alist: ...
     for line in afile: ...
     for k, v in adict.items(): ...
-    for k, v in six.iteritems(adict): ...
     ```
-  
-???+ warning "不推荐"
+
+!!! fail "不推荐"
 
     ```python
     for key in adict.keys(): ...
-    if not adict.has_key(key): ...
     for line in afile.readlines(): ...
-    for k, v in dict.iteritems(): ...
     ```
 
 ## 1.9 生成器
@@ -392,7 +419,8 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.9.1 定义
 
-所谓生成器函数，就是每当它执行一次生成 `yield` 语句，它就返回一个迭代器，这个迭代器生成一个值。生成值后，生成器函数的运行状态将被挂起，直到下一次生成。
+所谓生成器函数，就是每当它执行一次生成 `yield` 语句，它就返回一个迭代器，这个迭代器生成一个值。
+生成值后，生成器函数的运行状态将被挂起，直到需要下一次值为止。
 
 ### 1.9.2 优点
 
@@ -400,19 +428,23 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.9.3 缺点
 
-没有。
+生成器中的局部变量不会被垃圾收集，直到生成器耗尽或本身被垃圾收集。
 
 ### 1.9.4 结论
 
 鼓励使用。注意在生成器函数的文档字符串中使用“`Yields:`”而不是“`Returns:`”。
 
+如果生成器管理着一个昂贵的资源，请确保强制进行清理。
+
+一个很好的清理方式是使用上下文管理器 [PEP-0533](https://peps.python.org/pep-0533/) 来包装生成器。
+
 ## 1.10 Lambda 函数
 
-适用于单行函数。
+适用于单行函数。常用于为 `map()` 和 `filter()` 之类的高阶函数定义回调函数或者操作符。
 
 ### 1.10.1 定义
 
-与语句相反，`Lambdas` 在一个表达式中定义匿名函数。常用于为 `map()` 和 `filter()` 之类的高阶函数定义回调函数或者操作符。
+`Lambdas` 在一个表达式中定义匿名函数，而不是在语句中。
 
 ### 1.10.2 优点
 
@@ -426,7 +458,8 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 适用于单行函数。如果代码超过60-80个字符，最好还是定义成常规（嵌套）函数。
 
-对于常见的操作符，例如乘法操作符，使用 `operator` 模块中的函数以代替 `lambda` 函数。例如，推荐使用 `operator.mul` 而不是 `lambda x, y: x * y` 。
+对于常见的操作符，例如乘法操作符，使用 `operator` 模块中的函数以代替 `lambda` 函数。例如，推荐使用 `operator.mul`
+而不是 `lambda x, y: x * y` 。
 
 ## 1.11 条件表达式
 
@@ -446,28 +479,26 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.11.4 结论
 
-适用于单行函数。每个部分必须放在一行上： `true-expression, if-expression, else-expression` 。在其他情况下，推荐使用完整的 `if` 语句。
+适用于单行函数。每个部分必须放在一行上： `true-expression, if-expression, else-expression`
+。在其他情况下，推荐使用完整的 `if` 语句。
 
-```python
-one_line = 'yes' if predicate(value) else 'no'
-slightly_split = ('yes' if predicate(value)
-                  else 'no, nein, nyet')
-the_longest_ternary_style_that_can_be_done = (
-    'yes, true, affirmative, confirmed, correct'
-    if predicate(value)
-    else 'no, false, negative, nay')
-```
+!!! success "推荐"
 
+    ```python
+    one_line = 'yes' if predicate(value) else 'no'
+    slightly_split = ('yes' if predicate(value) else 'no, nein, nyet')
+    the_longest_ternary_style_that_can_be_done = (
+        'yes, true, affirmative, confirmed, correct'
+        if predicate(value) else 'no, false, negative, nay')
+    ```
 
-```python
-bad_line_breaking = ('yes' if predicate(value) else
-                     'no')
-portion_too_long = ('yes'
-                    if some_long_module.some_long_predicate_function(
-                        really_long_variable_name)
-                    else 'no, false, negative, nay')
-```
+!!! fail "不推荐"
 
+    ```python
+    bad_line_breaking = ('yes' if predicate(value) else 'no')
+    portion_too_long = ('yes' if some_long_module.some_long_predicate_function(
+                            really_long_variable_name) else 'no, false, negative, nay')
+    ```
 
 ## 1.12 默认参数值
 
@@ -475,11 +506,12 @@ portion_too_long = ('yes'
 
 ### 1.12.1 定义
 
-你可以在函数参数列表的最后指定变量的值，例如， `def(a, b=0):` 。如果调用 `foo` 时只带一个参数，则 `b` 被设为 `0` ，如果带两个参数，则 `b` 的值等于第二个参数。
+你可以在函数参数列表的最后指定变量的值，例如， `def(a, b=0):` 。如果调用 `foo` 时只带一个参数，则 `b` 被设为 `0`，如果带两个参数，则 `b` 的值等于第二个参数。
 
 ### 1.12.2 优点
 
-你经常会碰到一些使用大量默认值的函数，但偶尔（比较少见）你想要覆盖这些默认值。默认参数值提供了一种简单的方法来完成这件事，你不需要为这些罕见的例外定义大量函数。同时， Python 也不支持重载方法和函数，默认参数是一种“模拟”重载行为的简单方式。
+你经常会碰到一些使用大量默认值的函数，但偶尔（比较少见）你想要覆盖这些默认值。默认参数值提供了一种简单的方法来完成这件事，你不需要为这些罕见的例外定义大量函数。同时，
+Python 也不支持重载方法和函数，默认参数是一种“模拟”重载行为的简单方式。
 
 ### 1.12.3 缺点
 
@@ -489,7 +521,7 @@ portion_too_long = ('yes'
 
 鼓励使用，不要在函数或方法定义中使用可变对象作为默认值。
 
-???+ success "推荐"
+!!! success "推荐"
 
     ```python
     def foo(a, b=None):
@@ -508,7 +540,7 @@ portion_too_long = ('yes'
         ...
     ```
 
-???+ warning "不推荐"
+!!! fail "不推荐"
 
     ```python
     def foo(a, b=[]):
@@ -521,7 +553,10 @@ portion_too_long = ('yes'
     ```
 
     ```python
-    def foo(a, b=FLAGS.my_thing):  # sys.argv has not yet been parsed...
+    from absl import flags
+    _FOO = flags.DEFINE_string(...)
+
+    def foo(a, b=_FOO.value):  # sys.argv has not yet been parsed...
          ...
     ```
 
@@ -532,7 +567,7 @@ portion_too_long = ('yes'
 
 ## 1.13 属性（properties）
 
-访问和设置数据成员时，你通常会使用简单，轻量级的访问和设置函数。建议用属性（properties）来代替它们。
+属性（properties）可以用于控制需要进行简单计算或逻辑的属性的获取或设置。其实现必须符合常规属性访问的一般期望：它们应该是简单，直接，且易于理解。
 
 ### 1.13.1 定义
 
@@ -540,7 +575,10 @@ portion_too_long = ('yes'
 
 ### 1.13.2 优点
 
-通过消除简单的属性访问时显式的 `get` 和 `set` 方法调用，可读性提高了。允许延迟加载。用 `Pythonic` 的方式来维护类的接口。就性能而言，当直接访问变量是合理的，添加访问方法就显得琐碎而无意义。使用属性可以绕过这个问题。将来也可以在不破坏接口的情况下将访问方法加上。
+- 允许进行属性访问和赋值的 API，而不是调用 `getter` 和 `setter` 方法。
+- 可使得属性为只读。
+- 允许延迟加载。
+- 提供了一种方式，在类的内部与外部独立演化时，仍然能够保持类的公共接口不变。
 
 ### 1.13.3 缺点
 
@@ -549,55 +587,13 @@ portion_too_long = ('yes'
 
 ### 1.13.4 结论
 
-你通常习惯于使用访问或设置方法来访问或设置数据，它们简单而轻量。不过我们建议你在新的代码中使用属性。只读属性应该用 `@property` 装饰器来创建。
+与运算符重载一样，在必要的情况下可以使用属性，并且应符合典型属性访问的预期；否则，请遵循 `getters` 和 `setters` 规则进行操作。
 
-如果子类没有覆盖属性，那么属性的继承可能看上去不明显。因此使用者必须确保访问方法间接被调用，以保证子类中的重载方法被属性调用（使用[模板方法设计模式](https://en.wikipedia.org/wiki/Template_method_pattern)）。
+例如，使用属性同时获取和设置内部属性是不允许的：因为没有进行任何计算，所以属性是不必要的（可以将属性公开而不用使用属性）。相比之下，使用属性来控制属性访问或计算一个很容易得出的值是被允许的：因为逻辑简单，且易于理解。
 
-???+ success "推荐"
+应该使用 `@property` [装饰器](https://google.github.io/styleguide/pyguide.html#s2.17-function-and-method-decorators)创建属性。手动实现属性描述符被认为是威力过大的特性。
 
-    ```python
-    import math
-
-    class Square:
-        """A square with two properties: a writable area and a read-only perimeter.
-
-        To use:
-        >>> sq = Square(3)
-        >>> sq.area
-        9
-        >>> sq.perimeter
-        12
-        >>> sq.area = 16
-        >>> sq.side
-        4
-        >>> sq.perimeter
-        16
-        """
-
-        def __init__(self, side):
-            self.side = side
-
-        @property
-        def area(self):
-            """Area of the square."""
-            return self._get_area()
-
-        @area.setter
-        def area(self, area):
-            return self._set_area(area)
-
-        def _get_area(self):
-            """Indirect accessor to calculate the 'area' property."""
-            return self.side ** 2
-
-        def _set_area(self, area):
-            """Indirect setter to set the 'area' property."""
-            self.side = math.sqrt(area)
-
-        @property
-        def perimeter(self):
-            return self.side * 4
-    ```
+属性的继承可能是不明显的。不要使用属性来实现子类可能想要重写和扩展的计算。
 
 ## 1.14 `True` / `False` 的求值
 
@@ -605,7 +601,8 @@ portion_too_long = ('yes'
 
 ### 1.14.1 定义
 
-Python 在布尔上下文中会将某些值求值为 `False` 。按简单的直觉来讲，就是所有的空值都被认为是 `False`，因此 `0`, `None`，`[]`，`{}`，`''` 都被认为是 `False`。
+Python 在布尔上下文中会将某些值求值为 `False` 。按简单的直觉来讲，就是所有的空值都被认为是 `False`，因此 `0`, `None`，`[]`
+，`{}`，`''` 都被认为是 `False`。
 
 ### 1.14.2 优点
 
@@ -619,19 +616,20 @@ Python 在布尔上下文中会将某些值求值为 `False` 。按简单的直�
 
 尽可能使用隐式的 `false`，例如：使用 `if foo:` 而不是 `if foo !=[]:`。不过还是有一些注意事项需要你铭记在心：
 
-- 总是使用 `if foo is None:` 或 `if foo is not None:` 来检查 `None` 值。例如，当你要测试一个默认值是 `None` 的变量或参数是否被设为其它值。这个值在布尔语义下可能是 `false`!
-- 永远不要用 `==` 将一个布尔量与 `False` 相比较。使用 `if not x:` 代替。如果你需要区分 `False` 和 `None` ，你应该用像 `if not x and x is not None:` 这样的语句。
-- 对于序列（字符串、列表、元组）， 要注意空序列是 `False` 。因此： `if seq:` 或者 `if not seq:` 比 `if len(seq):` 或 `if not len(seq)` 要更好。
-- 处理整数时，使用隐式 `False` 可能会得不偿失（即不小心将 `None` 当做 `0` 来处理）。你可以将一个已知是整型（且不是 `len()` 的返回结果）的值与 `0` 比较。
+- 总是使用 `if foo is None:` 或 `if foo is not None:` 来检查 `None` 值。例如，当你要测试一个默认值是 `None`
+  的变量或参数是否被设为其它值。这个值在布尔语义下可能是 `false`!
+- 永远不要用 `==` 将一个布尔量与 `False` 相比较。使用 `if not x:` 代替。如果你需要区分 `False` 和 `None`
+  ，你应该用像 `if not x and x is not None:` 这样的语句。
+- 对于序列（字符串、列表、元组）， 要注意空序列是 `False` 。因此： `if seq:` 或者 `if not seq:` 比 `if len(seq):`
+  或 `if not len(seq)` 要更好。
+- 处理整数时，使用隐式 `False` 可能会得不偿失（即不小心将 `None` 当做 `0` 来处理）。你可以将一个已知是整型（且不是 `len()`
+  的返回结果）的值与 `0` 比较。
 
-    ???+ success "推荐"
+    !!! success "推荐"
 
         ```python
         if not users:
             print('no users')
-
-        if foo == 0:
-            self.handle_zero()
 
         if i % 10 == 0:
             self.handle_multiple_of_ten()
@@ -641,14 +639,11 @@ Python 在布尔上下文中会将某些值求值为 `False` 。按简单的直�
                 x = []
         ```
 
-    ???+ warning "不推荐"
+    !!! fail "不推荐"
 
         ```python
         if len(users) == 0:
             print('no users')
-
-        if foo is not None and not foo:
-            self.handle_zero()
 
         if not i % 10:
             self.handle_multiple_of_ten()
@@ -658,6 +653,7 @@ Python 在布尔上下文中会将某些值求值为 `False` 。按简单的直�
         ```
 
 - 注意： `'0'` （即： `0` 作为字符串）的计算结果是 `True` 。
+- 注意： Numpy 数组可能会在隐式布尔上下文中引发异常。测试一组 `np.array` 为空首选 `.size` 属性 （例如 `if not users.size`）。
 
 ## 1.16 词法作用域（Lexical Scoping）
 
@@ -665,7 +661,9 @@ Python 在布尔上下文中会将某些值求值为 `False` 。按简单的直�
 
 ### 1.16.1 定义
 
-嵌套的 Python 函数可以引用外层函数中定义的变量，但是不能够对它们赋值。变量绑定的解析是使用词法作用域，也就是基于静态的程序文本。对一个块中的某个名称的任何赋值都会导致 Python 将对该名称的全部引用当做局部变量，甚至是赋值前的处理。如果碰到 `global` 声明，该名称就会被视作全局变量。
+嵌套的 Python 函数可以引用外层函数中定义的变量，但是不能够对它们赋值。变量绑定的解析是使用词法作用域，也就是基于静态的程序文本。
+对一个块中的某个名称的任何赋值都会导致Python 将对该名称的全部引用当做局部变量，甚至是赋值前的处理。
+如果碰到 `global` 声明，该名称就会被视作全局变量。
 
 一个使用这个特性的例子：
 
@@ -684,7 +682,8 @@ def get_adder(summand1):
 
 ### 1.16.3 缺点
 
-可能导致让人迷惑的 bug。例如下面这个依据 [PEP-0227](http://www.google.com/url?sa=D&q=http://www.python.org/dev/peps/pep-0227/) 的例子：
+可能导致让人迷惑的
+bug。例如下面这个依据 [PEP-0227](http://www.google.com/url?sa=D&q=http://www.python.org/dev/peps/pep-0227/) 的例子：
 
 ```python
 i = 4
@@ -707,11 +706,13 @@ def foo(x):
 
 ## 1.17 函数与方法装饰器
 
-如果好处很显然，就明智而谨慎的使用装饰器。避免使用 `staticmethod` ，限制使用 `classmethod`。
+当有明显优势时，就明智而谨慎的使用装饰器。避免使用 `staticmethod` ，限制使用 `classmethod`。
 
 ### 1.17.1 定义
 
-用于[函数及方法的装饰器](https://docs.python.org/3/glossary.html#term-decorator)（也就是 `@` 标记）。最常见的装饰器是 `@property` ，用于将普通方法转换为动态运算的属性。不过，装饰器语法也允许用户自定义装饰器。特别地，对于某个函数 `my_decorator`，下面的两段代码是等效的：
+用于[函数及方法的装饰器](https://docs.python.org/3/glossary.html#term-decorator)（也就是 `@`标记）。
+最常见的装饰器是 `@property`，用于将普通方法转换为动态运算的属性。不过，装饰器语法也允许用户自定义装饰器。
+特别地，对于某个函数 `my_decorator`，下面的两段代码是等效的：
 
 ```python
 class C:
@@ -735,7 +736,8 @@ class C:
 
 ### 1.17.3 缺点
 
-装饰器可以在函数的参数或返回值上执行任何操作，这可能导致让人惊异的隐藏行为。而且，饰器在导入时执行。从装饰器代码的失败中恢复更加不可能。
+装饰器可以在函数的参数或返回值上执行任何操作，这可能导致让人惊异的隐藏行为。此外，装饰器在对象定义时执行。
+对于模块级别的对象（类、模块函数等），此过程发生在导入时。从装饰器代码的失败中恢复更加不可能。
 
 ### 1.17.4 结论
 
@@ -744,9 +746,10 @@ class C:
 - 装饰器的 Python 文档应该清晰的说明该函数是一个装饰器。
 - 请为装饰器编写单元测试。
 
-避免装饰器自身对外界的依赖（即不要依赖于文件，`socket`，数据库连接等），因为装饰器运行时这些资源可能不可用（由 `pydoc` 或其它工具导入）。应该保证一个用有效参数调用的装饰器在所有情况下都是成功的。
+避免装饰器自身对外界的依赖（即不要依赖于文件，`socket`，数据库连接等），因为装饰器运行时这些资源可能不可用（由 `pydoc`
+或其它工具导入）。应该保证一个用有效参数调用的装饰器在所有情况下都是成功的。
 
-装饰器是一种特殊形式的“顶级代码”。参考后面关于 [Main](https://google.github.io/styleguide/pyguide.html#s3.17-main) 的话题。
+装饰器是一种特殊形式的“顶级代码”。参考 [Main](https://google.github.io/styleguide/pyguide.html#s3.17-main) 的话题。
 
 永远不要使用 `staticmethod` ，除非为了与现有库中定义的 API 集成而被迫使用。可以写一个模块级函数代替。
 
@@ -756,9 +759,11 @@ class C:
 
 不要依赖内建类型的原子性。
 
-虽然 Python 的内建类型例如字典看上去拥有原子操作，但是在某些情形下它们仍然不是原子的（即，如果 `__hash__` 或 `__eq__` 被实现为 Python 方法）且它们的原子性是靠不住的。你也不能指望原子变量赋值（因为这个反过来依赖字典）。
+虽然 Python 的内建类型例如字典看上去拥有原子操作，但是在某些情形下它们仍然不是原子的（即，如果 `__hash__` 或 `__eq__` 被实现为
+Python 方法）且它们的原子性是靠不住的。你也不能指望原子变量赋值（因为这个反过来依赖字典）。
 
-优先使用 `Queue` 模块的 `Queue` 数据类型作为线程间的数据通信方式。另外，使用 `threading` 模块及其锁原语（`locking primitives`）。了解条件变量的合适使用方式，这样你就可以使用 `threading.Condition` 来取代低级别的锁了。
+优先使用 `Queue` 模块的 `Queue` 数据类型作为线程间的数据通信方式。另外，使用 `threading`
+模块及其锁原语（`locking primitives`）。了解条件变量的合适使用方式，这样你就可以使用 `threading.Condition` 来取代低级别的锁了。
 
 ## 1.19 威力过大的特性
 
@@ -766,7 +771,9 @@ class C:
 
 ### 1.19.1 定义
 
-Python 是一种异常灵活的语言，它为你提供了很多花哨的特性，诸如元类（`metaclasses`）、字节码访问、任意编译（`on-the-fly compilation`）、动态继承、对象父类重定义（`object reparenting`）、导入修改（`import hacks`）、反射（例如 `getattr()` 的一些使用）、系统内修改（`modification of system internals`）等等。
+Python 是一种异常灵活的语言，它为你提供了很多花哨的特性，诸如元类（`metaclasses`）、字节码访问、
+任意编译（`on-the-fly compilation`）、动态继承、对象父类重定义（`object reparenting`）、导入修改（`import hacks`）、
+反射（例如 `getattr()` 的一些使用）、系统内修改（`modification of system internals`）、方法实现自定义清理（`__del__`）等等。
 
 ### 1.19.2 优点
 
@@ -774,7 +781,8 @@ Python 是一种异常灵活的语言，它为你提供了很多花哨的特性�
 
 ### 1.19.3 缺点
 
-使用这些很“酷”的特性十分诱人，但不是绝对必要。使用奇技淫巧的代码将更加难以阅读和调试。开始可能还好（对原作者而言）, 但当你回顾代码, 它们可能会比那些稍长一点但是很直接的代码更加难以理解.
+使用这些很“酷”的特性十分诱人，但不是绝对必要。使用奇技淫巧的代码将更加难以阅读和调试。开始可能还好（对原作者而言）, 但当你回顾代码,
+它们可能会比那些稍长一点但是很直接的代码更加难以理解.
 
 ### 1.19.4 结论
 
@@ -782,51 +790,50 @@ Python 是一种异常灵活的语言，它为你提供了很多花哨的特性�
 
 内部需要使用这些特性的标准库模块和类可以使用（例如， `abc.ABCMeta` 、 `dataclasses` 和 `enum`）。
 
-## 1.20 新版 Python ： Python 3 和 `from __future__ imports`
+## 1.20 新版 Python:`from __future__ imports`
 
-当前推荐 Python 3 。虽然不是每个项目都必须使用，但所有编写的代码都应该兼容 Python 3 （并尽可能的通过 Python 3 的测试）。
+可以使用导入 future 这种特殊操在老版本中使用新版本的语法特性。
 
 ### 1.20.1 定义
 
-Python 3 是 Python 语言的重大变化。虽然现有的代码通常是考虑用 Python 2.7 编写的，但是可以做一些简单的事情来使代码更明确地表达其意图，从而无需修改就能更好地在 Python 3 下使用。
+使用 `from __future__ import` 语句可以在老版本中启用新版本的功能。
 
 ### 1.20.2 优点
 
-当所有项目依赖都兼容 Python 3 的时候，就可以直接编写 Python 3 的代码了，这样也更容易在 Python 3 中运行。
+经验证明，在声明兼容性并防止这些文件中的回归的同时，对每个文件进行更改，可以使运行时版本升级更加平滑。
+现代代码更易于维护，因为它不太可能在将来的运行时升级期间积累技术债务。
 
 ### 1.20.3 缺点
 
-- 觉得这些额外的样板文件很难看。
-- 导入实际并不需要的特性模块看起来怪怪的。
+- 没有引入所需的 future 语句时，这些代码可能无法在老版本的解释器版本上运行。
+- 在支持各种环境的项目中，这种需求更为常见。
 
 ### 1.20.4 结论
 
 **`from __future__ imports`**
 
-推荐使用 `from __future__ import` 语句。所有的新代码都应该包含以下内容，现有的代码也应该在有条件的情况下进行兼容更新：
+推荐使用 `from __future__ import` 语句。所有的新代码都应该包含以下内容，现有的代码也应该在有条件的情况下进行兼容更新。
+
+在 3.5 或更早的版本（而不是 >= 3.7）上执行的代码中，导入：
 
 ```python
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
+from __future__ import generator_stop
 ```
 
-获取有关这些导入的更多信息，请参阅 [absolute imports](https://www.python.org/dev/peps/pep-0328/) 、 [division behavior](https://google.github.io/styleguide/pyguide.html)
- 和 [the print function](https://www.python.org/dev/peps/pep-3105/)。
+有关更多信息，请阅读 [Python future](https://docs.python.org/3/library/__future__.html) 语句定义文档。
 
-即使当前在模块中没有使用这些导入，也请不要忽略或删除它们，除非代码仅适用于 Python 3 版本。最好始终在所有文件中包含 `future` 的导入，以便在有人开始使用这些特性时，不会在以后的编辑中忘记它们。
+不要删除这些导入，除非您确信代码在当前环境运行没有问题。即使您现在没有使用当前代码中特定的 future 导入启用的特性，
+保留这些导入便于以后修改代码时直接使用。
 
-还有一些其他的 `from __future__` 语句，可以在需要的时候使用。我们在推荐中并没有包括 `unicode_literals` ，那是因为只有在 Python 2.7 中才会引入许多隐式的默认编码转换。大多数代码最好根据需要明确使用 `b''` 和 `u''` 字符以及 `unicode` 字符串。
-
-**`six` 、 `future` 和 `past`**
-
-当项目同时需要支持 Python 2 和 3 版本时，可以使用 [`six`](https://pypi.org/project/six/) 、 [`future`](https://pypi.org/project/future/) 和 [`past`](https://pypi.org/project/past/) 。这些库就是为了让代码实现更清晰简单而存在的。
+还有一些其他的 `from __future__` 语句，可以在需要的时候使用。
 
 ## 1.21 代码类型标注
 
-Python 3 的代码可以根据 [PEP-484](https://www.python.org/dev/peps/pep-0484/) 使用类型标注，并使用类似 [pytype](https://github.com/google/pytype) 的类型检查工具在构建时对代码进行检查。
+可以根据 [PEP-484](https://www.python.org/dev/peps/pep-0484/)
+使用类型标注，并使用类似 [pytype](https://github.com/google/pytype) 的类型检查工具在构建时对代码进行检查。
 
-类型标注可以在原文件中，也可以在 [stub pyi](https://www.python.org/dev/peps/pep-0484/#stub-files) 文件中。尽可能在源代码中进行标注，对于第三方库或扩展模块可以使用 `pyi` 文件。
+类型标注可以在源码中，也可以在 [stub pyi](https://www.python.org/dev/peps/pep-0484/#stub-files)文件中。
+尽可能在源代码中进行标注，对于第三方库或扩展模块可以使用 `pyi` 文件。
 
 ### 1.21.1 定义
 
@@ -842,12 +849,6 @@ def func(a: int) -> List[int]:
 a: SomeType = some_func()
 ```
 
-或者在必须支持旧版 Python 版本的代码中使用类型注释。
-
-```python
-a = some_func()  # type: SomeType
-```
-
 ### 1.21.2 优点
 
 类型标注可以提高代码的可读性和可维护性。类型检查器可以把许多运行时错误转换为构建时错误，并减少威力过大特性地使用。
@@ -857,8 +858,9 @@ a = some_func()  # type: SomeType
 - 必须保持类型标注更新。
 - 您可能会看到您认为是正确代码的错误信息。
 - 使用类型检查器可能会减少威力过大特性地使用。
-  
+
 ### 1.21.4 结论
 
-强烈建议您在更改代码时启用 Python 类型分析。当添加或修改公共 API 时，请包含类型标注，并在构建系统中启用 `pytype` 进行检查。由于静态分析对 Python 来说相对较新，我们承认会有一些副作用（比如错误的类型推断）可能会阻止一些项目采用。因此，我们鼓励作者添加一个带有 `TODO` 的注释，或者在 `BUILD` 文件或代码本身中通过 bug 链接描述当前不采用类型标注的问题。
-
+强烈建议您在更改代码时启用 Python 类型分析。当添加或修改公共 API 时，请包含类型标注，并在构建系统中启用 `pytype`进行检查。
+由于静态分析对 Python 来说相对较新，我们承认会有一些副作用（比如错误的类型推断）可能会阻止一些项目采用。
+因此，我们鼓励作者添加一个带有 `TODO`的注释，或者在 `BUILD` 文件或代码本身中通过 bug 链接描述当前不采用类型标注的问题。
