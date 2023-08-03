@@ -1593,7 +1593,7 @@ git add .
 git commit -m "test: Add service test."
 ```
 
-### 4.3 测试试图层
+### 4.3 测试视图层
 
 编辑 `tests/conftest.py` ，创建测试配置：
 
