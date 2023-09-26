@@ -641,7 +641,7 @@ class StripTransformer(BaseTransformer):
 
 ```
 
-上面两处调整，是使用了 pylint 的规则金庸功能，在这两个模块上，抑制 pylint 的 `too-few-public-methods` 规则。
+上面两处调整，是使用了 pylint 的规则禁用功能，在这两个模块上，抑制 pylint 的 `too-few-public-methods` 规则。
 
 此时再次运行 `pylint` 检查代码：
 
