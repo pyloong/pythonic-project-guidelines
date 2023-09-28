@@ -17,7 +17,7 @@
         <link rel="next" href="../test/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.11">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.1.11">
     
     
       
@@ -2323,7 +2323,7 @@
 </span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17"></a>        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Strip data: &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 </span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18"></a>        <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 </span></code></pre></div></td></tr></table></div>
-<p>上面两处调整，是使用了 pylint 的规则金庸功能，在这两个模块上，抑制 pylint 的 <code>too-few-public-methods</code> 规则。</p>
+<p>上面两处调整，是使用了 pylint 的规则禁用功能，在这两个模块上，抑制 pylint 的 <code>too-few-public-methods</code> 规则。</p>
 <p>此时再次运行 <code>pylint</code> 检查代码：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>$<span class="w"> </span>pylint<span class="w"> </span>src<span class="w"> </span>tests
 </span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
