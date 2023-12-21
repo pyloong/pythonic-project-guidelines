@@ -50,7 +50,7 @@
             - [ ] Scrapy
             - [ ] aiohttp
         - [ ] 数据库
-            - [ ] SQLALchemy
+            - [ ] SQLAlchemy
 - [x] 数据开发实践
     - [x] 初级教程
 

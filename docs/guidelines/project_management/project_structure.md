@@ -66,7 +66,7 @@ sampleproject
 └── tests
 ```
 
-六年前的这篇文章 [Packaging a python library](https://blog.ionelmc.ro/2014/05/25/python-packaging/#the-structure) 就详细阐述了使用 `src` 结构比简单结构的诸多有点。而现在也逐渐被社区作为一个标准遵循。虽然社区中有大量老的项目依然采用简单布局，但新项目推荐使用 `src` 结构。
+六年前的这篇文章 [Packaging a python library](https://blog.ionelmc.ro/2014/05/25/python-packaging/#the-structure) 就详细阐述了使用 `src` 结构比简单结构的诸多优点。而现在也逐渐被社区作为一个标准遵循。虽然社区中有大量老的项目依然采用简单布局，但新项目推荐使用 `src` 结构。
 
 如下面这个示例项目结构：
 
