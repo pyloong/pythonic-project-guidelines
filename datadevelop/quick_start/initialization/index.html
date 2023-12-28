@@ -1556,8 +1556,8 @@
 <p>ETL任务完成后需要注册插件：</p>
 <p>因为项目默认使用<a href="/pythonic-project-guidelines/introduction/virtualenv/#25-poetry">poetry</a>
 管理虚拟环境，则需要在<code>pyproject.toml</code> 文件增加中增加如下内容：</p>
-<div class="language-toml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[tool.poetry.plugins.&quot;etl_tasks&quot;]</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">task_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;{task_class_path}:TaskExample&quot;</span>
+<div class="language-toml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[tool.poetry.plugins.</span><span class="s2">&quot;etl_tasks&quot;</span><span class="k">]</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">task_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;{task_class_path}:TaskExample&quot;</span>
 </span></code></pre></div>
 <p>使用如下命令将项目插件更新到环境中：</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>poetry<span class="w"> </span>install

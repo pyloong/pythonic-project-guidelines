@@ -1251,10 +1251,10 @@
 <p>将<code>main</code>命令行入口和上述实现的<code>Task</code>类注册到命名空间中。</p>
 <p>编辑<code>pyproject.toml</code>文件，增加<a href="https://python-poetry.org/docs/plugins/">poetry插件</a>如下内容：</p>
 <div class="language-toml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.poetry.plugins.console_scripts]</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">automotive_data_etl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;automotive_data_etl.cmdline:main&quot;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">automotive_data_etl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;automotive_data_etl.cmdline:main&quot;</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">[tool.poetry.plugins.&quot;etl_tasks&quot;]</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">automotive_task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;automotive_data_etl.tasks.automotive_task.task:AutomotiveDataTask&quot;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">[tool.poetry.plugins.</span><span class="s2">&quot;etl_tasks&quot;</span><span class="k">]</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">automotive_task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;automotive_data_etl.tasks.automotive_task.task:AutomotiveDataTask&quot;</span>
 </span></code></pre></div>
 <p>这么做的目的是将<code>AutomotiveDataTask</code>注册到<code>entry_points</code>中， 然后在程序中使用<code>importlib.metadata</code>
 根据名称空间查找。而 <code>stevedore</code> 则是封装了查找的复杂逻辑，让使用插件更简单。</p>

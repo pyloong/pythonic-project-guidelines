@@ -1465,7 +1465,7 @@
 <h4 id="_4">使用环境变量</h4>
 <p>Dynaconf 支持加载环境变量，也可以使用 .env 文件。</p>
 <p>在使用环境变量时，同样和配置文件一样，支持完全覆盖，和自动合并。</p>
-<p>需要额外强调一点的是， Dynaconf 初始化的时，使用了 <code>envvar_prefix=BLOG</code> 。 Dynaconf 会自动加载以 <code>BLOG_</code> 开头的
+<p>需要额外强调一点的是， Dynaconf 初始化的时候，使用了 <code>envvar_prefix=BLOG</code> 。 Dynaconf 会自动加载以 <code>BLOG_</code> 开头的
 环境变量。包括 <code>ENVVAR_FOR_DYNACONF='BLOG_SETTINGS'</code> 配置的 Dynaconf 加载配置文件的环境变量 <code>BLOG_SETTINGS</code> 。</p>
 <p>所以在使用环境变量的时候，不要错误的将 <code>BLOG_SETTINGS</code> 环境变量指定其他内容，而造成不必要的错误。</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 使用环境变量配置单值</span>

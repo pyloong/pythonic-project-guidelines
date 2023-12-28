@@ -1908,7 +1908,7 @@
 <p>但是安装到环境后去运行 <code>cmdline.py</code> 会比较麻烦，所以需要将 <code>cmdline.py</code> 注册成可执行命令。</p>
 <p>修改 <code>pyproject.toml</code> ，增加如下内容：</p>
 <div class="language-toml highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">[tool.poetry.plugins.console_scripts]</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">word_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;word_count.cmdline:main&quot;</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">word_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;word_count.cmdline:main&quot;</span>
 </span></code></pre></div>
 <p>当使用 <code>pip</code> 命令将项目包安装到环境后，会自动注册一个 <code>word_count</code> 的可执行命令。</p>
 <p>再次将本地项目以可编辑方式安装到当前 Python 环境：</p>

@@ -1347,9 +1347,9 @@
 <p>几乎所有编程语言中都有异常。异常可以快速指出程序出现的问题，便于排查。开发人员也可以根据情况抛出自定义异常，
 以指示期望的内容和实际不相符。良好的异常设计和使用习惯，可以提高程序的质量。</p>
 <h2 id="_2">介绍</h2>
-<p>Python 中的异常分为两类，一是句法错误，一类是异常。</p>
+<p>Python 中的异常分为两类，一是语法错误，一类是异常。</p>
 <h3 id="_3">句法错误</h3>
-<p>句法错误是用来指示 Python 编码不符合句法规范的：</p>
+<p>语法错误是用来指示 Python 编码不符合语法规范的：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="kc">True</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello world&#39;</span><span class="p">)</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">while</span> <span class="kc">True</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello world&#39;</span><span class="p">)</span>
@@ -1563,7 +1563,7 @@
 <p>开发实践中，异常信息对诊断程序非常重要。所以在使用和处理异常时，请遵循如下几点：</p>
 <ul>
 <li>需要处理异常时使用 <code>try...except...finally</code> 捕获</li>
-<li>处理异常时，如果没有继续抛出异常，需要输入日志信息。除非你知道不输出任何信息不会造成拍错困难。</li>
+<li>处理异常时，如果没有继续抛出异常，需要输入日志信息。除非你知道不输出任何信息不会造成排错困难。</li>
 <li>项目级别，一定要定义一个项目的基类异常。项目中其他自定义异常必须继承该基类异常。这么做的目的是可以在外层逻辑通过捕获基类
     异常来只捕获抛出的自定义异常。</li>
 <li>项目异常要以 <code>ERROR</code> 结尾。和标准异常命名类似。</li>

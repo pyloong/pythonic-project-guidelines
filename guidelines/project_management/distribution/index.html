@@ -1621,8 +1621,8 @@
 <p>项目采用 <code>src</code> 目录结构，项目描述信息都在 <code>pyproject.toml</code> 中定义。</p>
 <h2 id="2">2. 项目打包</h2>
 <h3 id="21">2.1 打包工具</h3>
-<p>由于历史原因， Python 的打包走了很长一段路了，但和其他语言的打包工具相比，为了还是有很长一段路要走。</p>
-<p>在 <a href="https://www.python.org/dev/peps/pep-0517/">PEP-517</a> 中，提到了当前 Python 构建系统的不足和响应的解决方案。
+<p>由于历史原因， Python 的打包走了很长一段路了，但和其他语言的打包工具相比，未来还是有很长一段路要走。</p>
+<p>在 <a href="https://www.python.org/dev/peps/pep-0517/">PEP-517</a> 中，提到了当前 Python 构建系统的不足和相应的解决方案。
 其主要就是解决让 Python 支持更加灵活的构建系统。
 <a href="https://www.python.org/dev/peps/pep-0518/">PEP-518</a> 则提出为项目指定一个最小的构建系统。</p>
 <h4 id="211-setuptools">2.1.1 setuptools</h4>
@@ -1650,8 +1650,8 @@
 <h5 id="2111">2.1.1.1 示例配置</h5>
 <p><strong>pyproject.toml</strong> :</p>
 <div class="language-toml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[build-system]</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;setuptools&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wheel&quot;</span><span class="p">]</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;setuptools.build_meta&quot;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;setuptools&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;wheel&quot;</span><span class="p">]</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;setuptools.build_meta&quot;</span>
 </span></code></pre></div>
 <p>增加 <code>setup.py</code> 或者 <code>setup.cfg</code> 两种有其一即可。然后在文件中定义配置。</p>
 <p>推荐使用 <code>setup.cfg</code> 。</p>
@@ -1737,14 +1737,14 @@
 <h5 id="2121">2.1.2.1 示例配置</h5>
 <p><strong>pyproject.toml</strong> ：</p>
 <div class="language-toml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">[build-system]</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;flit_core &gt;=2,&lt;4&quot;</span><span class="p">]</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;flit_core.buildapi&quot;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;flit_core &gt;=2,&lt;4&quot;</span><span class="p">]</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;flit_core.buildapi&quot;</span>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">[tool.flit.metadata]</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;foobar&quot;</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Sir Robin&quot;</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">author-email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;robin@camelot.uk&quot;</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">home-page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://github.com/sirrobin/foobar&quot;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;foobar&quot;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Sir Robin&quot;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">author-email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;robin@camelot.uk&quot;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">home-page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/sirrobin/foobar&quot;</span>
 </span></code></pre></div>
 <h5 id="2122">2.1.2.2 通用方式构建</h5>
 <p>安装 PEP-517 规范的包生成器  <a href="https://pypi.org/project/build/">build</a> 和 <a href="https://pypi.org/project/flit/">flit</a> ，<code>pip install build flit</code> 。</p>
@@ -1779,55 +1779,55 @@
 </ul>
 <h5 id="2131">2.1.3.1 示例配置</h5>
 <div class="language-toml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">[build-system]</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;poetry_core&gt;=1.0.0&quot;</span><span class="p">]</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poetry.core.masonry.api&quot;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;poetry_core&gt;=1.0.0&quot;</span><span class="p">]</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;poetry.core.masonry.api&quot;</span>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
 </span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">[tool.poetry]</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poetry-demo&quot;</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;0.1.0&quot;</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">authors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Sébastien Eustace &lt;sebastien@eustace.io&gt;&quot;</span><span class="p">]</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;poetry-demo&quot;</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">authors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Sébastien Eustace &lt;sebastien@eustace.io&gt;&quot;</span><span class="p">]</span>
 </span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
 </span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="k">[tool.poetry.dependencies]</span>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^3.10&quot;</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^3.10&quot;</span>
 </span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
 </span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="k">[tool.poetry.dev-dependencies]</span>
-</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="n">pytest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^3.4&quot;</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="n">pytest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^3.4&quot;</span>
 </span></code></pre></div>
 <h3 id="22-poetry">2.2 打包构建（poetry）</h3>
 <p>现阶段选用 <code>poetry</code> 作为构建工具。</p>
 <p>为项目指定所需要使用的构建工具。创建 <code>pyproject.toml</code> 文件，增加如下内容：</p>
 <div class="language-toml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">[tool.poetry]</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;file2mongo&quot;</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;0.1.0&quot;</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;File data to MongoDB&quot;</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;README.md&quot;</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="n">authors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;demo &lt;demo@example.com&gt;&quot;</span><span class="p">]</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">license</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MIT&quot;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;file2mongo&quot;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;File data to MongoDB&quot;</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;README.md&quot;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="n">authors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;demo &lt;demo@example.com&gt;&quot;</span><span class="p">]</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">license</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;MIT&quot;</span>
 </span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="n">classifiers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="s">&quot;Operating System :: OS Independent&quot;</span><span class="p">,</span>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="s">&quot;Programming Language :: Python :: 3.10&quot;</span><span class="p">,</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="s2">&quot;Operating System :: OS Independent&quot;</span><span class="p">,</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="s2">&quot;Programming Language :: Python :: 3.10&quot;</span><span class="p">,</span>
 </span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="p">]</span>
 </span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
 </span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="k">[tool.poetry.dependencies]</span>
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^3.10&quot;</span>
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="n">dynaconf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^3.1.9&quot;</span>
-</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="n">click</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^8.1.3&quot;</span>
-</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="n">pymongo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^4.3.3&quot;</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^3.10&quot;</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="n">dynaconf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^3.1.9&quot;</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="n">click</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^8.1.3&quot;</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="n">pymongo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^4.3.3&quot;</span>
 </span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
 </span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="k">[tool.poetry.dev-dependencies]</span>
-</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="n">pylint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^2.14.5&quot;</span>
-</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="n">isort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^5.10.1&quot;</span>
-</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="n">pytest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^7.1.2&quot;</span>
-</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="n">mkdocs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^1.3.1&quot;</span>
-</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="n">mkdocs-material</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^8.4.1&quot;</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="n">pylint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^2.14.5&quot;</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="n">isort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^5.10.1&quot;</span>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="n">pytest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^7.1.2&quot;</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="n">mkdocs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^1.3.1&quot;</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="n">mkdocs-material</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^8.4.1&quot;</span>
 </span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>
-</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="k">[tool.poetry.plugins.&quot;scripts&quot;]</span>
-</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="n">file2mongo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;file2mongo.cmdline:main&quot;</span>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="k">[tool.poetry.plugins.</span><span class="s2">&quot;scripts&quot;</span><span class="k">]</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="n">file2mongo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;file2mongo.cmdline:main&quot;</span>
 </span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>
 </span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="k">[build-system]</span>
-</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;poetry-core&gt;=1.0.0&quot;</span><span class="p">]</span>
-</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poetry.core.masonry.api&quot;</span>
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;poetry-core&gt;=1.0.0&quot;</span><span class="p">]</span>
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;poetry.core.masonry.api&quot;</span>
 </span></code></pre></div>
 <h4 id="221">2.2.1 项目基本信息</h4>
 <p><a href="https://python-poetry.org/docs/pyproject/">tool.poetry</a> 是项目基本描述信息，有项目名称，版本号，作者相关信息等。</p>
@@ -1850,7 +1850,7 @@
 <li><code>tool.poetry.scripts</code> : 安装包时将安装的脚本或可执行文件</li>
 <li><code>tool.poetry.extras</code> :可选依赖项，增强包，但不是必需的，可选依赖项的集群。</li>
 <li><code>tool.poetry.plugins</code> : 插件，可通过 <code>importlib.metadata</code>导入</li>
-<li><code>tool.poetry.urls</code> : 自定义 url，发布pypi后展示</li>
+<li><code>tool.poetry.urls</code> : 自定义 url，发布 pypi 后展示</li>
 <li><code>build-system</code> : 构建系统引用部分</li>
 </ul>
 <h5 id="2221-entrypoints">2.2.2.1 入口点 EntryPoints</h5>
@@ -1858,7 +1858,7 @@
 <p><strong>注册命令行</strong> ：</p>
 <p>例如，要创建名为 <code>foo</code> 的控制台脚本，<code>pyproject.toml</code>文件添加如下示例：</p>
 <div class="language-toml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">[tool.poetry.scripts]</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;my_package.some_module:main_func&quot;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_package.some_module:main_func&quot;</span>
 </span></code></pre></div>
 <h4 id="223">2.2.3 构建</h4>
 <p>当配置完成后，就可以开始构建了。</p>
