@@ -45,7 +45,6 @@ init_skeleton [n]: y
 
 ```
 
-
 然后使用 vscode 打开项目：
 
 ```bash
@@ -279,7 +278,7 @@ def init_log() -> None:
 - `<sys.prefix>/etc/example_etl/settings.yml` ：操作系统外部配置文件。默认这个配置文件和项目默认配置文件的内容一致。
 - 使用 `EXAMPLE_ETL_<name>=<value>` 环境变量传递
 
-优先级从从上倒下依次增大，优先级高的会覆盖优先级低的配置。
+优先级从从上到下依次增大，优先级高的会覆盖优先级低的配置。
 
 ```python
 """

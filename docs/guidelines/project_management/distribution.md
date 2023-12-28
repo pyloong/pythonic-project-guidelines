@@ -17,9 +17,9 @@
 
 ### 2.1 打包工具
 
-由于历史原因， Python 的打包走了很长一段路了，但和其他语言的打包工具相比，为了还是有很长一段路要走。
+由于历史原因， Python 的打包走了很长一段路了，但和其他语言的打包工具相比，未来还是有很长一段路要走。
 
-在 [PEP-517](https://www.python.org/dev/peps/pep-0517/) 中，提到了当前 Python 构建系统的不足和响应的解决方案。
+在 [PEP-517](https://www.python.org/dev/peps/pep-0517/) 中，提到了当前 Python 构建系统的不足和相应的解决方案。
 其主要就是解决让 Python 支持更加灵活的构建系统。
 [PEP-518](https://www.python.org/dev/peps/pep-0518/) 则提出为项目指定一个最小的构建系统。
 
@@ -313,7 +313,7 @@ build-backend = "poetry.core.masonry.api"
 - `tool.poetry.scripts` : 安装包时将安装的脚本或可执行文件
 - `tool.poetry.extras` :可选依赖项，增强包，但不是必需的，可选依赖项的集群。
 - `tool.poetry.plugins` : 插件，可通过 `importlib.metadata`导入
-- `tool.poetry.urls` : 自定义 url，发布pypi后展示
+- `tool.poetry.urls` : 自定义 url，发布 pypi 后展示
 - `build-system` : 构建系统引用部分
 
 ##### 2.2.2.1 入口点 EntryPoints

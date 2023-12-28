@@ -45,7 +45,7 @@
 
 ![windows-install-optional-features](../assets/images/install/windows-install-optional-features.png)
 
-此时可以选择可选的特性，不过还不是你不知道它们是做什么的，或者不清楚你是否需要它们，那么保持默认即可。
+此时可以选择可选的特性，不过如果你不知道它们是做什么的，或者不清楚你是否需要它们，那么保持默认即可。
 然后点击 `Next` ：
 
 ![windows-install-advanced-options](../assets/images/install/windows-install-advanced-options.png)

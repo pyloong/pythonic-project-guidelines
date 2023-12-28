@@ -221,7 +221,7 @@ Dynaconf 支持加载环境变量，也可以使用 .env 文件。
 
 在使用环境变量时，同样和配置文件一样，支持完全覆盖，和自动合并。
 
-需要额外强调一点的是， Dynaconf 初始化的时，使用了 `envvar_prefix=BLOG` 。 Dynaconf 会自动加载以 `BLOG_` 开头的
+需要额外强调一点的是， Dynaconf 初始化的时候，使用了 `envvar_prefix=BLOG` 。 Dynaconf 会自动加载以 `BLOG_` 开头的
 环境变量。包括 `ENVVAR_FOR_DYNACONF='BLOG_SETTINGS'` 配置的 Dynaconf 加载配置文件的环境变量 `BLOG_SETTINGS` 。
 
 所以在使用环境变量的时候，不要错误的将 `BLOG_SETTINGS` 环境变量指定其他内容，而造成不必要的错误。

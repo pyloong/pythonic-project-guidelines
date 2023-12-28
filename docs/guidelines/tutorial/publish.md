@@ -43,7 +43,7 @@ poetry config repositories.testpypi https://test.pypi.org/legacy/
 poetry publish --repository=testpypi --username=USERNAME --password=PASSWORD
 ```
 
-> 注意：不建议将测试项目发布都 [https://pypi.org/](https://pypi.org/) 上。在 [https://pypi.org/](https://pypi.org/) 上的项目名称是全局唯一的，
+> 注意：不建议将测试项目发布到 [https://pypi.org/](https://pypi.org/) 上。在 [https://pypi.org/](https://pypi.org/) 上的项目名称是全局唯一的，
 > 所以如果你考虑到将项目发布到 [https://pypi.org/](https://pypi.org/) 上前，应定一个不存在名称。
 
 ## 安装测试
