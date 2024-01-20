@@ -628,7 +628,7 @@ class SampleClass:
     ```
 
 
-!!! fail "不推荐
+!!! fail "不推荐"
 
     ```python
     class CheeseShopAddress:
