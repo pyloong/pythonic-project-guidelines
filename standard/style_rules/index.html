@@ -2487,18 +2487,18 @@ API，则不应该记录引发的异常（因为这会使违反 API 的行为成
 </span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;No more cheese is available.&quot;&quot;&quot;</span>
 </span></code></pre></div>
 </div>
-<p>!!! fail "不推荐</p>
-<div class="language-text highlight"><pre><span></span><code>```python
-class CheeseShopAddress:
-    &quot;&quot;&quot;Class that describes the address of a cheese shop.
-
-    ...
-    &quot;&quot;&quot;
-
-class OutOfCheeseError(Exception):
-    &quot;&quot;&quot;Raised when no more cheese is available.&quot;&quot;&quot;
-```
-</code></pre></div>
+<div class="admonition fail">
+<p class="admonition-title">不推荐</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">class</span> <span class="nc">CheeseShopAddress</span><span class="p">:</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Class that describes the address of a cheese shop.</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="sd">    ...</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="k">class</span> <span class="nc">OutOfCheeseError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when no more cheese is available.&quot;&quot;&quot;</span>
+</span></code></pre></div>
+</div>
 <h3 id="385">3.8.5 块注释和行注释</h3>
 <p>最需要写注释的是代码中那些技巧性的部分。如果你在下次<a href="http://en.wikipedia.org/wiki/Code_review">代码审查</a>
 的时候必须解释一下，那么你应该现在就给它写注释。对于复杂的操作，应该在其操作开始前写上若干行注释，对于不是一目了然的代码，应在其行尾添加注释。</p>
