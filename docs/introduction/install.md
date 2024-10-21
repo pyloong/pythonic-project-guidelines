@@ -4,19 +4,18 @@
 
 在 Python 环境选择上，推荐使用较新的 Python 版本。根据[官方发布消息](https://www.python.org/doc/sunset-python-2/) ，
 自 2020年 1 月 1 日起， Python 2 将停止维护，包括任何新的错误报告、修复和更改。
-所以强烈建议你在版本选择上使用 Python 3.7 之后的版本。考虑到 Python 3 各个版本的新特性和兼容性，
-建议选择 Python 3.9 或 Python 3.10 。
+所以考虑到 Python 3 各个版本的新特性和兼容性，建议选择 Python 3.11 及以上版本。
 
-截止到当前时间（2021-12-03）， Python 各个版本的状态如下：
+截止到当前时间（2021-12-03）， [Python 各个版本](https://devguide.python.org/versions/)的状态如下：
 
-| Branch | Schedule | Status   | First release | End-of-life |
-| ------ | -------- | -------- | ------------- | ----------- |
-| main   | PEP 664  | features | 2022-10-03    | 2027-10     |
-| 3.10   | PEP 619  | bugfix   | 2021-10-04    | 2026-10     |
-| 3.9    | PEP 596  | bugfix   | 2020-10-05    | 2025-10     |
-| 3.8    | PEP 569  | security | 2019-10-14    | 2024-10     |
-| 3.7    | PEP 537  | security | 2018-06-27    | 2023-06-27  |
-| 3.6    | PEP 494  | security | 2016-12-23    | 2021-12-23  |
+| Branch | Schedule                                      | Status     | First release | End-of-life |
+| ------ | --------------------------------------------- | ---------- | ------------- | ----------- |
+| main   | [PEP 745](https://peps.python.org/pep-0745/)  | features   | 2025-10-01    | 2030-10     |
+| 3.13   | [PEP 719](https://peps.python.org/pep-0719/)  | bugfix     | 2024-10-07    | 2029-10     |
+| 3.12   | [PEP 693](https://peps.python.org/pep-0693/)  | bugfix     | 2023-10-02    | 2028-10     |
+| 3.11   | [PEP 693](https://peps.python.org/pep-0693/)  | security   | 2022-10-24    | 2027-10     |
+| 3.10   | [PEP 619](https://peps.python.org/pep-0619/)  | security   | 2021-10-04    | 2026-10     |
+| 3.9    | [PEP 596](https://peps.python.org/pep-0596/)  | security   | 2020-10-05    | 2025-10     |
 
 本文安装的版本使用最新的稳定版 `python 3.10` ，会在如下操作系统上安装：
 
