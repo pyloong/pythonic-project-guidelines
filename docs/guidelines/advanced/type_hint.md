@@ -153,7 +153,7 @@ def count_words(records: List[str]) -> Dict[str, int]:
 > 在 Python 3.9 已经对一些基本数据 接口做了泛型适配，这和现有 typing 下的泛型类型重复，
 > 所以会弃用这些泛型容器类型，具体请参考体包含哪些请参考 [PEP 585](https://www.python.org/dev/peps/pep-0585/) 。
 > 如果需要提前使用新特性，在 Python 3.7 开始，可以导入 `from __future__ import annotations` 来使用新的泛型类型。
-> 官方会在 Python 3.9 发布五年后的收个 Python 发行版，即2025年10月5日之后的收个发行版会移除
+> 官方会在 Python 3.9 发布五年后的收个 Python 发行版，即2025年10月5日之后的首个发行版会移除
 > [PEP 585](https://www.python.org/dev/peps/pep-0585/) 中弃用的泛型容器类型。
 
 ### 2.3 特殊类型
