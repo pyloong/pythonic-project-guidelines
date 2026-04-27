@@ -3,7 +3,7 @@
 > 本文档为 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
 > 第三章 [Python Style Rules](https://google.github.io/styleguide/pyguide.html#3-python-style-rules) 的译文。
 >
-> 最后更新时间： 2023-06-26
+> 最后更新时间： 2026-04-26
 >
 > 如果有翻译错误或表述不准确的问题，欢迎提交 PR，感谢您的参与。
 
@@ -125,6 +125,8 @@ x = ('This will build a very long long '
 在所有其他情况下，如果一行超过80个字符，并且 [Black](https://github.com/psf/black)或[Pyink](https://github.com/google/pyink)
 自动格式化程序无法帮助使该行低于限制，则允许该行超过此最大值。建议作者在合理的情况下，根据上述注释手动拆分行。
 
+文档字符串的摘要行必须保持在 80 个字符限制内。
+
 ## 3.3 括号
 
 宁缺毋滥的使用括号。
@@ -159,6 +161,8 @@ x = ('This will build a very long long '
         bar()
     return (foo)
     ```
+
+闭合括号(圆括号、方括号或花括号)可以放在表达式的末尾,也可以单独放在一行,但如果单独放一行,应该与对应的开括号所在行保持相同的缩进。
 
 ## 3.4 缩进
 
@@ -234,7 +238,7 @@ x = ('This will build a very long long '
 ### 3.4.1 在序列的末尾是否加逗号？
 
 只有在序列结束符 `]` 、 `)` 或 `}`
-与最后一个元素不在同一行时才建议使用。末尾逗号的存在还用作对代码自动格式化程序的提示，以引导它在最后一个元素之后出现时，
+与最后一个元素不在同一行时才建议使用,以及单元素元组。末尾逗号的存在还用作对代码自动格式化程序的提示,以引导它在最后一个元素之后出现时,
 自动将容器中每个条目格式化为一行。
 
 !!! success "推荐"
@@ -271,6 +275,8 @@ x = ('This will build a very long long '
 - 方法定义，类定义与第一个方法之间，都应该空一行。
 - 在 `def` 函数定义之后不需要空行。
 - 函数或方法中，某些地方要是你觉得合适，就空一行。
+
+空行不必固定在定义之前。例如，紧接在函数、类和方法定义之前的相关注释可能是合理的。考虑一下你的注释是否更适合作为文档字符串的一部分。
 
 ## 3.6 空格
 
@@ -439,7 +445,7 @@ examples.
   Typical usage example:
 
   foo = ClassFoo()
-  bar = foo.FunctionBar()
+  bar = foo.function_bar()
 """
 ```
 
@@ -478,7 +484,7 @@ directory.
 最好将其表达为代码旁边的注释，而不是在函数的文档字符串中。
 
 文档字符串应该是描述性的（ `"""Fetches rows from a Bigtable."""`） 或者命令式的（ `"""Fetch rows from a Bigtable."""` ），
-但是在一个文件中，风格应该保持一直。对于 @property 数据描述符的文档字符串应该使用与属性或函数参数的文档字符串相同的风格
+但是在一个文件中，风格应该保持一致。对于 @property 数据描述符的文档字符串应该使用与属性或函数参数的文档字符串相同的风格
 （ `"""The Bigtable path."""` 而不是 `"""Returns the Bigtable path."""` ）。
 
 重写基类中的方法时，用一个简单的文档字符串引导读者查看被覆盖方法的文档字符串，例如： `"""See base class."""`
@@ -488,7 +494,7 @@ directory.
 
 #### *Args:*
 
-列出每个参数的名字，在名字后使用一个冒号和一个空格，分隔对该参数的描述。如果描述太长超过了单行80字符，使用2或者4个空格的悬挂缩进（与文件其他部分保持一致）。描述应该包括所需的类型和含义。如果一个函数接受 `*foo`
+列出每个参数的名字，在名字后使用一个冒号和一个空格，分隔对该参数的描述。如果描述太长超过了单行80字符，使用2或者4个空格的悬挂缩进（与文件其他部分保持一致）。描述应该包括所需的类型（如果代码中没有对应的类型标注）。如果一个函数接受 `*foo`
 （可变长度参数列表）或者 `**bar`（任意关键字参数），应该详细列出 `*foo` 和 `**bar` 。
 
 #### *Returns:（或者 Yields: 用于生成器）*
@@ -581,10 +587,55 @@ def fetch_smalltable_rows(
     """
 ```
 
+#### 3.8.3.1 重写方法
+
+如果子类重写了父类的方法，应该使用 `@override` 装饰器（来自 `typing_extensions` 或 Python 3.12+ 的 `typing`）来明确标记。
+
+`@override` 装饰器告诉类型检查器该方法重写了父类方法。这有助于捕获由于父类变更而导致的重写方法名称拼写错误或不存在的重写。
+
+!!! success "推荐"
+
+    ```python
+    from typing_extensions import override
+
+
+    class Parent:
+        def do_something(self):
+            ...
+
+
+    class Child(Parent):
+        @override
+        def do_something(self):
+            ...
+    ```
+
+    ```python
+    # Docstring is trivial, @override is sufficient to indicate that docs can be
+    # found in the base class.
+    class Child(Parent):
+        @override
+        def do_something(self):
+            """See base class."""
+    ```
+
+!!! fail "不推荐"
+
+    ```python
+    class Parent:
+        def do_something(self):
+            ...
+
+
+    class Child(Parent):
+        def do_something(self):  # 没有标记为重写
+            ...
+    ```
+
 ### 3.8.4 类
 
 类应该在其定义下有一个用于描述该类的文档字符串。如果你的类有公共属性（`Attributes`），那么文档中应该有一个属性（`Attributes`
-）段，并且应该遵守和[函数参数](#args)相同的格式：
+）段，并且应该遵守和[函数参数](#args)相同的格式。公共属性（不包括 `@property` 装饰的属性）应该在这里的 Attributes 部分进行记录。
 
 ```python
 class SampleClass:
@@ -607,8 +658,9 @@ class SampleClass:
         self.likes_spam = likes_spam
         self.eggs = 0
 
-    def public_method(self):
-        """Performs operation blah."""
+    @property
+    def butter_sticks(self) -> int:
+        """The number of butter sticks we have."""
 ```
 
 所有类文档字符串都应以一行摘要开头，描述类实例所代表的内容。这意味着 Exception 的子类还应该描述异常代表什么，而不是它可能发生的上下文。
@@ -675,9 +727,7 @@ if i & (i - 1) == 0:  # True if i is 0 or a power of 2.
 
 ## 3.10 字符串
 
-即使参数都是字符串，也要使用 [f-string](https://docs.python.org/3/reference/lexical_analysis.html#f-strings)， `%`
-操作符或者 `format` 方法格式化字符串。不过也不能一概而论，你需要在 `+` 和 `%`（或 `format`）之间好好判定。不要将 `%`
-或 `format` 方法用于纯连接。
+使用 [f-string](https://docs.python.org/3/reference/lexical_analysis.html#f-strings)、`%` 操作符或 `format` 方法格式化字符串，即使参数都是字符串。不过，你需要在 `+`、`%`、`format` 和 f-strings 之间做出合理判断。使用 `+` 进行单次连接是可以的，但不要使用 `+` 进行格式化。
 
 !!! success "推荐"
 
@@ -707,20 +757,20 @@ if i & (i - 1) == 0:  # True if i is 0 or a power of 2.
 !!! success "推荐"
 
     ```python
-    items = ['<table>']
+    items = ['<table>\n']
     for last_name, first_name in employee_list:
-        items.append('<tr><td>%s, %s</td></tr>' % (last_name, first_name))
-    items.append('</table>')
+        items.append('|  |<br />| --- |<br />| %s, %s |<br />\n' % (last_name, first_name))
+    items.append('</table>\n')
     employee_table = ''.join(items)
     ```
 
 !!! fail "不推荐"
 
     ```python
-    employee_table = '<table>'
+    employee_table = '<table>\n'
     for last_name, first_name in employee_list:
-        employee_table += '<tr><td>%s, %s</td></tr>' % (last_name, first_name)
-    employee_table += '</table>'
+        employee_table += '|  |<br />| --- |<br />| %s, %s |<br />\n' % (last_name, first_name)
+    employee_table += '</table>\n'
     ```
 
 在同一个文件中，保持使用字符串引号的一致性。使用单引号 `'` 或者双引号 `"`
@@ -758,12 +808,6 @@ if i & (i - 1) == 0:  # True if i is 0 or a power of 2.
     ```python
     long_string = ("And this is fine if you cannot accept\n" +
                    "extraneous leading spaces.")
-    ```
-
-    ```python
-    long_string = textwrap.dedent("""\
-        This is also fine, because textwrap.dedent()
-        will collapse common leading spaces in each line.""")
     ```
 
     ```python
@@ -836,7 +880,7 @@ if i & (i - 1) == 0:  # True if i is 0 or a power of 2.
 
     ```python
     if not 0 <= p <= 1:
-        raise ValueError(f'Not a probability: {p!r}')
+        raise ValueError(f'Not a probability: {p=}')
 
     try:
         os.rmdir(workdir)
@@ -910,19 +954,32 @@ with contextlib.closing(urllib.urlopen("http://www.python.org/")) as front_page:
         print(line)
 ```
 
+在极少数情况下，基于上下文的资源管理不可行时，代码文档必须清楚地解释资源生命周期是如何管理的。
+
 ## 3.12 TODO 注释
 
 为临时代码使用 `TODO` 注释，它是一种短期解决方案，不算完美，但够好了。
 
-`TODO` 注释应该在所有开头处包含 `TODO` 字符串，紧跟着是用括号括起来的你的名字，邮箱地址或其它标识符。然后是一个可选的冒号。接着必须有一行注释，解释要做什么。
+`TODO` 注释应该在所有开头处包含 `TODO` 字符串，紧跟着一个冒号和一个空格。然后是一个问题跟踪链接或标识符，接着是一个空格或连字符。最后必须有一行注释，解释要做什么。
 
 主要目的是为了有一个统一的 `TODO` 格式，这样添加注释的人就可以搜索到（并可以按需提供更多细节）。写了 `TODO`
-注释并不保证写的人会亲自解决问题。当你写了一个 `TODO`，请注上你的名字。
+注释并不保证写的人会亲自解决问题。
 
-```python
-# TODO(crbug.com/192795): Investigate cpufreq optimizations.
-# TODO(yourusername): File an issue and use a '*' for repetition.
-```
+避免在 TODO 注释中使用个人或团队引用（如用户名或团队名称），因为这类信息很快就会过时。
+
+!!! success “推荐”
+
+    ```python
+    # TODO: crbug.com/192795 - Investigate cpufreq optimizations.
+    # TODO: Issue #123 - Document the return value.
+    ```
+
+!!! fail “不推荐”
+
+    ```python
+    # TODO(crbug.com/192795): Investigate cpufreq optimizations.  # 不推荐在新代码中使用
+    # TODO(yourusername): File an issue and use a '*' for repetition.  # 避免个人引用
+    ```
 
 如果你的 `TODO` 是 “将来做某事” 的形式，那么请确保你包含了一个指定的日期（2009年11月解决）或者一个特定的事件（等到所有的客户都可以处理
 XML 请求就移除这些代码）。
@@ -1057,7 +1114,9 @@ Getter 和 setter 应该遵循命名规范，例如： `get_foo()` 和 `set_foo(
 、`global_var_name`、`instance_var_name`、`function_parameter_name`、`local_var_name`,
 `query_proper_noun_for_thing`、`send_acronym_via_https`。
 
-函数名、变量名和文件名应该都是描述性的，避免使用缩写。特别是，不要使用对项目以外的读者来说模棱两可或不熟悉的缩写，也不要通过删除单词中的字母来缩写。
+命名应该具有描述性。这包括函数、类、变量、属性、文件和任何其他类型的命名实体。
+
+避免缩写。特别是，不要使用在项目外部不明确或不熟悉的缩写，也不要通过删除单词中的字母来缩写。
 
 总是使用 `.py` 文件扩展名，不要使用连字符。
 
@@ -1086,7 +1145,7 @@ Getter 和 setter 应该遵循命名规范，例如： `get_foo()` 和 `set_foo(
 - 对类名使用大写字母开头的单词（如 `CapWords`，即 Pascal 风格），但是模块名应该用小写加下划线的方式（如 `lower_with_under.py` ）。
   尽管已经有很多现存的模块使用类似于 `CapWords.py` 这样的命名，但现在已经不鼓励这样做，因为如果模块名碰巧和类名一致，这会让人困扰。（“想想
   我应该用 `import StringIO` 还是 `from StringIO import StringIO` ？”）
-- 新的单元测试文件遵循 PEP 8 兼容的下划线命名法，例如，`test_<被测试的方法><状态>`。为了与遵循 `CapWords` 函数名称的旧模块保持一致，方法名称中可以出现下划线，以便分隔名称的逻辑组件，其中以 test 开头的方法名可能采用 `test<被测试的方法><状态`> 的模式。
+- 新的单元测试文件遵循 PEP 8 兼容的下划线命名法，例如，`test_<Feature>_<test_case>`。为了与遵循 `CapWords` 函数名称的旧模块保持一致，方法名称中可以出现下划线，以便分隔名称的逻辑组件，其中以 test 开头的方法名可能采用 `test_<Feature>_<testCase>` 的模式。
 
 ### 3.16.3 文件命名
 
@@ -1112,8 +1171,13 @@ Python 文件名必须以 `.py` 扩展名结尾，并且不要包含连字符（
 
 ### 3.16.5 数学符号
 
-对于偏数学运算的代码，当它们匹配参考论文或算法中已建立的符号时，较短的变量名会违反样式指南。执行此操作时，请在注释或文档字符串中引用所有命名约定的来源，如果来源无法访问，请清楚地记录命名约定。对于公共
-API，最好使用符合 PEP8 的描述性名称（`descriptive_names`），这样更容易脱离上下文。
+对于偏数学运算的代码，优先使用在参考论文或算法中匹配已建立符号的较短变量名，即使这些名称会违反样式指南。
+
+使用基于已建立符号命名时：
+
+- 在注释或文档字符串中引用所有命名约定的来源，最好附上学术资源本身的超链接。如果来源不可访问，请清楚地记录命名约定。
+- 对于公共 API，优先使用符合 PEP8 的描述性名称（`descriptive_names`），因为它们更容易脱离上下文被理解。
+- 使用局部作用域的 `pylint: disable=invalid-name` 指令来抑制警告。对于少量变量，将该指令作为行尾注释；对于更多变量，将该指令放在代码块的开头。
 
 ## 3.17 Main
 
@@ -1127,7 +1191,7 @@ API，最好使用符合 PEP8 的描述性名称（`descriptive_names`），这�
 from absl import app
 ...
 
-def main(argv):
+def main(argv: Sequence[str]):
     # process non-flag arguments
     ...
 
@@ -1165,9 +1229,13 @@ if __name__ == '__main__':
 - 在方法中，只有在需要正确的类型信息时才标注 `self` 或 `cls` 。例如：
 
     ```python
-    @classmethod 
-    def create(cls: Type[T]) -> T: 
-        return cls()
+    from typing import Self
+
+    class BaseClass:
+        @classmethod
+        def create(cls) -> Self: ...
+
+        def difference(self, other: Self) -> float: ...
     ```
 
 - 同样，不必强制注释 `__init__` 的返回值（其中 None 是唯一有效的选项）。
@@ -1231,8 +1299,8 @@ Pylint 允许您将右括号移到新行，并与左括号对齐，但这么做�
 
     ```python
     def my_method(self,
-                other_arg: Optional[MyLongType]
-                ) -> Dict[OtherLongType, MyLongType]:
+                other_arg: MyLongType | None
+                ) -> dict[OtherLongType, MyLongType]:
     ...
     ```
 
@@ -1358,8 +1426,6 @@ _LossAndGradient: TypeAlias = tuple[tf.Tensor, tf.Tensor]
 ComplexTFMap: TypeAlias = Mapping[str, _LossAndGradient]
 ```
 
-其他例子还有复杂的嵌套类型和函数的多个返回变量（作为元组）。
-
 ### 3.19.7 忽略类型
 
 可以在行上使用特殊注释 `# type: ignore` 禁用类型检查。
@@ -1414,7 +1480,7 @@ def next(l: list[_T]) -> _T:
     return l.pop()
 
 def print_when_called(f: Callable[_P, _T]) -> Callable[_P, _T]:
-    def inner(*args: P.args, **kwargs: P.kwargs) -> R:
+    def inner(*args: _P.args, **kwargs: _P.kwargs) -> _T:
         print('Function was called')
         return f(*args, **kwargs)
     return inner
@@ -1484,8 +1550,32 @@ def deals_with_binary_data(x: bytes) -> bytes:
 
 ```python
 from collections.abc import Mapping, Sequence
-from typing import Any, Generic
+from typing import Any, Generic, cast, TYPE_CHECKING
 ```
+
+在类型注释中，优先使用 `collections.abc` 中的抽象类型（如 `Sequence`）而非具体类型（如 `list`）。这允许更灵活的参数类型，接受任何序列类型而不仅是列表。同样，优先使用内置的 `tuple` 而非 `typing.Tuple`。
+
+!!! success "推荐"
+
+    ```python
+    from collections.abc import Sequence
+
+    def transform_coordinates(
+        original: Sequence[tuple[float, float]],
+    ) -> Sequence[tuple[float, float]]:
+        ...
+    ```
+
+!!! fail "不推荐"
+
+    ```python
+    from typing import List, Tuple
+
+    def transform_coordinates(
+        original: List[Tuple[float, float]],
+    ) -> List[Tuple[float, float]]:
+        ...
+    ```
 
 既然这种从 `typing` 模块导入的方式会将导入项添加到本地命名空间， 那么 `typing` 或 `collections.abc` 中的任何名称都应该类似于关键字，而且不要在你的
 Python 代码中去定义（无论是否有类型）。如果模块中的类型和现有名称之间存在冲突，请使用 `import x as y` 导入。
@@ -1525,7 +1615,7 @@ def f(x: "sketch.Sketch"): ...
 
 由类型引起的循环依赖是一种代码味道。这些代码需要进行重构。虽然在技术上可以保持循环依赖关系，但是各种构建系统不允许这样做，因为每个模块都必须依赖于其他模块。
 
-将引起循环依赖导入的模块替换为 `Any` 。设置一个有意义的[别名](#3106) ，并使用此模块中的实际类型名称（Any 的任何属性都是
+将引起循环依赖导入的模块替换为 `Any` 。设置一个有意义的[别名](#3196) ，并使用此模块中的实际类型名称（Any 的任何属性都是
 Any）。别名定义应该与最后导入分开一行。
 
 ```python
