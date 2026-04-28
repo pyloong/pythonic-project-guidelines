@@ -3,7 +3,7 @@
 > 本文档为 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
 > 第二章 [Python Language Rules](https://google.github.io/styleguide/pyguide.html#2-python-language-rules) 的译文。
 >
-> 最后更新时间： 2026-04-26
+> 最后更新时间： 2026-04-28
 >
 > 如果有翻译错误或表述不准确的问题，欢迎提交 PR，感谢您的参与。
 
@@ -91,7 +91,7 @@ def viking_cafe_order(spam: str, beans: str, eggs: str | None = None) -> str:
 
     - 名字都为 `y` 的模块。
     - `y` 与当前模块中顶级名称冲突。
-    - `y` 与作为公共 API 一部分的公共参数名称（例如功能）冲突。
+    - `y` 与作为公共 API 一部分的公共参数名称（例如 `features`）冲突。
     - `y` 是一个长名称，使用不太方便。
     - `y` 在代码上下文中过于通用（例如：`from storage.file_system import options as fs_options`）
 
@@ -465,7 +465,7 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.11.1 定义
 
-条件表达式是对于 `if` 语句的一种更为简短的句法规则。例如 `x = 1 if cond else 2` 。
+条件表达式（有时称为"三元运算符"）是对于 `if` 语句的一种更为简短的句法规则。例如 `x = 1 if cond else 2` 。
 
 ### 1.11.2 优点
 
@@ -495,9 +495,12 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 !!! fail "不推荐"
 
     ```python
-    bad_line_breaking = ('yes' if predicate(value) else 'no')
-    portion_too_long = ('yes' if some_long_module.some_long_predicate_function(
-                            really_long_variable_name) else 'no, false, negative, nay')
+    bad_line_breaking = ('yes' if predicate(value) else
+                         'no')
+    portion_too_long = ('yes'
+                        if some_long_module.some_long_predicate_function(
+                            really_long_variable_name)
+                        else 'no, false, negative, nay')
     ```
 
 ## 1.12 默认参数值
@@ -766,7 +769,7 @@ class C:
 虽然 Python 的内建类型例如字典看上去拥有原子操作，但是在某些情形下它们仍然不是原子的（即，如果 `__hash__` 或 `__eq__` 被实现为
 Python 方法）且它们的原子性是靠不住的。你也不能指望原子变量赋值（因为这个反过来依赖字典）。
 
-优先使用 `Queue` 模块的 `Queue` 数据类型作为线程间的数据通信方式。另外，使用 `threading`
+优先使用 `queue` 模块的 `Queue` 数据类型作为线程间的数据通信方式。另外，使用 `threading`
 模块及其锁原语（`locking primitives`）。了解条件变量的合适使用方式，这样你就可以使用 `threading.Condition` 来取代低级别的锁了。
 
 ## 1.19 威力过大的特性
@@ -796,7 +799,7 @@ Python 是一种异常灵活的语言，它为你提供了很多花哨的特性�
 
 ## 1.20 新版 Python:`from __future__ imports`
 
-可以使用导入 future 这种特殊操在老版本中使用新版本的语法特性。
+可以使用导入 future 这种特殊操作在老版本中使用新版本的语法特性。
 
 ### 1.20.1 定义
 
@@ -816,7 +819,7 @@ Python 是一种异常灵活的语言，它为你提供了很多花哨的特性�
 
 **`from __future__ imports`**
 
-鼓励使用 `from __future__ import` 语句。所有的新代码都应该包含以下内容，现有的代码也应该在有条件的情况下进行兼容更新。
+鼓励使用 `from __future__ import` 语句。它允许给定的源文件从现在开始使用更现代的 Python 语法特性。
 
 在可能在 3.5 及更早版本（而非 3.7 及以上版本）上执行的代码中，导入：
 
@@ -826,7 +829,7 @@ from __future__ import generator_stop
 
 有关更多信息，请阅读 [Python future](https://docs.python.org/3/library/__future__.html) 语句定义文档。
 
-一旦你不再需要在隐藏 `__future__` 导入背后功能的版本上运行代码，就可以放心地删除这些导入行。在确信代码在当前环境运行没有问题之前，不要删除这些导入。即使您现在没有使用当前代码中特定的 future 导入启用的特性，保留这些导入便于以后修改代码时直接使用。
+一旦你不再需要在隐藏 `__future__` 导入背后功能的版本上运行代码，就可以放心地删除这些导入行。在确信代码只在足够现代的环境中运行之前，请不要删除这些导入。即使您现在没有使用当前代码中特定的 future 导入启用的特性，保留这些导入可以防止后续修改代码时无意中依赖于旧的行为。
 
 还有一些其他的 `from __future__` 语句，可以在需要的时候使用。
 

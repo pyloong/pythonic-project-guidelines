@@ -3,7 +3,7 @@
 > 本文档为 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
 > 第三章 [Python Style Rules](https://google.github.io/styleguide/pyguide.html#3-python-style-rules) 的译文。
 >
-> 最后更新时间： 2026-04-26
+> 最后更新时间： 2026-04-28
 >
 > 如果有翻译错误或表述不准确的问题，欢迎提交 PR，感谢您的参与。
 
@@ -410,7 +410,7 @@ x = ('This will build a very long long '
 ## 3.7 [Shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))
 
 大部分 `.py` 文件不必以 `#!`
-作为文件的开始。根据 [PEP-394](https://www.google.com/url?sa=D&q=http://www.python.org/dev/peps/pep-0394/)，程序的 `main`
+作为文件的开始。根据 [PEP-394](https://peps.python.org/pep-0394/)，程序的 `main`
 文件应该以 `#!/usr/bin/env python3` （用于支持虚拟环境）或者 `#!/usr/bin/python3` 开始。
 
 内核使用这一行来查找 Python 解释器，但是 Python 在导入模块时会忽略这一行。因此只有在打算直接执行的文件上添加才有必要。
@@ -435,17 +435,17 @@ Python 有一种独一无二的的注释方式：
 文件应该以描述模块内容和用法的文档字符串开始。
 
 ```python
-"""A one line summary of the module or program, terminated by a period.
+"""A one-line summary of the module or program, terminated by a period.
 
 Leave one blank line.  The rest of this docstring should contain an
 overall description of the module or program.  Optionally, it may also
 contain a brief description of exported classes and functions and/or usage
 examples.
 
-  Typical usage example:
+Typical usage example:
 
-  foo = ClassFoo()
-  bar = foo.function_bar()
+foo = ClassFoo()
+bar = foo.function_bar()
 """
 ```
 
@@ -505,6 +505,7 @@ directory.
 不要模仿像 `NumPy风格`，该风格通常将元组返回值记录为多个带有单独名称的返回值（从不提到元组）。
 相反，应将此类返回值描述为：`Returns: A tuple (mat_a, mat_b), where mat_a is …, and …`。
 文档字符串中的辅助名称不一定需要与函数体中使用的任何内部名称相对应（因为它们不是 API 的一部分）。
+如果函数使用了 `yield`（即生成器），`Yields:` 部分应该记录 `next()` 返回的对象，而不是调用所求值的生成器对象本身。
 
 #### *Raises:*
 
@@ -705,7 +706,7 @@ class SampleClass:
 # in the array and the array size and then do binary search to
 # get the exact number.
 
-if i & (i - 1) == 0:  # True if i is 0 or a power of 2.
+if i & (i-1) == 0:  # True if i is 0 or a power of 2.
 ```
 
 为了提高可读性，注释字符 `#` 应该至少离开代码两个空格，然后在注释本身的文本之前至少有一个空格。
@@ -752,25 +753,25 @@ if i & (i - 1) == 0:  # True if i is 0 or a power of 2.
 
 由于字符串是不可变的，这样做会创建不必要的临时对象，且导致二次方而不是线性的运行时间。尽管这种常见的累加可以在 CPython
 上进行优化，但这是一个实现细节。应用优化的条件不容易预测，并且可能会改变。作为替代方案，你可以将每个子串加入列表，然后在循环结束后用 `''.join`
-连接列表（也可以将每个子串写入一个 `io.StringIO` 缓存中）。
+连接列表（也可以将每个子串写入一个 `io.StringIO` 缓存中）。这些技术始终保持摊销线性的运行时间复杂度。
 
 !!! success "推荐"
 
     ```python
-    items = ['<table>\n']
+    items = ['<table>']
     for last_name, first_name in employee_list:
-        items.append('|  |<br />| --- |<br />| %s, %s |<br />\n' % (last_name, first_name))
-    items.append('</table>\n')
+        items.append('<tr><td>%s, %s</td></tr>' % (last_name, first_name))
+    items.append('</table>')
     employee_table = ''.join(items)
     ```
 
 !!! fail "不推荐"
 
     ```python
-    employee_table = '<table>\n'
+    employee_table = '<table>'
     for last_name, first_name in employee_list:
-        employee_table += '|  |<br />| --- |<br />| %s, %s |<br />\n' % (last_name, first_name)
-    employee_table += '</table>\n'
+        employee_table += '<tr><td>%s, %s</td></tr>' % (last_name, first_name)
+    employee_table += '</table>'
     ```
 
 在同一个文件中，保持使用字符串引号的一致性。使用单引号 `'` 或者双引号 `"`
@@ -798,6 +799,14 @@ if i & (i - 1) == 0:  # True if i is 0 or a power of 2.
 多行字符串不会随程序其余部分的缩进而缩进。如果要避免在字符串中嵌入额外的空白，可以使用串联的单行字符串或带有 [`textwrap.dedent()`](https://docs.python.org/3/library/textwrap.html#textwrap.dedent)
 的多行字符串来删除每行上的初始空白。
 
+!!! fail "不推荐"
+
+    ```python
+    long_string = """This is pretty ugly.
+    Don't do this.
+    """
+    ```
+
 !!! success "推荐"
 
     ```python
@@ -811,19 +820,16 @@ if i & (i - 1) == 0:  # True if i is 0 or a power of 2.
     ```
 
     ```python
+    long_string = ("And this too is fine if you cannot accept\n"
+                   "extraneous leading spaces.")
+    ```
+
+    ```python
     import textwrap
 
     long_string = textwrap.dedent("""\
         This is also fine, because textwrap.dedent()
         will collapse common leading spaces in each line.""")
-    ```
-
-!!! fail "不推荐"
-
-    ```python
-    long_string = """This is pretty ugly.
-    Don't do this.
-    """
     ```
 
 请注意，此处使用反斜杠并不违反禁止显式续行的规定；在这种情况下，反斜杠正在转义字符串文字中的换行符。
@@ -919,13 +925,13 @@ if i & (i - 1) == 0:  # True if i is 0 or a power of 2.
 在文件和 sockets 结束时，显式的关闭它。
 此规则自然扩展到内部使用套接字的可关闭资源，例如数据库连接，以及需要以类似方式关闭的其他资源。仅举几个例子，
 这还包括 [mmap mappings](https://docs.python.org/3/library/mmap.html),
-[h5py File objects](https://google.github.io/styleguide/pyguide.html#3-python-style-rules)和
+[h5py File objects](https://docs.h5py.org/en/stable/high/file.html)和
 [matplotlib.pyplot figure windows](https://matplotlib.org/2.1.0/api/_as_gen/matplotlib.pyplot.close.html)。
 
 除文件外，sockets 或其他类似文件的对象在没有必要的情况下打开，会有许多副作用，例如：
 
 - 它们可能会消耗有限的系统资源。如文件描述符。如果这些资源在使用后没有及时归还系统，那么用于处理这些对象的代码会将资源消耗殆尽。
-- 持有文件将会阻止对于文件的其他诸如移动、删除之类的操作。
+- 持有文件将会阻止对于文件的其他诸如移动、删除之类的操作，或卸载文件系统。
 - 仅仅是从逻辑上关闭文件和 Sockets，那么它们仍然可能会被其共享的程序在无意中进行读或者写操作。只有当它们真正被关闭后，对于它们尝试进行读或者写操作将会抛出异常，并使得问题快速显现出来。
 
 而且，幻想当文件对象析构时，文件和 sockets 会自动关闭， 试图将文件对象的生命周期和文件的状态绑定在一起的想法，都是不现实的。因为有如下原因：
@@ -960,33 +966,35 @@ with contextlib.closing(urllib.urlopen("http://www.python.org/")) as front_page:
 
 为临时代码使用 `TODO` 注释，它是一种短期解决方案，不算完美，但够好了。
 
-`TODO` 注释应该在所有开头处包含 `TODO` 字符串，紧跟着一个冒号和一个空格。然后是一个问题跟踪链接或标识符，接着是一个空格或连字符。最后必须有一行注释，解释要做什么。
-
+`TODO` 注释以全大写的 `TODO` 开头，紧跟一个冒号，然后是包含上下文的资源链接，最好是 bug 引用。bug 引用更受推荐，因为 bug 会被跟踪并且有后续评论。在此上下文之后，使用连字符 `-` 引入一个解释性字符串。
 主要目的是为了有一个统一的 `TODO` 格式，这样添加注释的人就可以搜索到（并可以按需提供更多细节）。写了 `TODO`
 注释并不保证写的人会亲自解决问题。
-
-避免在 TODO 注释中使用个人或团队引用（如用户名或团队名称），因为这类信息很快就会过时。
 
 !!! success “推荐”
 
     ```python
     # TODO: crbug.com/192795 - Investigate cpufreq optimizations.
-    # TODO: Issue #123 - Document the return value.
     ```
 
-!!! fail “不推荐”
+旧格式，以前推荐使用，但不鼓励在新代码中使用：
 
-    ```python
-    # TODO(crbug.com/192795): Investigate cpufreq optimizations.  # 不推荐在新代码中使用
-    # TODO(yourusername): File an issue and use a '*' for repetition.  # 避免个人引用
-    ```
+```python
+# TODO(crbug.com/192795): Investigate cpufreq optimizations.
+# TODO(yourusername): Use a “\*” here for concatenation operator.
+```
+
+避免在 TODO 注释中使用指向个人或团队的引用作为上下文：
+
+```python
+# TODO: @yourusername - File an issue and use a '*' for repetition.
+```
 
 如果你的 `TODO` 是 “将来做某事” 的形式，那么请确保你包含了一个指定的日期（2009年11月解决）或者一个特定的事件（等到所有的客户都可以处理
-XML 请求就移除这些代码）。
+XML 请求就移除这些代码），以便未来的代码维护者能够理解。Issue 非常适合用来跟踪这些内容。
 
 ## 3.13 导入格式
 
-每个导入应该独占一行，[`typing` 导入是个例外](#31912)。
+每个导入应该独占一行，[`typing` 和 `collections.abc` 导入是个例外](#31912)。
 
 !!! success "推荐"
 
@@ -1128,6 +1136,7 @@ Getter 和 setter 应该遵循命名规范，例如： `get_foo()` 和 `set_foo(
     - 作为 `try/except` 语句的异常标识符 `e` 。
     - 作为 `with` 语句声明的文件对象 `f`
     - 没有约束的私有类型变量（例如 `_T = TypeVar("_T")、_P = ParamSpec("_P")`）
+    - 与参考论文或算法中既定符号匹配的名称（参见 [数学符号命名](#3165)）
 
   注意不要滥用单字符命名。一般来说，描述性应与名称的可见性范围成比例。例如： `i` 可能是五行代码块的好名称，但在多个嵌套范围内，它可能太模糊了。
 
@@ -1139,7 +1148,7 @@ Getter 和 setter 应该遵循命名规范，例如： `get_foo()` 和 `set_foo(
 ### 3.16.2 命名约定
 
 - 所谓“内部（`Internal`）”表示仅模块内可用，或者在类内是保护或私有的。
-- 在模块变量和函数前加一个下划线(`_`)，可以在一定程度上保护它们（代码检查工具会标记访问受保护的成员）。
+- 在模块变量和函数前加一个下划线(`_`)，可以在一定程度上保护它们（代码检查工具会标记访问受保护的成员）。注意，单元测试可以访问被测试模块中受保护的常量。
 - 用双下划线（`__`  ）开头的实例变量或方法表示类内私有，但并不推荐这么做，因为会影响代码的可读性或可测试性，而且也不是真正的私有。建议使用 单下划线`_`。
 - 将相关的类和顶级函数放在同一个模块里。不像 Java ，没必要限制一个类一个模块。
 - 对类名使用大写字母开头的单词（如 `CapWords`，即 Pascal 风格），但是模块名应该用小写加下划线的方式（如 `lower_with_under.py` ）。
@@ -1494,7 +1503,7 @@ def add(a: AddableType, b: AddableType) -> AddableType:
     return a + b
 ```
 
-`typing` 模块中一个常见的预定义类型变量是 `AnyStr` 。可以用于标注 `bytes` 或 `unicode` ，但是必须是在相同类型中使用。
+`typing` 模块中一个常见的预定义类型变量是 `AnyStr` 。可以用于标注 `bytes` 或 `str` 的多个注解，且必须全部使用相同的类型。
 
 ```python
 from typing import AnyStr
