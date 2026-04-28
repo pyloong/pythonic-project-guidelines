@@ -672,15 +672,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#141_1" class="md-nav__link">
-    1.4.1 优点
+  <a href="#142" class="md-nav__link">
+    1.4.2 优点
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#142" class="md-nav__link">
-    1.4.2 缺点
+  <a href="#143" class="md-nav__link">
+    1.4.3 缺点
   </a>
   
 </li>
@@ -699,10 +699,10 @@
       
         <li class="md-nav__item">
   <a href="#15" class="md-nav__link">
-    1.5 全局变量
+    1.5 可变全局状态
   </a>
   
-    <nav class="md-nav" aria-label="1.5 全局变量">
+    <nav class="md-nav" aria-label="1.5 可变全局状态">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -966,8 +966,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1112_1" class="md-nav__link">
-    1.11.2 缺点
+  <a href="#1113" class="md-nav__link">
+    1.11.3 缺点
   </a>
   
 </li>
@@ -2084,15 +2084,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#141_1" class="md-nav__link">
-    1.4.1 优点
+  <a href="#142" class="md-nav__link">
+    1.4.2 优点
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#142" class="md-nav__link">
-    1.4.2 缺点
+  <a href="#143" class="md-nav__link">
+    1.4.3 缺点
   </a>
   
 </li>
@@ -2111,10 +2111,10 @@
       
         <li class="md-nav__item">
   <a href="#15" class="md-nav__link">
-    1.5 全局变量
+    1.5 可变全局状态
   </a>
   
-    <nav class="md-nav" aria-label="1.5 全局变量">
+    <nav class="md-nav" aria-label="1.5 可变全局状态">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2378,8 +2378,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1112_1" class="md-nav__link">
-    1.11.2 缺点
+  <a href="#1113" class="md-nav__link">
+    1.11.3 缺点
   </a>
   
 </li>
@@ -2753,7 +2753,7 @@
 <blockquote>
 <p>本文档为 <a href="https://google.github.io/styleguide/pyguide.html">Google Python Style Guide</a>
 第二章 <a href="https://google.github.io/styleguide/pyguide.html#2-python-language-rules">Python Language Rules</a> 的译文。</p>
-<p>最后更新时间： 2023-06-26</p>
+<p>最后更新时间： 2026-04-28</p>
 <p>如果有翻译错误或表述不准确的问题，欢迎提交 PR，感谢您的参与。</p>
 </blockquote>
 <h2 id="11-lint">1.1 Lint</h2>
@@ -2764,11 +2764,11 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 <h3 id="112">1.1.2 优点</h3>
 <p>可以捕获容易忽视的错误，例如输入错误，使用未赋值的变量等。</p>
 <h3 id="113">1.1.3 缺点</h3>
-<p><code>pylint</code> 不完美。要利用其优势，我们有时侯需要：围绕着它来写代码、抑制其告警、改进它或者忽略它。</p>
+<p><code>pylint</code> 不完美。要利用其优势，我们有时侯需要：围绕着它来写代码、抑制其告警或者改进它。</p>
 <h3 id="114">1.1.4 结论</h3>
 <p>确保对你的代码运行 <code>pylint</code>。</p>
 <p>抑制不准确的警告，以便能够将其他警告暴露出来。你可以通过设置一个行注释来抑制告警：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">do_PUT</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># WSGI name, so pylint: disable=invalid-name</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">do_PUT</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># WSGI name, so pylint: disable=invalid-name</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="o">...</span>
 </span></code></pre></div>
 <p><code>pylint</code> 警告是以一个符号名 (如 <code>empty-docstring</code>) 来标识的，Google 特定的警告以 g- 开头。</p>
@@ -2782,7 +2782,7 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 </span></code></pre></div>
 <p>相比较于之前使用的 <code>pylint: disable-msg</code>，本文推荐使用 <code>pylint: disable</code>。</p>
 <p>未使用参数的警告可以通过删除函数开头的变量来消除。并包含一个注释解释为什么删除它。使用 “Unused.” 注释就足够了。例如：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span> <span class="nf">viking_cafe_order</span><span class="p">(</span><span class="n">spam</span><span class="p">,</span> <span class="n">beans</span><span class="p">,</span> <span class="n">eggs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">viking_cafe_order</span><span class="p">(</span><span class="n">spam</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">beans</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">eggs</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">del</span> <span class="n">beans</span><span class="p">,</span> <span class="n">eggs</span>  <span class="c1"># Unused by vikings.</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">return</span> <span class="n">spam</span> <span class="o">+</span> <span class="n">spam</span> <span class="o">+</span> <span class="n">spam</span>
 </span></code></pre></div>
@@ -2805,7 +2805,7 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 <ul>
 <li>名字都为 <code>y</code> 的模块。</li>
 <li><code>y</code> 与当前模块中顶级名称冲突。</li>
-<li><code>y</code> 与作为公共 API 一部分的公共参数名称（例如功能）冲突。</li>
+<li><code>y</code> 与作为公共 API 一部分的公共参数名称（例如 <code>features</code>）冲突。</li>
 <li><code>y</code> 是一个长名称，使用不太方便。</li>
 <li><code>y</code> 在代码上下文中过于通用（例如：<code>from storage.file_system import options as fs_options</code>）</li>
 </ul>
@@ -2815,7 +2815,7 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 </li>
 </ul>
 <p>例如，模块 <code>sound.effects.echo</code> 可以用如下方式导入：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">sound.effects</span> <span class="kn">import</span> <span class="n">echo</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sound.effects</span><span class="w"> </span><span class="kn">import</span> <span class="n">echo</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="o">...</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">echo</span><span class="o">.</span><span class="n">EchoFilter</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">atten</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
@@ -2847,8 +2847,8 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 <div class="admonition success">
 <p class="admonition-title">推荐</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Reference absl.flags in code with the complete name (verbose).</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span> <span class="nn">absl.flags</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kn">from</span> <span class="nn">doctor.who</span> <span class="kn">import</span> <span class="n">jodie</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">absl.flags</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">doctor.who</span><span class="w"> </span><span class="kn">import</span> <span class="n">jodie</span>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">_FOO</span> <span class="o">=</span> <span class="n">absl</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_string</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </span></code></pre></div>
@@ -2856,8 +2856,8 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 <div class="admonition success">
 <p class="admonition-title">推荐</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Reference flags in code with just the module name (common).</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span> <span class="nn">absl</span> <span class="kn">import</span> <span class="n">flags</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">from</span> <span class="nn">doctor.who</span> <span class="kn">import</span> <span class="n">jodie</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">absl</span><span class="w"> </span><span class="kn">import</span> <span class="n">flags</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">doctor.who</span><span class="w"> </span><span class="kn">import</span> <span class="n">jodie</span>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">_FOO</span> <span class="o">=</span> <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_string</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </span></code></pre></div>
@@ -2867,7 +2867,7 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 <div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Unclear what module the author wanted and what will be imported.  The actual</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># import behavior depends on external factors controlling sys.path.</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># Which possible jodie module did the author intend to import?</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="kn">import</span> <span class="nn">jodie</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">jodie</span>
 </span></code></pre></div>
 </div>
 <p>尽管在某些环境中会发生这种情况，但不应假定主二进制文件所在的目录位于 <code>sys.path</code> 中。在这种情况下，代码应假定 <code>import jodie</code>
@@ -2876,21 +2876,20 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 <p>允许使用异常，但必须小心。</p>
 <h3 id="141">1.4.1 定义</h3>
 <p>异常是一种跳出代码块的正常控制流来处理错误或者其它异常条件的方式。</p>
-<h3 id="141_1">1.4.1 优点</h3>
+<h3 id="142">1.4.2 优点</h3>
 <p>正常操作代码的控制流不会和错误处理代码混在一起。当某种条件发生时，它也允许控制流跳过多个框架。例如，一步跳出 N
 个嵌套的函数，而不必继续执行错误的代码。</p>
-<h3 id="142">1.4.2 缺点</h3>
+<h3 id="143">1.4.3 缺点</h3>
 <p>可能会导致让人困惑的控制流。调用库时容易错过错误情况。</p>
 <h3 id="144">1.4.4 结论</h3>
 <p>异常必须遵守特定条件：</p>
 <ul>
 <li>
-<p>如果有必要，请使用内置异常类。例如，抛出 <code>ValureError</code>
-  来指示编程错误。比如违反了前置条件（需要一个正数，但传递了一个负数）。不要使用 <code>assert</code> 语句验证公共 API 的参数值。<code>assert</code>
-  用于确保内部正确性，不得强制使用，也不表示发生了某些意外事件。如果在后一种情况下需要使用异常，请使用 raise 语句。例如：  </p>
+<p>如果有必要，请使用内置异常类。例如，抛出 <code>ValueError</code>
+  来指示编程错误，比如违反了前置条件。不要使用 <code>assert</code> 语句来替代条件判断或验证前置条件。断言不得对应用程序逻辑至关重要。一个试金石测试是：移除断言不会破坏代码。<code>assert</code> 中的条件不保证会被求值。对于基于 pytest 的测试，使用 <code>assert</code> 来验证预期是可以接受且被期望的。例如：  </p>
 <div class="admonition success">
 <p class="admonition-title">推荐</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span> <span class="nf">connect_to_next_port</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimum</span><span class="p">):</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">connect_to_next_port</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimum</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Connects to the next available port.</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="sd">    Args:</span>
@@ -2908,17 +2907,18 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 </span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>        <span class="c1"># guarantee this specific behavioral reaction to API misuse.</span>
 </span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Min. port must be at least 1024, not </span><span class="si">{</span><span class="n">minimum</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
 </span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>    <span class="n">port</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_next_open_port</span><span class="p">(</span><span class="n">minimum</span><span class="p">)</span>
-</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">port</span><span class="p">:</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>    <span class="k">if</span> <span class="n">port</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>        <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span>
 </span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>            <span class="sa">f</span><span class="s1">&#39;Could not connect to service on port </span><span class="si">{</span><span class="n">minimum</span><span class="si">}</span><span class="s1"> or higher.&#39;</span><span class="p">)</span>
-</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>    <span class="k">assert</span> <span class="n">port</span> <span class="o">&gt;=</span> <span class="n">minimum</span><span class="p">,</span> <span class="p">(</span>
-</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>        <span class="sa">f</span><span class="s1">&#39;Unexpected port </span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s1"> when minimum was </span><span class="si">{</span><span class="n">minimum</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
-</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>    <span class="k">return</span> <span class="n">port</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>    <span class="c1"># The code does not depend on the result of this assert.</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>    <span class="k">assert</span> <span class="n">port</span> <span class="o">&gt;=</span> <span class="n">minimum</span><span class="p">,</span> <span class="p">(</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>        <span class="sa">f</span><span class="s1">&#39;Unexpected port </span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s1"> when minimum was </span><span class="si">{</span><span class="n">minimum</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>    <span class="k">return</span> <span class="n">port</span>
 </span></code></pre></div>
 </div>
 <div class="admonition fail">
 <p class="admonition-title">不推荐</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span> <span class="nf">connect_to_next_port</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimum</span><span class="p">):</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">connect_to_next_port</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimum</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Connects to the next available port.</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="sd">    Args:</span>
@@ -2927,46 +2927,48 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 </span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="sd">    Returns:</span>
 </span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="sd">        The new minimum port.</span>
 </span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="k">assert</span> <span class="n">minimum</span> <span class="o">&gt;=</span> <span class="mi">1024</span><span class="p">,</span> <span class="s1">&#39;Minimum port must be at least 1024.&#39;</span>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    <span class="n">port</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_next_open_port</span><span class="p">(</span><span class="n">minimum</span><span class="p">)</span>
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    <span class="k">assert</span> <span class="n">port</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>    <span class="k">return</span> <span class="n">port</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="c1"># The code depends on the previous assert.</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    <span class="k">assert</span> <span class="n">minimum</span> <span class="o">&gt;=</span> <span class="mi">1024</span><span class="p">,</span> <span class="s1">&#39;Minimum port must be at least 1024.&#39;</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    <span class="n">port</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_next_open_port</span><span class="p">(</span><span class="n">minimum</span><span class="p">)</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>    <span class="c1"># The type checking of the return statement relies on the assert.</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>    <span class="k">assert</span> <span class="n">port</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>    <span class="k">return</span> <span class="n">port</span>
 </span></code></pre></div>
 </div>
 </li>
 <li>
 <p>模块或包应该定义自己的特定域的异常基类。这个基类应该从内建的 <code>Exception</code> 类继承。异常名称应该以 <code>Error</code>
-  结尾，而且不应该难以理解（<code>foo.FooError</code>）。</p>
+  结尾，而且不应该引入重复（<code>foo.FooError</code>）。</p>
 </li>
 <li>
-<p>永远不要使用 <code>expect:</code> 语句来捕获所有异常，也不要捕获 <code>Exception</code> 或者   <code>StandardError</code>，除非：</p>
+<p>永远不要使用 <code>except:</code> 语句来捕获所有异常，也不要捕获 <code>Exception</code> 或者 <code>StandardError</code>，除非：</p>
 <ul>
 <li>重新触发该异常，或</li>
 <li>在程序中创建一个隔离点，其中异常不会传播，而是被记录和抑制，例如通过保护线程的最外层块来防止程序崩溃。</li>
 </ul>
 </li>
 </ul>
-<p>在异常这方面, Python 非常宽容， <code>expect:</code> 可以捕获所有拼写错误的名称， <code>sys.exit()</code> 调用， <code>Ctrl+C</code> 中断，<code>unittest</code>
+<p>在异常这方面, Python 非常宽容， <code>except:</code> 可以捕获所有拼写错误的名称， <code>sys.exit()</code> 调用， <code>Ctrl+C</code> 中断，<code>unittest</code>
   失败和所有你不想捕获的其他异常。</p>
 <ul>
 <li>尽量减少 <code>try/except</code> 块中的代码量。 <code>try</code> 块的体积越大，期望之外的异常就越容易被触发。在这些情况下，<code>try/except</code>
   块将隐藏真正的错误。</li>
 <li>使用 <code>finally</code> 子句来执行那些无论 <code>try</code> 块中有没有异常都应该被执行的代码。这对于清理资源常常很有用，例如关闭文件。</li>
 </ul>
-<h2 id="15">1.5 全局变量</h2>
-<p>避免全局变量。</p>
+<h2 id="15">1.5 可变全局状态</h2>
+<p>避免可变全局状态。</p>
 <h3 id="151">1.5.1 定义</h3>
-<p>定义在模块级的变量。</p>
+<p>定义在模块级的可变值或类的可变属性。</p>
 <h3 id="152">1.5.2 优点</h3>
 <p>偶尔有用。</p>
 <h3 id="153">1.5.3 缺点</h3>
 <ul>
-<li>破坏封装：这种设计可能会让有效目标的实现变得困难。例如使用全局状态来管理数据库连接，则同时连接两个不同的数据库变得困难（例如再迁移期间
+<li>破坏封装：这种设计可能会让有效目标的实现变得困难。例如使用全局状态来管理数据库连接，则同时连接两个不同的数据库变得困难（例如在迁移期间
 计算差异）。全局注册表也容易出现类似的问题。</li>
 <li>导入时可能改变模块行为，因为导入模块时会对模块级变量赋值。</li>
 </ul>
 <h3 id="154">1.5.4 结论</h3>
-<p>避免使用全局变量。</p>
+<p>避免使用可变全局状态。</p>
 <p>如果需要，全局变量应该仅在模块内部可用，并通过在名称前加上 <code>_</code> 前缀使其成为模块的内部变量。外部访问必须通过模块级的公共函数来访问。具体请参阅命名规范。请在注释或与注释相关的文档中说明使用可变全局状态的设计原因。</p>
 <p>模块级常量是允许和鼓励使用的。例如： <code>_MAX_HOLY_HANDGRENADE_COUNT = 3</code> (对内部使用常量)或 <code>SIR_LANCELOTS_FAVORITE_COLOR = "blue"</code>(对公共 API 常量)。常量的命名必须使用全大写和下划线。具体请参阅命名规范。</p>
 <h2 id="16">1.6 嵌套/局部/内部类或函数</h2>
@@ -2982,7 +2984,7 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 <li>可读性更差。</li>
 </ul>
 <h3 id="164">1.6.4 结论</h3>
-<p>可以使用，但有一些限制。避免使用嵌套函数或类，除非要关闭局部值。不要仅仅为了对用户隐藏模块的某个函数而进行嵌套。相反，应该在模块级别的名称上加 <code>_</code>
+<p>可以使用，但有一些限制。避免使用嵌套函数或类，除非要关闭除 <code>self</code> 或 <code>cls</code> 之外的局部值。不要仅仅为了对用户隐藏模块的某个函数而进行嵌套。相反，应该在模块级别的名称上加 <code>_</code>
 前缀，这样方便测试。</p>
 <h2 id="17">1.7 推导式和生成表达式</h2>
 <p>可以在简单情况下使用。</p>
@@ -2994,17 +2996,16 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 <h3 id="173">1.7.3 缺点</h3>
 <p>复杂的推导式或者生成器表达式可能难以阅读。</p>
 <h3 id="174">1.7.4 结论</h3>
-<p>适用于简单情况。每个部分应该单独置于一行：<code>mapping</code> 表达式，<code>for</code> 子句，<code>filter</code> 表达式。禁止多重 <code>for</code>
-语句或过滤器表达式。复杂情况下还是使用循环。</p>
+<p>允许使用推导式，但是不允许使用多重 <code>for</code> 子句或过滤器表达式。优化可读性而非简洁性。</p>
 <div class="admonition success">
 <p class="admonition-title">推荐</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">mapping_expr</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">iterable</span> <span class="k">if</span> <span class="n">filter_expr</span><span class="p">]</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">result</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">value</span><span class="p">}</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">iterable</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>          <span class="k">if</span> <span class="n">a_long_filter_expression</span><span class="p">(</span><span class="n">value</span><span class="p">)]</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">complicated_transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>          <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">iterable</span> <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">result</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="n">is_valid</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">interesting_iterable</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="k">if</span> <span class="n">a_longer_filter_expression</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">]</span>
 </span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
 </span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="n">descriptive_name</span> <span class="o">=</span> <span class="p">[</span>
 </span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    <span class="n">transform</span><span class="p">({</span><span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">value</span><span class="p">},</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
@@ -3018,32 +3019,29 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 </span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>        <span class="k">if</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
 </span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
 </span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>
-</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="k">return</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">complicated_transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">long_generator_function</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
-</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>        <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
-</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>
-</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="n">squares_generator</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="k">return</span> <span class="p">{</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>    <span class="n">x</span><span class="p">:</span> <span class="n">complicated_transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">long_generator_function</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>    <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="p">}</span>
 </span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>
-</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="n">unique_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span> <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>
-</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="n">eat</span><span class="p">(</span><span class="n">jelly_bean</span> <span class="k">for</span> <span class="n">jelly_bean</span> <span class="ow">in</span> <span class="n">jelly_beans</span>
-</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>    <span class="k">if</span> <span class="n">jelly_bean</span><span class="o">.</span><span class="n">color</span> <span class="o">==</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="n">unique_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span> <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
 </span></code></pre></div>
 </div>
 <div class="admonition fail">
 <p class="admonition-title">不推荐</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">complicated_transform</span><span class="p">(</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>          <span class="n">x</span><span class="p">,</span> <span class="n">some_argument</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>      <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">iterable</span> <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">result</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">]</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="k">return</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>        <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">y</span>
-</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>        <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>        <span class="k">if</span> <span class="n">y</span> <span class="o">!=</span> <span class="n">z</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">result</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">]</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">return</span> <span class="p">(</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">y</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="k">if</span> <span class="n">y</span> <span class="o">!=</span> <span class="n">z</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="p">)</span>
 </span></code></pre></div>
 </div>
 <h2 id="18">1.8 默认迭代器和操作符</h2>
@@ -3084,7 +3082,7 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 <p>如果生成器管理着一个昂贵的资源，请确保强制进行清理。</p>
 <p>一个很好的清理方式是使用上下文管理器 <a href="https://peps.python.org/pep-0533/">PEP-0533</a> 来包装生成器。</p>
 <h2 id="110-lambda">1.10 Lambda 函数</h2>
-<p>适用于单行函数。常用于为 <code>map()</code> 和 <code>filter()</code> 之类的高阶函数定义回调函数或者操作符。</p>
+<p>适用于单行函数。对于 <code>map()</code> 或 <code>filter()</code> 结合 <code>lambda</code> 的用法，更推荐使用生成器表达式。</p>
 <h3 id="1101">1.10.1 定义</h3>
 <p><code>Lambdas</code> 在一个表达式中定义匿名函数，而不是在语句中。</p>
 <h3 id="1102">1.10.2 优点</h3>
@@ -3096,36 +3094,41 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 <p>对于常见的操作符，例如乘法操作符，使用 <code>operator</code> 模块中的函数以代替 <code>lambda</code> 函数。例如，推荐使用 <code>operator.mul</code>
 而不是 <code>lambda x, y: x * y</code> 。</p>
 <h2 id="111_1">1.11 条件表达式</h2>
-<p>适用于单行函数。</p>
+<p>适用于简单情况。</p>
 <h3 id="1111">1.11.1 定义</h3>
-<p>条件表达式是对于 <code>if</code> 语句的一种更为简短的句法规则。例如 <code>x = 1 if cond else 2</code> 。</p>
+<p>条件表达式（有时称为"三元运算符"）是对于 <code>if</code> 语句的一种更为简短的句法规则。例如 <code>x = 1 if cond else 2</code> 。</p>
 <h3 id="1112">1.11.2 优点</h3>
 <p>比 <code>if</code> 语句更加简短和方便。</p>
-<h3 id="1112_1">1.11.2 缺点</h3>
+<h3 id="1113">1.11.3 缺点</h3>
 <p>比 <code>if</code> 语句难于阅读。如果表达式很长，难于定位条件。</p>
 <h3 id="1114">1.11.4 结论</h3>
-<p>适用于单行函数。每个部分必须放在一行上： <code>true-expression, if-expression, else-expression</code>
+<p>适用于简单情况。每个部分必须放在一行上： <code>true-expression, if-expression, else-expression</code>
 。在其他情况下，推荐使用完整的 <code>if</code> 语句。</p>
 <div class="admonition success">
 <p class="admonition-title">推荐</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">one_line</span> <span class="o">=</span> <span class="s1">&#39;yes&#39;</span> <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;no&#39;</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">slightly_split</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;yes&#39;</span> <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;no, nein, nyet&#39;</span><span class="p">)</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">the_longest_ternary_style_that_can_be_done</span> <span class="o">=</span> <span class="p">(</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="s1">&#39;yes, true, affirmative, confirmed, correct&#39;</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;no, false, negative, nay&#39;</span><span class="p">)</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">slightly_split</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;yes&#39;</span> <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>                  <span class="k">else</span> <span class="s1">&#39;no, nein, nyet&#39;</span><span class="p">)</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">the_longest_ternary_style_that_can_be_done</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="s1">&#39;yes, true, affirmative, confirmed, correct&#39;</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span class="k">else</span> <span class="s1">&#39;no, false, negative, nay&#39;</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
 <div class="admonition fail">
 <p class="admonition-title">不推荐</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">bad_line_breaking</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;yes&#39;</span> <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;no&#39;</span><span class="p">)</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">portion_too_long</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;yes&#39;</span> <span class="k">if</span> <span class="n">some_long_module</span><span class="o">.</span><span class="n">some_long_predicate_function</span><span class="p">(</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>                        <span class="n">really_long_variable_name</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;no, false, negative, nay&#39;</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">bad_line_breaking</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;yes&#39;</span> <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">else</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>                     <span class="s1">&#39;no&#39;</span><span class="p">)</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">portion_too_long</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;yes&#39;</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>                    <span class="k">if</span> <span class="n">some_long_module</span><span class="o">.</span><span class="n">some_long_predicate_function</span><span class="p">(</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>                        <span class="n">really_long_variable_name</span><span class="p">)</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>                    <span class="k">else</span> <span class="s1">&#39;no, false, negative, nay&#39;</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
 <h2 id="112_1">1.12 默认参数值</h2>
 <p>适用于大部分情况。</p>
 <h3 id="1121">1.12.1 定义</h3>
-<p>你可以在函数参数列表的最后指定变量的值，例如， <code>def(a, b=0):</code> 。如果调用 <code>foo</code> 时只带一个参数，则 <code>b</code> 被设为 <code>0</code>，如果带两个参数，则 <code>b</code> 的值等于第二个参数。</p>
+<p>你可以在函数参数列表的最后指定变量的值，例如， <code>def foo(a, b=0):</code> 。如果调用 <code>foo</code> 时只带一个参数，则 <code>b</code> 被设为 <code>0</code>，如果带两个参数，则 <code>b</code> 的值等于第二个参数。</p>
 <h3 id="1122">1.12.2 优点</h3>
 <p>你经常会碰到一些使用大量默认值的函数，但偶尔（比较少见）你想要覆盖这些默认值。默认参数值提供了一种简单的方法来完成这件事，你不需要为这些罕见的例外定义大量函数。同时，
 Python 也不支持重载方法和函数，默认参数是一种“模拟”重载行为的简单方式。</p>
@@ -3135,40 +3138,40 @@ Python 也不支持重载方法和函数，默认参数是一种“模拟”重�
 <p>鼓励使用，不要在函数或方法定义中使用可变对象作为默认值。</p>
 <div class="admonition success">
 <p class="admonition-title">推荐</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="k">if</span> <span class="n">b</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>        <span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>
 </span></code></pre></div>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Sequence</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="k">if</span> <span class="n">b</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>        <span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>
 </span></code></pre></div>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Sequence</span> <span class="o">=</span> <span class="p">()):</span>  <span class="c1"># Empty tuple OK since tuples are immutable</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Sequence</span> <span class="o">=</span> <span class="p">()):</span>  <span class="c1"># Empty tuple OK since tuples are immutable</span>
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    <span class="o">...</span>
 </span></code></pre></div>
 </div>
 <div class="admonition fail">
 <p class="admonition-title">不推荐</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="p">[]):</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="p">[]):</span>
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>     <span class="o">...</span>
 </span></code></pre></div>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()):</span>  <span class="c1"># The time the module was loaded???</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()):</span>  <span class="c1"># The time the module was loaded???</span>
 </span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>     <span class="o">...</span>
 </span></code></pre></div>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kn">from</span> <span class="nn">absl</span> <span class="kn">import</span> <span class="n">flags</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">absl</span><span class="w"> </span><span class="kn">import</span> <span class="n">flags</span>
 </span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">_FOO</span> <span class="o">=</span> <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_string</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">_FOO</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>  <span class="c1"># sys.argv has not yet been parsed...</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">_FOO</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>  <span class="c1"># sys.argv has not yet been parsed...</span>
 </span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>     <span class="o">...</span>
 </span></code></pre></div>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Mapping</span> <span class="o">=</span> <span class="p">{}):</span>  <span class="c1"># Could still get passed to unchecked code</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Mapping</span> <span class="o">=</span> <span class="p">{}):</span>  <span class="c1"># Could still get passed to unchecked code</span>
 </span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>     <span class="o">...</span>
 </span></code></pre></div>
 </div>
 <h2 id="113-properties">1.13 属性（properties）</h2>
 <p>属性（properties）可以用于控制需要进行简单计算或逻辑的属性的获取或设置。其实现必须符合常规属性访问的一般期望：它们应该是简单，直接，且易于理解。</p>
 <h3 id="1131">1.13.1 定义</h3>
-<p>一种用于包装方法调用的方式。当运算量不大，它是获取和设置属性的标准方式。</p>
+<p>一种用于包装方法调用的方式，用于获取和设置属性的标准属性访问。</p>
 <h3 id="1132">1.13.2 优点</h3>
 <ul>
 <li>允许进行属性访问和赋值的 API，而不是调用 <code>getter</code> 和 <code>setter</code> 方法。</li>
@@ -3215,7 +3218,7 @@ Python 也不支持重载方法和函数，默认参数是一种“模拟”重�
 </span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
 </span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">handle_multiple_of_ten</span><span class="p">()</span>
 </span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>
-</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 </span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>    <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>        <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
 </span></code></pre></div>
@@ -3228,7 +3231,7 @@ Python 也不支持重载方法和函数，默认参数是一种“模拟”重�
 </span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">10</span><span class="p">:</span>
 </span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">handle_multiple_of_ten</span><span class="p">()</span>
 </span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
-</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 </span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="ow">or</span> <span class="p">[]</span>
 </span></code></pre></div>
 </div>
@@ -3245,28 +3248,32 @@ Python 也不支持重载方法和函数，默认参数是一种“模拟”重�
 对一个块中的某个名称的任何赋值都会导致Python 将对该名称的全部引用当做局部变量，甚至是赋值前的处理。
 如果碰到 <code>global</code> 声明，该名称就会被视作全局变量。</p>
 <p>一个使用这个特性的例子：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">def</span> <span class="nf">get_adder</span><span class="p">(</span><span class="n">summand1</span><span class="p">):</span>
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a function that adds numbers to a given number.&quot;&quot;&quot;</span>
-</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>    <span class="k">def</span> <span class="nf">adder</span><span class="p">(</span><span class="n">summand2</span><span class="p">):</span>
-</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>        <span class="k">return</span> <span class="n">summand1</span> <span class="o">+</span> <span class="n">summand2</span>
-</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>
-</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>    <span class="k">return</span> <span class="n">adder</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_adder</span><span class="p">(</span><span class="n">summand1</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a function that adds numbers to a given number.&quot;&quot;&quot;</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">adder</span><span class="p">(</span><span class="n">summand2</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>        <span class="k">return</span> <span class="n">summand1</span> <span class="o">+</span> <span class="n">summand2</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>    <span class="k">return</span> <span class="n">adder</span>
 </span></code></pre></div>
 <h3 id="1162">1.16.2 优点</h3>
 <p>通常可以带来更加清晰，优雅的代码。尤其会让有经验的 Lisp 和 Scheme （还有 Haskell， ML 等）程序员感到欣慰。</p>
 <h3 id="1163">1.16.3 缺点</h3>
 <p>可能导致让人迷惑的
-bug。例如下面这个依据 <a href="http://www.google.com/url?sa=D&amp;q=http://www.python.org/dev/peps/pep-0227/">PEP-0227</a> 的例子：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">i</span> <span class="o">=</span> <span class="mi">4</span>
-</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>    <span class="k">def</span> <span class="nf">bar</span><span class="p">():</span>
-</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>    <span class="c1"># ...</span>
-</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>    <span class="c1"># A bunch of code here</span>
+bug。例如下面这个依据 <a href="https://peps.python.org/pep-0227/">PEP-0227</a> 的例子：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="n">i</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">]):</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bar</span><span class="p">():</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>    <span class="c1"># ...</span>
-</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>  <span class="c1"># Ah, i *is* local to foo, so this is what bar sees</span>
-</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>    <span class="n">bar</span><span class="p">()</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>    <span class="c1"># A bunch of code here</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>    <span class="c1"># ...</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>  <span class="c1"># Ah, i *is* local to foo, so this is what bar sees</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>    <span class="n">bar</span><span class="p">()</span>
 </span></code></pre></div>
 <p>因此 <code>foo([1, 2, 3])</code> 会打印 <code>1 2 3 3</code> 而不是 <code>1 2 3 4</code></p>
 <h3 id="1164">1.16.4 结论</h3>
@@ -3277,14 +3284,14 @@ bug。例如下面这个依据 <a href="http://www.google.com/url?sa=D&amp;q=htt
 <p>用于<a href="https://docs.python.org/3/glossary.html#term-decorator">函数及方法的装饰器</a>（也就是 <code>@</code>标记）。
 最常见的装饰器是 <code>@property</code>，用于将普通方法转换为动态运算的属性。不过，装饰器语法也允许用户自定义装饰器。
 特别地，对于某个函数 <code>my_decorator</code>，下面的两段代码是等效的：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">:</span>
 </span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>    <span class="nd">@my_decorator</span>
-</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>    <span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 </span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>        <span class="c1"># method body ...</span>
 </span></code></pre></div>
 <p>相当于：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>    <span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">:</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 </span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>        <span class="c1"># method body ...</span>
 </span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>    <span class="n">method</span> <span class="o">=</span> <span class="n">my_decorator</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
 </span></code></pre></div>
@@ -3309,7 +3316,7 @@ bug。例如下面这个依据 <a href="http://www.google.com/url?sa=D&amp;q=htt
 <p>不要依赖内建类型的原子性。</p>
 <p>虽然 Python 的内建类型例如字典看上去拥有原子操作，但是在某些情形下它们仍然不是原子的（即，如果 <code>__hash__</code> 或 <code>__eq__</code> 被实现为
 Python 方法）且它们的原子性是靠不住的。你也不能指望原子变量赋值（因为这个反过来依赖字典）。</p>
-<p>优先使用 <code>Queue</code> 模块的 <code>Queue</code> 数据类型作为线程间的数据通信方式。另外，使用 <code>threading</code>
+<p>优先使用 <code>queue</code> 模块的 <code>Queue</code> 数据类型作为线程间的数据通信方式。另外，使用 <code>threading</code>
 模块及其锁原语（<code>locking primitives</code>）。了解条件变量的合适使用方式，这样你就可以使用 <code>threading.Condition</code> 来取代低级别的锁了。</p>
 <h2 id="119">1.19 威力过大的特性</h2>
 <p>避免使用这些特性。</p>
@@ -3326,7 +3333,7 @@ Python 方法）且它们的原子性是靠不住的。你也不能指望原子�
 <p>在你的代码中避免这些特性。</p>
 <p>内部需要使用这些特性的标准库模块和类可以使用（例如， <code>abc.ABCMeta</code> 、 <code>dataclasses</code> 和 <code>enum</code>）。</p>
 <h2 id="120-pythonfrom-__future__-imports">1.20 新版 Python:<code>from __future__ imports</code></h2>
-<p>可以使用导入 future 这种特殊操在老版本中使用新版本的语法特性。</p>
+<p>可以使用导入 future 这种特殊操作在老版本中使用新版本的语法特性。</p>
 <h3 id="1201">1.20.1 定义</h3>
 <p>使用 <code>from __future__ import</code> 语句可以在老版本中启用新版本的功能。</p>
 <h3 id="1202">1.20.2 优点</h3>
@@ -3339,13 +3346,12 @@ Python 方法）且它们的原子性是靠不住的。你也不能指望原子�
 </ul>
 <h3 id="1204">1.20.4 结论</h3>
 <p><strong><code>from __future__ imports</code></strong></p>
-<p>推荐使用 <code>from __future__ import</code> 语句。所有的新代码都应该包含以下内容，现有的代码也应该在有条件的情况下进行兼容更新。</p>
-<p>在 3.5 或更早的版本（而不是 &gt;= 3.7）上执行的代码中，导入：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">generator_stop</span>
+<p>鼓励使用 <code>from __future__ import</code> 语句。它允许给定的源文件从现在开始使用更现代的 Python 语法特性。</p>
+<p>在可能在 3.5 及更早版本（而非 3.7 及以上版本）上执行的代码中，导入：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">generator_stop</span>
 </span></code></pre></div>
 <p>有关更多信息，请阅读 <a href="https://docs.python.org/3/library/__future__.html">Python future</a> 语句定义文档。</p>
-<p>不要删除这些导入，除非您确信代码在当前环境运行没有问题。即使您现在没有使用当前代码中特定的 future 导入启用的特性，
-保留这些导入便于以后修改代码时直接使用。</p>
+<p>一旦你不再需要在隐藏 <code>__future__</code> 导入背后功能的版本上运行代码，就可以放心地删除这些导入行。在确信代码只在足够现代的环境中运行之前，请不要删除这些导入。即使您现在没有使用当前代码中特定的 future 导入启用的特性，保留这些导入可以防止后续修改代码时无意中依赖于旧的行为。</p>
 <p>还有一些其他的 <code>from __future__</code> 语句，可以在需要的时候使用。</p>
 <h2 id="121_1">1.21 代码类型标注</h2>
 <p>可以根据 <a href="https://www.python.org/dev/peps/pep-0484/">PEP-484</a>
@@ -3354,7 +3360,7 @@ Python 方法）且它们的原子性是靠不住的。你也不能指望原子�
 尽可能在源代码中进行标注，对于第三方库或扩展模块可以使用 <code>pyi</code> 文件。</p>
 <h3 id="1211">1.21.1 定义</h3>
 <p>类型标注（或类型提示）可以用于函数或方法的参数和返回值</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 </span></code></pre></div>
 <p>还可以使用类似 <a href="https://www.python.org/dev/peps/pep-0526/">PEP-526</a> 的语法声明变量的类型：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">a</span><span class="p">:</span> <span class="n">SomeType</span> <span class="o">=</span> <span class="n">some_func</span><span class="p">()</span>
