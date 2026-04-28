@@ -3,7 +3,7 @@
 > 本文档为 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
 > 第二章 [Python Language Rules](https://google.github.io/styleguide/pyguide.html#2-python-language-rules) 的译文。
 >
-> 最后更新时间： 2023-06-26
+> 最后更新时间： 2026-04-28
 >
 > 如果有翻译错误或表述不准确的问题，欢迎提交 PR，感谢您的参与。
 
@@ -22,7 +22,7 @@ Python 的动态特性，有些警告可能不对。不过伪告警应该很少�
 
 ### 1.1.3 缺点
 
-`pylint` 不完美。要利用其优势，我们有时侯需要：围绕着它来写代码、抑制其告警、改进它或者忽略它。
+`pylint` 不完美。要利用其优势，我们有时侯需要：围绕着它来写代码、抑制其告警或者改进它。
 
 ### 1.1.4 结论
 
@@ -58,7 +58,7 @@ pylint --help-msg=invalid-name
 未使用参数的警告可以通过删除函数开头的变量来消除。并包含一个注释解释为什么删除它。使用 “Unused.” 注释就足够了。例如：
 
 ```python
-def viking_cafe_order(spam, beans, eggs=None):
+def viking_cafe_order(spam: str, beans: str, eggs: str | None = None) -> str:
     del beans, eggs  # Unused by vikings.
     return spam + spam + spam
 ```
@@ -91,7 +91,7 @@ def viking_cafe_order(spam, beans, eggs=None):
 
     - 名字都为 `y` 的模块。
     - `y` 与当前模块中顶级名称冲突。
-    - `y` 与作为公共 API 一部分的公共参数名称（例如功能）冲突。
+    - `y` 与作为公共 API 一部分的公共参数名称（例如 `features`）冲突。
     - `y` 是一个长名称，使用不太方便。
     - `y` 在代码上下文中过于通用（例如：`from storage.file_system import options as fs_options`）
 
@@ -176,12 +176,12 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 异常是一种跳出代码块的正常控制流来处理错误或者其它异常条件的方式。
 
-### 1.4.1 优点
+### 1.4.2 优点
 
 正常操作代码的控制流不会和错误处理代码混在一起。当某种条件发生时，它也允许控制流跳过多个框架。例如，一步跳出 N
 个嵌套的函数，而不必继续执行错误的代码。
 
-### 1.4.2 缺点
+### 1.4.3 缺点
 
 可能会导致让人困惑的控制流。调用库时容易错过错误情况。
 
@@ -189,22 +189,21 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 异常必须遵守特定条件：
 
-- 如果有必要，请使用内置异常类。例如，抛出 `ValureError`
-  来指示编程错误。比如违反了前置条件（需要一个正数，但传递了一个负数）。不要使用 `assert` 语句验证公共 API 的参数值。`assert`
-  用于确保内部正确性，不得强制使用，也不表示发生了某些意外事件。如果在后一种情况下需要使用异常，请使用 raise 语句。例如：  
+- 如果有必要，请使用内置异常类。例如，抛出 `ValueError`
+  来指示编程错误，比如违反了前置条件。不要使用 `assert` 语句来替代条件判断或验证前置条件。断言不得对应用程序逻辑至关重要。一个试金石测试是：移除断言不会破坏代码。`assert` 中的条件不保证会被求值。对于基于 pytest 的测试，使用 `assert` 来验证预期是可以接受且被期望的。例如：  
 
     !!! success "推荐"
 
         ```python
-        def connect_to_next_port(self, minimum):
+        def connect_to_next_port(self, minimum: int) -> int:
             """Connects to the next available port.
 
             Args:
                 minimum: A port value greater or equal to 1024.
-            
+
             Returns:
                 The new minimum port.
-            
+
             Raises:
                 ConnectionError: If no available port is found.
             """
@@ -214,9 +213,10 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
                 # guarantee this specific behavioral reaction to API misuse.
                 raise ValueError(f'Min. port must be at least 1024, not {minimum}.')
             port = self._find_next_open_port(minimum)
-            if not port:
+            if port is None:
                 raise ConnectionError(
                     f'Could not connect to service on port {minimum} or higher.')
+            # The code does not depend on the result of this assert.
             assert port >= minimum, (
                 f'Unexpected port {port} when minimum was {minimum}.')
             return port
@@ -225,42 +225,44 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
     !!! fail "不推荐"
 
         ```python
-        def connect_to_next_port(self, minimum):
+        def connect_to_next_port(self, minimum: int) -> int:
             """Connects to the next available port.
 
             Args:
                 minimum: A port value greater or equal to 1024.
-            
+
             Returns:
                 The new minimum port.
             """
+            # The code depends on the previous assert.
             assert minimum >= 1024, 'Minimum port must be at least 1024.'
             port = self._find_next_open_port(minimum)
+            # The type checking of the return statement relies on the assert.
             assert port is not None
             return port
         ```
 
 - 模块或包应该定义自己的特定域的异常基类。这个基类应该从内建的 `Exception` 类继承。异常名称应该以 `Error`
-  结尾，而且不应该难以理解（`foo.FooError`）。
-- 永远不要使用 `expect:` 语句来捕获所有异常，也不要捕获 `Exception` 或者   `StandardError`，除非：
+  结尾，而且不应该引入重复（`foo.FooError`）。
+- 永远不要使用 `except:` 语句来捕获所有异常，也不要捕获 `Exception` 或者 `StandardError`，除非：
 
     - 重新触发该异常，或
     - 在程序中创建一个隔离点，其中异常不会传播，而是被记录和抑制，例如通过保护线程的最外层块来防止程序崩溃。
 
-  在异常这方面, Python 非常宽容， `expect:` 可以捕获所有拼写错误的名称， `sys.exit()` 调用， `Ctrl+C` 中断，`unittest`
+  在异常这方面, Python 非常宽容， `except:` 可以捕获所有拼写错误的名称， `sys.exit()` 调用， `Ctrl+C` 中断，`unittest`
   失败和所有你不想捕获的其他异常。
 
 - 尽量减少 `try/except` 块中的代码量。 `try` 块的体积越大，期望之外的异常就越容易被触发。在这些情况下，`try/except`
   块将隐藏真正的错误。
 - 使用 `finally` 子句来执行那些无论 `try` 块中有没有异常都应该被执行的代码。这对于清理资源常常很有用，例如关闭文件。
 
-## 1.5 全局变量
+## 1.5 可变全局状态
 
-避免全局变量。
+避免可变全局状态。
 
 ### 1.5.1 定义
 
-定义在模块级的变量。
+定义在模块级的可变值或类的可变属性。
 
 ### 1.5.2 优点
 
@@ -268,13 +270,13 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.5.3 缺点
 
-- 破坏封装：这种设计可能会让有效目标的实现变得困难。例如使用全局状态来管理数据库连接，则同时连接两个不同的数据库变得困难（例如再迁移期间
+- 破坏封装：这种设计可能会让有效目标的实现变得困难。例如使用全局状态来管理数据库连接，则同时连接两个不同的数据库变得困难（例如在迁移期间
 计算差异）。全局注册表也容易出现类似的问题。
 - 导入时可能改变模块行为，因为导入模块时会对模块级变量赋值。
 
 ### 1.5.4 结论
 
-避免使用全局变量。
+避免使用可变全局状态。
 
 如果需要，全局变量应该仅在模块内部可用，并通过在名称前加上 `_` 前缀使其成为模块的内部变量。外部访问必须通过模块级的公共函数来访问。具体请参阅命名规范。请在注释或与注释相关的文档中说明使用可变全局状态的设计原因。
 
@@ -300,7 +302,7 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.6.4 结论
 
-可以使用，但有一些限制。避免使用嵌套函数或类，除非要关闭局部值。不要仅仅为了对用户隐藏模块的某个函数而进行嵌套。相反，应该在模块级别的名称上加 `_`
+可以使用，但有一些限制。避免使用嵌套函数或类，除非要关闭除 `self` 或 `cls` 之外的局部值。不要仅仅为了对用户隐藏模块的某个函数而进行嵌套。相反，应该在模块级别的名称上加 `_`
 前缀，这样方便测试。
 
 ## 1.7 推导式和生成表达式
@@ -322,19 +324,18 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.7.4 结论
 
-适用于简单情况。每个部分应该单独置于一行：`mapping` 表达式，`for` 子句，`filter` 表达式。禁止多重 `for`
-语句或过滤器表达式。复杂情况下还是使用循环。
+允许使用推导式，但是不允许使用多重 `for` 子句或过滤器表达式。优化可读性而非简洁性。
 
 !!! success "推荐"
 
     ```python
     result = [mapping_expr for value in iterable if filter_expr]
 
-    result = [{'key': value} for value in iterable
-              if a_long_filter_expression(value)]
-
-    result = [complicated_transform(x)
-              for x in iterable if predicate(x)]
+    result = [
+        is_valid(metric={'key': value})
+        for value in interesting_iterable
+        if a_longer_filter_expression(value)
+    ]
 
     descriptive_name = [
         transform({'key': key, 'value': value}, color='black')
@@ -348,33 +349,30 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
             if x * y > 10:
                 result.append((x, y))
 
-    return {x: complicated_transform(x)
-            for x in long_generator_function(parameter)
-            if x is not None}
+    return {
+        x: complicated_transform(x)
+        for x in long_generator_function(parameter)
+        if x is not None
+    }
 
-    squares_generator = (x**2 for x in range(10))
+    return (x**2 for x in range(10))
 
     unique_names = {user.name for user in users if user is not None}
-
-    eat(jelly_bean for jelly_bean in jelly_beans
-        if jelly_bean.color == 'black')
     ```
 
 !!! fail "不推荐"
 
     ```python
-    result = [complicated_transform(
-              x, some_argument=x+1)
-          for x in iterable if predicate(x)]
-
     result = [(x, y) for x in range(10) for y in range(5) if x * y > 10]
 
-    return ((x, y, z)
-            for x in range(5)
-            for y in range(5)
-            if x != y
-            for z in range(5)
-            if y != z)
+    return (
+        (x, y, z)
+        for x in range(5)
+        for y in range(5)
+        if x != y
+        for z in range(5)
+        if y != z
+    )
     ```
 
 ## 1.8 默认迭代器和操作符
@@ -440,7 +438,7 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ## 1.10 Lambda 函数
 
-适用于单行函数。常用于为 `map()` 和 `filter()` 之类的高阶函数定义回调函数或者操作符。
+适用于单行函数。对于 `map()` 或 `filter()` 结合 `lambda` 的用法，更推荐使用生成器表达式。
 
 ### 1.10.1 定义
 
@@ -463,41 +461,46 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ## 1.11 条件表达式
 
-适用于单行函数。
+适用于简单情况。
 
 ### 1.11.1 定义
 
-条件表达式是对于 `if` 语句的一种更为简短的句法规则。例如 `x = 1 if cond else 2` 。
+条件表达式（有时称为"三元运算符"）是对于 `if` 语句的一种更为简短的句法规则。例如 `x = 1 if cond else 2` 。
 
 ### 1.11.2 优点
 
 比 `if` 语句更加简短和方便。
 
-### 1.11.2 缺点
+### 1.11.3 缺点
 
 比 `if` 语句难于阅读。如果表达式很长，难于定位条件。
 
 ### 1.11.4 结论
 
-适用于单行函数。每个部分必须放在一行上： `true-expression, if-expression, else-expression`
+适用于简单情况。每个部分必须放在一行上： `true-expression, if-expression, else-expression`
 。在其他情况下，推荐使用完整的 `if` 语句。
 
 !!! success "推荐"
 
     ```python
     one_line = 'yes' if predicate(value) else 'no'
-    slightly_split = ('yes' if predicate(value) else 'no, nein, nyet')
+    slightly_split = ('yes' if predicate(value)
+                      else 'no, nein, nyet')
     the_longest_ternary_style_that_can_be_done = (
         'yes, true, affirmative, confirmed, correct'
-        if predicate(value) else 'no, false, negative, nay')
+        if predicate(value)
+        else 'no, false, negative, nay')
     ```
 
 !!! fail "不推荐"
 
     ```python
-    bad_line_breaking = ('yes' if predicate(value) else 'no')
-    portion_too_long = ('yes' if some_long_module.some_long_predicate_function(
-                            really_long_variable_name) else 'no, false, negative, nay')
+    bad_line_breaking = ('yes' if predicate(value) else
+                         'no')
+    portion_too_long = ('yes'
+                        if some_long_module.some_long_predicate_function(
+                            really_long_variable_name)
+                        else 'no, false, negative, nay')
     ```
 
 ## 1.12 默认参数值
@@ -506,7 +509,7 @@ echo.EchoFilter(input, output, delay=0.7, atten=4)
 
 ### 1.12.1 定义
 
-你可以在函数参数列表的最后指定变量的值，例如， `def(a, b=0):` 。如果调用 `foo` 时只带一个参数，则 `b` 被设为 `0`，如果带两个参数，则 `b` 的值等于第二个参数。
+你可以在函数参数列表的最后指定变量的值，例如， `def foo(a, b=0):` 。如果调用 `foo` 时只带一个参数，则 `b` 被设为 `0`，如果带两个参数，则 `b` 的值等于第二个参数。
 
 ### 1.12.2 优点
 
@@ -530,7 +533,7 @@ Python 也不支持重载方法和函数，默认参数是一种“模拟”重�
     ```
 
     ```python
-    def foo(a, b: Optional[Sequence] = None):
+    def foo(a, b: Sequence | None = None):
         if b is None:
             b = []
     ```
@@ -571,7 +574,7 @@ Python 也不支持重载方法和函数，默认参数是一种“模拟”重�
 
 ### 1.13.1 定义
 
-一种用于包装方法调用的方式。当运算量不大，它是获取和设置属性的标准方式。
+一种用于包装方法调用的方式，用于获取和设置属性的标准属性访问。
 
 ### 1.13.2 优点
 
@@ -668,9 +671,11 @@ Python 在布尔上下文中会将某些值求值为 `False` 。按简单的直�
 一个使用这个特性的例子：
 
 ```python
-def get_adder(summand1):
+from typing import Callable
+
+def get_adder(summand1: float) -> Callable[[float], float]:
     """Returns a function that adds numbers to a given number."""
-    def adder(summand2):
+    def adder(summand2: float) -> float:
         return summand1 + summand2
 
     return adder
@@ -683,11 +688,13 @@ def get_adder(summand1):
 ### 1.16.3 缺点
 
 可能导致让人迷惑的
-bug。例如下面这个依据 [PEP-0227](http://www.google.com/url?sa=D&q=http://www.python.org/dev/peps/pep-0227/) 的例子：
+bug。例如下面这个依据 [PEP-0227](https://peps.python.org/pep-0227/) 的例子：
 
 ```python
+from typing import Iterable
+
 i = 4
-def foo(x):
+def foo(x: Iterable[int]):
     def bar():
         print(i, end='')
     # ...
@@ -762,7 +769,7 @@ class C:
 虽然 Python 的内建类型例如字典看上去拥有原子操作，但是在某些情形下它们仍然不是原子的（即，如果 `__hash__` 或 `__eq__` 被实现为
 Python 方法）且它们的原子性是靠不住的。你也不能指望原子变量赋值（因为这个反过来依赖字典）。
 
-优先使用 `Queue` 模块的 `Queue` 数据类型作为线程间的数据通信方式。另外，使用 `threading`
+优先使用 `queue` 模块的 `Queue` 数据类型作为线程间的数据通信方式。另外，使用 `threading`
 模块及其锁原语（`locking primitives`）。了解条件变量的合适使用方式，这样你就可以使用 `threading.Condition` 来取代低级别的锁了。
 
 ## 1.19 威力过大的特性
@@ -792,7 +799,7 @@ Python 是一种异常灵活的语言，它为你提供了很多花哨的特性�
 
 ## 1.20 新版 Python:`from __future__ imports`
 
-可以使用导入 future 这种特殊操在老版本中使用新版本的语法特性。
+可以使用导入 future 这种特殊操作在老版本中使用新版本的语法特性。
 
 ### 1.20.1 定义
 
@@ -812,9 +819,9 @@ Python 是一种异常灵活的语言，它为你提供了很多花哨的特性�
 
 **`from __future__ imports`**
 
-推荐使用 `from __future__ import` 语句。所有的新代码都应该包含以下内容，现有的代码也应该在有条件的情况下进行兼容更新。
+鼓励使用 `from __future__ import` 语句。它允许给定的源文件从现在开始使用更现代的 Python 语法特性。
 
-在 3.5 或更早的版本（而不是 >= 3.7）上执行的代码中，导入：
+在可能在 3.5 及更早版本（而非 3.7 及以上版本）上执行的代码中，导入：
 
 ```python
 from __future__ import generator_stop
@@ -822,8 +829,7 @@ from __future__ import generator_stop
 
 有关更多信息，请阅读 [Python future](https://docs.python.org/3/library/__future__.html) 语句定义文档。
 
-不要删除这些导入，除非您确信代码在当前环境运行没有问题。即使您现在没有使用当前代码中特定的 future 导入启用的特性，
-保留这些导入便于以后修改代码时直接使用。
+一旦你不再需要在隐藏 `__future__` 导入背后功能的版本上运行代码，就可以放心地删除这些导入行。在确信代码只在足够现代的环境中运行之前，请不要删除这些导入。即使您现在没有使用当前代码中特定的 future 导入启用的特性，保留这些导入可以防止后续修改代码时无意中依赖于旧的行为。
 
 还有一些其他的 `from __future__` 语句，可以在需要的时候使用。
 
@@ -840,7 +846,7 @@ from __future__ import generator_stop
 类型标注（或类型提示）可以用于函数或方法的参数和返回值
 
 ```python
-def func(a: int) -> List[int]:
+def func(a: int) -> list[int]:
 ```
 
 还可以使用类似 [PEP-526](https://www.python.org/dev/peps/pep-0526/) 的语法声明变量的类型：
