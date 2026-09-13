@@ -8,18 +8,18 @@
 
 ## 历史
 
-Python 中的信号解耦机制可以通过 [pydispatcher](http://pydispatcher.sourceforge.net/) 实现。而且 Django Web 框架中的信号机制也是
+Python 中的信号解耦机制可以通过 [pydispatcher](https://pydispatcher.sourceforge.net/) 实现。而且 Django Web 框架中的信号机制也是
 基于这个项目衍生的。
 
 该项目的核心逻辑 ---- 弱引用，也在后来引入到 Python 官方库中。此后该项目也在 2015 年不再更新。
 
-而之后社区也出现一些信号框架，和在底层实现类似于 [pydispatcher](http://pydispatcher.sourceforge.net/) 功能的逻辑。
+而之后社区也出现一些信号框架，和在底层实现类似于 [pydispatcher](https://pydispatcher.sourceforge.net/) 功能的逻辑。
 
 ## 信号框架
 
 ### pydispatcher
 
-[pydispatcher](http://pydispatcher.sourceforge.net/)  提供多生产者-多消费者信号注册和路由基础设施，以在多个上下文中使用。
+[pydispatcher](https://pydispatcher.sourceforge.net/)  提供多生产者-多消费者信号注册和路由基础设施，以在多个上下文中使用。
 
 #### pydispatcher 使用示例
 
@@ -52,13 +52,13 @@ if __name__ == '__main__':
 上述示例中 `start_process` 订阅了 `audit` 事件，然后在执行 `ETL.process` 的时候，通过 `dispatcher.send` 一条记录，
 同时触发该事件执行。
 
-[pydispatcher](http://pydispatcher.sourceforge.net/) 支持指定特定信号，和发送者或匿名。信号可以是特定或者匿名。对象由 Python 解释器
+[pydispatcher](https://pydispatcher.sourceforge.net/) 支持指定特定信号，和发送者或匿名。信号可以是特定或者匿名。对象由 Python 解释器
 解释器管理，如果对象被回收，则不会在触发。
 
 ### blinker
 
-[blinker](https://pythonhosted.org/blinker/) 为Python对象提供快速和简单的对象和广播信号。其内部逻辑依然使用的是弱引用。使用起来和
-[pydispatcher](http://pydispatcher.sourceforge.net/) 类似。
+[blinker](https://blinker.readthedocs.io/en/stable/) 为Python对象提供快速和简单的对象和广播信号。其内部逻辑依然使用的是弱引用。使用起来和
+[pydispatcher](https://pydispatcher.sourceforge.net/) 类似。
 
 #### blinker 使用示例
 
@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
 ```
 
-[blinker](https://pythonhosted.org/blinker/) 同样支持匿名信号，底层的弱引用机制可以减少对象的引用。它有一个好处是支持
+[blinker](https://blinker.readthedocs.io/en/stable/) 同样支持匿名信号，底层的弱引用机制可以减少对象的引用。它有一个好处是支持
 装饰器订阅事件，使用起来比较方便。
 
 ### aiosignal
@@ -146,7 +146,7 @@ if __name__ == '__main__':
 ```python
 """
 Asyncio pydispatch (Signal Manager)
-This is based on [pyDispatcher](http://pydispatcher.sourceforge.net/) reference
+This is based on [pyDispatcher](https://pydispatcher.sourceforge.net/) reference
 [scrapy SignalManager](https://docs.scrapy.org/en/latest/topics/signals.html) implementation on
 [Asyncio](https://docs.python.org/3/library/asyncio.html)
 """
