@@ -20,9 +20,13 @@
 
 ### 1.3 虚拟环境工具
 
-推荐使用 [poetry](https://python-poetry.org/)。poetry 相比使用 `requirements.txt` 管理依赖列表，更加强大。它支持同时管理开发生产环境依赖，自动查找虚拟环境，生成依赖锁定文件等其他特性。
+推荐使用 [Poetry](https://python-poetry.org/)。Poetry 相比使用 `requirements.txt` 管理依赖列表，更加强大。它支持同时管理开发生产环境依赖，自动查找虚拟环境，生成依赖锁定文件等其他特性。
 
-在安装好 Python 环境后，应该在全局环境中安装 poetry 。
+Poetry 命令可以在各项目中使用，但它自身的依赖应与系统 Python 和项目环境隔离。建议按照 [Poetry 官方安装说明](https://python-poetry.org/docs/#installation)，使用 [pipx](https://pipx.pypa.io/stable/) 将 Poetry 安装到独立虚拟环境中：
+
+```bash
+pipx install poetry
+```
 
 ### 1.4 Git 使用
 
