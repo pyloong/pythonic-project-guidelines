@@ -1614,11 +1614,9 @@
 <h1 id="_1">构建与发布</h1>
 <p>作为项目的最后一环，分发至关重要。有良好的分发流程，便于使用。基于 Python 自带的分发机制显然是
 更好的选择。</p>
-<p>本文将以一个数据导出的项目讲述。</p>
+<p>本文以一个将文件数据导入 MongoDB 的项目为例，重点介绍打包分发，因此不展开功能开发。</p>
 <h2 id="1">1. 项目准备</h2>
-<p>因为本文的重点是对打包分发，所以项目的功能开发就不作为重点。</p>
-<p>项目源代码可以在 <a href="https://github.com/whg517/pythonic-project-samples/tree/example/file2mongo">pythonic-project-samples</a> 中获取。</p>
-<p>项目采用 <code>src</code> 目录结构，项目描述信息都在 <code>pyproject.toml</code> 中定义。</p>
+<p>示例项目名为 <code>file2mongo</code>，采用 <code>src</code> 目录结构，项目描述信息都在 <code>pyproject.toml</code> 中定义。</p>
 <h2 id="2">2. 项目打包</h2>
 <h3 id="21">2.1 打包工具</h3>
 <p>由于历史原因， Python 的打包走了很长一段路了，但和其他语言的打包工具相比，未来还是有很长一段路要走。</p>
