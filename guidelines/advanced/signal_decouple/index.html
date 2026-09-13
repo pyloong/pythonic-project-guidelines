@@ -1426,13 +1426,13 @@
 <p>事件驱动架构可以基于发布/订阅模型或者事件流模型。</p>
 <p>后面谈到的都是基于发布/订阅模型实现的。</p>
 <h2 id="_2">历史</h2>
-<p>Python 中的信号解耦机制可以通过 <a href="http://pydispatcher.sourceforge.net/">pydispatcher</a> 实现。而且 Django Web 框架中的信号机制也是
+<p>Python 中的信号解耦机制可以通过 <a href="https://pydispatcher.sourceforge.net/">pydispatcher</a> 实现。而且 Django Web 框架中的信号机制也是
 基于这个项目衍生的。</p>
 <p>该项目的核心逻辑 ---- 弱引用，也在后来引入到 Python 官方库中。此后该项目也在 2015 年不再更新。</p>
-<p>而之后社区也出现一些信号框架，和在底层实现类似于 <a href="http://pydispatcher.sourceforge.net/">pydispatcher</a> 功能的逻辑。</p>
+<p>而之后社区也出现一些信号框架，和在底层实现类似于 <a href="https://pydispatcher.sourceforge.net/">pydispatcher</a> 功能的逻辑。</p>
 <h2 id="_3">信号框架</h2>
 <h3 id="pydispatcher">pydispatcher</h3>
-<p><a href="http://pydispatcher.sourceforge.net/">pydispatcher</a>  提供多生产者-多消费者信号注册和路由基础设施，以在多个上下文中使用。</p>
+<p><a href="https://pydispatcher.sourceforge.net/">pydispatcher</a>  提供多生产者-多消费者信号注册和路由基础设施，以在多个上下文中使用。</p>
 <h4 id="pydispatcher_1">pydispatcher 使用示例</h4>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydispatch</span><span class="w"> </span><span class="kn">import</span> <span class="n">dispatcher</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -1459,11 +1459,11 @@
 </span></code></pre></div>
 <p>上述示例中 <code>start_process</code> 订阅了 <code>audit</code> 事件，然后在执行 <code>ETL.process</code> 的时候，通过 <code>dispatcher.send</code> 一条记录，
 同时触发该事件执行。</p>
-<p><a href="http://pydispatcher.sourceforge.net/">pydispatcher</a> 支持指定特定信号，和发送者或匿名。信号可以是特定或者匿名。对象由 Python 解释器
+<p><a href="https://pydispatcher.sourceforge.net/">pydispatcher</a> 支持指定特定信号，和发送者或匿名。信号可以是特定或者匿名。对象由 Python 解释器
 解释器管理，如果对象被回收，则不会在触发。</p>
 <h3 id="blinker">blinker</h3>
-<p><a href="https://pythonhosted.org/blinker/">blinker</a> 为Python对象提供快速和简单的对象和广播信号。其内部逻辑依然使用的是弱引用。使用起来和
-<a href="http://pydispatcher.sourceforge.net/">pydispatcher</a> 类似。</p>
+<p><a href="https://blinker.readthedocs.io/en/stable/">blinker</a> 为Python对象提供快速和简单的对象和广播信号。其内部逻辑依然使用的是弱引用。使用起来和
+<a href="https://pydispatcher.sourceforge.net/">pydispatcher</a> 类似。</p>
 <h4 id="blinker_1">blinker 使用示例</h4>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">blinker</span><span class="w"> </span><span class="kn">import</span> <span class="n">Signal</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
@@ -1497,7 +1497,7 @@
 </span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
 </span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    <span class="n">apc</span><span class="o">.</span><span class="n">go</span><span class="p">()</span>
 </span></code></pre></div>
-<p><a href="https://pythonhosted.org/blinker/">blinker</a> 同样支持匿名信号，底层的弱引用机制可以减少对象的引用。它有一个好处是支持
+<p><a href="https://blinker.readthedocs.io/en/stable/">blinker</a> 同样支持匿名信号，底层的弱引用机制可以减少对象的引用。它有一个好处是支持
 装饰器订阅事件，使用起来比较方便。</p>
 <h3 id="aiosignal">aiosignal</h3>
 <p><a href="https://github.com/aio-libs/aiosignal">aiosignal</a> 是从 <a href="https://github.com/aio-libs/aiohttp">aiohttp</a> 中独立出来的异步信号框架。
@@ -1533,7 +1533,7 @@
 <p><code>aio_signal.signal.py</code></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="sd">"""</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="sd">Asyncio pydispatch (Signal Manager)</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="sd">This is based on [pyDispatcher](http://pydispatcher.sourceforge.net/) reference</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="sd">This is based on [pyDispatcher](https://pydispatcher.sourceforge.net/) reference</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="sd">[scrapy SignalManager](https://docs.scrapy.org/en/latest/topics/signals.html) implementation on</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="sd">[Asyncio](https://docs.python.org/3/library/asyncio.html)</span>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="sd">"""</span>
