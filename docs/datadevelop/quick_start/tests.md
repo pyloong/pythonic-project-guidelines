@@ -3,7 +3,7 @@
 ## 单元测试
 
 单元测试（unit test）就是编写测试来验证某一模块的功能正确性。一般会指定输入，验证输出是否符合预期，可以帮助我们很快准确的定位到问题的位置，出现问题的模块和单元。
-我们将使用[Pytest](/pythonic-project-guidelines/guidelines/advanced/test/#12-pytest)进行测试。
+我们将使用[Pytest](../../guidelines/advanced/test.md#12-pytest)进行测试。
 
 ### 配置文件测试
 
