@@ -1949,5 +1949,5 @@ poetry build
 poetry publish
 ```
 
-[^1]: https://www.python.org/doc/sunset-python-2/
+[^1]: <https://www.python.org/doc/sunset-python-2/>
 [^2]: 现在 Anaconda / Miniconda 在 Windows 上使用虚拟环境工具 [Virtualenv](https://virtualenv.pypa.io/en/latest/) 存在一些兼容问题，而且 Pipenv 是依赖这个工具的。请参考 [conda support - Windows 3.7+ #1986](https://github.com/pypa/virtualenv/issues/1986) 和 [virtualenv==20.0.34 not compatible with python on windows #12094](https://github.com/ContinuumIO/anaconda-issues/issues/12094)
