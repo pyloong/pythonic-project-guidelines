@@ -1573,7 +1573,10 @@
 当前基于 PEP517 的构建模式已经完全可用。在 pip 的发行记录中，最早是在 <a href="https://pip.pypa.io/en/stable/news/#id438">18.1 (2018-10-05)</a> 就引入了 PEP517 的 <code>0.2</code> 版本。</p>
 <p>在使用上，Poetry 给人的感觉更现代化。</p>
 <p><strong>安装：</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>pip<span class="w"> </span>install<span class="w"> </span>poetry
+<p>Poetry 自身应安装在独立虚拟环境中，不要安装到系统 Python 或 Poetry 将要管理的项目虚拟环境。
+按照 <a href="https://python-poetry.org/docs/#installation">Poetry 官方安装说明</a>，推荐使用 <a href="https://pipx.pypa.io/stable/">pipx</a> 安装；pipx 会为 Poetry 创建和维护隔离环境，同时让 <code>poetry</code> 命令可在各项目中使用。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>pipx<span class="w"> </span>install<span class="w"> </span>poetry
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>poetry<span class="w"> </span>--version
 </span></code></pre></div>
 <p><strong>使用：</strong></p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># 使用前需要先初始化项目的基本信息，生成 `pyproject.toml` 文件</span>

@@ -1568,14 +1568,15 @@
 <p><a href="https://code.visualstudio.com/">Visual Studio Code</a> 是微软开发的一款免费轻量级文本编辑器，通过安装插件可以自定义成一款功能强大的 IDE 开发工具。目前支持 Python 的插件体系已经较为完善，此方案也可以作为备用。</p>
 <h3 id="13">1.3 虚拟环境工具</h3>
 <p>推荐使用 <a href="https://python-poetry.org/">Poetry</a> ，既包含了虚拟环境管理工具也支持打包发布等功能。</p>
-<p>在安装好 Python 环境后，应该在全局环境中安装 <a href="https://python-poetry.org/">Poetry</a> 。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>poetry
+<p>Poetry 作为命令行工具可以在各项目中使用，但不应安装到系统 Python 或它所管理的项目虚拟环境中。推荐使用 <a href="https://pipx.pypa.io/stable/">pipx</a> 为 Poetry 创建独立虚拟环境，并让 <code>poetry</code> 命令可在各项目中使用。
+若尚未安装 pipx，请先按照其<a href="https://pipx.pypa.io/stable/how-to/install-pipx.html">官方安装说明</a>完成安装。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pipx<span class="w"> </span>install<span class="w"> </span>poetry
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>poetry<span class="w"> </span>--version
 </span></code></pre></div>
 <h3 id="14">1.4 初始化项目</h3>
-<p><a href="https://cookiecutter.readthedocs.io/en/1.7.2/README.html">cookiecutter</a> 是一个通过项目模板创建项目的命令行工具。</p>
+<p><a href="https://cookiecutter.readthedocs.io/en/stable/">cookiecutter</a> 是一个通过项目模板创建项目的命令行工具。</p>
 <p>安装 cookiecutter</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>cookiecutter
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pipx<span class="w"> </span>install<span class="w"> </span>cookiecutter
 </span></code></pre></div>
 <p>初始化项目</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>workspace
