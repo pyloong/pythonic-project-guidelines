@@ -20,21 +20,22 @@
 
 推荐使用 [Poetry](https://python-poetry.org/) ，既包含了虚拟环境管理工具也支持打包发布等功能。
 
-在安装好 Python 环境后，应该在全局环境中安装 [Poetry](https://python-poetry.org/) 。
+Poetry 作为命令行工具可以在各项目中使用，但不应安装到系统 Python 或它所管理的项目虚拟环境中。推荐使用 [pipx](https://pipx.pypa.io/stable/) 为 Poetry 创建独立虚拟环境，并让 `poetry` 命令可在各项目中使用。
+若尚未安装 pipx，请先按照其[官方安装说明](https://pipx.pypa.io/stable/how-to/install-pipx.html)完成安装。
 
 ```bash
-sudo python -m pip install -U pip
-sudo pip install -U poetry
+pipx install poetry
+poetry --version
 ```
 
 ### 1.4 初始化项目
 
-[cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/README.html) 是一个通过项目模板创建项目的命令行工具。
+[cookiecutter](https://cookiecutter.readthedocs.io/en/stable/) 是一个通过项目模板创建项目的命令行工具。
 
 安装 cookiecutter
 
 ```bash
-sudo pip3 install -U cookiecutter
+pipx install cookiecutter
 ```
 
 初始化项目

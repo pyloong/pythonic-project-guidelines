@@ -275,8 +275,12 @@ pipenv install tox
 
 **安装：**
 
+Poetry 自身应安装在独立虚拟环境中，不要安装到系统 Python 或 Poetry 将要管理的项目虚拟环境。
+按照 [Poetry 官方安装说明](https://python-poetry.org/docs/#installation)，推荐使用 [pipx](https://pipx.pypa.io/stable/) 安装；pipx 会为 Poetry 创建和维护隔离环境，同时让 `poetry` 命令可在各项目中使用。
+
 ```bash
-pip install poetry
+pipx install poetry
+poetry --version
 ```
 
 **使用：**
