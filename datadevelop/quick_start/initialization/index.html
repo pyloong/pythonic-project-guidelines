@@ -1379,7 +1379,7 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cookiecutter<span class="w"> </span>https://github.com/pyloong/cookiecutter-pythonic-project-bigdata-etl
 </span></code></pre></div>
 <h2 id="_3">创建虚拟环境</h2>
-<p>切换到项目根目录下，项目使用 <a href="/pythonic-project-guidelines/introduction/virtualenv/#25-poetry">poetry</a>
+<p>切换到项目根目录下，项目使用 <a href="../../../introduction/virtualenv/#25-poetry">poetry</a>
 管理虚拟环境，运行命令自动创建虚拟环境，同时安装开发环境依赖</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>poetry<span class="w"> </span>install
 </span></code></pre></div>
@@ -1398,7 +1398,7 @@
 <p>在开发ETL任务的时候，建议在<code>tasks</code>目录下新建文件夹来存放对应ETL任务代码，这样做的好处是方便管理和阅读。</p>
 <h4 id="executor">Executor</h4>
 <p>执行器<code>executor</code>，它只关心<code>AbstractTask</code>的<code>run</code>方法，开发者不需要重复开发调用<code>Task</code>相关的功能。</p>
-<p><code>_load_task</code>：通过<a href="/pythonic-project-guidelines/guidelines/advanced/plugin/#stevedore">stevedore</a>
+<p><code>_load_task</code>：通过<a href="../../../guidelines/advanced/plugin/#stevedore">stevedore</a>
 插件框架，查找在<code>namespace</code>中注册的<code>Task</code>，并进行实例化。</p>
 <p><code>run</code>：调用<code>AbstractTask</code>的<code>run</code>方法。</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="sd">"""</span>
@@ -1554,7 +1554,7 @@
 </span></code></pre></div>
 <h4 id="_6">注册插件</h4>
 <p>ETL任务完成后需要注册插件：</p>
-<p>因为项目默认使用<a href="/pythonic-project-guidelines/introduction/virtualenv/#25-poetry">poetry</a>
+<p>因为项目默认使用<a href="../../../introduction/virtualenv/#25-poetry">poetry</a>
 管理虚拟环境，则需要在<code>pyproject.toml</code> 文件增加中增加如下内容：</p>
 <div class="language-toml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[tool.poetry.plugins.</span><span class="s2">"etl_tasks"</span><span class="k">]</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">task_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"{task_class_path}:TaskExample"</span>
