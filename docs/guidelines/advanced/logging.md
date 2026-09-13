@@ -269,4 +269,4 @@ def init_yml_log() -> None:
 应该延迟加载。这么做是为了减少在计算日志参数时所消耗的资源，因为如果日志记录非丢弃，则不需要消耗这部分资源。所以在
 日志记录上，应采用 `%` 的方式，而不是其他字符串格式化。
 
-关于性能的讨论可以参考 [W1202 - logging-fstring-interpolation is not useful](https://github.com/PyCQA/pylint/issues/2395) 。
+关于性能的讨论可以参考 [W1202 - logging-fstring-interpolation is not useful](https://github.com/pylint-dev/pylint/issues/2395) 。

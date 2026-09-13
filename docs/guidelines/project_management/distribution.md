@@ -224,7 +224,7 @@ flit build --format wheel
 
 缺点：
 
-- [不支持 CPython 编译](https://github.com/Vlek/roll/issues/29)
+- [扩展模块构建功能仍处于不稳定状态](https://python-poetry.org/docs/building-extension-modules/)
 - 不支持 zip 压缩选项
 
 ##### 2.1.3.1 示例配置
