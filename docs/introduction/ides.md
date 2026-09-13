@@ -85,7 +85,7 @@ print(sys.version)
 
 #### 解决方法
 
-参考 [about_Execution_Policies](https:/go.microsoft.com/fwlink/?LinkID=135170) 的说明，并更改当前用户的 Powershell 执行策略：
+参考 [about_Execution_Policies](https://go.microsoft.com/fwlink/?LinkID=135170) 的说明，并更改当前用户的 Powershell 执行策略：
 
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser

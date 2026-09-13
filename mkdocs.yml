@@ -2,7 +2,7 @@ site_name: Python 项目工程化开发指南
 
 theme:
   name: material
-  langage: zh
+  language: zh
   features:
   - search.highlight
   - navigation.sections
@@ -29,7 +29,6 @@ markdown_extensions:
 - admonition
 - pymdownx.details
 - pymdownx.superfences
-- pymdownx.tabbed
 - pymdownx.caret
 - pymdownx.mark
 - pymdownx.tilde
