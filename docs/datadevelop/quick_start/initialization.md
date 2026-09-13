@@ -13,7 +13,7 @@ cookiecutter https://github.com/pyloong/cookiecutter-pythonic-project-bigdata-et
 
 ## 创建虚拟环境
 
-切换到项目根目录下，项目使用 [poetry](/pythonic-project-guidelines/introduction/virtualenv/#25-poetry)
+切换到项目根目录下，项目使用 [poetry](../../introduction/virtualenv.md#25-poetry)
 管理虚拟环境，运行命令自动创建虚拟环境，同时安装开发环境依赖
 
 ```bash
@@ -50,7 +50,7 @@ poetry install
 
 执行器`executor`，它只关心`AbstractTask`的`run`方法，开发者不需要重复开发调用`Task`相关的功能。
 
-`_load_task`：通过[stevedore](/pythonic-project-guidelines/guidelines/advanced/plugin/#stevedore)
+`_load_task`：通过[stevedore](../../guidelines/advanced/plugin.md#stevedore)
 插件框架，查找在`namespace`中注册的`Task`，并进行实例化。
 
 `run`：调用`AbstractTask`的`run`方法。
@@ -230,7 +230,7 @@ def singleton(cls):
 
 ETL任务完成后需要注册插件：
 
-因为项目默认使用[poetry](/pythonic-project-guidelines/introduction/virtualenv/#25-poetry)
+因为项目默认使用[poetry](../../introduction/virtualenv.md#25-poetry)
 管理虚拟环境，则需要在`pyproject.toml` 文件增加中增加如下内容：
 
 ```toml
