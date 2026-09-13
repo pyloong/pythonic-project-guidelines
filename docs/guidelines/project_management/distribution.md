@@ -3,15 +3,11 @@
 作为项目的最后一环，分发至关重要。有良好的分发流程，便于使用。基于 Python 自带的分发机制显然是
 更好的选择。
 
-本文将以一个数据导出的项目讲述。
+本文以一个将文件数据导入 MongoDB 的项目为例，重点介绍打包分发，因此不展开功能开发。
 
 ## 1. 项目准备
 
-因为本文的重点是对打包分发，所以项目的功能开发就不作为重点。
-
-项目源代码可以在 [pythonic-project-samples](https://github.com/whg517/pythonic-project-samples/tree/example/file2mongo) 中获取。
-
-项目采用 `src` 目录结构，项目描述信息都在 `pyproject.toml` 中定义。
+示例项目名为 `file2mongo`，采用 `src` 目录结构，项目描述信息都在 `pyproject.toml` 中定义。
 
 ## 2. 项目打包
 

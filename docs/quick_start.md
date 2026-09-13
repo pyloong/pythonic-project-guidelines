@@ -2,7 +2,7 @@
 
 这是一个快速上手的开发指南，本文通过一个包含主要知识点的简单项目，向开发者展示一个更符合 Python 规范和风格（Pythonic）的项目开发流程。
 
-示例项目是一个单词统计的演示程序，如果你想查看完整示例，可以浏览 [Word Count](https://github.com/pyloong/pythonic-project-samples/tree/feature/word_count) 项目源码。
+后文将从项目初始化开始，逐步完成一个单词统计演示程序。
 
 ## 1. 开发环境搭建
 
